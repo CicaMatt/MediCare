@@ -1,31 +1,5 @@
-/* Stili separati per il file CSS */
-
-/* Remove the navbar's default margin-bottom and rounded borders */
-.navbar {
-  margin-bottom: 0;
-  border-radius: 0;
-}
 
 
-/* Ridimensionamento del logo */
-.navbar-above img {
-  width: 8vh; /* Imposta la larghezza desiderata */
-  height: auto; /* Imposta l'altezza automaticamente in base alla larghezza per mantenere le proporzioni */
-  display: block; /* Rendi l'immagine un blocco per poter applicare margini */
-  margin-right: auto; /* Imposta il margine destro a "auto" per spostare il logo a sinistra */
-  margin-left: 1vw;
-  min-width: 100px;
-}
-
-.row{
-  margin-left: 0;
-}
-
-.navbar-above h3 {
-  line-height: 60px;
-  margin-bottom: 0;
-  margin-left: 5px; /* Ridotto il margine sinistro */
-}
 
 /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
 .row.content { height: 450px; }
@@ -56,3 +30,5 @@ footer {
   }
   .row.content { height: auto; }
 }
+
+
