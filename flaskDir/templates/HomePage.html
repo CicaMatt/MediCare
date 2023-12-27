@@ -14,24 +14,24 @@
   </style>
 		<!-- Google Fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="grafica/HomePage.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='grafica/HomePage.css') }}">
 
 		<!-- Font Awesome CSS -->
-        <link rel="stylesheet" href="grafica/icofont/icofont.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='grafica/icofont/icofont.css') }}">
 		<!-- icofont CSS -->
-        <link rel="stylesheet" href="grafica/icofont/icofont.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='grafica/icofont/icofont.min.css') }}">
 
 
 
 
 		<!-- Responsive CSS -->
-        <link rel="stylesheet" href="grafica/responsive.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='grafica/responsive.css') }}">
 
 
 
 
 		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="grafica/bootstrap.min.css">
+		<link rel="stylesheet" href="{{ url_for('static', filename='grafica/bootstrap.min.css') }}">
 
 
 
@@ -41,6 +41,7 @@
 
   </head>
   <body>
+  	{% include 'Navbar.html' %}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 
@@ -51,13 +52,13 @@
 
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="images/dottore.jpg" class="d-block w-100" alt="...">
+      <img src="{{ url_for('static', filename='images/dottore.jpg') }}" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="images/dottore2.jpg" class="d-block w-100" alt="...">
+      <img src="{{ url_for('static', filename='images/dottore2.jpg') }}" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="images/dottore3.jpg" class="d-block w-100" alt="...">
+      <img src="{{ url_for('static', filename='images/dottore3.jpg') }}" class="d-block w-100" alt="...">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
@@ -141,7 +142,7 @@
 					<div class="col-lg-12">
 						<div class="section-title d-flex justify-content-center align-items-center flex-column text-center">
 						  <h2>Sempre pronti per aiutare te e i tuoi cari, non perdere tempo, prenota</h2>
-						  <img src="images/section-img.png" alt="#">
+						  <img src="{{ url_for('static', filename='images/section-img.png') }}" alt="#">
 						  <p>Medicare offre una vasta gamma di servizi e non si limita alle singole visite mediche, scopri tutto ciò che abbiamo da offrire.</p>
 						</div>
 					</div>

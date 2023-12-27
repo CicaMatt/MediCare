@@ -1,0 +1,77 @@
+.navbar-above img {
+  width: 8vh; /* Imposta la larghezza desiderata */
+  height: auto; /* Imposta l'altezza automaticamente in base alla larghezza per mantenere le proporzioni */
+  margin-left: 0;
+  min-width: 100px;
+}
+
+
+.navbar-above h3 {
+  line-height: 60px;
+  margin-left: -50px;
+  color: #1E90FF;
+  font-size: 30px;
+}
+
+/* Cambiamento del colore della navbar */
+.navbar {
+  background-color: #77aaff !important; /* Cambia il colore di sfondo della navbar */
+  border-color: #77aaff !important; /* Cambia il colore del bordo della navbar */
+  border-radius: 0 !important;
+    padding: 10px !important;
+}
+
+.navbar-nav > li > a {
+  color: #FFFFFF !important; /* Cambia il colore del testo dei link nella navbar */
+  font-size: 20px;
+  margin-left: 20vh;
+
+}
+
+
+.navbar-nav > li > a:hover,
+.navbar-nav > li > a:focus {
+  color: #080808 !important; /* Cambia il colore del testo dei link al passaggio del mouse */
+}
+
+.navbar-toggle {
+  border-color: #77aaff !important; /* Cambia il colore del toggle del menu */
+}
+
+
+@media screen and (max-width: 1800px) {
+.navbar-nav > li > a {
+  color: #FFFFFF !important; /* Cambia il colore del testo dei link nella navbar */
+  font-size: 20px;
+  margin-left: 30px;
+
+}
+}
+
+@media screen and (max-width: 900px) {
+.navbar-nav > li > a {
+  color: #FFFFFF !important; /* Cambia il colore del testo dei link nella navbar */
+  font-size: 20px;
+  margin-left: 0;
+
+}
+}
+
+
+@media screen and (max-width: 1600px) {
+  .navbar-above h3 {
+    line-height: 60px;
+    width: 8vh; /* Imposta la larghezza desiderata */
+    height: auto; /* Imposta l'altezza automaticamente in base alla larghezza per mantenere le proporzioni */
+    margin-left: 10px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .navbar-above h3 {
+    line-height: 60px;
+    width: 8vh; /* Imposta la larghezza desiderata */
+    height: auto; /* Imposta l'altezza automaticamente in base alla larghezza per mantenere le proporzioni */
+    margin-left: 50px;
+  }
+}

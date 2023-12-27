@@ -32,7 +32,8 @@ def vaccini():
 
 @app.route('/farmaci')
 def farmaci():
-    return render_template("Farmaci.html")
+    return render_template("Footer2.0.html")
+
 
 
 @app.route('/dettagliFarmaco')
