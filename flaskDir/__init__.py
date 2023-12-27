@@ -87,9 +87,4 @@ class ConsultaFascicolo(db.Model):
     documento_numero = db.Column(db.String(20), db.ForeignKey('documento_sanitario.numero_documento'), primary_key=True)
 
 
-#creazione tabelle
-db.create_all()
-
-
-
 

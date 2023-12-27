@@ -12,14 +12,28 @@
       object-fit: cover; /* Consente di adattare l'immagine mantenendo le proporzioni e coprendo l'intera area dell'elemento padre */
     }
   </style>
-
-
-
 		<!-- Google Fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="grafica/HomePage.css">
+
+		<!-- Font Awesome CSS -->
+        <link rel="stylesheet" href="grafica/icofont/icofont.css">
+		<!-- icofont CSS -->
+        <link rel="stylesheet" href="grafica/icofont/icofont.min.css">
 
 
-        <link rel="stylesheet" href="{{url_for('static', filename='grafica/HomePage.css')}}">
+
+
+		<!-- Responsive CSS -->
+        <link rel="stylesheet" href="grafica/responsive.css">
+
+
+
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="grafica/bootstrap.min.css">
+
+
 
 
 
@@ -31,22 +45,19 @@
 
 
 
+  <!-- Carosello -->
 
   <div id="carouselExampleCaptions" class="carousel slide">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-  </div>
+
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="{{url_for('static', filename='images/dottore.jpg')}}"  class="d-block w-100" alt="...">
+      <img src="images/dottore.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="{{url_for('static', filename='images/dottore2.jpg')}}" class="d-block w-100" alt="...">
+      <img src="images/dottore2.jpg" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
-      <img src="{{url_for('static', filename='images/dottore3.jpg')}}" class="d-block w-100" alt="...">
+      <img src="images/dottore3.jpg" class="d-block w-100" alt="...">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
@@ -59,7 +70,7 @@
   </button>
 </div>
 
-
+  <!-- Fine Carosello -->
 
 
 
@@ -73,13 +84,12 @@
 							<div class="single-schedule first">
 								<div class="inner">
 									<div class="icon">
-										<i class="fa fa-ambulance"></i>
+										<i class="icofont-dna"></i>
 									</div>
 									<div class="single-content">
-										<span>Lorem Amet</span>
-										<h4>Emergency Cases</h4>
-										<p>Lorem ipsum sit amet consectetur adipiscing elit. Vivamus et erat in lacus convallis sodales.</p>
-										<a href="#">LEARN MORE<i class="fa fa-long-arrow-right"></i></a>
+										<h4>Analisi cliniche</h4>
+										<p>Su Medicare sono disponibili diversi tipi di analisi cliniche prenotabili. Consulta l'apposita sezione e prenota subito.</p>
+										<a href="#">SCOPRI DI PIÙ<i class="fa fa-long-arrow-right"></i></a>
 									</div>
 								</div>
 							</div>
@@ -92,10 +102,9 @@
 										<i class="icofont-prescription"></i>
 									</div>
 									<div class="single-content">
-										<span>Fusce Porttitor</span>
-										<h4>Doctors Timetable</h4>
-										<p>Lorem ipsum sit amet consectetur adipiscing elit. Vivamus et erat in lacus convallis sodales.</p>
-										<a href="#">LEARN MORE<i class="fa fa-long-arrow-right"></i></a>
+										<h4>Visite specialistiche</h4>
+										<p>Potrai scegliere tra una vasta gamma di medici privati e strutture ospedaliere per prenotare una visita specialistica.</p>
+										<a href="#">SCOPRI DI PIÙ<i class="fa fa-long-arrow-right"></i></a>
 									</div>
 								</div>
 							</div>
@@ -105,13 +114,12 @@
 							<div class="single-schedule last">
 								<div class="inner">
 									<div class="icon">
-										<i class="icofont-ui-clock"></i>
+										<i class="icofont-heart-beat-alt"></i>
 									</div>
 									<div class="single-content">
-										<span>Donec luctus</span>
-										<h4>Opening Hours</h4>
-										<p>Lorem ipsum sit amet consectetur adipiscing elit. Vivamus et erat in lacus convallis sodales.</p>
-										<a href="#">LEARN MORE<i class="fa fa-long-arrow-right"></i></a>
+										<h4>Malattie cardiache</h4>
+										<p>Scopri subito se sei a rischio di una malattia cardiaca. Con Medicare potrai sottoporti ad un'esame immediato.</p>
+										<a href="#">SCOPRI DI PIÙ<i class="fa fa-long-arrow-right"></i></a>
 									</div>
 								</div>
 							</div>
@@ -126,11 +134,112 @@
 
 
 
+<!-- Start Feautes -->
+		<section class="Feautes section">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="section-title d-flex justify-content-center align-items-center flex-column text-center">
+						  <h2>Sempre pronti per aiutare te e i tuoi cari, non perdere tempo, prenota</h2>
+						  <img src="images/section-img.png" alt="#">
+						  <p>Medicare offre una vasta gamma di servizi e non si limita alle singole visite mediche, scopri tutto ciò che abbiamo da offrire.</p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-4 col-12">
+						<!-- Start Single features -->
+						<div class="single-features">
+							<div class="signle-icon">
+								<i class="icofont-doctor"></i>
+							</div>
+							<h3>Visite convenzionate</h3>
+							<p>Potrai prenotare una consulenza pubblica ottenendo agevolazioni fiscali in base al tuo reddito.</p>
+						</div>
+						<!-- End Single features -->
+					</div>
+					<div class="col-lg-4 col-12">
+						<!-- Start Single features -->
+						<div class="single-features">
+							<div class="signle-icon">
+								<i class="icofont-medical-sign-alt"></i>
+							</div>
+							<h3>Database farmaceutico</h3>
+							<p>Medicare mette a disposizione degli utenti un database consultabile di farmaci.</p>
+						</div>
+						<!-- End Single features -->
+					</div>
+					<div class="col-lg-4 col-12">
+						<!-- Start Single features -->
+						<div class="single-features last">
+							<div class="signle-icon">
+								<i class="icofont-injection-syringe"></i>
+							</div>
+							<h3>Vaccinazioni</h3>
+							<p>Prenota il tuo vaccino presso una delle strutture sanitarie presenti sulla piattaforma.</p>
+						</div>
+						<!-- End Single features -->
+					</div>
+				</div>
+			</div>
+		</section>
+		<!--/ End Feautes -->
 
 
 
 
-
+		<!-- Start Fun-facts -->
+		<div id="fun-facts" class="fun-facts section overlay">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 col-md-6 col-12">
+						<!-- Start Single Fun -->
+						<div class="single-fun">
+							<i class="icofont-doctor-alt"></i>
+							<div class="content">
+								<span class="counter">73</span>
+								<p>Medici iscritti</p>
+							</div>
+						</div>
+						<!-- End Single Fun -->
+					</div>
+					<div class="col-lg-3 col-md-6 col-12">
+						<!-- Start Single Fun -->
+						<div class="single-fun">
+							<i class="icofont-crutch"></i>
+							<div class="content">
+								<span class="counter">127</span>
+								<p>Pazienti visitati</p>
+							</div>
+						</div>
+						<!-- End Single Fun -->
+					</div>
+					<div class="col-lg-3 col-md-6 col-12">
+						<!-- Start Single Fun -->
+						<div class="single-fun">
+							<i class="icofont-hospital"></i>
+							<div class="content">
+								<span class="counter">36</span>
+								<p>Strutture registrate</p>
+							</div>
+						</div>
+						<!-- End Single Fun -->
+					</div>
+					<div class="col-lg-3 col-md-6 col-12">
+						<!-- Start Single Fun -->
+						<div class="single-fun">
+							<i class="icofont-test-tube"></i>
+							<div class="content">
+								<span class="counter">86</span>
+								<p>Analisi effettuate</p>
+							</div>
+						</div>
+						<!-- End Single Fun -->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--/ End Fun-facts -->
 
 
 
