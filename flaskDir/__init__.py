@@ -48,7 +48,7 @@ class Paziente(db.Model):
 
 # Modello MetodoPagamento
 class MetodoPagamento(db.Model):
-    cvv = db.Column(db.Integer, nullable=False, primary_key=True)
+    cvv = db.Column(db.Integer, nullable=False)
     pan = db.Column(db.String(16), nullable=False, primary_key=True)
     nome_titolare = db.Column(db.String(255), nullable=False)
     data_scadenza = db.Column(db.Date, nullable=False)
@@ -87,6 +87,7 @@ class ConsultaFascicolo(db.Model):
     documento_numero = db.Column(db.String(20), db.ForeignKey('documento_sanitario.numero_documento'), primary_key=True)
 
 
-db.create_all()
+with app.app_context():
+    db.create_all()
 
 
