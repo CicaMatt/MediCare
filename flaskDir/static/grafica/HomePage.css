@@ -11,6 +11,7 @@
 
 
 
+
 /*=============================
 	Start Schedule CSS
 ===============================*/
@@ -366,7 +367,7 @@ Fine Overlay
 .fun-facts.section{
 	padding:120px 0;
 }
-/*DA MODIFICARE LO SFONDO PERCHE NON SI VEDE*/
+/*RISOLTO*/
 
 .fun-facts{
 	background-size:cover;
@@ -434,3 +435,24 @@ Fine Overlay
 }
 
 
+/*STILE DELLE DIDASCALIE SOPRA IL CAROUSEL*/
+.caption {
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  transform: translate(-30%, -30%);
+  text-align: left;
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 5px;
+}
+
+.caption h3 {
+  font-size:60px;
+	  color: #1d3fa8;
+}
+
+.caption p {
+  font-size: 25px;
+	  color: #000000;
+}

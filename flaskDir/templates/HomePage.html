@@ -11,6 +11,9 @@
       height: 70vh; /* Imposta un'altezza fissa per le immagini del Carousel */
       object-fit: cover; /* Consente di adattare l'immagine mantenendo le proporzioni e coprendo l'intera area dell'elemento padre */
     }
+
+
+
   </style>
 		<!-- Google Fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
@@ -51,16 +54,50 @@
   <div id="carouselExampleCaptions" class="carousel slide">
 
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="{{ url_for('static', filename='images/dottore.jpg') }}" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="{{ url_for('static', filename='images/dottore2.jpg') }}" class="d-block w-100" alt="...">
-    </div>
-    <div class="carousel-item">
-      <img src="{{ url_for('static', filename='images/dottore3.jpg') }}" class="d-block w-100" alt="...">
+
+<div class="carousel-item active">
+  <div class="image-container">
+    <img src="{{ url_for('static', filename='images/dottore.jpg') }}" class="d-block w-100" alt="...">
+    <div class="caption">
+      <h3>Fidati dei nostri specialisti</h3>
+		<h3>Affidaci la tua salute</h3>
+      <p>Medicare si prenderà cura di te, prenota subito e scopri tutti i servizi a tua disposizione.</p>
+		<button class="btn btn-primary">Per saperne di più</button>
     </div>
   </div>
+</div>
+
+
+
+    <div class="carousel-item">
+	<div class="image-container">
+		<img src="{{ url_for('static', filename='images/dottore2.jpg') }}" class="d-block w-100" alt="...">
+		<div class="caption">
+      <h3>Fidati dei nostri specialisti</h3>
+		<h3>Affidaci la tua salute</h3>
+		  <p>Medicare si prenderà cura di te, prenota subito e scopri tutti i servizi a tua disposizione.</p>
+			<button class="btn btn-primary">Per saperne di più</button>
+		</div>
+	  </div>
+    </div>
+
+
+
+    <div class="carousel-item">
+	<div class="image-container">
+		<img src="{{ url_for('static', filename='images/dottore3.jpg') }}" class="d-block w-100" alt="...">
+		<div class="caption">
+      <h3>Fidati dei nostri specialisti</h3>
+		<h3>Affidaci la tua salute</h3>
+		  <p>Medicare si prenderà cura di te, prenota subito e scopri tutti i servizi a tua disposizione.</p>
+			<button class="btn btn-primary">Per saperne di più</button>
+		</div>
+	  </div>
+    </div>
+
+  </div>
+
+
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Previous</span>
