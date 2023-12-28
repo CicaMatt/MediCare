@@ -1,0 +1,44 @@
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .grid {
+      margin-top: 20px;
+      margin-left: 20px;
+      margin-right: 20px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* Crea due colonne di larghezza uguale */
+      gap: 20px; /* Aggiunge uno spazio tra le colonne */
+
+    }
+
+    .intro{
+        display: flex;
+    }
+
+    .visita,
+    .analisi{
+      padding: 20px;
+      border: 1px solid #ccc; /* Aggiungi una bordatura per visualizzare i confini delle sezioni */
+      border-radius: 20px;
+      border-color: #1E90FF;
+        background-color: #1E90FF;
+    }
+
+    .section-visit img,
+    .section-analysis img{
+      width: 55%;
+      height: auto; /* Imposta l'altezza automatica in base alla larghezza */
+      margin-bottom: 10px;
+    }
+
+
+    h5 {
+      margin-top: 0;
+    }
+
+    .testo{
+        margin-left: 15px;
+    }
