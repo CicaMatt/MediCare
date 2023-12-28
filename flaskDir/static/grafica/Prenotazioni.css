@@ -24,7 +24,7 @@
       border: 1px solid #ccc; /* Aggiungi una bordatura per visualizzare i confini delle sezioni */
       border-radius: 20px;
       border-color: #1E90FF;
-        background-color: #1E90FF;
+
     }
 
     .section-visit img,
@@ -41,4 +41,9 @@
 
     .testo{
         margin-left: 15px;
+    }
+
+    .list-group{
+        padding: 10px;
+        margin-top: 10px;
     }
