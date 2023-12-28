@@ -9,7 +9,32 @@
 }
 
 
+/*STILE DELLE DIDASCALIE SOPRA IL CAROUSEL*/
+.caption {
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  transform: translate(-30%, -30%);
+  text-align: left;
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 5px;
+}
 
+.caption h3 {
+  font-size:60px;
+	  color: #1d3fa8;
+}
+
+.caption p {
+  font-size: 25px;
+	  color: #000000;
+}
+
+.caption button{
+	font-size: 20px;
+}
+/*--------------------------------------*/
 
 
 /*=============================
@@ -435,7 +460,9 @@ Fine Overlay
 }
 
 
-/*STILE DELLE DIDASCALIE SOPRA IL CAROUSEL*/
+
+
+@media screen and (max-width: 1300px) {
 .caption {
   position: absolute;
   top: 30%;
@@ -448,11 +475,43 @@ Fine Overlay
 }
 
 .caption h3 {
-  font-size:60px;
+  font-size:50px;
 	  color: #1d3fa8;
 }
 
 .caption p {
-  font-size: 25px;
+  font-size: 20px;
 	  color: #000000;
+}
+
+.caption button{
+	font-size: 20px;
+}
+}
+
+@media screen and (max-width: 800px) {
+.caption {
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  transform: translate(-30%, -30%);
+  text-align: left;
+  padding: 20px;
+  font-family: 'Poppins', sans-serif;
+  border-radius: 5px;
+}
+
+.caption h3 {
+  font-size:40px;
+	  color: #1d3fa8;
+}
+
+.caption p {
+  font-size: 15px;
+	  color: #000000;
+}
+
+.caption button{
+	font-size: 15px;
+}
 }
