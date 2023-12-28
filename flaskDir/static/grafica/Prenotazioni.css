@@ -64,6 +64,12 @@
         display: flex;
     }
 
+    .img1,.img2{
+        margin-left: 10px;
+        width: 50px;
+        height: auto;
+    }
+
     .icofont-heart-beat-alt{
         margin-left: 20px;
         font-size: 40px;

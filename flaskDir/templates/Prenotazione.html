@@ -31,7 +31,9 @@
                   <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">Visita oculistica</h5>
-
+                        <div class="img1">
+                            <img src="{{ url_for('static', filename='images/eye.jpg') }}" alt="...">
+                        </div>
                     </div>
                   </a>
                     <hr>
@@ -63,7 +65,9 @@
                   <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">Visita pediatrica</h5>
-                        <i class="icofont-baby"></i>
+                        <div class="img2">
+                            <img src="{{ url_for('static', filename='images/kid.jpg') }}" alt="...">
+                        </div>
                     </div>
                   </a>
                     <hr>
@@ -136,5 +140,8 @@
 
         </section>
   </div>
+
+
+  {% include 'Footer2.0.html' %}
 </body>
 </html>
