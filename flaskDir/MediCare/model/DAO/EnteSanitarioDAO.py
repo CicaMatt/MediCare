@@ -1,8 +1,8 @@
 from sqlalchemy import text
-from flaskDir import db,EnteSanitario, app
+from flaskDir import db, app
 
 class EnteSanitarioDAO:
-    __table="ente_sanitario"
+    __table="entesanitario"
     @classmethod
     def doSave(cls,new_ente):
         query=text("INSERT INTO "+cls.__table+" VALUES (:nome,:email,:password)")
@@ -42,17 +42,12 @@ class EnteSanitarioDAO:
          return db.session.execute(query, {"email": email}).first()
     @classmethod
     def findAll(cls):
+        query=text("SELECT * from "+cls.__table)
         with app.app_context():
-         return db.session.query(EnteSanitario).all()
+            return db.session.execute(query)
 
 
 
-enteSanitario=EnteSanitario(email="pinco",nome="pallino",password="ciao")
-EnteSanitarioDAO.doSave(enteSanitario)
-for el in EnteSanitarioDAO.findAll():
-    print(el.email)
 
-EnteSanitarioDAO.doUpdate("pinco","guido","dsf","pulcino")
-for el in EnteSanitarioDAO.findAll():
-    print(el.email)
+
 
