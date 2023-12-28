@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Visite Mediche e Analisi Cliniche</title>
-
+		<!-- Font Awesome CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='grafica/icofont/icofont.css') }}">
+		<!-- icofont CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='grafica/icofont/icofont.min.css') }}">
 </head>
  <link rel="stylesheet" href="{{ url_for('static', filename='grafica/Prenotazioni.css') }}">
 <body>
@@ -28,6 +31,7 @@
                   <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">Visita oculistica</h5>
+
                     </div>
                   </a>
                     <hr>
@@ -35,6 +39,7 @@
                   <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">Visita odontoiatrica</h5>
+                        <i class="icofont-tooth"></i>
                     </div>
                   </a>
                     <hr>
@@ -42,6 +47,7 @@
                   <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">Visita cardiologica</h5>
+                        <i class="icofont-heart-beat-alt"></i>
                     </div>
                   </a>
                     <hr>
@@ -49,6 +55,7 @@
                   <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">Visita ginecologica</h5>
+                        <i class="icofont-stethoscope-alt"></i>
                     </div>
                   </a>
                     <hr>
@@ -56,6 +63,7 @@
                   <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">Visita pediatrica</h5>
+                        <i class="icofont-baby"></i>
                     </div>
                   </a>
                     <hr>
@@ -63,6 +71,7 @@
                   <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">Visita bariatrica</h5>
+                        <i class="icofont-surgeon"></i>
                     </div>
                   </a>
                     <hr>
@@ -70,6 +79,7 @@
                   <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                     <div class="d-flex w-100 justify-content-between">
                         <h5 class="mb-1">Visita oncologica</h5>
+                        <i class="icofont-icu"></i>
                     </div>
                   </a>
             </div>
@@ -87,7 +97,7 @@
 
                 <div class="testo">
                     <h5 class="card-title">Visita diagnostica</h5>
-                    <p class="card-text">Prenota una visita diagnostica tra quelle presenti in elenco, potrai scegliere luogo e data della visita</p>
+                    <p class="card-text">Prenota una visita diagnostica tra quelle presenti in elenco, potrai scegliere luogo e data della visita. Necessaria la ricetta da parte di un medico di base</p>
                 </div>
             </div>
 
