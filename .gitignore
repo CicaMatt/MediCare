@@ -164,3 +164,4 @@ cython_debug/
 
 
 flaskDir/static/grafica/main.css
+flaskDir/__init__.py
