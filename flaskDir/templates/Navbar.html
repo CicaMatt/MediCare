@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-      <link rel="stylesheet" href="../static/grafica/prova.css">
+      <link rel="stylesheet" href=".{{url_for('static',filename='grafica/main.css')}}">
 
 </head>
 
 <body>
 
-<header class="bg-white">
+<header class=" navbarrr bg-white dark:bg-blue-950">
   <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
     <div class="flex lg:flex-1">
       <a href="" class="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="{{ url_for('static', filename='images/Logo.png') }}" class="h-10" alt="MediCare Logo" />
-          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-black">MediCare</span>
+          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-gray-200">MediCare</span>
       </a>
     </div>
     <div class="flex lg:hidden">
-      <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700">
+      <button type="button" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700 dark:text-gray-200">
         <span class="sr-only">Open main menu</span>
         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -26,14 +26,14 @@
       </button>
     </div>
     <div class="hidden lg:flex lg:gap-x-12">
-      <a href="{{url_for('home')}}" class="text-sm font-semibold leading-6 text-gray-900">Home</a>
-      <a href="{{url_for('prenotazione')}}" class="text-sm font-semibold leading-6 text-gray-900">Prenotazioni</a>
-      <a href="{{url_for('vaccini')}}}" class="text-sm font-semibold leading-6 text-gray-900">Vaccini</a>
-      <a href="{{url_for('farmaci')}}" class="text-sm font-semibold leading-6 text-gray-900">Farmaci</a>
-      <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Chi siamo</a>
+      <a href="{{url_for('home')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Home</a>
+      <a href="{{url_for('prenotazione')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Prenotazioni</a>
+      <a href="{{url_for('vaccini')}}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Vaccini</a>
+      <a href="{{url_for('farmaci')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Farmaci</a>
+      <a href="#" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Chi siamo</a>
     </div>
     <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-      <a href="{{url_for('login')}}" class="text-sm font-semibold leading-6 text-gray-900">Log in <span aria-hidden="true">&rarr;</span></a>
+      <a href="{{url_for('login')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Log in <span aria-hidden="true">&rarr;</span></a>
     </div>
   </nav>
   <!-- Mobile menu, show/hide based on menu open state. -->
@@ -91,5 +91,6 @@
     </div>
   </div>
 </header>
+
 
 </body>
