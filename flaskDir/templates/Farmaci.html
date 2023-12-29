@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Farmaci</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='grafica/main.css')}}">
+</head>
+<body>
+
+{% include 'Navbar.html' %}
+
+<div class="relative px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+  <div class="absolute inset-x-0 top-0 items-center justify-center hidden overflow-hidden md:flex md:inset-y-0">
+
+  </div>
+  <div class="relative grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
+
+
+<a href="url">
+  <div class="flex flex-col justify-between overflow-hidden transition-shadow duration-200 bg-white rounded-lg border border-gray-300 shadow-xl group hover:shadow-2xl" style="max-height: 500px;"> <!-- Aggiunto border e personalizzato lo stile -->
+    <div class="p-5 pb-4 flex flex-col items-center justify-center">
+      <img class="h-48 w-full object-cover" src="{{ url_for('static', filename='images/farmaci/tachipirina.png') }}" alt=".." />
+      <p class="mt-4 mb-2 font-bold text-center">Tachipirina 500</p>
+    </div>
+    <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100"></div>
+  </div>
+</a>
+
+<a href="url">
+  <div class="flex flex-col justify-between overflow-hidden transition-shadow duration-200 bg-white rounded-lg border border-gray-300 shadow-xl group hover:shadow-2xl" style="max-height: 500px;"> <!-- Aggiunto border e personalizzato lo stile -->
+    <div class="p-5 pb-4 flex flex-col items-center justify-center">
+      <img class="h-48 w-full object-cover" src="{{ url_for('static', filename='images/farmaci/moment.png') }}" alt=".." />
+      <p class="mt-4 mb-2 font-bold text-center">Moment Act</p>
+    </div>
+    <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100"></div>
+  </div>
+</a>
+
+
+
+
+
+  </div>
+</div>
+
+{% include 'Footer2.0.html' %}
+</body>
+</html>
