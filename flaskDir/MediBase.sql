@@ -4,7 +4,7 @@ CREATE DATABASE IF NOT EXISTS Medicare;
 -- Utilizzo del database appena creato
 USE Medicare;
 
-/*
+
 
 -- Creazione della tabella EnteSanitario
 CREATE TABLE IF NOT EXISTS EnteSanitario (
@@ -30,10 +30,12 @@ CREATE TABLE IF NOT EXISTS Medico (
 
 -- Creazione della tabella Farmaco
 CREATE TABLE IF NOT EXISTS Farmaco (
-    ID INT auto_increment KEY,
+    ID INT auto_increment Primary Key,
     prezzo FLOAT not null,
     nome VARCHAR(255) not null,
-    descrizione TEXT not null
+    categoria varchar(100) not null,
+    descrizione text not null,
+    UNIQUE(nome, categoria)
 );
 
 -- Creazione della tabella Paziente
@@ -127,4 +129,4 @@ FOREIGN KEY(Medico) REFERENCES Medico(email)
 FOREIGN KEY(Documento) REFERENCES DocumentoSanitario(NumeroDocumento)
  on update cascade
  on delete no action
-);*/
+);
