@@ -11,26 +11,36 @@
 
 /*STILE DELLE DIDASCALIE SOPRA IL CAROUSEL*/
 .caption {
-  position: absolute;
-  top: 30%;
-  left: 30%;
-  transform: translate(-30%, -30%);
-  text-align: left;
-  padding: 20px;
-  font-family: 'Poppins', sans-serif;
-  border-radius: 5px;
+	position: absolute;
+	top: 30%;
+  	left: 30%;
+  	transform: translate(-30%, -30%);
+  	text-align: left;
+  	padding: 20px;
+  	border-radius: 5px;
+	font-size: 2rem;
+	font-weight: bold;
+	letter-spacing: -0.025em;
+
+
 }
 
 .caption h3 {
-  font-size:60px;
 	  color: #1d3fa8;
 	padding: 5px;
+	font-size: 60px;
+	font-weight: bold;
+	letter-spacing: -0.025em;
+	background-image: linear-gradient(to right, #1d3fa8, #00004d);
+	background-clip: text;
+	color: transparent;
 }
 
 .caption p {
-  font-size: 25px;
+
+  font-size: 24px;
 	  color: #000000;
-		padding: 10px;
+		padding: 7px;
 }
 
 .caption button{

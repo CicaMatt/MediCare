@@ -2,6 +2,14 @@ from flask import Flask, render_template
 
 app = Flask(__name__)
 
+app.config.from_mapping(
+    SECRET_KEY='6Js.9JsPaq324Dc', #Serve per avere le sessioni, una chiave sicura, non dovrebbe essere caricata su github
+    SAML_IDP_SETTINGS={ #Per lo spid, ad esempio devo identificare Posteitaliane
+
+
+    }
+)
+
 
 @app.route('/')
 def home():
