@@ -81,5 +81,12 @@ def modificaDatiUtente():
     return render_template("ModificaDatiUtente.html")
 
 
+
+@app.route('/listamedici')
+def listamedici():
+    return render_template("ListaMedici.html")
+
+
+
 if __name__ == '__main__':
     app.run()
