@@ -1,17 +1,17 @@
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from .MediCare.model.entity import Paziente, Prenotazione,  MetodoPagamento, Medici, EnteSanitario, ConsultaFarmaco
-from .MediCare.model.entity import Farmaco, VisualizzaFarmaco, AutorizzazioniFSE
+
 from sqlalchemy_utils import create_database, database_exists
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Gio210302DVK@localhost:3306/medicare'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:lollipop@localhost:3306/medicare'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 db.init_app(app)
 
+from flaskDir.MediCare.model.entity import Paziente, Farmaco, Medici, Prenotazione,  MetodoPagamento, DocumentoSanitario, EnteSanitario, ConsultaFarmaco, VisualizzaFarmaco, AutorizzazioniFSE
 if not database_exists(app.config['SQLALCHEMY_DATABASE_URI']):
     create_database(app.config['SQLALCHEMY_DATABASE_URI'])
     with app.app_context():

@@ -26,6 +26,8 @@ def registrazione():
     return render_template("Registrazione.html")
 
 
+
+
 @app.route('/prenotazione')
 # @login required and user is paziente
 def prenotazione():
