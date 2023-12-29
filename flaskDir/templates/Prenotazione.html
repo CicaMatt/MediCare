@@ -3,14 +3,107 @@
 <head>
   <meta charset="UTF-8">
   <title>Visite Mediche e Analisi Cliniche</title>
+
+    		<!-- Google Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
 		<!-- Font Awesome CSS -->
         <link rel="stylesheet" href="{{ url_for('static', filename='grafica/icofont/icofont.css') }}">
 		<!-- icofont CSS -->
         <link rel="stylesheet" href="{{ url_for('static', filename='grafica/icofont/icofont.min.css') }}">
+
+
+
+        <!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="{{ url_for('static', filename='grafica/bootstrap.min.css') }}">
+
+		<!-- Medipro CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='grafica/responsive.css') }}">
+
+
+
+
 </head>
  <link rel="stylesheet" href="{{ url_for('static', filename='grafica/Prenotazioni.css') }}">
 <body>
       {% include 'Navbar.html' %}
+
+
+
+
+
+
+
+
+
+
+
+      <!-- Start Blog Area -->
+		<section class="blog section" id="blog">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="section-title d-flex justify-content-center align-items-center flex-column text-center">
+							<h2>Mettiamo a tua disposizione la nostra esperienza.</h2>
+                            <div class="img4">
+                                <img src="{{ url_for('static', filename='images/section-img.png') }}" alt="#">
+                            </div>
+							<p>Ti forniremo il miglior supporto possibile, aiutandoti a prenotare la tua visita in maniera semplice e veloce</p>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-4 col-md-6 col-12">
+						<!-- Single Blog -->
+						<div class="single-news">
+							<div class="news-head">
+								<img src="{{ url_for('static', filename='images/blog1.jpg') }}" alt="...">
+							</div>
+							<div class="news-body">
+								<div class="news-content">
+									<div class="date">22 Aug, 2020</div>
+									<h2><a href="blog-single.html">We have annnocuced our new product.</a></h2>
+									<p class="text">Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do eiusmod tempor incididunt sed do incididunt sed.</p>
+								</div>
+							</div>
+						</div>
+						<!-- End Single Blog -->
+					</div>
+					<div class="col-lg-4 col-md-6 col-12">
+						<!-- Single Blog -->
+						<div class="single-news">
+							<div class="news-head">
+								<img src="{{ url_for('static', filename='images/blog2.jpg') }}" alt="...">
+							</div>
+							<div class="news-body">
+								<div class="news-content">
+									<div class="date">15 Jul, 2020</div>
+									<h2><a href="blog-single.html">Top five way for solving teeth problems.</a></h2>
+									<p class="text">Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do eiusmod tempor incididunt sed do incididunt sed.</p>
+								</div>
+							</div>
+						</div>
+						<!-- End Single Blog -->
+					</div>
+					<div class="col-lg-4 col-md-6 col-12">
+						<!-- Single Blog -->
+						<div class="single-news">
+							<div class="news-head">
+								<img src="{{ url_for('static', filename='images/blog3.jpg') }}" alt="...">
+							</div>
+							<div class="news-body">
+								<div class="news-content">
+									<div class="date">05 Jan, 2020</div>
+									<h2><a href="blog-single.html">We provide highly business soliutions.</a></h2>
+									<p class="text">Lorem ipsum dolor a sit ameti, consectetur adipisicing elit, sed do eiusmod tempor incididunt sed do incididunt sed.</p>
+								</div>
+							</div>
+						</div>
+						<!-- End Single Blog -->
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- End Blog Area -->
 
   <div class="grid">
         <!-- Sezione per le visite mediche -->
@@ -141,6 +234,8 @@
         </section>
   </div>
 
+
+<br>
 
   {% include 'Footer2.0.html' %}
 </body>
