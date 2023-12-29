@@ -164,4 +164,4 @@ cython_debug/
 
 
 flaskDir/static/grafica/main.css
-flaskDir/MediCare/model/medibase.py
+flaskDir/__init__.py
