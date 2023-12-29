@@ -14,6 +14,7 @@ class Medico(db.Model):
     ente_sanitario = db.Column(db.String(255), db.ForeignKey('ente_sanitario.email'), nullable=False)
     iscrizione_albo = db.Column(db.Integer)
     specializzazione = db.Column(db.String(255), nullable=False)
+    città = db.Column(db.String(255), nullable=False)
 
 class Farmaco(db.Model):
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
