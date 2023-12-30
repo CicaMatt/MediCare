@@ -106,136 +106,6 @@
 		</section>
 		<!-- End Blog Area -->
 
-  <div class="grid">
-        <!-- Sezione per le visite mediche -->
-      <div class="visita">
-        <section class="section-visit">
-            <div class="intro">
-                <img src="{{ url_for('static', filename='images/visita.jpg') }}" class="card-img-top" alt="...">
-
-                <div class="testo">
-                    <h5 class="card-title">Visita specialistica</h5>
-                    <p class="card-text">Prenota la tua visita con uno dei medici privati iscritti alla piattaforma, oppure scegli di effettuare la tua visita presso una delle strutture sanitarie registrate.</p>
-                </div>
-            </div>
-
-        </section>
-            <div class="list-group">
-
-                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Visita oculistica</h5>
-                        <div class="img1">
-                            <img src="{{ url_for('static', filename='images/eye.jpg') }}" alt="...">
-                        </div>
-                    </div>
-                  </a>
-                    <hr>
-                    <br>
-                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Visita odontoiatrica</h5>
-                        <i class="icofont-tooth"></i>
-                    </div>
-                  </a>
-                    <hr>
-                    <br>
-                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Visita cardiologica</h5>
-                        <i class="icofont-heart-beat-alt"></i>
-                    </div>
-                  </a>
-                    <hr>
-                    <br>
-                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Visita ginecologica</h5>
-                        <i class="icofont-stethoscope-alt"></i>
-                    </div>
-                  </a>
-                    <hr>
-                    <br>
-                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Visita pediatrica</h5>
-                        <div class="img2">
-                            <img src="{{ url_for('static', filename='images/kid.jpg') }}" alt="...">
-                        </div>
-                    </div>
-                  </a>
-                    <hr>
-                    <br>
-                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Visita bariatrica</h5>
-                        <i class="icofont-surgeon"></i>
-                    </div>
-                  </a>
-                    <hr>
-                    <br>
-                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Visita oncologica</h5>
-                        <i class="icofont-icu"></i>
-                    </div>
-                  </a>
-            </div>
-      </div>
-
-
-
-        <!-- Sezione per le analisi  -->
-
-
-      <div class="analisi">
-        <section class="section-analysis">
-            <div class="intro">
-                <img src="{{ url_for('static', filename='images/analisi.jpg') }}" class="card-img-top" alt="...">
-
-                <div class="testo">
-                    <h5 class="card-title">Visita diagnostica</h5>
-                    <p class="card-text">Prenota una visita diagnostica tra quelle presenti in elenco, potrai scegliere luogo e data della visita. Necessaria la ricetta da parte di un medico di base</p>
-                </div>
-            </div>
-
-        </section>
-            <div class="list-group">
-
-                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Analisi del sangue</h5>
-                    </div>
-                  </a>
-                    <hr>
-                    <br>
-                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Analisi delle urine</h5>
-                    </div>
-                  </a>
-                    <hr>
-                    <br>
-                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Analisi delle feci</h5>
-                    </div>
-                  </a>
-                    <hr>
-                    <br>
-                  <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">Analisi genetiche</h5>
-                    </div>
-                  </a>
-            </div>
-      </div>
-
-
-        </section>
-  </div>
-<br>
-
 
       <div class="flex bg-gray-100 rounded-xl m-3 shadow-xl">
   <aside class="flex px-16 space-y-16 overflow-hidden m-3 pb-4 flex-col items-center justify-center rounded-tl-xl rounded-bl-xl bg-blue-800 shadow-lg">
@@ -269,7 +139,7 @@
     <div class="flex space-x-4">
       <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg">
         <h1 class="text-xl font-bold text-gray-800 mt-4">Visite Specialistiche</h1>
-        <div class="flex flex-wrap justify-between space-x-4 text-center mt-6">
+        <div class="flex flex-wrap grid grid-cols-4 gap-4 justify-between text-center mt-6">
 
           <div class="bg-indigo-50 rounded-xl p-10">
               <div class="flex space-x-2 mt-4 px-6 py-4 text-blue hover:bg-white hover:text-blue-800 font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">
@@ -333,7 +203,7 @@
                   <a href="">Oncologica</a>
               </div>
             </div>
-
+  </div>
         </div>
       </div>
     </div>
