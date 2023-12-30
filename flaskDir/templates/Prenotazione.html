@@ -11,7 +11,7 @@
 		<!-- icofont CSS -->
         <link rel="stylesheet" href="{{ url_for('static', filename='grafica/icofont/icofont.min.css') }}">
 
-
+        <link rel="stylesheet" href="{{url_for('static',filename='grafica/main.css')}}">
 
         <!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="{{ url_for('static', filename='grafica/bootstrap.min.css') }}">
@@ -24,17 +24,55 @@
 
 </head>
  <link rel="stylesheet" href="{{ url_for('static', filename='grafica/Prenotazioni.css') }}">
+
+<style>
+  .contenitore-diagnostiche,
+  .contenitore-vaccinali {
+    display: none;
+  }
+</style>
+
+<script>
+  // Codice JavaScript per gestire i click sui link della barra laterale e mostrare/nascondere i contenitori corrispondenti
+  document.addEventListener("DOMContentLoaded", function() {
+    const specialistiche = document.getElementById("specialistiche");
+    const diagnostiche = document.getElementById("diagnostiche");
+    const vaccinali = document.getElementById("vaccinali");
+
+    const contenitoreSpecialistiche = document.querySelector(".contenitore-specialistiche");
+    const contenitoreDiagnostiche = document.querySelector(".contenitore-diagnostiche");
+    const contenitoreVaccinali = document.querySelector(".contenitore-vaccinali");
+
+    // Impostazione predefinita: mostro solo le visite specialistiche
+    contenitoreSpecialistiche.style.display = "block";
+    contenitoreDiagnostiche.style.display = "none";
+    contenitoreVaccinali.style.display = "none";
+
+    // Aggiungi i listener per i click
+    specialistiche.addEventListener("click", function() {
+      contenitoreSpecialistiche.style.display = "block";
+      contenitoreDiagnostiche.style.display = "none";
+      contenitoreVaccinali.style.display = "none";
+    });
+
+    diagnostiche.addEventListener("click", function() {
+      contenitoreSpecialistiche.style.display = "none";
+      contenitoreDiagnostiche.style.display = "block";
+      contenitoreVaccinali.style.display = "none";
+    });
+
+    vaccinali.addEventListener("click", function() {
+      contenitoreSpecialistiche.style.display = "none";
+      contenitoreDiagnostiche.style.display = "none";
+      contenitoreVaccinali.style.display = "block";
+    });
+  });
+</script>
+
+
 <body>
 
       {% include 'Navbar.html' %}
-
-
-
-
-
-
-
-
 
 
 
@@ -57,7 +95,7 @@
 						<!-- Single Blog -->
 						<div class="single-news">
 							<div class="news-head">
-								<img src="{{ url_for('static', filename='images/blog1.jpg') }}" alt="...">
+								<img src="{{ url_for('static', filename='images/visita.jpg') }}" alt="...">
 							</div>
 							<div class="news-body">
 								<div class="news-content">
@@ -73,7 +111,7 @@
 						<!-- Single Blog -->
 						<div class="single-news">
 							<div class="news-head">
-								<img src="{{ url_for('static', filename='images/blog2.jpg') }}" alt="...">
+								<img src="{{ url_for('static', filename='images/analisi.jpg') }}" alt="...">
 							</div>
 							<div class="news-body">
 								<div class="news-content">
@@ -89,7 +127,7 @@
 						<!-- Single Blog -->
 						<div class="single-news">
 							<div class="news-head">
-								<img src="{{ url_for('static', filename='images/blog3.jpg') }}" alt="...">
+								<img src="{{ url_for('static', filename='images/vaccino.jpg') }}" alt="...">
 							</div>
 							<div class="news-body">
 								<div class="news-content">
@@ -108,105 +146,97 @@
 
 
       <div class="flex bg-gray-100 rounded-xl m-3 shadow-xl">
-  <aside class="flex px-16 space-y-16 overflow-hidden m-3 pb-4 flex-col items-center justify-center rounded-tl-xl rounded-bl-xl bg-blue-800 shadow-lg">
-    <div class="flex items-center justify-center p-4 shadow-lg">
-      <div>
-        <img src="https://i.imgur.com/c6U7KtF.png" alt="" class="h-8 mb-2" />
-      </div>
-      <h1 class="text-white font-bold mr-2 cursor-pointer">Visite</h1>
+  <aside class="flex px-16 space-y-16 overflow-hidden m-3 pb-4 flex-col items-center justify-center rounded-tl-xl rounded-bl-xl bg-blue-500 shadow-lg">
+    <div class="flex items-center justify-center p-4">
+      <h1 class="text-white font-bold mr-2" style="padding-top: 10px;">Visite</h1>
     </div>
     <ul>
       <li class="flex space-x-2 mt-4 px-6 py-4 text-white hover:bg-white hover:text-blue-800 font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" /></svg
-        ><a href="">Specialistiche</a>
+        ><a href="#" id="specialistiche">Specialistiche</a>
       </li>
       <li class="flex space-x-2 mt-4 px-6 py-4 text-white hover:bg-white hover:text-blue-800 font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg
-        ><a href="">Diagnostiche</a>
+        ><a href="#" id="diagnostiche">Diagnostiche</a>
       </li>
       <li class="flex space-x-2 mt-4 px-6 py-4 text-white hover:bg-white hover:text-blue-800 font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 4v12l-4-2-4 2V4M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg
-        ><a href="">Vaccinali</a>
+        ><a href="#" id="vaccinali">Vaccinali</a>
       </li>
     </ul>
   </aside>
   <main class="flex-col bg-indigo-50 w-full ml-4 pr-6">
 
 
-    <div class="flex space-x-4">
-      <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg">
-        <h1 class="text-xl font-bold text-gray-800 mt-4">Visite Specialistiche</h1>
-        <div class="flex flex-wrap grid grid-cols-4 gap-4 justify-between text-center mt-6">
+    <!--Visite specialistiche-->
+    <div class="contenitore-specialistiche">
+        <div class="flex justify-center items-center">
+          <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg">
+            <h1 class="text-xl font-bold text-gray-800 mt-4">Visite Specialistiche</h1>
+            <div class="flex flex-wrap grid grid-cols-4 gap-4 justify-between text-center mt-6">
 
-          <div class="bg-indigo-50 rounded-xl p-10">
-              <div class="flex space-x-2 mt-4 px-6 py-4 text-blue hover:bg-white hover:text-blue-800 font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-                  </svg>
-                  <a href="">Oculistica</a>
+              <div class="bg-indigo-50 rounded-xl p-10">
+                  <div class="flex space-x-2 mt-4 px-6 py-4 text-blue hover:bg-white hover:text-blue-800 font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                      </svg>
+                      <a href="">Oculistica</a>
+                  </div>
               </div>
+            </div>
           </div>
-
-          <div class="bg-indigo-50 rounded-xl p-10">
-              <div class="flex space-x-2 mt-4 px-6 py-4 text-blue hover:bg-white hover:text-blue-800 font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-                  </svg>
-                  <a href="">Odontoiatrica</a>
-              </div>
-          </div>
-
-            <div class="bg-indigo-50 rounded-xl p-10">
-              <div class="flex space-x-2 mt-4 px-6 py-4 text-blue hover:bg-white hover:text-blue-800 font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-                  </svg>
-                  <a href="">Cardiologica</a>
-              </div>
-            </div>
-
-            <div class="bg-indigo-50 rounded-xl p-10">
-              <div class="flex space-x-2 mt-4 px-6 py-4 text-blue hover:bg-white hover:text-blue-800 font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-                  </svg>
-                  <a href="">Ginecologica</a>
-              </div>
-            </div>
-
-            <div class="bg-indigo-50 rounded-xl p-10">
-              <div class="flex space-x-2 mt-4 px-6 py-4 text-blue hover:bg-white hover:text-blue-800 font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-                  </svg>
-                  <a href="">Pediatrica</a>
-              </div>
-            </div>
-
-            <div class="bg-indigo-50 rounded-xl p-10">
-              <div class="flex space-x-2 mt-4 px-6 py-4 text-blue hover:bg-white hover:text-blue-800 font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-                  </svg>
-                  <a href="">Bariatrica</a>
-              </div>
-            </div>
-
-            <div class="bg-indigo-50 rounded-xl p-10">
-              <div class="flex space-x-2 mt-4 px-6 py-4 text-blue hover:bg-white hover:text-blue-800 font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
-                  </svg>
-                  <a href="">Oncologica</a>
-              </div>
-            </div>
-  </div>
         </div>
-      </div>
     </div>
+
+
+    <!--Visite diagnostiche-->
+    <div class="contenitore-diagnostiche">
+        <div class="flex justify-center items-center">
+          <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg">
+            <h1 class="text-xl font-bold text-gray-800 mt-4">Visite diagnostiche</h1>
+            <div class="flex flex-wrap grid grid-cols-4 gap-4 justify-between text-center mt-6">
+
+              <div class="bg-indigo-50 rounded-xl p-10">
+                  <div class="flex space-x-2 mt-4 px-6 py-4 text-blue hover:bg-white hover:text-blue-800 font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                      </svg>
+                      <a href="">Analisi del sangue</a>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+    <!--Visite vaccinali-->
+    <div class="contenitore-vaccinali">
+        <div class="flex justify-center items-center">
+          <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg">
+            <h1 class="text-xl font-bold text-gray-800 mt-4">Visite Vaccinali</h1>
+            <div class="flex flex-wrap grid grid-cols-4 gap-4 justify-between text-center mt-6">
+
+              <div class="bg-indigo-50 rounded-xl p-10">
+                  <div class="flex space-x-2 mt-4 px-6 py-4 text-blue hover:bg-white hover:text-blue-800 font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
+                      </svg>
+                      <a href="">Covid</a>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+
+
+
   </main>
 </div>
 

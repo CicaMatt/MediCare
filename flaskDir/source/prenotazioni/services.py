@@ -13,7 +13,7 @@ class MedicoService:
     @classmethod
     def getListaMedici(cls):
         if cls._listaMedici is None:
-            cls._listaMedici = Medico.query.all()
+            cls._listaMedici = Medico.query.getAll()
         return cls._listaMedici
 
     def filtraMedici(cls, specializzazione = None, citta = None):
@@ -74,7 +74,7 @@ class PrenotazioneService:
 
     @classmethod
     def getListaMedici(cls,specializzazione = None, citta= None):
-        return MedicoService().filtraMedici(specializzazione,citta)
+        return MedicoService.getListaMedici(specializzazione,citta)
     @classmethod
     def getListaVaccini(cls,user):
         return UserService.getListaVaccini(user)
