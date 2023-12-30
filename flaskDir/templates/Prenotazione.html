@@ -30,7 +30,12 @@
   .contenitore-vaccinali {
     display: none;
   }
+
+  .active a {
+    color: #0b0b9a; /* Imposta il colore desiderato per il testo */
+  }
 </style>
+
 
 <script>
   // Codice JavaScript per gestire i click sui link della barra laterale e mostrare/nascondere i contenitori corrispondenti
@@ -38,6 +43,10 @@
     const specialistiche = document.getElementById("specialistiche");
     const diagnostiche = document.getElementById("diagnostiche");
     const vaccinali = document.getElementById("vaccinali");
+
+    const specialistiche1 = document.getElementById("specialistiche1");
+    const diagnostiche1 = document.getElementById("diagnostiche1");
+    const vaccinali1 = document.getElementById("vaccinali1");
 
     const contenitoreSpecialistiche = document.querySelector(".contenitore-specialistiche");
     const contenitoreDiagnostiche = document.querySelector(".contenitore-diagnostiche");
@@ -55,7 +64,19 @@
       contenitoreVaccinali.style.display = "none";
     });
 
+    specialistiche1.addEventListener("click", function() {
+      contenitoreSpecialistiche.style.display = "block";
+      contenitoreDiagnostiche.style.display = "none";
+      contenitoreVaccinali.style.display = "none";
+    });
+
     diagnostiche.addEventListener("click", function() {
+      contenitoreSpecialistiche.style.display = "none";
+      contenitoreDiagnostiche.style.display = "block";
+      contenitoreVaccinali.style.display = "none";
+    });
+
+    diagnostiche1.addEventListener("click", function() {
       contenitoreSpecialistiche.style.display = "none";
       contenitoreDiagnostiche.style.display = "block";
       contenitoreVaccinali.style.display = "none";
@@ -65,6 +86,29 @@
       contenitoreSpecialistiche.style.display = "none";
       contenitoreDiagnostiche.style.display = "none";
       contenitoreVaccinali.style.display = "block";
+    });
+
+    vaccinali1.addEventListener("click", function() {
+      contenitoreSpecialistiche.style.display = "none";
+      contenitoreDiagnostiche.style.display = "none";
+      contenitoreVaccinali.style.display = "block";
+    });
+  });
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const links = document.querySelectorAll("ul li");
+
+    links.forEach(link => {
+      link.addEventListener("click", function() {
+        // Rimuove la classe 'active' da tutti gli elementi
+        links.forEach(item => {
+          item.classList.remove("active");
+        });
+
+        // Aggiunge la classe 'active' all'elemento cliccato
+        this.classList.add("active");
+      });
     });
   });
 </script>
@@ -100,7 +144,7 @@
 							<div class="news-body">
 								<div class="news-content">
 									<div class="date">Visite specialistiche</div>
-									<h2><a href="blog-single.html">Prenota la tua visita medica.</a></h2>
+									<h2><a href="#visite_specialistiche" id="specialistiche1">Prenota la tua visita medica.</a></h2>
 									<p class="text">Scegli il medico privato o la struttura sanitaria con cui prenotare, avrai a disposizione una vasta scelta.</p>
 								</div>
 							</div>
@@ -116,7 +160,7 @@
 							<div class="news-body">
 								<div class="news-content">
 									<div class="date">Visite diagnostiche</div>
-									<h2><a href="blog-single.html">Prenota le tue analisi.</a></h2>
+									<h2><a href="#visite_diagnostiche" id="diagnostiche1">Prenota le tue analisi.</a></h2>
 									<p class="text">Non trascurare la salute, visita il medico di base e fatti prescrivere le analisi da effettuare.</p>
 								</div>
 							</div>
@@ -132,7 +176,7 @@
 							<div class="news-body">
 								<div class="news-content">
 									<div class="date">Visite vaccinali</div>
-									<h2><a href="blog-single.html">Prenota il tuo vaccino.</a></h2>
+									<h2><a href="#visite_vaccinali" id="vaccinali1">Prenota il tuo vaccino.</a></h2>
 									<p class="text">Tieni al sicuro te e i tuoi cari, il controllo e la prevenzione ti consentono di salvaguardare la salute.</p>
 								</div>
 							</div>
@@ -145,26 +189,28 @@
 		<!-- End Blog Area -->
 
 
-      <div class="flex bg-gray-100 rounded-xl m-3 shadow-xl">
+<div class="flex bg-gray-100 rounded-xl m-3 shadow-xl">
+
+
   <aside class="flex px-16 space-y-16 overflow-hidden m-3 pb-4 flex-col items-center justify-center rounded-tl-xl rounded-bl-xl bg-blue-500 shadow-lg">
     <div class="flex items-center justify-center p-4">
       <h1 class="text-white font-bold mr-2" style="padding-top: 10px;">Visite</h1>
     </div>
     <ul>
-      <li class="flex space-x-2 mt-4 px-6 py-4 text-white hover:bg-white hover:text-blue-800 font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">
+      <li class="flex space-x-2 mt-4 px-6 py-4 text-white hover:bg-white hover:text-blue-800 font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer active">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" /></svg
-        ><a href="#" id="specialistiche">Specialistiche</a>
+        ><a href="#visite_specialistiche" id="specialistiche">Specialistiche</a>
       </li>
       <li class="flex space-x-2 mt-4 px-6 py-4 text-white hover:bg-white hover:text-blue-800 font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg
-        ><a href="#" id="diagnostiche">Diagnostiche</a>
+        ><a href="#visite_diagnostiche" id="diagnostiche">Diagnostiche</a>
       </li>
       <li class="flex space-x-2 mt-4 px-6 py-4 text-white hover:bg-white hover:text-blue-800 font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 4v12l-4-2-4 2V4M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg
-        ><a href="#" id="vaccinali">Vaccinali</a>
+        ><a href="#visite_vaccinali" id="vaccinali">Vaccinali</a>
       </li>
     </ul>
   </aside>
@@ -172,7 +218,7 @@
 
 
     <!--Visite specialistiche-->
-    <div class="contenitore-specialistiche">
+    <div class="contenitore-specialistiche" id="visite_specialistiche">
         <div class="flex justify-center items-center">
           <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg">
             <h1 class="text-xl font-bold text-gray-800 mt-4">Visite Specialistiche</h1>
@@ -193,7 +239,7 @@
 
 
     <!--Visite diagnostiche-->
-    <div class="contenitore-diagnostiche">
+    <div class="contenitore-diagnostiche" id="visite_diagnostiche">
         <div class="flex justify-center items-center">
           <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg">
             <h1 class="text-xl font-bold text-gray-800 mt-4">Visite diagnostiche</h1>
@@ -214,7 +260,7 @@
 
 
     <!--Visite vaccinali-->
-    <div class="contenitore-vaccinali">
+    <div class="contenitore-vaccinali" id="visite_vaccinali">
         <div class="flex justify-center items-center">
           <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg">
             <h1 class="text-xl font-bold text-gray-800 mt-4">Visite Vaccinali</h1>
