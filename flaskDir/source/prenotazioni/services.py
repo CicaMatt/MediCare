@@ -9,11 +9,15 @@ class MedicoService:
     #Invece di fare operazioni di input output ad ogni richiesta, memorizzo listamedici
     _listaMedici = None
 
+    @staticmethod
+    def getMedico(idMedico):
+        return Medico.query.filter_by(email=idMedico).first()
+
 
     @classmethod
     def getListaMedici(cls):
         if cls._listaMedici is None:
-            cls._listaMedici = Medico.query.getAll()
+            cls._listaMedici = Medico.query.all()
         return cls._listaMedici
 
     def filtraMedici(cls, specializzazione = None, citta = None):
@@ -74,7 +78,7 @@ class PrenotazioneService:
 
     @classmethod
     def getListaMedici(cls,specializzazione = None, citta= None):
-        return MedicoService.getListaMedici(specializzazione,citta)
+        return MedicoService().filtraMedici(specializzazione,citta)
     @classmethod
     def getListaVaccini(cls,user):
         return UserService.getListaVaccini(user)

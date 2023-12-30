@@ -1,34 +1,51 @@
-from flask import render_template, session, request
+from flask import render_template, session, request, Blueprint
 
 from flaskDir import app
 from flaskDir.MediCare.model.entity import Medici
 from flaskDir.source.prenotazioni import MedicoControl
-from flaskDir.source.prenotazioni.services import PrenotazioneService
-
+from flaskDir.source.prenotazioni.services import PrenotazioneService, MedicoService
 
 # Dovrebbe essere un singleton?!
-class PrenotazioneControl:
-    _prService = PrenotazioneService
 
-    @app.route('/prenotazione/listamedici')
-    def getListaMedici(cls):
-        specializzazione = request.form['specializzazione']
-        citta = request.form['citta']
-        # Se usiamo la get request.args.get['']
-        return render_template("ListaMedici.html", lista=cls._prService.getListaMedici())
+# Creo una "mappa" (blueprint) che definisce tante strade (routes), poi in app.py registro anche questa mappa
+prenotazione_blueprint = Blueprint('prenotazioni', __name__)
 
-    @app.route('/prenotazione/listamedici/<medico>')
-    def getMedico(cls, medico=None):
-        mailMedico = request.form[
-            'medico']  # Era meglio usare l'id come identificativo, adesso invece ogni utente può vedere la mail ei medici
-        return render_template("PaginaMedico.html", medico=mailMedico)
 
-    @app.route('/prenotazione/listavaccini')
-    @classmethod
-    def getListaVaccini(cls):
+@prenotazione_blueprint.route('/listamedici')
+def getListaMedici():
+    specializzazione = request.args.get('specializzazione')
+    citta = request.args.get('citta')
+    # Se usiamo la get request.args.get['']
+    return render_template("ListaMedici.html", lista=PrenotazioneService.getListaMedici(specializzazione, citta))
+
+
+@prenotazione_blueprint.route('/listamedici/paginamedico', methods=['POST'])
+def getMedico():
+    idMedico = request.form['medico']
+    if idMedico == None:
+        return render_template("ListaMedici.html", lista=PrenotazioneService.getListaMedici())
+
+
+    data = request.form['data']
+    ora = request.form['ora']
+    medico = MedicoService.getMedico(idMedico)
+
+    #Se ha scelto la data e l'ora
+    if data and ora and 'user' in session:
         user = session['user']
-        return render_template("Vaccini.html", lista=cls._prService.getListaVaccini(user))
+        if PrenotazioneService.checkIfFree(data, ora):
+            PrenotazioneService.savePrenotazione(data, ora, medico, user)
+    # Era meglio usare l'id come identificativo, adesso invece ogni utente può vedere la mail ei medici
+    else:
+        return render_template("PaginaMedico.html", medico=medico)
 
+
+@app.route('/prenotazione/listavaccini')
+def getListaVaccini():
+    if 'user' in session:
+        user = session['user']
+        return render_template("Vaccini.html", lista=PrenotazioneService.getListaVaccini(user))
+    return render_template("Prenotazione.html")
 
 
 """

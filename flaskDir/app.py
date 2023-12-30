@@ -1,7 +1,9 @@
 from flask import Flask, render_template
 
-app = Flask(__name__)
+import flaskDir.MediCare.Control.PrenotazioneControl
+from flaskDir.source.prenotazioni.PrenotazioneControl import prenotazione_blueprint
 
+from flaskDir import app
 app.config.from_mapping(
     SECRET_KEY='6Js.9JsPaq324Dc', #Serve per avere le sessioni, una chiave sicura, non dovrebbe essere caricata su github
     SAML_IDP_SETTINGS={ #Per lo spid, ad esempio devo identificare Posteitaliane
@@ -10,6 +12,7 @@ app.config.from_mapping(
     }
 )
 
+app.register_blueprint(prenotazione_blueprint, url_prefix='/prenotazione')
 
 @app.route('/')
 def home():
