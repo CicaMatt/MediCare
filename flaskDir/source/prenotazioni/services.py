@@ -1,9 +1,5 @@
-from sqlalchemy.exc import SQLAlchemyError
-
-from flaskDir import db
 from flaskDir.MediCare.model.entity.DocumentoSanitario import DocumentoSanitario
 from flaskDir.MediCare.model.entity.Medici import Medico
-from flaskDir.MediCare.model.entity.Prenotazione import Prenotazione
 
 
 class MedicoService:
@@ -60,6 +56,11 @@ class MedicoService:
 
         return listaFiltrata
 
+
+
+
+
+
     @classmethod
     def addMedico(cls, medico):
         cls._listaMedici = cls.getListaMedici()
@@ -81,34 +82,6 @@ class PrenotazioneService:
     @classmethod
     def getListaVaccini(cls,user):
         return UserService.getListaVaccini(user)
-    @classmethod
-    def confirmIsFree(cls, idmedico, data, ora):
-        prenotazioni = Prenotazione.query.filter_by(medico=idmedico, oraVisita=ora, dataVisita=data).first()
-        if prenotazioni: #Se ci sono prenotazioni per quella data allora non è free
-            return False
-        return True
-
-    def savePrenotazione (idmedico, data, ora, tipo, CF):
-
-        try:
-            prenotazione = Prenotazione(medico=idmedico, pazienteCF=CF, tipoVisita=tipo, dataVisita=data, oraVisita=ora)
-
-            db.session.add(Prenotazione)
-
-            db.session.commit()
-
-        except SQLAlchemyError as e:
-            print("Errore mentre salvavo la prenotazione: {}".format(e))
-
-            db.session.rollback()
-
-            return False
-
-
-
-
-
-
 
 
 

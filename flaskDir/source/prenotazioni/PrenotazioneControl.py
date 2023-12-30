@@ -30,14 +30,11 @@ def getMedico():
     ora = request.form['ora']
     medico = MedicoService.getMedico(idMedico)
 
-    #Dopo che ha scelto la data e l'ora
+    #Se ha scelto la data e l'ora
     if data and ora and 'user' in session:
         user = session['user']
-        if PrenotazioneService.confirmIsFree(data, ora):
+        if PrenotazioneService.checkIfFree(data, ora):
             PrenotazioneService.savePrenotazione(data, ora, medico, user)
-            #Pagina Prenotazione??
-            return render_template("PaginaMedico.html", medico=medico)
-
     # Era meglio usare l'id come identificativo, adesso invece ogni utente può vedere la mail ei medici
     else:
         return render_template("PaginaMedico.html", medico=medico)
