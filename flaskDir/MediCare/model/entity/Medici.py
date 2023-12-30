@@ -6,7 +6,7 @@ class Medico(db.Model):
     nome = db.Column(db.String(255))
     cognome = db.Column(db.String(255))
     reparto = db.Column(db.String(255))
-    ente_sanitario = db.Column(db.String(255), db.ForeignKey('ente_sanitario.email'), nullable=False)
+    ente_sanitario = db.Column(db.String(255), db.ForeignKey('ente_sanitario.email'), nullable=True)
     iscrizione_albo = db.Column(db.Integer)
     specializzazione = db.Column(db.String(255), nullable=False)
     città = db.Column(db.String(255), nullable=False)
