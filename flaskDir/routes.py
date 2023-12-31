@@ -20,9 +20,6 @@ def home():
     return render_template("HomePage.html")
 
 
-@app.route('/login')
-def login():
-    return render_template("Login.html")
 
 
 @app.route('/registrazione')

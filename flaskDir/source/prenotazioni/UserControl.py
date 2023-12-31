@@ -6,7 +6,7 @@ from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
 from flaskDir.MediCare.model.entity.Medici import Medico
 from flaskDir.source.prenotazioni.services import MedicoService
 
-auth_blueprint = Blueprint('authBluePrint', __name__)
+auth_blueprint = Blueprint('auth', __name__)
 
 medicoService = MedicoService()
 
@@ -21,7 +21,7 @@ def login_page():
         password = request.form.get('password')
         medico = medicoService.retrieveMedico(email, password)
         if medico == None:
-            return redirect(url_for('authBluePrint.login_page'))  # Gli potrei aggiungere la notifica che le credenziali son oerrate
+            return redirect(url_for('auth.login_page'))  # Gli potrei aggiungere la notifica che le credenziali son oerrate
         login_user(medico)  # Potremmo chidere anche se l'utente vuole essere ricordato
         return redirect(url_for('home'))
     else:
