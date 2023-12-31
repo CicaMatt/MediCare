@@ -21,7 +21,7 @@ def test_paginaPrenotazioni(client):
     assert response.status_code == 200
 
 def test_paginaLogin(client):
-    response = client.get('/login')
+    response = client.get('/auth/login')
     assert response.status_code == 200
 
 def test_paginaRegistrazione(client):
