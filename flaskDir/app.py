@@ -91,6 +91,10 @@ def modificaDatiUtente():
 def listamedici():
     return render_template("ListaMedici.html")
 
+@app.route('/profilomedico')
+def profilomedico():
+    return render_template("ProfiloMedico.html")
+
 
 
 if __name__ == '__main__':
