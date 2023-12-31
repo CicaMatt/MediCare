@@ -73,9 +73,11 @@
 							</tr>
 						</thead>
 						<!--Fine prima riga della tabella con i titoli generici-->
-
+						{% if lista %}
+						    {% for medico in lista %}
 
 						<!--Esempio dati medico pubblico-->
+						        {% if medico.nome==None %}
 						<tbody>
 							<tr>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -87,22 +89,22 @@
                                         </div>
 											<div class="ml-3">
 												<a href="..." class="text-gray-900 hover:text-sky-400 whitespace-no-wrap">
-													Pediatria-Cardarelli
+													{{medico.reparto}}
 												</a>
 											</div>
 										</div>
 								</td>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<p class="text-gray-900 whitespace-no-wrap">pediatria@Cardarelli.com</p>
+									<p class="text-gray-900 whitespace-no-wrap">{{medico.email}}</p>
 								</td>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 									<p class="text-gray-900 whitespace-no-wrap">
-										Pediatria
+										{{medico.specializzazione}}
 									</p>
 								</td>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 									<p class="text-gray-900 whitespace-no-wrap">
-										Napoli
+										{{medico.città}}
 									</p>
 								</td>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -110,14 +112,14 @@
                                         class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                                         <span aria-hidden
                                             class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-									<span class="relative">Ospedale Antonio Cardarelli</span>
+									<span class="relative">{{medico.ente_sanitario}}</span>
 									</span>
 								</td>
 							</tr>
 							<!--Fine esempio dati medico pubblico-->
 
 
-
+							        {% else %}
 							<!--Esempio dati medico privato-->
 							<tr>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -129,21 +131,21 @@
                                         </div>
 											<div class="ml-3">
 												<a href="..." class="text-gray-900 hover:text-sky-400 whitespace-no-wrap">
-													Giovanni Casaburi
+													{{medico.nome}}
 												</a>
 											</div>
 										</div>
 								</td>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<p class="text-gray-900 whitespace-no-wrap">giovannicasaburi@gmail.com</p>
+									<p class="text-gray-900 whitespace-no-wrap">{{medico.email}}</p>
 								</td>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 									<p class="text-gray-900 whitespace-no-wrap">
-										Pediatria
+										{{medico.specializzazione}}
 									</p>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 									<p class="text-gray-900 whitespace-no-wrap">
-										Cava de Tirreni
+										{{medico.città}}
 									</p>
 								</td>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -156,49 +158,12 @@
 								</td>
 							</tr>
 							<!--Fine esempio dati medico privato-->
+							        {% endif %}
+
+							    {% endfor %}
+						    {% endif %}
 
 
-							<!--Esempio dati medico pubblico-->
-							<tbody>
-								<tr>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<div class="flex items-center">
-											<div class="flex-shrink-0 w-10 h-10">
-												<img class="w-full h-full rounded-full"
-													src="{{ url_for('static', filename='images/hospital-building.png') }}"
-													alt="" />
-											</div>
-												<div class="ml-3">
-													<a href="..." class="text-gray-900 hover:text-sky-400 whitespace-no-wrap">
-														Pediatria-Gemelli
-													</a>
-												</div>
-											</div>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<p class="text-gray-900 whitespace-no-wrap">pediatria@Gemelli.com</p>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<p class="text-gray-900 whitespace-no-wrap">
-											Pediatria
-										</p>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<p class="text-gray-900 whitespace-no-wrap">
-											Roma
-										</p>
-									</td>
-									<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-										<span
-											class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-											<span aria-hidden
-												class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-										<span class="relative">Policlinico Agostino Gemelli</span>
-										</span>
-									</td>
-								</tr>
-
-								<!--Fine esempio dati medico pubblico-->
 
 
 						</tbody>
