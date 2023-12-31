@@ -1,5 +1,11 @@
+import sqlalchemy
+from sqlalchemy.exc import SQLAlchemyError
+
+from flaskDir import db
 from flaskDir.MediCare.model.entity.DocumentoSanitario import DocumentoSanitario
+from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
 from flaskDir.MediCare.model.entity.Medici import Medico
+from flaskDir.MediCare.model.entity.Prenotazione import Prenotazione
 
 
 class MedicoService:
@@ -13,6 +19,13 @@ class MedicoService:
     def getMedico(idMedico):
         return Medico.query.filter_by(email=idMedico).first()
 
+
+    @staticmethod
+    def retrieveMedico(email, password):
+        medico = db.session.scalar(sqlalchemy.select(Medico).where(Medico.email == email))
+        if medico is None or not medico.check_password(password):
+            return None
+        return medico
 
     @classmethod
     def getListaMedici(cls):
@@ -56,11 +69,6 @@ class MedicoService:
 
         return listaFiltrata
 
-
-
-
-
-
     @classmethod
     def addMedico(cls, medico):
         cls._listaMedici = cls.getListaMedici()
@@ -82,6 +90,43 @@ class PrenotazioneService:
     @classmethod
     def getListaVaccini(cls,user):
         return UserService.getListaVaccini(user)
+    @classmethod
+    def confirmIsFree(cls, idmedico, data, ora):
+        prenotazioni = Prenotazione.query.filter_by(medico=idmedico, oraVisita=ora, dataVisita=data).first()
+        if prenotazioni: #Se ci sono prenotazioni per quella data allora non è free
+            return False
+        return True
+
+    def savePrenotazione (idmedico, data, ora, tipo, CF):
+
+        try:
+            prenotazione = Prenotazione(medico=idmedico, pazienteCF=CF, tipoVisita=tipo, dataVisita=data, oraVisita=ora)
+
+            db.session.add(Prenotazione)
+
+            db.session.commit()
+
+        except SQLAlchemyError as e:
+            print("Errore mentre salvavo la prenotazione: {}".format(e))
+
+            db.session.rollback()
+
+            return False
+
+
+
+class EnteService:
+    @staticmethod
+    def retrieveEnte(email, password, medico=None):
+        ente = db.session.scalar(sqlalchemy.select(EnteSanitario).where(EnteSanitario.email == email))
+        if ente is None or not ente.check_password(password):
+            return None
+        return medico
+
+
+
+
+
 
 
 
