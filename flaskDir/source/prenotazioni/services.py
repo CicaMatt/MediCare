@@ -100,9 +100,11 @@ class PrenotazioneService:
     def savePrenotazione (idmedico, data, ora, tipo, CF):
 
         try:
-            prenotazione = Prenotazione(medico=idmedico, pazienteCF=CF, tipoVisita=tipo, dataVisita=data, oraVisita=ora)
+            medico=MedicoService().getMedico(idmedico)
 
-            db.session.add(Prenotazione)
+            prenotazione = Prenotazione(medico=idmedico, pazienteCF=CF, tipoVisita=tipo, dataVisita=data, oraVisita=ora, prenMed=medico)
+
+            db.session.add(prenotazione)
 
             db.session.commit()
 

@@ -1,7 +1,7 @@
-from flask import Flask, render_template
+from flask import render_template
 
 from flaskDir.source.prenotazioni.PrenotazioneControl import prenotazione_blueprint
-from flaskDir.source.prenotazioni.UserControl import auth_blueprint
+from autenticazione.UserControl import auth_blueprint
 
 from flaskDir import app
 
@@ -96,7 +96,6 @@ def profilomedico():
 @app.route('/registrazionemedico')
 def registrazionemedico():
     return render_template("RegistrazioneMedico.html")
-
 
 
 if __name__ == '__main__':
