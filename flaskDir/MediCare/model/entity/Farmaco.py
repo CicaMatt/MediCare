@@ -5,5 +5,6 @@ class Farmaco(db.Model):
     nome = db.Column(db.String(255), nullable=False)
     categoria = db.Column(db.String(100), nullable=False)
     descrizione = db.Column(db.Text, nullable=False)
+    immagine = db.Column(db.String(255), nullable=False)
     __table_args__ = (db.UniqueConstraint('nome', 'categoria'),)
 
