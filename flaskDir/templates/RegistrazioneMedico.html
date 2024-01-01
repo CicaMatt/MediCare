@@ -51,22 +51,35 @@
             <label for="password" class="mb-2 text-sm text-start text-grey-900">Password</label>
             <input name="password"  id="password" type="password" placeholder="Enter a password" class="flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
 
-          <div class="flex">
-              <div class="flex-1 pr-4 mb-5">
-                  <label for="nome" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Name</label>
-                  <input name="nome" id="nome" type="nome" placeholder="Enter a name" class="flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
-              </div>
+             <div class="grid grid-cols-3 grid-rows-2 gap-4">
+                 <!-- Prima riga -->
+                 <div class="flex-1 pr-4 mb-5">
+                     <label for="nome" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Name</label>
+                     <input name="nome" id="nome" type="nome" placeholder="Enter a name" class="flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
+                 </div>
 
-              <div class="flex-1 pr-4 mb-5">
-                  <label for="cognome" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Surname</label>
-                  <input name="cognome" id="cognome" type="cognome" placeholder="Enter a surname" class="flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
-              </div>
+                 <div class="flex-1 pr-4 mb-5">
+                     <label for="cognome" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Surname</label>
+                     <input name="cognome" id="cognome" type="cognome" placeholder="Enter a surname" class="flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
+                 </div>
 
-              <div class="flex-1 mb-5">
-                  <label for="code" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Albo Code</label>
-                  <input name="code" id="code" type="code" placeholder="Enter a code" class="flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
-              </div>
-          </div>
+                 <div class="flex-1 mb-5">
+                     <label for="code" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Albo Code</label>
+                     <input name="code" id="code" type="code" placeholder="Enter a code" class="flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
+                 </div>
+
+                 <!-- Seconda riga -->
+                 <div class="flex-1 pr-4 mb-5">
+                     <label for="specializzazione" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Specialization</label>
+                     <input name="specializzazione" id="specializzazione" type="specializzazione" placeholder="Enter a specialization" class="flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
+                 </div>
+
+                 <div class="flex-1 pr-4 mb-5">
+                     <label for="citta" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">City</label>
+                     <input name="citta" id="citta" type="citta" placeholder="Enter a city" class="flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
+                 </div>
+             </div>
+
 
             <button type="submit" class="bg-navbarreg mx-auto w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">Create an Account</button>
           </form>
