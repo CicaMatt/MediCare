@@ -89,6 +89,14 @@ def modificaDatiUtente():
 def listamedici():
     return render_template("ListaMedici.html")
 
+@app.route('/profilomedico')
+def profilomedico():
+    return render_template("ProfiloMedico.html")
+
+@app.route('/registrazionemedico')
+def registrazionemedico():
+    return render_template("RegistrazioneMedico.html")
+
 
 
 if __name__ == '__main__':
