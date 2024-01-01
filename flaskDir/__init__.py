@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy_utils import create_database, database_exists
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:lollipop@localhost:3306/medicare'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Unisa@localhost:3306/medicare'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -27,4 +27,5 @@ else:
 
 
 from flaskDir import routes
+
 
