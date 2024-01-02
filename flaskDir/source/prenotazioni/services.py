@@ -5,7 +5,10 @@ from flaskDir import db
 from flaskDir.MediCare.model.entity.DocumentoSanitario import DocumentoSanitario
 from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
 from flaskDir.MediCare.model.entity.Medici import Medico
+from flaskDir.MediCare.model.entity.Paziente import Paziente
 from flaskDir.MediCare.model.entity.Prenotazione import Prenotazione
+
+
 
 
 class MedicoService:
@@ -97,12 +100,18 @@ class PrenotazioneService:
             return False
         return True
 
+    @staticmethod
     def savePrenotazione (idmedico, data, ora, tipo, CF):
 
         try:
             medico=MedicoService().getMedico(idmedico)
 
-            prenotazione = Prenotazione(medico=idmedico, pazienteCF=CF, tipoVisita=tipo, dataVisita=data, oraVisita=ora, prenMed=medico)
+            prenotazione = Prenotazione()
+            prenotazione.medico = idmedico
+            prenotazione.pazienteCF = CF
+            prenotazione.tipoVisita = tipo
+            prenotazione.dataVisita = data
+            prenotazione.oraVisita = ora
 
             db.session.add(prenotazione)
 
@@ -119,11 +128,11 @@ class PrenotazioneService:
 
 class EnteService:
     @staticmethod
-    def retrieveEnte(email, password, medico=None):
+    def retrieveEnte(email, password):
         ente = db.session.scalar(sqlalchemy.select(EnteSanitario).where(EnteSanitario.email == email))
         if ente is None or not ente.check_password(password):
             return None
-        return medico
+        return ente
 
 
 

@@ -124,7 +124,39 @@
 
 <body>
 
+
       {% include 'Navbar.html' %}
+<div id="alert-container" class="relative">
+  <div id="alert" class="bg-indigo-900 text-center py-4 lg:px-4 absolute top-0 left-0 right-0 opacity-0 transform translateY-0 transition-all duration-500 ease-out">
+    <div class="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
+      <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">Hey!</span>
+      <span class="font-semibold mr-2 text-left flex-auto">Sei già loggato</span>
+    </div>
+  </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var alertContainer = document.getElementById('alert-container');
+        var alertElement = document.getElementById('alert');
+
+        // Trigger a reflow to apply the initial style
+        alertElement.offsetHeight;
+
+        // Show the alert with a subtle fade and upward transition
+        alertElement.style.opacity = '1';
+        alertElement.style.transform = 'translateY(0)';
+
+        // Set a timeout to start the fade-out after 3000 milliseconds (3 seconds)
+        setTimeout(function () {
+            // Hide the alert with a smooth opacity and upward transition
+            alertElement.style.opacity = '0';
+            alertElement.style.transform = 'translateY(-100%)';
+        }, 3000);
+    });
+</script>
+
+
 
 
 

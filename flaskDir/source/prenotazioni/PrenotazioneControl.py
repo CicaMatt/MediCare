@@ -1,4 +1,5 @@
 from flask import render_template, session, request, Blueprint
+from flask_login import current_user
 
 from flaskDir import app
 from flaskDir.MediCare.model.entity import Medici
@@ -19,9 +20,9 @@ def getListaMedici():
     return render_template("ListaMedici.html", lista=PrenotazioneService.getListaMedici(specializzazione, citta))
 
 
-@prenotazione_blueprint.route('/listamedici/paginamedico', methods=['POST'])
+@prenotazione_blueprint.route('/listamedici/paginamedico', methods=['GET','POST'])
 def getMedico():
-    idMedico = request.form['medico']
+    idMedico = request.form.get['medico']
     if idMedico == None:
         return render_template("ListaMedici.html", lista=PrenotazioneService.getListaMedici())
 
@@ -31,12 +32,14 @@ def getMedico():
     medico = MedicoService.getMedico(idMedico)
 
     #Dopo che ha scelto la data e l'ora
-    if data and ora and 'user' in session:
+    if data and ora and current_user.is_authenticated:
         user = session['user']
         if PrenotazioneService.confirmIsFree(data, ora):
             PrenotazioneService.savePrenotazione(data, ora, medico, user)
             #Pagina Prenotazione??
             return render_template("PaginaMedico.html", medico=medico)
+        else:
+            return render_template("PaginaMedico.html", medico=medico, alert="error", message="Impossibile salvare la prenotazione: data occupata")
 
     # Era meglio usare l'id come identificativo, adesso invece ogni utente può vedere la mail ei medici
     else:

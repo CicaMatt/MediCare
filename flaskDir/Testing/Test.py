@@ -117,4 +117,17 @@ def test_login_Medico():
         assert user_in_db.check_password('password123') is False
 
 
+def test_login_Medico2(client):
+    credenzialiTest = {"email":"test@example.com", "password":"newpassword123"}
+    response = client.post('/auth/login', data=credenzialiTest)
+    assert response.status_code==302
+    ##Controlla che il path sia relativo
 
+"""
+def test_prenotazione():
+    dataprenotazione ='2988-01-12 00:00:00'
+    with app.app_context():
+        if PrenotazioneService.confirmIsFree("test@example.com",dataprenotazione,"9"):
+            PrenotazioneService.savePrenotazione("test@example.com",dataprenotazione,"9", "dfsh", 2323)
+
+"""

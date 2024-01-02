@@ -1,12 +1,24 @@
-from flask import redirect, url_for, render_template
+from flask import redirect, url_for, render_template, session
 from flask_login import current_user, login_user, logout_user
 import sqlalchemy
-from flaskDir import db,app
+from flaskDir import db, app, login
 from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
 from flaskDir.MediCare.model.entity.Medici import Medico
+from flaskDir.MediCare.model.entity.Paziente import Paziente
 from flaskDir.source.prenotazioni.services import MedicoService
 
 medicoService = MedicoService()
+@login.user_loader
+def load_user(id): #Bisogna aggiungere anche l'utente
+    user_role = session['user_role']
+    if user_role == 'paziente':
+        return db.session.get(Paziente, id)
+
+    elif user_role == 'medico':
+        return db.session.get(Medico, id)
+    elif user_role == 'ente':
+        return db.session.get(EnteSanitario, id)
+
 
 def login_page(request):
     if current_user.is_authenticated:
@@ -19,6 +31,7 @@ def login_page(request):
         if medico == None:
             return redirect(url_for('login'))  # Gli potrei aggiungere la notifica che le credenziali son oerrate
         login_user(medico)  # Potremmo chidere anche se l'utente vuole essere ricordato
+        session['user_role'] = 'medico'
         return redirect(url_for('home'))
     else:
         return render_template("Login.html")
@@ -36,6 +49,8 @@ def loginEnte_page(request):
         if ente is None:
             return redirect(url_for('loginente'))  # Gli potrei aggiungere la notifica che le credenziali son oerrate
         login_user(ente)  # Potremmo chidere anche se l'utente vuole essere ricordato
+        session['user_role'] = 'ente'
+
         return redirect(url_for('home'))
     else:
         return render_template("LoginEnte.html")

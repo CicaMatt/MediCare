@@ -14,7 +14,7 @@
     <div class="flex lg:flex-1">
       <a href="{{url_for('home')}}" class="flex items-center space-x-3 rtl:space-x-reverse">
           <img src="{{ url_for('static', filename='images/Logo.png') }}" class="h-10" alt="MediCare Logo" />
-          <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-gray-200">MediCare</span>
+          <span class="self-center text-2xl font-semibold whitespace-nowrap text-[#424646] dark:text-gray-200">MediCare</span>
       </a>
     </div>
     <div class="flex lg:hidden">
@@ -33,7 +33,11 @@
       <a href="{{url_for('listamedici')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Chi siamo</a>
     </div>
     <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-      <a href="{{url_for('login')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Log in <span aria-hidden="true">&rarr;</span></a>
+      {% if not current_user.is_authenticated %}
+      <a href="{{url_for('auth.login_page')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Log in <span aria-hidden="true">&rarr;</span></a>
+      {% else %}
+      <a href="{{url_for('auth.login_page')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Ciao, {{current_user.nome}} </a>
+      {% endif %}
     </div>
   </nav>
   <!-- Mobile menu, show/hide based on menu open state. -->
