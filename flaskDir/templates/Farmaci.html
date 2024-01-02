@@ -68,7 +68,7 @@
 
 
 
-<a href="url">
+<a href="{{url_for('dettagliFarmaco')}}">
   <div class="flex flex-col justify-between overflow-hidden transition-shadow duration-200 bg-white rounded-lg border border-gray-300 shadow-xl group hover:shadow-2xl" style="max-height: 500px;"> <!-- Aggiunto border e personalizzato lo stile -->
     <div class="p-5 pb-4 flex flex-col items-center justify-center">
       <img class="h-48 w-full object-cover" src="{{ url_for('static', filename='images/farmaci/tachipirina.png') }}" alt=".." />
@@ -78,7 +78,7 @@
   </div>
 </a>
 
-<a href="url">
+<a href="{{url_for('dettagliFarmaco')}}">
   <div class="flex flex-col justify-between overflow-hidden transition-shadow duration-200 bg-white rounded-lg border border-gray-300 shadow-xl group hover:shadow-2xl" style="max-height: 500px;"> <!-- Aggiunto border e personalizzato lo stile -->
     <div class="p-5 pb-4 flex flex-col items-center justify-center">
       <img class="h-48 w-full object-cover" src="{{ url_for('static', filename='images/farmaci/moment.png') }}" alt=".." />
@@ -87,9 +87,6 @@
     <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100"></div>
   </div>
 </a>
-
-
-
 
 
   </div>
