@@ -9,92 +9,81 @@
 
 {% include 'Navbar.html' %}
 
+  <!--Dettagli del farmaco-->
+  <section class="text-gray-700 body-font overflow-hidden bg-white">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="lg:w-4/5 mx-auto flex flex-wrap">
+        <img alt="immagine non disponibile" class="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200" src="{{ url_for('static', filename='images/farmaci/moment.png') }}">
+        <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+          <h2 class="text-sm title-font text-gray-500 tracking-widest">Compresse</h2>
+          <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">Moment Act</h1>
 
-<section class="text-gray-700 body-font overflow-hidden bg-white">
-  <div class="container px-5 py-24 mx-auto">
-    <div class="lg:w-4/5 mx-auto flex flex-wrap">
-      <img alt="immagine non disponibile" class="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200" src="{{ url_for('static', filename='images/farmaci/moment.png') }}">
-      <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-        <h2 class="text-sm title-font text-gray-500 tracking-widest">Compresse</h2>
-        <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">Moment Act</h1>
+          <p class="leading-relaxed">'Moment Act', 'Compresse', 'Confezione da 20 compresse somministrabili 1 ogni 12 ore per adulti con età superiore ai 12 anni, farmaco ideale per far scomparire completamente le forti emicrania alla testa.</p>
+          <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
+          </div>
 
-        <p class="leading-relaxed">'Moment Act', 'Compresse', 'Confezione da 20 compresse somministrabili 1 ogni 12 ore per adulti con età superiore ai 12 anni, farmaco ideale per far scomparire completamente le forti emicrania alla testa.</p>
-        <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
-        </div>
+          <div class="flex">
+            <span class="title-font font-medium text-2xl text-gray-900">€8.90</span>
 
-        <div class="flex">
-          <span class="title-font font-medium text-2xl text-gray-900">€8.90</span>
-
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
+  <!--Lista degli altri farmaci simili-->
+  <section class="py-0 sm:py-1 lg:py-4">
+    <div class="mx-auto max-w-screen-xl px-4 md:px-8">
 
-<section class="py-0 sm:py-1 lg:py-4">
-  <div class="mx-auto max-w-screen-xl px-4 md:px-8">
-    <!-- Heading -->
-    <div class="relative mb-10 pt-8 md:mb-16">
-      <h2 class="mb-4 text-center font-serif text-3xl font-bold text-blue-900 md:mb-6 md:text-4xl">Ti potrebbero interessare</h2>
-    </div>
-
+      <div class="relative mb-10 pt-8 md:mb-16">
+        <h2 class="mb-4 text-center font-serif text-3xl font-bold text-blue-900 md:mb-6 md:text-4xl">Ti potrebbero interessare</h2>
+      </div>
 
       <div class="relative grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
 
+          <a href="{{url_for('dettagliFarmaco')}}">
+            <div class="flex flex-col justify-between overflow-hidden transition-shadow duration-200 bg-white rounded-lg border border-gray-300 shadow-xl group hover:shadow-2xl" style="max-height: 500px;"> <!-- Aggiunto border e personalizzato lo stile -->
+              <div class="p-5 pb-4 flex flex-col items-center justify-center">
+                <img class="h-48 w-full object-cover" src="{{ url_for('static', filename='images/farmaci/tachipirina.png') }}" alt=".." />
+                <p class="mt-4 mb-2 font-bold text-center">Tachipirina 500</p>
+              </div>
+              <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100"></div>
+            </div>
+          </a>
 
+          <a href="{{url_for('dettagliFarmaco')}}">
+            <div class="flex flex-col justify-between overflow-hidden transition-shadow duration-200 bg-white rounded-lg border border-gray-300 shadow-xl group hover:shadow-2xl" style="max-height: 500px;"> <!-- Aggiunto border e personalizzato lo stile -->
+              <div class="p-5 pb-4 flex flex-col items-center justify-center">
+                <img class="h-48 w-full object-cover" src="{{ url_for('static', filename='images/farmaci/moment.png') }}" alt=".." />
+                <p class="mt-4 mb-2 font-bold text-center">Moment Act</p>
+              </div>
+              <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100"></div>
+            </div>
+          </a>
 
-<a href="{{url_for('dettagliFarmaco')}}">
-  <div class="flex flex-col justify-between overflow-hidden transition-shadow duration-200 bg-white rounded-lg border border-gray-300 shadow-xl group hover:shadow-2xl" style="max-height: 500px;"> <!-- Aggiunto border e personalizzato lo stile -->
-    <div class="p-5 pb-4 flex flex-col items-center justify-center">
-      <img class="h-48 w-full object-cover" src="{{ url_for('static', filename='images/farmaci/tachipirina.png') }}" alt=".." />
-      <p class="mt-4 mb-2 font-bold text-center">Tachipirina 500</p>
+          <a href="{{url_for('dettagliFarmaco')}}">
+            <div class="flex flex-col justify-between overflow-hidden transition-shadow duration-200 bg-white rounded-lg border border-gray-300 shadow-xl group hover:shadow-2xl" style="max-height: 500px;"> <!-- Aggiunto border e personalizzato lo stile -->
+              <div class="p-5 pb-4 flex flex-col items-center justify-center">
+                <img class="h-48 w-full object-cover" src="{{ url_for('static', filename='images/farmaci/moment.png') }}" alt=".." />
+                <p class="mt-4 mb-2 font-bold text-center">Moment Act</p>
+              </div>
+              <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100"></div>
+            </div>
+          </a>
+
+          <a href="{{url_for('dettagliFarmaco')}}">
+            <div class="flex flex-col justify-between overflow-hidden transition-shadow duration-200 bg-white rounded-lg border border-gray-300 shadow-xl group hover:shadow-2xl" style="max-height: 500px;"> <!-- Aggiunto border e personalizzato lo stile -->
+              <div class="p-5 pb-4 flex flex-col items-center justify-center">
+                <img class="h-48 w-full object-cover" src="{{ url_for('static', filename='images/farmaci/moment.png') }}" alt=".." />
+                <p class="mt-4 mb-2 font-bold text-center">Moment Act</p>
+              </div>
+              <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100"></div>
+            </div>
+          </a>
+
+      </div>
     </div>
-    <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100"></div>
-  </div>
-</a>
-
-<a href="{{url_for('dettagliFarmaco')}}">
-  <div class="flex flex-col justify-between overflow-hidden transition-shadow duration-200 bg-white rounded-lg border border-gray-300 shadow-xl group hover:shadow-2xl" style="max-height: 500px;"> <!-- Aggiunto border e personalizzato lo stile -->
-    <div class="p-5 pb-4 flex flex-col items-center justify-center">
-      <img class="h-48 w-full object-cover" src="{{ url_for('static', filename='images/farmaci/moment.png') }}" alt=".." />
-      <p class="mt-4 mb-2 font-bold text-center">Moment Act</p>
-    </div>
-    <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100"></div>
-  </div>
-</a>
-
-<a href="{{url_for('dettagliFarmaco')}}">
-  <div class="flex flex-col justify-between overflow-hidden transition-shadow duration-200 bg-white rounded-lg border border-gray-300 shadow-xl group hover:shadow-2xl" style="max-height: 500px;"> <!-- Aggiunto border e personalizzato lo stile -->
-    <div class="p-5 pb-4 flex flex-col items-center justify-center">
-      <img class="h-48 w-full object-cover" src="{{ url_for('static', filename='images/farmaci/moment.png') }}" alt=".." />
-      <p class="mt-4 mb-2 font-bold text-center">Moment Act</p>
-    </div>
-    <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100"></div>
-  </div>
-</a>
-
-        <a href="{{url_for('dettagliFarmaco')}}">
-  <div class="flex flex-col justify-between overflow-hidden transition-shadow duration-200 bg-white rounded-lg border border-gray-300 shadow-xl group hover:shadow-2xl" style="max-height: 500px;"> <!-- Aggiunto border e personalizzato lo stile -->
-    <div class="p-5 pb-4 flex flex-col items-center justify-center">
-      <img class="h-48 w-full object-cover" src="{{ url_for('static', filename='images/farmaci/moment.png') }}" alt=".." />
-      <p class="mt-4 mb-2 font-bold text-center">Moment Act</p>
-    </div>
-    <div class="w-full h-1 ml-auto duration-300 origin-left transform scale-x-0 bg-deep-purple-accent-400 group-hover:scale-x-100"></div>
-  </div>
-</a>
-
-  </div>
-
-
-
-
-
-
-
-
-  </div>
-</section>
+  </section>
 
 
 {% include 'Footer2.0.html' %}
