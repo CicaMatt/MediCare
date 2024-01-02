@@ -9,7 +9,7 @@ def login_page():
     return AutenticazioneService.login_page(request)
 
 
-@auth_blueprint.route('/loginENTE', methods=['GET', 'POST'])
+@auth_blueprint.route('/loginente', methods=['GET', 'POST'])
 def loginEnte_page():
     return AutenticazioneService.loginEnte_page(request)
 

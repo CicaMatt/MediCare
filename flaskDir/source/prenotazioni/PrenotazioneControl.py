@@ -22,13 +22,13 @@ def getListaMedici():
 
 @prenotazione_blueprint.route('/listamedici/paginamedico', methods=['GET','POST'])
 def getMedico():
-    idMedico = request.form.get['medico']
+    idMedico = request.form.get('medico')
     if idMedico == None:
         return render_template("ListaMedici.html", lista=PrenotazioneService.getListaMedici())
 
 
-    data = request.form['data']
-    ora = request.form['ora']
+    data = request.form.get('data')
+    ora = request.form.get('ora')
     medico = MedicoService.getMedico(idMedico)
 
     #Dopo che ha scelto la data e l'ora
@@ -37,13 +37,13 @@ def getMedico():
         if PrenotazioneService.confirmIsFree(data, ora):
             PrenotazioneService.savePrenotazione(data, ora, medico, user)
             #Pagina Prenotazione??
-            return render_template("PaginaMedico.html", medico=medico)
+            return render_template("ProfiloMedico.html", medico=medico)
         else:
-            return render_template("PaginaMedico.html", medico=medico, alert="error", message="Impossibile salvare la prenotazione: data occupata")
+            return render_template("ProfiloMedico.html", medico=medico, alert="error", message="Impossibile salvare la prenotazione: data occupata")
 
     # Era meglio usare l'id come identificativo, adesso invece ogni utente può vedere la mail ei medici
     else:
-        return render_template("PaginaMedico.html", medico=medico)
+        return render_template("ProfiloMedico.html", medico=medico)
 
 
 @app.route('/prenotazione/listavaccini')

@@ -73,10 +73,9 @@ class MedicoService:
         return listaFiltrata
 
     @classmethod
-    def addMedico(cls, medico):
+    def addMedicotoLista(cls, medico):
         cls._listaMedici = cls.getListaMedici()
         cls._listaMedici.append(medico)
-        Medico.query.add(medico) #add??
 
 class UserService:
 

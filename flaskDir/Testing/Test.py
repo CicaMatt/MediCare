@@ -2,6 +2,7 @@ import pytest
 import sqlalchemy
 
 from flaskDir import app, db
+from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
 from flaskDir.MediCare.model.entity.Medici import Medico
 from flaskDir.source.prenotazioni.services import PrenotazioneService
 
@@ -90,7 +91,7 @@ def test_prenotazioni_lista_medici_filtro(client):
     assert attributi_oracolo == attributi_attuali
 
 
-def test_login_Medico():
+def test_login_MedicoService():
     new_user = Medico(
         email='test@example.com',
         password_hash='password123',
@@ -117,11 +118,68 @@ def test_login_Medico():
         assert user_in_db.check_password('password123') is False
 
 
-def test_login_Medico2(client):
+def test_login_Medico(client):
     credenzialiTest = {"email":"test@example.com", "password":"newpassword123"}
     response = client.post('/auth/login', data=credenzialiTest)
     assert response.status_code==302
+    assert not response.location.endswith('/login')
     ##Controlla che il path sia relativo
+
+def test_login_Medico2(client):
+    credenzialiTest = {"email":"test@example.com", "password":"sbagliata"}
+    response = client.post('/auth/login', data=credenzialiTest)
+    assert response.status_code==302
+    assert response.location.endswith('/login')
+    ##Controlla che il path sia relativo
+
+
+
+def test_login_EnteSanitario():
+    new_user = EnteSanitario(
+        nome='Ente Test',
+        email='test@example.com',
+        password_hash='sfjfsgs',
+    )
+    with app.app_context():
+        user_in_db = db.session.scalar(sqlalchemy.select(EnteSanitario).where(EnteSanitario.email == 'test@example.com'))
+        if user_in_db is not None:
+            db.session.delete(user_in_db)
+            db.session.commit()
+
+        db.session.add(new_user)
+        db.session.commit()
+
+        user_in_db = db.session.scalar(sqlalchemy.select(EnteSanitario).where(EnteSanitario.email == 'test@example.com'))
+        assert user_in_db
+
+        user_in_db.set_password('corretta')
+        db.session.commit()
+        assert user_in_db.check_password('corretta')
+        assert user_in_db.check_password('password123') is False
+
+
+def test_login_Ente(client):
+    credenzialiTest = {"email": "test@example.com", "password": "corretta"}
+    response = client.post('/auth/loginente', data=credenzialiTest)
+    assert response.status_code == 302
+    assert not response.location.endswith('/loginente')#Login con Successo
+
+
+
+def test_login_Ente2(client):
+    credenzialiTest = {"email": "test@example.com", "password": "sbagliata"}
+    response = client.post('/auth/loginente', data=credenzialiTest)
+    assert response.status_code == 302
+    assert response.location.endswith('/loginente')  # Email o password errate
+
+    ##Controlla che il path sia relativo
+
+def test_registrazioneMedico(client):
+    credenzialiTest = {"email": "test2@example.com", "password": "sbagliata", "nome":"Giovanni", "cognome":"casaburi", "specializzazione":"chirurgia", "citta":"Piccola Svizzera", "code":123212}
+    response = client.post('/auth/registrazione', data=credenzialiTest)
+    assert response.status_code == 302
+    assert not response.location.endswith('/registrazione')
+
 
 """
 def test_prenotazione():

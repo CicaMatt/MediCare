@@ -1,6 +1,7 @@
 
 from functools import wraps
 
+import bcrypt
 from flask import session, redirect, url_for
 
 from flaskDir import db, login
@@ -21,12 +22,17 @@ def ente_required(func):
 class EnteSanitario(db.Model, UserMixin):
     nome = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), primary_key=True)
-    password = db.Column(db.String(255), nullable=False)
+    password_hash = db.Column(db.String(255), nullable=False)
     reparti = db.relationship("Medico", backref="reparti", lazy=True)
 
     def get_id(self):
         return self.email
 
+    def set_password(self, password):
+        salt = bcrypt.gensalt()
+        hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
+        self.password_hash = hashed
 
-    def get_id(self):
-        return self.email
+    def check_password(self, password):
+        return bcrypt.checkpw(password.encode('utf-8'), self.password_hash.encode('utf-8'))
+

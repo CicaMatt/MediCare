@@ -75,6 +75,9 @@
 						<!--Fine prima riga della tabella con i titoli generici-->
 						{% if lista %}
 						    {% for medico in lista %}
+								<form method="post" action="{{url_for('prenotazioni.getMedico')}}">
+									<input type="hidden" name="medico" value="{{medico.email}}">
+
 
 						<!--Esempio dati medico pubblico-->
 						        {% if medico.nome==None %}
@@ -88,9 +91,11 @@
                                                 alt="" />
                                         </div>
 											<div class="ml-3">
-												<a href="{{url_for('profilomedico')}}" class="text-gray-900 hover:text-sky-400 whitespace-no-wrap">
+
+												<a href="{{url_for('prenotazioni.getMedico')}}" class="text-gray-900 hover:text-sky-400 whitespace-no-wrap">
 													{{medico.reparto}}
 												</a>
+
 											</div>
 										</div>
 								</td>
@@ -130,9 +135,9 @@
                                                 alt="" />
                                         </div>
 											<div class="ml-3">
-												<a href="{{url_for('profilomedico')}}" class="text-gray-900 hover:text-sky-400 whitespace-no-wrap">
+												<button type="submit" class="text-gray-900 hover:text-sky-400 whitespace-no-wrap">
 													{{medico.nome}}
-												</a>
+												</button>
 											</div>
 										</div>
 								</td>
@@ -159,6 +164,7 @@
 							</tr>
 							<!--Fine esempio dati medico privato-->
 							        {% endif %}
+							</form>
 
 							    {% endfor %}
 						    {% endif %}
