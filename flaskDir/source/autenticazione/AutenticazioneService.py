@@ -17,7 +17,7 @@ def login_page(request):
         password = request.form.get('password')
         medico = medicoService.retrieveMedico(email, password)
         if medico == None:
-            return redirect(url_for('auth.login_page'))  # Gli potrei aggiungere la notifica che le credenziali son oerrate
+            return redirect(url_for('login'))  # Gli potrei aggiungere la notifica che le credenziali son oerrate
         login_user(medico)  # Potremmo chidere anche se l'utente vuole essere ricordato
         return redirect(url_for('home'))
     else:
@@ -32,10 +32,9 @@ def loginEnte_page(request):
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
-        ente = db.session.scalar(sqlalchemy.select(EnteSanitario).where(EnteSanitario.email == email))
-        if ente is None or not ente.check_password(password):
-            redirect(url_for(
-                'auth_blueprint.login_page'))  # Gli potrei aggiungere la notifica che le credenziali son oerrate
+        ente = db.session.scalar(sqlalchemy.select(EnteSanitario).where(EnteSanitario.email == email, EnteSanitario.password == password))
+        if ente is None:
+            return redirect(url_for('loginente'))  # Gli potrei aggiungere la notifica che le credenziali son oerrate
         login_user(ente)  # Potremmo chidere anche se l'utente vuole essere ricordato
         return redirect(url_for('home'))
     else:
@@ -68,7 +67,7 @@ def registrazione_pageMedico(request):
             medico.città=citta
             db.session.add(medico)
             db.session.commit()
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
     else: return render_template('RegistrazioneMedico.html')
 
 
@@ -90,7 +89,9 @@ def registrazioneEnte(request):
             ente.password=password
             db.session.add(ente)
             db.session.commit()
-        return redirect(url_for('auth.loginEnte_page'))
+        return redirect(url_for('loginente'))
+    else:
+        return render_template('RegistrazioneEnte.html')
 
 
 

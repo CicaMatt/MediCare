@@ -97,6 +97,10 @@ def profilomedico():
 def registrazionemedico():
     return render_template("RegistrazioneMedico.html")
 
+@app.route('/login')
+def login():
+    return render_template("Login.html")
+
 @app.route('/loginente')
 def loginente():
     return render_template("LoginEnte.html")

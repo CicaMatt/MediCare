@@ -1,3 +1,4 @@
+
 from flaskDir import db, login
 from flask_login import UserMixin
 
@@ -13,6 +14,5 @@ class EnteSanitario(db.Model, UserMixin):
     reparti = db.relationship("Medico", backref="reparti", lazy=True)
 
 
-
-    def getEnteSanitario(self):
+    def get_id(self):
         return self.email
