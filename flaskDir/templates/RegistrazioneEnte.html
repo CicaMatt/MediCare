@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Loopple/loopple-public-assets@main/motion-tailwind/motion-tailwind.css" rel="stylesheet">
+              <link rel="stylesheet" href="../static/grafica/main.css">
+
+    </head>
+    <body class="bg-navbarreg rounded-lg">
+    <header>
+        <nav class="bg-blue-500  border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+
+        <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+            <a href="{{url_for('home')}}" class="flex items-center">
+                <img src="{{ url_for('static', filename='images/Logo.png') }}" class="h-10" alt="MediCare Logo" />
+                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">MediCare</span>
+            </a>
+        </div>
+    </nav>
+</header>
+
+
+
+        <div class="container flex flex-col mx-auto bg-navbarreg rounded-lg pt-12 my-5">
+           <div class="flex justify-center w-full h-full my-auto xl:gap-14 lg:justify-normal md:gap-5 draggable">
+      <div class="flex items-center justify-center w-full lg:p-12">
+        <div class="flex items-center bg-white xl:p-10" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+          <form method="post" class="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl">
+            <h3 class="mb-3 text-4xl font-extrabold text-dark-grey-900">Create your Account</h3>
+
+              <div class="flex">
+                  <a class="flex items-center justify-center w-full py-4 mb-6 text-sm font-medium transition duration-300 rounded-2xl text-grey-900 bg-grey-300 hover:bg-grey-400 focus:ring-4 focus:ring-grey-300">
+                      <img src="{{ url_for('static', filename='images/ente.png') }}" class="d-block w-20" alt="...">
+                  </a>
+              </div>
+
+            <div class="items-center mb-3">
+                <p class="mx-4 text-grey-600">Salve!</p>
+                <p class="mx-4 text-grey-600">Riempi i campi per registrarsi</p>
+            </div>
+
+            <label for="nome" class="mb-2 text-sm text-start text-grey-900">Name</label>
+            <input name="nome"  id="nome" type="nome" placeholder="Enter a name" class="flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
+
+            <label for="email" class="mb-2 text-sm text-start text-grey-900">Email</label>
+            <input name ="email" id="email" type="email" placeholder="mail@loopple.com" class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
+            <label for="password" class="mb-2 text-sm text-start text-grey-900">Password</label>
+            <input name="password"  id="password" type="password" placeholder="Enter a password" class="flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
+
+
+            <button type="submit" class="bg-navbarreg w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">Create your Account</button>
+          </form>
+        </div>
+      </div>
+    </div>
+        </div>
+    </body>
+<html>
+>
