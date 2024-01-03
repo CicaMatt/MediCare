@@ -142,6 +142,16 @@ class EnteService:
 
 
 
+class FascicoloService:
+
+    @classmethod
+    def getDocumentiSanitari(cls, cf):
+        return DocumentoSanitario.query.filter_by(titolare=cf)
+
+
+
+
+
 
 
 
