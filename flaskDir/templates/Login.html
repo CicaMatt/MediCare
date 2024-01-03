@@ -59,20 +59,31 @@
           <form method="post" class="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl" action="{{url_for('auth.login_page')}}">
             <h3 class="mb-3 text-4xl font-extrabold text-dark-grey-900">Sign In</h3>
             <p class="mb-4 text-grey-700">Scegli il tipo di account con cui accedere</p>
-
-              <div class="flex" >
-                  <a id="doc" onclick="selectUtente(this)" class="flex items-center justify-center w-full py-4 mb-6 text-sm font-medium transition duration-300 rounded-2xl text-grey-900 bg-grey-300 hover:bg-grey-400 focus:ring-4 focus:ring-grey-300">
-                      <img src="{{ url_for('static', filename='images/iconadottore.png') }}" class="d-block w-20" alt="...">
-                  </a>
-
-                  <a id="user" onclick="selectUtente(this)" class="flex items-center justify-center w-full py-4 mb-6 text-sm font-medium transition duration-300 rounded-2xl text-grey-900 bg-grey-300 hover:bg-grey-400 focus:ring-4 focus:ring-grey-300">
-                      <img src="{{ url_for('static', filename='images/iconapaziente.png') }}" class="d-block w-20" alt="...">
-                  </a>
+<div class="container mx-auto flex justify-center mt-32 w-full h-fit">
+<div class="radio-group inline-flex flex-1 flex-row flex-initial justify-center rounded-lg shadow-md">
+            <div class="radio">
+                <input type="radio" id="tipopaziente" name="tipo" value="paziente" checked>
+                <label for="tipopaziente" class="block text-center px-4 py-3 bg-white border border-grey border-solid border-2 w-32 h-32">
+                	<div class="text-3xl mb-2">                      <img src="{{ url_for('static', filename='images/iconapaziente.png') }}" class="d-block w-20" alt="...">
+</div>
+                  <div class="font-semibold uppercase tracking-wide"><strong>Paziente</strong></div>
+                </label>
+            </div>
+            <div class="radio bg-white border border-grey border-l-0">
+                <input type="radio" id="tipomedico" name="tipo" value="medico">
+                <label for="tipomedico" class="block text-center px-4 py-3 bg-white border border-grey border-solid border-2 w-32 h-32">
+                	<div class="text-3xl mb-2">                      <img src="{{ url_for('static', filename='images/iconadottore.png') }}" class="d-block w-20" alt="...">
+</div>
+                  <div class="font-semibold uppercase tracking-wide"><strong>Medico</strong></div>
+                </label>
             </div>
 
+        </div>
+    </div>
+
+
             <div class="items-center mb-3">
-                <p  id="Benvenuto" class="mx-4 text-grey-600">Salve Dottore!</p>
-                <p class="mx-4 text-grey-600">Riempi i campi per accedere</p>
+
             </div>
 
             <label for="email" class="mb-2 text-sm text-start text-grey-900">Email</label>
@@ -81,13 +92,72 @@
             <input name="password"  id="password" type="password" placeholder="Enter a password" class="flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
 
             <button type="submit" class="bg-navbarreg w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">Sign In</button>
-            <p id="Medico" class="text-sm leading-relaxed text-grey-900">Not registered yet? <a href="{{url_for('registrazionemedico')}}" class="font-bold text-grey-700">Create an Account</a></p>
-            <p id="Paziente" class="text-sm leading-relaxed text-grey-900">Not registered yet? <a href="{{url_for('registrazioneutente')}}" class="font-bold text-grey-700">Create an Account</a></p>
+            <p id="registrazioneMedico" class="text-sm leading-relaxed text-grey-900">Not registered yet? <a href="{{url_for('auth.registrazioneMedico')}}" class="font-bold text-grey-700">Create an Account</a></p>
+            <p id="registrazionePaziente" class="text-sm leading-relaxed text-grey-900">Not registered yet? <a href="{{url_for('auth.registrazionePaziente')}}" class="font-bold text-grey-700">Create an Account</a></p>
           </form>
         </div>
       </div>
     </div>
         </div>
-
     </body>
+
+   <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const radioTipoPaziente = document.getElementById('tipopaziente');
+        const radioTipoMedico = document.getElementById('tipomedico');
+        const registrazioneMedico = document.getElementById('registrazioneMedico');
+        const registrazionePaziente = document.getElementById('registrazionePaziente');
+
+        function updateVisibility() {
+            if (radioTipoPaziente.checked) {
+                registrazioneMedico.style.display = 'none';
+                registrazionePaziente.style.display = 'block';
+            } else if (radioTipoMedico.checked) {
+                registrazioneMedico.style.display = 'block';
+                registrazionePaziente.style.display = 'none';
+            }
+        }
+
+        // Initial visibility update
+        updateVisibility();
+
+        // Add change event listeners
+        radioTipoPaziente.addEventListener('change', updateVisibility);
+        radioTipoMedico.addEventListener('change', updateVisibility);
+    });
+</script>
+
+
+
+
+
+<style>
+    .radio-group .radio:first-child {
+        border-top-left-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
+    }
+
+    .radio-group .radio:last-child {
+        border-top-right-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+    }
+
+    .radio-group .radio {
+        position: relative;
+    }
+
+    .radio input {
+        visibility: hidden;
+        position: absolute;
+    }
+
+    .radio label:hover {
+        cursor: pointer;
+    }
+
+    .radio input:checked+label {
+        border-color: #38C172;
+        background-color: #E3FCEC;
+    }
+</style>
 <html>

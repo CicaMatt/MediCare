@@ -15,11 +15,11 @@ def loginEnte_page():
 
 
 @auth_blueprint.route('/registrazioneMedico', methods=['GET', 'POST'])
-def registrazione_pageMedico():
+def registrazioneMedico():
     return AutenticazioneService.registrazione_pageMedico(request)
 
 
-@auth_blueprint.route('/registrazionePaziente', methods=['POST'])
+@auth_blueprint.route('/registrazionePaziente', methods=['GET','POST'])
 def registrazionePaziente():
     return AutenticazioneService.registrazionePaziente(request)
 

@@ -77,8 +77,14 @@ class MedicoService:
         cls._listaMedici = cls.getListaMedici()
         cls._listaMedici.append(medico)
 
-class UserService:
+class PazienteService:
 
+    @staticmethod
+    def retrievePaziente(email, password):
+        paziente = db.session.scalar(sqlalchemy.select(Paziente).where(Paziente.email == email))
+        if paziente is None or not paziente.check_password(password):
+            return None
+        return paziente
     @classmethod
     def getListaVaccini(cls, user):
         return DocumentoSanitario.query.filter_by(titolare=user.CF, tipo="vaccino")
@@ -94,11 +100,11 @@ class PrenotazioneService:
         return MedicoService().filtraMedici(specializzazione,citta)
     @classmethod
     def getListaVaccini(cls,user):
-        return UserService.getListaVaccini(user)
+        return PrenotazioneService.getListaVaccini(user)
 
     @classmethod
     def getListaPrenotazioni(cls, user):
-        return UserService.getListaPrenotazioni(user)
+        return PrenotazioneService.getListaPrenotazioni(user)
     @classmethod
     def confirmIsFree(cls, idmedico, data, ora):
         prenotazioni = Prenotazione.query.filter_by(medico=idmedico, oraVisita=ora, dataVisita=data).first()

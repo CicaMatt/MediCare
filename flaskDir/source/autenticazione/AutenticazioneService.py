@@ -5,9 +5,10 @@ from flaskDir import db, app, login
 from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
 from flaskDir.MediCare.model.entity.Medici import Medico
 from flaskDir.MediCare.model.entity.Paziente import Paziente
-from flaskDir.source.prenotazioni.services import MedicoService, EnteService
+from flaskDir.source.prenotazioni.services import MedicoService, EnteService, PazienteService
 
 medicoService = MedicoService()
+pazienteService = PazienteService()
 @login.user_loader
 def load_user(id): #Bisogna aggiungere anche l'utente
     user_role = session['user_role']
@@ -24,21 +25,27 @@ def login_page(request):
     if current_user.is_authenticated:
         return redirect(url_for('home'))
 
-    if request.method == 'POST':  # Dovremmo controllare  giù la tipologia di accesso, es MEDICO
+    if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
-        medico = medicoService.retrieveMedico(email, password)
-        paziente = Paziente.query.filter_by(email=email, password=password).first()
-        if medico == None and paziente == None:
-            return redirect(url_for('auth.login_page'))  # Gli potrei aggiungere la notifica che le credenziali son oerrate
-        if medico is not None:
-            login_user(medico)  # Potremmo chidere anche se l'utente vuole essere ricordato
+
+        if request.form.get('tipo')=='medico':
+
+            medico = medicoService.retrieveMedico(email, password)
+            if medico == None:
+                return redirect(url_for('auth.login_page'))  # Gli potrei aggiungere la notifica che le credenziali son oerrate
+            login_user(medico)
             session['user_role'] = 'medico'
             return redirect(url_for('home'))
-        if paziente is not None:
+
+        else:
+            paziente = pazienteService.retrievePaziente(email,password)
+            if paziente == None:
+                return redirect(url_for('auth.login_page'))
             login_user(paziente)
             session['user_role'] = 'paziente'
             return redirect(url_for('home'))
+
     else:
         return render_template("Login.html")
 
