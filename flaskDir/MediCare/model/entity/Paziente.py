@@ -37,8 +37,6 @@ class Paziente(db.Model, UserMixin):
         return bcrypt.checkpw(password.encode('utf-8'),self.password_hash.encode('utf-8'))
 
     def get_id(self):
-        return self.email
-    def get_id(self):
         return self.CF
 
 

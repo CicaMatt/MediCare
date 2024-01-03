@@ -122,7 +122,7 @@ def registrazionePaziente(request):
             paziente.email=email
             paziente.nome=nome
             paziente.cognome=cognome
-            paziente.password=password
+            paziente.set_password(password)
             paziente.cellulare=cellulare
             paziente.domicilio=domicilio
             paziente.dataNascita=dataNascita
@@ -151,7 +151,7 @@ def registrazioneEnte(request):
             ente.set_password(password)
             db.session.add(ente)
             db.session.commit()
-        return redirect(url_for('auth.loginente'))
+        return redirect(url_for('auth.loginEnte_page'))
     else:
         return render_template('RegistrazioneEnte.html')
 

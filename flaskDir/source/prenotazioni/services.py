@@ -91,7 +91,7 @@ class PazienteService:
 
     @classmethod
     def getListaPrenotazioni(cls, user):
-        return db.session.scalar(sqlalchemy.select(Prenotazione).where(Prenotazione.pazienteCF == user.CF))
+        return db.session.scalars(sqlalchemy.select(Prenotazione).where(Prenotazione.pazienteCF == user.CF))
 
 class PrenotazioneService:
 
@@ -104,7 +104,7 @@ class PrenotazioneService:
 
     @classmethod
     def getListaPrenotazioni(cls, user):
-        return PrenotazioneService.getListaPrenotazioni(user)
+        return PazienteService.getListaPrenotazioni(user)
     @classmethod
     def confirmIsFree(cls, idmedico, data, ora):
         prenotazioni = Prenotazione.query.filter_by(medico=idmedico, oraVisita=ora, dataVisita=data).first()
