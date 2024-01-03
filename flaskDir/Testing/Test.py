@@ -191,6 +191,11 @@ def test_login_Ente2(client):
 
 
 def test_registrazioneMedico(client):
+    with app.app_context():
+        user_in_db = db.session.scalar(
+            sqlalchemy.select(Paziente).where(Paziente.email == 'mariorossi@gmail.com'))
+        user_in_db.set_password('password')
+        db.session.commit()
     credenzialiTest = {"email": "test2@example.com", "password": "sbagliata", "nome": "Giovanni", "cognome": "casaburi",
                        "specializzazione": "chirurgia", "citta": "Piccola Svizzera", "code": 123212}
     response = client.post('/auth/registrazione', data=credenzialiTest)
@@ -198,11 +203,6 @@ def test_registrazioneMedico(client):
     assert not response.location.endswith('/registrazione')
 
 
-if __name__ == "__main__":
-    with app.app_context():
-        user_in_db = db.session.scalar(
-            sqlalchemy.select(Paziente).where(Paziente.email == 'mariorossi@gmail.com'))
-        user_in_db.set_password('password')
-        db.session.commit()
+
 
 
