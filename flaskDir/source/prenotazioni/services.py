@@ -44,7 +44,7 @@ class MedicoService:
 
         newList = []
         if specializzazione is not None and citta is not None:
-            newList = [medico for medico in cls._listaMedici if medico.città == citta and specializzazione == specializzazione]
+            newList = [medico for medico in cls._listaMedici if medico.città == citta and medico.specializzazione == specializzazione]
 
         elif citta is not None:
             newList = [medico for medico in cls._listaMedici if medico.città == citta]

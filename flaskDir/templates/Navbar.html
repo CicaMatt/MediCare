@@ -35,7 +35,7 @@
       {% if not current_user.is_authenticated %}
       <a href="{{url_for('auth.login_page')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Log in <span aria-hidden="true">&rarr;</span></a>
       {% else %}
-      <a href="{{url_for('auth.login_page')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Ciao, {{current_user.nome}} </a>
+      <a href="{{url_for('AreaUtente')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Ciao, {{current_user.nome}} </a>
       {% endif %}
     </div>
   </nav>
