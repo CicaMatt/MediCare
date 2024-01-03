@@ -17,8 +17,6 @@ app.config.from_mapping(
 app.register_blueprint(prenotazione_blueprint, url_prefix='/prenotazione')
 app.register_blueprint(auth_blueprint, url_prefix='/auth')
 app.register_blueprint(areautente_blueprint, url_prefix='/areautente')
-
-
 @app.route('/')
 def home():
     return render_template("HomePage.html")
@@ -117,13 +115,13 @@ def registraente():
 def chisiamo():
     return render_template("ChiSiamo.html")
 
-@app.route('/fascicolo')
-def fascicolo():
-    return render_template("FascicoloElettronico.html")
-
 @app.route('/team')
 def team():
     return render_template("ConosciIlTeam.html")
+
+@app.route('/aqualifunzionalitapossoaccedere')
+def aqualifunzionalitapossoaccedere():
+    return render_template("AQualiFunzionalitaPossoAccedere.html")
 
 if __name__ == '__main__':
     app.run()
