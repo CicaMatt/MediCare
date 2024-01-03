@@ -83,6 +83,9 @@ class UserService:
     def getListaVaccini(cls, user):
         return DocumentoSanitario.query.filter_by(titolare=user.CF, tipo="vaccino")
 
+    @classmethod
+    def getListaPrenotazioni(cls, user):
+        return db.session.scalar(sqlalchemy.select(Prenotazione).where(Prenotazione.pazienteCF == user.CF))
 
 class PrenotazioneService:
 
@@ -92,6 +95,10 @@ class PrenotazioneService:
     @classmethod
     def getListaVaccini(cls,user):
         return UserService.getListaVaccini(user)
+
+    @classmethod
+    def getListaPrenotazioni(cls, user):
+        return UserService.getListaPrenotazioni(user)
     @classmethod
     def confirmIsFree(cls, idmedico, data, ora):
         prenotazioni = Prenotazione.query.filter_by(medico=idmedico, oraVisita=ora, dataVisita=data).first()

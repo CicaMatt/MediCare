@@ -1,5 +1,6 @@
 from flask import render_template
 
+from flaskDir.source.Utente.AreaUtenteControl import areautente_blueprint
 from flaskDir.source.prenotazioni.PrenotazioneControl import prenotazione_blueprint
 from flaskDir.source.autenticazione .UserControl import auth_blueprint
 
@@ -15,6 +16,7 @@ app.config.from_mapping(
 
 app.register_blueprint(prenotazione_blueprint, url_prefix='/prenotazione')
 app.register_blueprint(auth_blueprint, url_prefix='/auth')
+app.register_blueprint(areautente_blueprint, url_prefix='/areautente')
 @app.route('/')
 def home():
     return render_template("HomePage.html")
