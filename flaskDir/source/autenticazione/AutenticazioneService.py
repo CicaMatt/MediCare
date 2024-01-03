@@ -28,11 +28,17 @@ def login_page(request):
         email = request.form.get('email')
         password = request.form.get('password')
         medico = medicoService.retrieveMedico(email, password)
-        if medico == None:
+        paziente = Paziente.query.filter_by(email=email, password=password).first()
+        if medico == None and paziente == None:
             return redirect(url_for('auth.login_page'))  # Gli potrei aggiungere la notifica che le credenziali son oerrate
-        login_user(medico)  # Potremmo chidere anche se l'utente vuole essere ricordato
-        session['user_role'] = 'medico'
-        return redirect(url_for('home'))
+        if medico is not None:
+            login_user(medico)  # Potremmo chidere anche se l'utente vuole essere ricordato
+            session['user_role'] = 'medico'
+            return redirect(url_for('home'))
+        if paziente is not None:
+            login_user(paziente)
+            session['user_role'] = 'paziente'
+            return redirect(url_for('home'))
     else:
         return render_template("Login.html")
 
@@ -89,6 +95,37 @@ def registrazione_pageMedico(request):
     else: return render_template('RegistrazioneMedico.html')
 
 
+def registrazionePaziente(request):
+    if request.method == 'POST':
+        email=request.form.get('email')
+        password=request.form.get('password')
+        nome=request.form.get('nome')
+        cognome=request.form.get('cognome')
+        CF=request.form.get('code')
+        cellulare=request.form.get('cellulare')
+        luogoNascita=request.form.get('cittanascita')
+        domicilio=request.form.get('domicilio')
+        dataNascita=request.form.get('datanascita')
+        sesso=request.form.get('sesso')
+
+        paziente=Paziente()
+        with app.app_context():
+            paziente.CF=CF
+            paziente.chiaveSPID=1
+            paziente.email=email
+            paziente.nome=nome
+            paziente.cognome=cognome
+            paziente.password=password
+            paziente.cellulare=cellulare
+            paziente.domicilio=domicilio
+            paziente.dataNascita=dataNascita
+            paziente.luogoNascita=luogoNascita
+            paziente.sesso=sesso
+
+            db.session.add(paziente)
+            db.session.commit()
+        return render_template("Login.html")
+    else: return render_template('RegistrazionePaziente.html')
 
 
 

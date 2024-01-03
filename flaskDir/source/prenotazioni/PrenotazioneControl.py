@@ -1,3 +1,4 @@
+
 from flask import render_template, session, request, Blueprint
 from flask_login import current_user
 
@@ -5,6 +6,7 @@ from flaskDir import app
 from flaskDir.MediCare.model.entity import Medici
 from flaskDir.source.prenotazioni import MedicoControl
 from flaskDir.source.prenotazioni.services import PrenotazioneService, MedicoService
+from datetime import datetime
 
 # Dovrebbe essere un singleton?!
 
@@ -26,7 +28,7 @@ def getMedico():
     if idMedico == None:
         return render_template("ListaMedici.html", lista=PrenotazioneService.getListaMedici())
 
-
+    current_date=datetime.now().strftime("%B %Y")
     data = request.form.get('data')
     ora = request.form.get('ora')
     medico = MedicoService.getMedico(idMedico)
@@ -43,7 +45,7 @@ def getMedico():
 
     # Era meglio usare l'id come identificativo, adesso invece ogni utente può vedere la mail ei medici
     else:
-        return render_template("ProfiloMedico.html", medico=medico)
+        return render_template("ProfiloMedico.html", medico=medico, data=current_date)
 
 
 @app.route('/prenotazione/listavaccini')

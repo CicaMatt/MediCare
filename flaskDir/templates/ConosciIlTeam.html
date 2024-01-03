@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Team Medicare</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='grafica/main.css')}}">
+</head>
+<body>
+{% include 'Navbar.html' %}
+<div class="items-center justify-center">
+<h1 class="font-serif text-3xl font-bold leading-6 ml-30 mt-3 text-stone-600 block transition">Team Medicare</h1>
+    <div class="font serif text-base mt-4 ml-30 justify-content-between">Il team di medicare è formato da 8 persone, ognuno con vari ruoli in modo tale da avere una più chiara<br>
+        e facile suddivisone delle mansioni:
+        <ul>
+            <li>Progect Manager</li>
+            <li>Grafici</li>
+            <li>Sviluppatori</li>
+        </ul>
+        </div>
+        <h1 class="font-serif text-3xl font-bold leading-6 ml-30 mt-3 text-stone-600 block">Project Manager</h1>
+            <div class="font serif text-base mt-4 ml-30 justify-content-between">I project manager coinvolti sono due: Matteo Cicalese e Luca Contrasto.<br>
+                Dotati entrambi di una grande leadership, hanno guidato tutti gli altri team member nello svolgimento <br>dei vari compiti, suggerendo i tipi
+                di approccio da utilizzare e le tecnologie in fase d'implementazioni.
+    </div>
+    <h1 class="font-serif text-3xl font-bold leading-6 ml-30 mt-3 text-stone-600 block">Grafici</h1>
+        <div class="font serif text-base mt-4 ml-30 justify-content-between">
+            I Grafici della piattaforma MediCare sono sempre 2 come i project Manager: Matteo Avella e Gianluca Palumbo.
+            Tramite l'utlizzo di appropriati<br> tool grafici per il CSS, sono riusciti in pochissimo tempo a realizzare
+            un template generale per la piattaforma web, inoltre, si sono occupati di <br>tutta la parte di front-end della piattaforma
+            sviluppando tutta l'interfaccia grafica per l'utente.
+        </div>
+     <h1 class="font-serif text-3xl font-bold leading-6 ml-30 mt-8 text-stone-600 block">Sviluppatori</h1>
+    <div class="font serif text-base mt-4 ml-30 justify-content-between mb-3">
+        Per gli sviluppatori si intende tutta la parte del team che si è occupata d'implementare la logica di business della piattaforma,<br>
+        in questo caso tale parte del gruppo era formata da 4 persone: Giovanni Casaburi, Salvatore Basilicata, Primo Vinicio Calabrese e Domenico Alessandro Urciuoli.<br>
+    </div>
+</div>
+
+
+
+
+{% include 'Footer2.0.html' %}
+</body>
+</html>

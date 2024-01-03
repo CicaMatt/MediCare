@@ -114,9 +114,7 @@ def registraente():
 @app.route('/chisiamo')
 def chisiamo():
     return render_template("ChiSiamo.html")
-@app.route('/aqualifunzionalitapossoaccedere')
-def aqualifunzionalitapossoaccedere():
-    return render_template("AQualiFunzionalitaPossoAccedere.html")
+
 
 if __name__ == '__main__':
     app.run()
