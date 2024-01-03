@@ -14,7 +14,5 @@ def getPrenotazionibyUtente():
 
 @areautente_blueprint.route('/fascicolo')
 def getFascicolobyUtente():
-    #quando l'area di login paziente sara' pronta invece di mettere il codice fiscale manualmente inseriremo quello preso dalla request
-    #user=request.args.get("CF")
-                                                                            #qua verra' inserito getDocumentiSanitari(CF)
-    return render_template("FascicoloElettronico.html",lista= FascicoloService.getDocumentiSanitari("MRSRSS029DGH6712"))
+    CF=request.args.get('CF')
+    return render_template("FascicoloElettronico.html",lista= FascicoloService.getDocumentiSanitari(CF))
