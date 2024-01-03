@@ -15,4 +15,5 @@ def getPrenotazionibyUtente():
 @areautente_blueprint.route('/fascicolo')
 def getFascicolobyUtente():
     CF=request.args.get('CF')
+    #bisogna prendere il cf del paziente dalla sessione
     return render_template("FascicoloElettronico.html",lista= FascicoloService.getDocumentiSanitari(CF))
