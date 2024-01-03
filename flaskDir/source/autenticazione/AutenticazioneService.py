@@ -28,11 +28,17 @@ def login_page(request):
         email = request.form.get('email')
         password = request.form.get('password')
         medico = medicoService.retrieveMedico(email, password)
-        if medico == None:
+        paziente = Paziente.query.filter_by(email=email, password=password).first()
+        if medico == None and paziente == None:
             return redirect(url_for('auth.login_page'))  # Gli potrei aggiungere la notifica che le credenziali son oerrate
-        login_user(medico)  # Potremmo chidere anche se l'utente vuole essere ricordato
-        session['user_role'] = 'medico'
-        return redirect(url_for('home'))
+        if medico is not None:
+            login_user(medico)  # Potremmo chidere anche se l'utente vuole essere ricordato
+            session['user_role'] = 'medico'
+            return redirect(url_for('home'))
+        if paziente is not None:
+            login_user(paziente)
+            session['user_role'] = 'paziente'
+            return redirect(url_for('home'))
     else:
         return render_template("Login.html")
 

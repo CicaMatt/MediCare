@@ -121,6 +121,9 @@ def chisiamo():
 def fascicolo():
     return render_template("FascicoloElettronico.html")
 
+@app.route('/team')
+def team():
+    return render_template("ConosciIlTeam.html")
 
 if __name__ == '__main__':
     app.run()
