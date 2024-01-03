@@ -109,6 +109,10 @@ def loginente():
 def registraente():
     return render_template("RegistrazioneEnte.html")
 
+@app.route('/chisiamo')
+def chisiamo():
+    return render_template("ChiSiamo.html")
+
 
 if __name__ == '__main__':
     app.run()

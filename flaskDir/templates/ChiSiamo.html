@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Loopple/loopple-public-assets@main/motion-tailwind/motion-tailwind.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/grafica/main.css">
+</head>
+<body>
+{% include 'Navbar.html' %}
+
+<div class="contenitore-chi-siamo">
+    <div class="testo-chi-siamo">
+        <h1 class="Elika-Gorika-80-bold">Chi siamo?</h1>
+
+        <div class="testo-medicare">
+            <p>La nostra storia è una storia di passione per il miglioramento dell'accesso alle cure mediche. Fondato con l'obiettivo di semplificare il percorso sanitario, Medicare è più di una piattaforma di prenotazioni; è la tua guida affidabile nel mondo della salute.</p>
+
+            <p>Ci impegniamo a rendere la gestione della salute facile, veloce ed efficiente. La nostra missione è fornire un accesso senza sforzi a visite mediche private, pubbliche, specialistiche, vaccini e farmaci, offrendo una s</p>
+
+            <p>Se condividi la nostra visione e vuoi contribuire a plasmare il futuro della salute digitale, considera l'opportunità di investire in Medicare. Siamo entusiasti di crescere e espanderci, e crediamo che il nostro impegno possa offrire risultati significativi nel settore sanitario.</p>
+
+            <p>Unisciti a noi in questa missione per rendere la salute accessibile a tutti, ovunque.</p>
+        </div>
+    </div>
+
+    <div class="immagini-chi-siamo">
+        <div class="Izwocg" style="width: 60.956px; height: 62.2px; transform: translate(0px, -7.10543e-15px) rotate(0deg);">
+            <img class="dMHlHA" src="{{ url_for('static', filename='images/telefono.svg') }}" draggable="false" alt="Telefono Icona Outline">
+            <div class="testo-immagine">
+                <p class="questrial-21">Numero di telefono</p>
+                <p class="questrial-18">+39 331 225 8345</p>
+            </div>
+        </div>
+
+        <div class="Izwocg" style="width: 66.6454px; height: 65.1914px; transform: translate(0px, 0px) rotate(0deg);">
+            <img class="dMHlHA" src="{{ url_for('static', filename='images/email.svg') }}" draggable="false" alt="Email Icon">
+            <div class="testo-immagine">
+                <p class="questrial-21">E-mail Address</p>
+                <p class="questrial-18">medicare@gmail.com</p>
+            </div>
+        </div>
+
+        <div class="Izwocg" style="width: 72.3127px; height: 73.9256px; transform: translate(0px, 0px) rotate(0deg);">
+            <img class="dMHlHA" src="{{ url_for('static', filename='images/socialmedia.svg') }}" draggable="false" alt="Social Media Network Outline Icon">
+            <div class="testo-immagine">
+                <p class="questrial-21">Social Media</p>
+                <p class="questrial-18">@medicare</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'Footer2.0.html' %}
+</body>
+</html>
