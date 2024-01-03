@@ -19,7 +19,9 @@ def registrazione_pageMedico():
     return AutenticazioneService.registrazione_pageMedico(request)
 
 
-
+@auth_blueprint.route('/registrazionePaziente', methods=['POST'])
+def registrazionePaziente():
+    return AutenticazioneService.registrazionePaziente(request)
 
 @auth_blueprint.route('/registrazione/ente', methods=['GET','POST'])
 def registrazioneEnte():

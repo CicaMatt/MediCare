@@ -79,7 +79,7 @@
                                     <div class="mt-3">
                                         <p class="mt-3 text-white leading-tight mb-2">{{medico.specializzazione}}</p>
                                         <div class="text-gray-600 flex">
-                                            <span class="flex mr-2"><svg viewBox="0 0 24 24" class="h-5 w-5 paint-icon"><g><path d="M11.96 14.945c-.067 0-.136-.01-.203-.027-1.13-.318-2.097-.986-2.795-1.932-.832-1.125-1.176-2.508-.968-3.893s.942-2.605 2.068-3.438l3.53-2.608c2.322-1.716 5.61-1.224 7.33 1.1.83 1.127 1.175 2.51.967 3.895s-.943 2.605-2.07 3.438l-1.48 1.094c-.333.246-.804.175-1.05-.158-.246-.334-.176-.804.158-1.05l1.48-1.095c.803-.592 1.327-1.463 1.476-2.45.148-.988-.098-1.975-.69-2.778-1.225-1.656-3.572-2.01-5.23-.784l-3.53 2.608c-.802.593-1.326 1.464-1.475 2.45-.15.99.097 1.975.69 2.778.498.675 1.187 1.15 1.992 1.377.4.114.633.528.52.928-.092.33-.394.547-.722.547z"></path><path d="M7.27 22.054c-1.61 0-3.197-.735-4.225-2.125-.832-1.127-1.176-2.51-.968-3.894s.943-2.605 2.07-3.438l1.478-1.094c.334-.245.805-.175 1.05.158s.177.804-.157 1.05l-1.48 1.095c-.803.593-1.326 1.464-1.475 2.45-.148.99.097 1.975.69 2.778 1.225 1.657 3.57 2.01 5.23.785l3.528-2.608c1.658-1.225 2.01-3.57.785-5.23-.498-.674-1.187-1.15-1.992-1.376-.4-.113-.633-.527-.52-.927.112-.4.528-.63.926-.522 1.13.318 2.096.986 2.794 1.932 1.717 2.324 1.224 5.612-1.1 7.33l-3.53 2.608c-.933.693-2.023 1.026-3.105 1.026z"></path></g></svg>{%if medico.reparto != None %} {{medico.ente}}{% endif %}</span>
+                                            <span class="flex mr-2"><svg viewBox="0 0 24 24" class="h-5 w-5 paint-icon"><g><path d="M11.96 14.945c-.067 0-.136-.01-.203-.027-1.13-.318-2.097-.986-2.795-1.932-.832-1.125-1.176-2.508-.968-3.893s.942-2.605 2.068-3.438l3.53-2.608c2.322-1.716 5.61-1.224 7.33 1.1.83 1.127 1.175 2.51.967 3.895s-.943 2.605-2.07 3.438l-1.48 1.094c-.333.246-.804.175-1.05-.158-.246-.334-.176-.804.158-1.05l1.48-1.095c.803-.592 1.327-1.463 1.476-2.45.148-.988-.098-1.975-.69-2.778-1.225-1.656-3.572-2.01-5.23-.784l-3.53 2.608c-.802.593-1.326 1.464-1.475 2.45-.15.99.097 1.975.69 2.778.498.675 1.187 1.15 1.992 1.377.4.114.633.528.52.928-.092.33-.394.547-.722.547z"></path><path d="M7.27 22.054c-1.61 0-3.197-.735-4.225-2.125-.832-1.127-1.176-2.51-.968-3.894s.943-2.605 2.07-3.438l1.478-1.094c.334-.245.805-.175 1.05.158s.177.804-.157 1.05l-1.48 1.095c-.803.593-1.326 1.464-1.475 2.45-.148.99.097 1.975.69 2.778 1.225 1.657 3.57 2.01 5.23.785l3.528-2.608c1.658-1.225 2.01-3.57.785-5.23-.498-.674-1.187-1.15-1.992-1.376-.4-.113-.633-.527-.52-.927.112-.4.528-.63.926-.522 1.13.318 2.096.986 2.794 1.932 1.717 2.324 1.224 5.612-1.1 7.33l-3.53 2.608c-.933.693-2.023 1.026-3.105 1.026z"></path></g></svg>{%if medico.reparto != None %} {{medico.ente_sanitario}}{% endif %}</span>
                                             <span class="flex mr-2"><svg viewBox="0 0 24 24" class="h-5 w-5 paint-icon"><g><path d="M19.708 2H4.292C3.028 2 2 3.028 2 4.292v15.416C2 20.972 3.028 22 4.292 22h15.416C20.972 22 22 20.972 22 19.708V4.292C22 3.028 20.972 2 19.708 2zm.792 17.708c0 .437-.355.792-.792.792H4.292c-.437 0-.792-.355-.792-.792V6.418c0-.437.354-.79.79-.792h15.42c.436 0 .79.355.79.79V19.71z"></path><circle cx="7.032" cy="8.75" r="1.285"></circle><circle cx="7.032" cy="13.156" r="1.285"></circle><circle cx="16.968" cy="8.75" r="1.285"></circle><circle cx="16.968" cy="13.156" r="1.285"></circle><circle cx="12" cy="8.75" r="1.285"></circle><circle cx="12" cy="13.156" r="1.285"></circle><circle cx="7.032" cy="17.486" r="1.285"></circle><circle cx="12" cy="17.486" r="1.285"></circle></g></svg> <span class="leading-5 ml-1">{{medico.città}}</span></span>
                                         </div>
                                     </div>
@@ -93,7 +93,7 @@
         </div>
 
           <div class="bg-white md:py-8 px-4 lg:max-w-7xl lg:mx-auto lg:px-8">
-    <p class="text-4xl font-bold text-gray-800 mb-8">March 2021</p>
+    <p class="text-4xl font-bold text-gray-800 mb-8">{{data}}</p>
     <div class="inline-flex flex-col space-y-1 items-start justify-start h-full w-full">
     <div class="inline-flex space-x-28 items-start justify-start pr-24 h-full w-full">
         <p class="w-12 h-full text-sm font-medium text-gray-800 uppercase">M</p>
@@ -106,117 +106,117 @@
     </div>
     <div class="flex flex-col items-start justify-start">
         <div class="inline-flex items-center justify-start h-full w-full">
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal1" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">01</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal2" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">02</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal3" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">03</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal4" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">04</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal5" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">05</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal6" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">06</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal7" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">07</p>
             </div>
         </div>
         <div class="inline-flex items-center justify-start w-full h-full">
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal8" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">08</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal9" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">09</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal10" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">10</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal11" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">11</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal12" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">12</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal13" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">13</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal14" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">14</p>
             </div>
         </div>
         <div class="inline-flex items-center justify-start w-full h-full">
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal15" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">15</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal16" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">16</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal17" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">17</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal18" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">18</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal19" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">19</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal20" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">20</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal21" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">21</p>
             </div>
         </div>
         <div class="inline-flex items-center justify-start h-full w-full">
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal22" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">22</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal23" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">23</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal24" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">24</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal25" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">25</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal26" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">26</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal27" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">27</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal28" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">28</p>
             </div>
         </div>
         <div class="inline-flex items-center justify-start w-full h-full">
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal29" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">29</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal30" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">30</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal31" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">31</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal32" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="opacity-50 text-sm font-medium text-gray-800">01</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal33" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="opacity-50 text-sm font-medium text-gray-800">02</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal34" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="opacity-50 text-sm font-medium text-gray-800">03</p>
             </div>
-            <div id="open-modal" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200">
+            <div id="open-modal35" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="opacity-50 text-sm font-medium text-gray-800">04</p>
             </div>
         </div>
@@ -327,13 +327,18 @@ svg.paint-icon {
 
 
 <script>
-const openModalBtn = document.getElementById("open-modal");
-const closeModalBtn = document.getElementById("close-modal");
-const modal = document.getElementById("modal");
+    function getId(event){
+        id=event.target.id
+        setModal(id)
+    }
+function setModal(idModal) {
+    const openModalBtn = document.getElementById(id);
+    const closeModalBtn = document.getElementById("close-modal");
+    const modal = document.getElementById("modal");
 
-openModalBtn.addEventListener("click", openModal);
-closeModalBtn.addEventListener("click", closeModal);
-
+    openModalBtn.addEventListener("click", openModal);
+    closeModalBtn.addEventListener("click", closeModal);
+}
 function openModal() {
   console.log("apro modal");
   modal.classList.remove("hidden");

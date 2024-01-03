@@ -16,3 +16,7 @@ class Paziente(db.Model, UserMixin):
     carte = db.relationship("MetodoPagamento", backref="paziente",lazy=True)
 
 
+    def get_id(self):
+        return self.CF
+
+
