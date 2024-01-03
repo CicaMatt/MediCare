@@ -2675,6 +2675,8 @@ video {
 }
 
 /*CSS PRIMO (non trovavo le classi)*/
+/* main.css */
+
 .Elika-Gorika-80-bold {
     font-size: 80px;
     font-weight: bold;
@@ -2689,14 +2691,22 @@ video {
 
 .contenitore-chi-siamo {
     display: flex;
-    flex-direction: column; /* Cambiato da row a column per allineare verticalmente */
-    align-items: flex-start; /* Allineato a sinistra verticalmente */
-    margin-left: 100px;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-left: 100px; /* Lascia uno spazio a sinistra di 100px */
     max-width: 800px;
+    justify-content: space-between;
 }
 
 .testo-chi-siamo {
-    flex: 1; /* Fai espandere il blocco del testo a occupare tutto lo spazio disponibile */
+    flex: 1;
+    margin-right: 20px;
+}
+
+.contenitore-testo-immagini {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 }
 
 .immagini-chi-siamo {
@@ -2704,11 +2714,23 @@ video {
     flex-direction: column;
     align-items: flex-end;
     justify-content: flex-start;
+    margin-top: 20px; /* Aggiunto margine superiore */
 }
 
 .Izwocg {
+    display: flex;
+    align-items: center; /* Centra verticalmente l'immagine e il testo */
     margin-left: 20px;
     margin-bottom: 10px; /* Aggiunto margine inferiore tra le immagini */
+}
+
+.Izwocg .dMHlHA {
+    margin-right: 10px; /* Aggiunto margine a destra dell'immagine */
+}
+
+.testo-immagine {
+    text-align: left; /* Allinea il testo a sinistra rispetto all'immagine */
+    white-space: nowrap; /* Impedisce al testo di andare a capo */
 }
 
 .Izwocg:last-child {
@@ -2720,22 +2742,5 @@ video {
 }
 
 
-.questrial-21 {
-    font-family: 'Questrial', sans-serif;
-    font-size: 21px;
-}
-
-.questrial-18 {
-    font-family: 'Questrial', sans-serif;
-    font-size: 18px;
-}
-
-.testo-immagine {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    margin-top: 10px;
-    text-align: center;
-}
 
 /*CSS PRIMO (non trovavo le classi)*/
