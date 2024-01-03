@@ -10,6 +10,7 @@ module.exports = {
       colors: {
       'navbarreg': '#B5CBE8',
       'blu400':`#63B3DE`,
+      'formpers':  '#f5f6f7',
     },
     },
 

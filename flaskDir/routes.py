@@ -24,9 +24,9 @@ def home():
 
 
 
-@app.route('/registrazione')
-def registrazione():
-    return render_template("Registrazione.html")
+@app.route('/registrazioneutente')
+def registrazioneutente():
+    return render_template("RegistrazionePaziente.html")
 
 
 
