@@ -127,5 +127,9 @@ def team():
 def aqualifunzionalitapossoaccedere():
     return render_template("AQualiFunzionalitaPossoAccedere.html")
 
+@app.route('/ComeAccedere')
+def ComeAccedere():
+    return render_template("ComeAccedere.html")
+
 if __name__ == '__main__':
     app.run()
