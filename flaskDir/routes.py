@@ -131,5 +131,13 @@ def aqualifunzionalitapossoaccedere():
 def ComeAccedere():
     return render_template("ComeAccedere.html")
 
+@app.route('/SeiunEnteSanitario')
+def seiunEnteSanitario():
+    return render_template("SeiunEnteSanitario.html")
+
+@app.route('/ComeFunzionaRegistrazione')
+def ComeFunzionaRegistrazione():
+    return render_template("RegistrazioneFooter.html")
+
 if __name__ == '__main__':
     app.run()

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sei un Ente Sanitario?</title>
+    <link rel="stylesheet" href="../static/grafica/main.css">
+</head>
+<body>
+{% include 'Navbar.html' %}
+<div class="flex flex-wrap justify-center items-center mx-auto max-w-screen-xl">
+    <h1 class="font-serif text-4xl font-bold leading-6 mb-3 mt-3 text-stone-600 block">Sei un Ente Sanitario?</h1>
+        <div class="font serif mt-4 ml-30 justify-content-between text-2xl leading-normal">
+        Sei un dipendente gestionale del tuo istituto sanitario e ti sei imbattutto sulla piattaforma Medicare
+        senza sapere come puoi gestire il tuo ente di appartenenza? Puoi fare un sospiro di sollievo perchè di seguito ti verrà
+            spiegato tutto il necessario.
+            <h2 class="font-serif font-bold leading-5 mt-4 text-blue-600 text-3xl">Trattamento speciale dell'Ente</h2>
+            Medicare offre all'Ente Sanitario funzionalità appositamente riservate per i suoi scopi
+            gestionali dovuti ai reparti da cui è formato, offrendo la possibilità di accedere dalla propria Area Ente a pagine
+            dove inserire o cancellare dei reparti sanitari. Per l'inserimento sarà necessario indicare nome, specializzazione del
+            reparto, email di reparto condivisa e password, per la cancellazione occorrerà fornire l'email del reparto che si vuole
+            cancellare.<br>
+            <h2 class="font-serif font-bold leading-5 mt-4 text-blue-600 text-3xl">Lo Scambio Equo di Medicare</h2>
+            Siccome l'Ente Sanitario ha funzionalità apposite tale deve essere anche la registrazione di esso, l'incaricato che
+            svolgerà la procedura di registrazione deve sapere che è necessario un indirizzo di posta elettronica certificata per
+            poter eseguirla correttamente, se venisse fornito qualsiasi altro tipo di indirizzo diverso dalla PEC, esso
+            verrebbe irrevocabilmente rifiutato facendo ripetere la registrazione in seguito.
+            <img src="{{url_for('static', filename='images/SeiunEnteSanitario1.png')}}" class="mb-7">
+        </div>
+</div>
+{% include 'Footer2.0.html' %}
+</body>
+</html>
