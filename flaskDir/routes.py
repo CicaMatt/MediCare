@@ -69,6 +69,10 @@ def CreaMedico():
 def AreaUtente():
     return render_template('AreaUtente.html')
 
+@app.route('/fascicoloSanitario')
+def fascicoloSanitario():
+    return render_template('FascicoloElettronico.html')
+
 
 @app.route('/datiSanitari')
 def datiSanitari():
