@@ -139,5 +139,17 @@ def seiunEnteSanitario():
 def ComeFunzionaRegistrazione():
     return render_template("RegistrazioneFooter.html")
 
+@app.route('/privacydeidati')
+def privacydeidati():
+    return render_template("PrivacyDeiDati.html")
+
+@app.route('/accessibilita')
+def accessibilita():
+    return render_template("Accessibilita.html")
+
+@app.route('/terminiecondizioni')
+def terminiecondizioni():
+    return render_template("TerminiECondizioni.html")
+
 if __name__ == '__main__':
     app.run()
