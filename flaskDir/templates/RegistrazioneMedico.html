@@ -32,7 +32,7 @@
            <div class="flex justify-center w-full h-full my-auto xl:gap-14 lg:justify-normal md:gap-5 draggable">
       <div class="flex items-center justify-center w-full lg:p-12">
         <div class="flex items-center bg-white xl:p-10" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-          <form method="POST" class="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl" action="{{url_for('auth.registrazioneMedico')}}">
+          <form method="POST" class="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl" action="{{url_for('auth.registrazione_pageMedico')}}">
             <h3 class="mb-3 text-4xl font-extrabold text-dark-grey-900">Crea il tuo Account</h3>
 
               <div class="flex">
@@ -47,36 +47,36 @@
             </div>
 
             <label for="email" class="mb-2 text-sm text-start text-grey-900">Email</label>
-            <input name ="email" id="email" type="email" placeholder="mail@loopple.com" class="border border-grey-900 flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl"/>
+            <input name ="email" id="email" type="email" placeholder="mail@loopple.com" class="flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
             <label for="password" class="mb-2 text-sm text-start text-grey-900">Password</label>
-            <input name="password"  id="password" type="password" placeholder="Enter a password" class="border border-grey-900 flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl"/>
+            <input name="password"  id="password" type="password" placeholder="Enter a password" class="flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
 
              <div class="grid grid-cols-3 grid-rows-2 gap-4">
                  <!-- Prima riga -->
                  <div class="flex-1 pr-4 mb-5">
                      <label for="nome" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Name</label>
-                     <input name="nome" id="nome" type="text" placeholder="Enter a name" class="border border-grey-900 flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+                     <input name="nome" id="nome" type="text" placeholder="Enter a name" class="flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
                  </div>
 
                  <div class="flex-1 pr-4 mb-5">
                      <label for="cognome" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Surname</label>
-                     <input name="cognome" id="cognome" type="text" placeholder="Enter a surname" class="border border-grey-900 flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+                     <input name="cognome" id="cognome" type="text" placeholder="Enter a surname" class="flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
                  </div>
 
                  <div class="flex-1 mb-5">
                      <label for="code" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Albo Code</label>
-                     <input name="code" id="code" type="text" placeholder="Enter a code" class="border border-grey-900 flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+                     <input name="code" id="code" type="text" placeholder="Enter a code" class="flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
                  </div>
 
                  <!-- Seconda riga -->
                  <div class="flex-1 pr-4 mb-5">
                      <label for="specializzazione" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Specialization</label>
-                     <input name="specializzazione" id="specializzazione" type="text" placeholder="Enter a specialization" class="border border-grey-900 flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+                     <input name="specializzazione" id="specializzazione" type="text" placeholder="Enter a specialization" class="flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
                  </div>
 
                  <div class="flex-1 pr-4 mb-5">
                      <label for="citta" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">City</label>
-                     <input name="citta" id="citta" type="text" placeholder="Enter a city" class="border border-grey-900 flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+                     <input name="citta" id="citta" type="text" placeholder="Enter a city" class="flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-grey-200 text-dark-grey-900 rounded-2xl"/>
                  </div>
              </div>
 
@@ -88,4 +88,4 @@
     </div>
         </div>
     </body>
-<html>
+</html>
