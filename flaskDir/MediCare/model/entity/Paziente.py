@@ -26,6 +26,7 @@ class Paziente(db.Model, UserMixin):
     dataNascita = db.Column(db.Date, nullable=False)
     luogoNascita = db.Column(db.String(255), nullable=False)
     sesso = db.Column(db.String(30), nullable=False)
+    ISEE_ordinario = db.Column(db.Numeric(precision=9,scale=2), nullable =True)#cambiare salvataggio di un paziente nei services
     carte = db.relationship("MetodoPagamento", backref="paziente",lazy=True)
 
 

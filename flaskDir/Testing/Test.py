@@ -6,7 +6,7 @@ from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
 from flaskDir.MediCare.model.entity.Medici import Medico
 from flaskDir.MediCare.model.entity.Paziente import Paziente
 from flaskDir.MediCare.model.entity.Prenotazione import Prenotazione
-from flaskDir.source.prenotazioni.services import PrenotazioneService
+from flaskDir.source.prenotazioni.services import PrenotazioneService, EnteService
 
 
 @pytest.fixture
@@ -216,6 +216,31 @@ def test_modificaPrenotazione():
         updated_prenotazione = Prenotazione.query.get(tuple)
         assert str(updated_prenotazione.dataVisita) == '2024-02-01'
         assert updated_prenotazione.oraVisita == 10
+
+def test_gestioneISEEminore():
+    with app.app_context():
+        success = UtenteService.getISEE(User)#non esiste(?)
+        assert success is True
+        ISEE = Utente.query.get(User)
+        assert ISEE.Isee < 10000
+
+def test_gestioneISEEmaggiore():
+    with app.app_context():
+        success = UtenteService.getISEE(User)#non esiste(?)
+        assert success is True
+        ISEE = Utente.query.get(isee)
+        assert ISEE.Isee >= 10000
+
+def test_creazioneMedico():
+    with app.app_context():
+        medico_pubblico = EnteService.creaMedico()
+        assert medico_pubblico is not None
+def test_rimuoviMedico():
+    with app.app_context():
+        EnteService.rimuoviMedico('test@example.com')
+        medico_pubblico = Medico.query.get('test@example')
+        assert medico_pubblico is None
+
 
 
 
