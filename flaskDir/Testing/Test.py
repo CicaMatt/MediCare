@@ -5,6 +5,7 @@ from flaskDir import app, db
 from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
 from flaskDir.MediCare.model.entity.Medici import Medico
 from flaskDir.MediCare.model.entity.Paziente import Paziente
+from flaskDir.MediCare.model.entity.Prenotazione import Prenotazione
 from flaskDir.source.prenotazioni.services import PrenotazioneService
 
 
@@ -202,6 +203,19 @@ def test_registrazioneMedico(client):
     assert response.status_code == 302
     assert not response.location.endswith('/registrazione')
 
+def test_modificaPrenotazione():
+    # Chiamata al metodo per la modifica
+    with app.app_context():
+        success = PrenotazioneService.modificaPrenotazione(id=1, data='2024-02-01', ora=10)
+
+        # Verifica che la modifica sia stata effettuata con successo
+        assert success is True
+
+        # Recupera la prenotazione dopo la modifica e verifica i nuovi valori
+        tuple=(1,'MRSRSS029DGH6712','test@example.com')
+        updated_prenotazione = Prenotazione.query.get(tuple)
+        assert str(updated_prenotazione.dataVisita) == '2024-02-01'
+        assert updated_prenotazione.oraVisita == 10
 
 
 

@@ -138,6 +138,27 @@ class PrenotazioneService:
 
 
 
+
+    @classmethod
+    def modificaPrenotazione(cls, id, data, ora):
+        try:
+            prenotazioni = Prenotazione.query.filter_by(ID=id).first()
+            if prenotazioni:
+                prenotazioni.dataVisita = data
+                prenotazioni.oraVisita = ora
+                db.session.commit()
+
+                return True
+            else:
+                return False
+
+        except SQLAlchemyError as e:
+            print("Errore mentre modificavo la prenotazione: {}".format(e))
+
+            db.session.rollback()
+
+            return False
+
 class EnteService:
     @staticmethod
     def retrieveEnte(email, password):
