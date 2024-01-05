@@ -4,7 +4,6 @@ from flask_login import current_user
 
 from flaskDir import app
 from flaskDir.MediCare.model.entity import Medici
-from flaskDir.source.prenotazioni import MedicoControl
 from flaskDir.source.prenotazioni.services import PrenotazioneService, MedicoService
 from datetime import datetime
 
