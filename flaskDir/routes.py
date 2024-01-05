@@ -73,6 +73,11 @@ def AreaUtente():
 def fascicoloSanitario():
     return render_template('FascicoloElettronico.html')
 
+@app.route('/isee')
+def isee():
+    return render_template('isee.html')
+
+
 
 @app.route('/datiSanitari')
 def datiSanitari():
