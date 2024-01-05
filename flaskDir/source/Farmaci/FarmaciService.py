@@ -16,3 +16,18 @@ class FarmaciService:
     @classmethod
     def getSuggeriti(cls, tipo, id):
         return db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.categoria==tipo, Farmaco.ID != id))
+
+    @classmethod
+    def filtraCatalogo(cls,categoria = None, prezzo=2):
+        print(prezzo)
+        if categoria is not None and prezzo > 2:
+            return db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.prezzo<=prezzo, Farmaco.categoria==categoria))
+        elif categoria is None:
+            return db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.prezzo<=prezzo))
+        elif prezzo == 2:
+            print(categoria)
+            return db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.categoria==categoria))
+        else:
+            return cls.getFarmaci()
+
+
