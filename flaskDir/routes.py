@@ -158,5 +158,9 @@ def accessibilita():
 def terminiecondizioni():
     return render_template("TerminiECondizioni.html")
 
+@app.route('/StoriaMediCare')
+def storiaMediCare():
+    return render_template("StoriaMedicare.html")
+
 if __name__ == '__main__':
     app.run()

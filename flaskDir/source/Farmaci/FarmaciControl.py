@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, session, request
 from flask_login import current_user, login_required
 
-from flaskDir.source.prenotazioni.services import FarmaciService
+from flaskDir.source.Farmaci.FarmaciService import FarmaciService
 
 farmacia_blueprint = Blueprint('farmacia', __name__)
 
@@ -14,4 +14,5 @@ def farmaci():
 @farmacia_blueprint.route('/dettagliFarmaco', methods=['GET','POST'])
 def dettagliFarmaco():
     id=request.args.get('id')
-    return render_template("dettagliFarmaco.html",farmaco=FarmaciService.getDettagliFarmaco(id))
+    categoria = request.args.get('categoria')
+    return render_template("dettagliFarmaco.html",farmaco=FarmaciService.getDettagliFarmaco(id), suggeriti=FarmaciService.getSuggeriti(categoria,id))

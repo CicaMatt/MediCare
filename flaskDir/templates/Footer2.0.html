@@ -95,9 +95,9 @@ module.exports = {
             Medicare
           </p>
           <nav class="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
-            <a class="hover:opacity-75" href> About </a>
+            <a class="hover:opacity-75" href="{{url_for('chisiamo')}}"> About </a>
             <a class="hover:opacity-75" href="{{url_for('team')}}">  Conosci il Team </a>
-            <a class="hover:opacity-75" href> Storia </a>
+            <a class="hover:opacity-75" href="{{url_for('storiaMediCare')}}"> Storia </a>
             <a class="hover:opacity-75" href> Opportunità </a>
           </nav>
         </div>
@@ -115,22 +115,12 @@ module.exports = {
         </div>
         <div>
           <p class="font-medium">
-            Link Utili
-          </p>
-          <nav class="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
-            <a class="hover:opacity-75" href> Vaccini </a>
-            <a class="hover:opacity-75" href> Visite Mediche </a>
-            <a class="hover:opacity-75" href> Visite Diagnostiche </a>
-          </nav>
-        </div>
-        <div>
-          <p class="font-medium">
             Legal
           </p>
           <nav class="flex flex-col mt-4 space-y-2 text-sm text-gray-500">
-            <a class="hover:opacity-75" href> Privacy dei Dati </a>
-            <a class="hover:opacity-75" href> Termini &amp; Condizioni </a>
-            <a class="hover:opacity-75" href> Accessibilità </a>
+            <a class="hover:opacity-75" href="{{url_for('privacydeidati')}}"> Privacy dei Dati </a>
+            <a class="hover:opacity-75" href="{{url_for('terminiecondizioni')}}"> Termini &amp; Condizioni </a>
+            <a class="hover:opacity-75" href="{{url_for('accessibilita')}}"> Accessibilità </a>
           </nav>
         </div>
       </div>
