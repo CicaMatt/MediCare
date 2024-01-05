@@ -224,12 +224,11 @@ class FarmaciService:
 
     @classmethod
     def getFarmaci(cls):
-        return Farmaco.query.all()
+        return db.session.scalars(sqlalchemy.select(Farmaco))
 
     @classmethod
-
     def getDettagliFarmaco(cls, id):
-        return Farmaco.query.filter_by(ID=id).all()
+        return db.session.scalar(sqlalchemy.select(Farmaco).where(Farmaco.ID == id))
 
 
 

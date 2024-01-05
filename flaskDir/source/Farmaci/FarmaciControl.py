@@ -13,5 +13,5 @@ def farmaci():
 
 @farmacia_blueprint.route('/dettagliFarmaco', methods=['GET','POST'])
 def dettagliFarmaco():
-    id=request.form.get('id')
+    id=request.args.get('id')
     return render_template("dettagliFarmaco.html",farmaco=FarmaciService.getDettagliFarmaco(id))
