@@ -79,6 +79,23 @@ class MedicoService:
         cls._listaMedici = cls.getListaMedici()
         cls._listaMedici.append(medico)
 
+
+    @classmethod
+    def rimuoviMedico(cls,email):
+        try:
+            medico = Medico.query.filter_by(email=email).first()
+            if medico:
+                db.session.delete(medico)
+                db.session.commit()
+                return True
+            else:
+                return False
+        except SQLAlchemyError as e:
+            print("Errore durante l'eliminazione del medico: {}".format(e))
+            # Rollback in caso di errore
+            db.session.rollback()
+            return False
+
 class PazienteService:
 
     @staticmethod
