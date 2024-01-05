@@ -6,7 +6,7 @@ from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
 from flaskDir.MediCare.model.entity.Medici import Medico
 from flaskDir.MediCare.model.entity.Paziente import Paziente
 from flaskDir.MediCare.model.entity.Prenotazione import Prenotazione
-from flaskDir.source.prenotazioni.services import PrenotazioneService, EnteService, PazienteService
+from flaskDir.source.prenotazioni.services import PrenotazioneService, EnteService, PazienteService, MedicoService
 
 
 @pytest.fixture
@@ -190,6 +190,11 @@ def test_login_Ente2(client):
 
 
 
+def test_metodoPagamento():
+    with app.app_context():
+        success = MetodoDiPagamentoService.get(MetodoDiPagamento)#non esiste(?)
+        assert success is True
+        mtp = MetodoDiPagamento.query.get(MetodoDiPagamento)
 
 def test_registrazioneMedico(client):
     with app.app_context():
@@ -237,9 +242,8 @@ def test_creazioneMedico():
         assert medico_pubblico is not None
 def test_rimuoviMedico():
     with app.app_context():
-        EnteService.rimuoviMedico('test@example.com')
-        medico_pubblico = Medico.query.get('test@example')
-        assert medico_pubblico is None
+        medico = MedicoService.rimuoviMedico('domenicourciuoli01@gmail.com')#scrivere l'email del medico che hai nel databse da rimuovere
+        assert medico is True
 
 
 
