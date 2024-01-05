@@ -7,6 +7,7 @@ from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
 from flaskDir.MediCare.model.entity.Medici import Medico
 from flaskDir.MediCare.model.entity.Paziente import Paziente
 from flaskDir.MediCare.model.entity.Prenotazione import Prenotazione
+from flaskDir.MediCare.model.entity.Farmaco import Farmaco
 
 
 
@@ -177,6 +178,14 @@ class FascicoloService:
     @classmethod
     def getDocumentiSanitari(cls, cf):
         return DocumentoSanitario.query.filter_by(titolare=cf)
+
+
+
+class FarmaciService:
+
+    @classmethod
+    def getFarmaci(cls):
+        return Farmaco.query.all()
 
 
 

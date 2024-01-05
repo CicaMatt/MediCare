@@ -1,8 +1,0 @@
-use medicare;
-
-INSERT INTO paziente VALUES ("MRSRSS029DGH6712",234,"Mario","Rossi","mariorossi@gmail.com","password","3662530040","Via dei Pini 47","1978-02-10","Italia","maschio");
-
-INSERT INTO documento_sanitario VALUES	("732892","Analisi","2023-11-26","Analisi del sangue, con emocromo e controllo di: trigliceridi, colesterolemia, antitrombina III, sidermia, ferritina, transferrina, FSH, prolattina, calcio e sodio","MRSRSS029DGH6712");
-INSERT INTO documento_sanitario VALUES	("834232","Vaccino","2021-05-17","Vaccino COVID-19, somministrazione terza dose COVID-19, Var Omicron","MRSRSS029DGH6712");
-INSERT INTO documento_sanitario VALUES	("834900","Ricetta","2022-09-21","Prescrizione Amoxicillina: 10 capsule| 1 capsula due volte al giorno\nPrescrizione Loratadina: 30 compresse| 1 compressa al giorno al bisogno","MRSRSS029DGH6712");
-INSERT INTO documento_sanitario VALUES	("432949","Visita","2018-01-18","Visita oculistica completa: refrazione(visus), osservazione del segmento anteriore e del segmento posteriore, tonometria oculare, esame del fundus oculi e acutezza visiva","MRSRSS029DGH6712");
