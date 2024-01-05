@@ -1,4 +1,4 @@
-/*CSS PRIMO (non trovavo le classi)*/
+
 /* chisiamo.css */
 
 .Elika-Gorika-80-bold {
@@ -102,4 +102,22 @@
     margin-bottom: 15px;
 }
 
-/*CSS PRIMO (non trovavo le classi)*/
+
+
+
+
+
+/*Legali footer.css*/
+.contenitore-legale {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-left: 100px; /* Lascia uno spazio a sinistra di 100px */
+    max-width: 800px;
+    justify-content: space-between;
+}
+
+.testo-legale {
+    flex: 1;
+    margin-right: 20px;
+}
