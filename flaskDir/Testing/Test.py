@@ -6,7 +6,7 @@ from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
 from flaskDir.MediCare.model.entity.Medici import Medico
 from flaskDir.MediCare.model.entity.Paziente import Paziente
 from flaskDir.MediCare.model.entity.Prenotazione import Prenotazione
-from flaskDir.source.prenotazioni.services import PrenotazioneService, EnteService
+from flaskDir.source.prenotazioni.services import PrenotazioneService, EnteService, PazienteService
 
 
 @pytest.fixture
@@ -188,7 +188,7 @@ def test_login_Ente2(client):
     assert response.status_code == 302
     assert response.location.endswith('/loginente')  # Email o password errate
 
-    ##Controlla che il path sia relativo
+
 
 
 def test_registrazioneMedico(client):
@@ -219,14 +219,14 @@ def test_modificaPrenotazione():
 
 def test_gestioneISEEminore():
     with app.app_context():
-        success = UtenteService.getISEE(User)#non esiste(?)
+        success = PazienteService.getISEE(User)#non esiste(?)
         assert success is True
         ISEE = Utente.query.get(User)
         assert ISEE.Isee < 10000
 
 def test_gestioneISEEmaggiore():
     with app.app_context():
-        success = UtenteService.getISEE(User)#non esiste(?)
+        success = PazienteService.getISEE(User)#non esiste(?)
         assert success is True
         ISEE = Utente.query.get(isee)
         assert ISEE.Isee >= 10000
@@ -243,5 +243,8 @@ def test_rimuoviMedico():
 
 
 
-
+def test_delete_utente(client):
+    with app.app_context():
+        user = PazienteService.eliminaPaziente("clbpm15p01i496a")
+        assert user is True
 
