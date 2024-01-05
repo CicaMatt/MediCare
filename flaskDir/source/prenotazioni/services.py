@@ -226,6 +226,11 @@ class FarmaciService:
     def getFarmaci(cls):
         return Farmaco.query.all()
 
+    @classmethod
+
+    def getDettagliFarmaco(cls, id):
+        return Farmaco.query.filter_by(ID=id).all()
+
 
 
 

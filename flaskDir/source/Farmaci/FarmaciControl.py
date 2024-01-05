@@ -10,3 +10,8 @@ farmacia_blueprint = Blueprint('farmacia', __name__)
 #@login_required
 def farmaci():
     return render_template("Farmaci.html",lista= FarmaciService.getFarmaci())
+
+@farmacia_blueprint.route('/dettagliFarmaco', methods=['GET','POST'])
+def dettagliFarmaco():
+    id=request.form.get('id')
+    return render_template("dettagliFarmaco.html",farmaco=FarmaciService.getDettagliFarmaco(id))

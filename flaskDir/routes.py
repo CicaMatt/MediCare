@@ -51,7 +51,7 @@ def farmaci():
 
 
 
-@app.route('/dettagliFarmaco')
+@app.route('/dettagliFarmaco', methods=['GET', 'POST'])
 def dettagliFarmaco():
     return render_template("dettagliFarmaco.html")
 
