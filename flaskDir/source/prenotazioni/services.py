@@ -34,9 +34,9 @@ class MedicoService:
 
     @classmethod
     def getListaMedici(cls):
-        if cls._listaEnti is None:
-            cls._listaEnti = Medico.query.all()
-        return cls._listaEnti
+        if cls._listaMedici is None:
+            cls._listaMedici = Medico.query.all()
+        return cls._listaMedici
 
     @classmethod
     def getListaEnti(cls):
