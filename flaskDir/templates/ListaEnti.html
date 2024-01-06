@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lista medici</title>
+    <title>Lista enti</title>
     <link rel="stylesheet" href="{{url_for('static',filename='grafica/main.css')}}">
 </head>
 <body>
@@ -13,15 +13,15 @@
 
 	<!--Scritte sopra la tabella-->
 	<div class=" flex items-center justify-between pb-6">
-	{% if lista %}
+
 
 		<!--Titolo con nome della specializzazione-->
 			<div>
-				<h2 class="text-gray-900 font-semibold">{{lista[0].specializzazione}}</h2>
-				<span class="text-s">Lista dei medici privati e dei reparti sanitari pubblici</span>
+				<h2 class="text-gray-900 font-semibold">Vaccini</h2>
+				<span class="text-s">Lista degli enti pubblici presso cui effettuare la vaccinazione</span>
 			</div>
 		<!--Fine Titolo-->
-	{% endif %}
+
 		<!--Barra di ricerca con il pulsante-->
 			<div class="flex items-center justify-between">
 				<div class="flex bg-gray-50 items-center p-2 rounded-md">
@@ -60,10 +60,6 @@
 								</th>
 								<th
 									class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-									Specializzazione
-								</th>
-								<th
-									class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
 									Città
 								</th>
 								<th
@@ -73,15 +69,22 @@
 							</tr>
 						</thead>
 						<!--Fine prima riga della tabella con i titoli generici-->
+
+
+
+
+
+
+
+
 						{% if lista %}
-						    {% for medico in lista %}
+						    {% for ente_sanitario in lista %}
 								<form method="post" action="{{url_for('prenotazioni.getMedico')}}">
-									<input type="hidden" name="medico" value="{{medico.email}}">
+									<input type="hidden" name="medico" value="{{ente_sanitario.email}}">
 
 
-						<!--Esempio dati medico pubblico-->
-						        {% if medico.nome==None %}
-						<tbody>
+
+							<!--Esempio dati medico privato-->
 							<tr>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 									<div class="flex items-center">
@@ -91,66 +94,18 @@
                                                 alt="" />
                                         </div>
 											<div class="ml-3">
-
 												<button type="submit" class="text-gray-900 hover:text-sky-400 whitespace-no-wrap">
-													{{medico.reparto}}
-												</button>
-
-											</div>
-										</div>
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<p class="text-gray-900 whitespace-no-wrap">{{medico.email}}</p>
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<p class="text-gray-900 whitespace-no-wrap">
-										{{medico.specializzazione}}
-									</p>
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<p class="text-gray-900 whitespace-no-wrap">
-										{{medico.città}}
-									</p>
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<span
-                                        class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                                        <span aria-hidden
-                                            class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
-									<span class="relative">{{medico.ente_sanitario}}</span>
-									</span>
-								</td>
-							</tr>
-							<!--Fine esempio dati medico pubblico-->
-
-
-							        {% else %}
-							<!--Esempio dati medico privato-->
-							<tr>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<div class="flex items-center">
-										<div class="flex-shrink-0 w-10 h-10">
-											<img class="w-full h-full rounded-full"
-                                                src="{{ url_for('static', filename='images/medical.png') }}"
-                                                alt="" />
-                                        </div>
-											<div class="ml-3">
-												<button type="submit" class="text-gray-900 hover:text-sky-400 whitespace-no-wrap">
-													{{medico.nome}}
+													{{ente_sanitario.nome}}
 												</button>
 											</div>
 										</div>
 								</td>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<p class="text-gray-900 whitespace-no-wrap">{{medico.email}}</p>
+									<p class="text-gray-900 whitespace-no-wrap">{{ente_sanitario.email}}</p>
 								</td>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 									<p class="text-gray-900 whitespace-no-wrap">
-										{{medico.specializzazione}}
-									</p>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<p class="text-gray-900 whitespace-no-wrap">
-										{{medico.città}}
+										{{ente_sanitario.città}}
 									</p>
 								</td>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -158,12 +113,11 @@
                                         class="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">
                                         <span aria-hidden
                                             class="absolute inset-0 bg-orange-200 opacity-50 rounded-full"></span>
-									<span class="relative">Studio medico privato</span>
+									<span class="relative">{{ente_sanitario.nome}}</span>
 									</span>
 								</td>
 							</tr>
 							<!--Fine esempio dati medico privato-->
-							        {% endif %}
 							</form>
 
 							    {% endfor %}
@@ -174,6 +128,8 @@
 
 						</tbody>
 					</table>
+
+
 				</div>
 			</div>
 		</div>

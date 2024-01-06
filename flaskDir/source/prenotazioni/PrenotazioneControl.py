@@ -21,6 +21,11 @@ def getListaMedici():
     return render_template("ListaMedici.html", lista=PrenotazioneService.getListaMedici(specializzazione, citta))
 
 
+@prenotazione_blueprint.route('/listaenti')
+def getListaEnti():
+    return render_template("ListaEnti.html", lista=MedicoService.getListaEnti())
+
+
 @prenotazione_blueprint.route('/listamedici/paginamedico', methods=['GET','POST'])
 def getMedico():
     idMedico = request.form.get('medico')

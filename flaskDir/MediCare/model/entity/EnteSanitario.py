@@ -23,6 +23,7 @@ class EnteSanitario(db.Model, UserMixin):
     nome = db.Column(db.String(255), nullable=False)
     email = db.Column(db.String(255), primary_key=True)
     password_hash = db.Column(db.String(255), nullable=False)
+    città = db.Column(db.String(255), nullable=False)
     reparti = db.relationship("Medico", backref="reparti", lazy=True)
 
     def get_id(self):

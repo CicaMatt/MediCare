@@ -8,7 +8,6 @@ from flaskDir.MediCare.model.entity.Medici import Medico
 from flaskDir.MediCare.model.entity.MetodoPagamento import MetodoPagamento
 from flaskDir.MediCare.model.entity.Paziente import Paziente
 from flaskDir.MediCare.model.entity.Prenotazione import Prenotazione
-from flaskDir.MediCare.model.entity.Farmaco import Farmaco
 
 
 
@@ -19,6 +18,7 @@ class MedicoService:
     """
     #Invece di fare operazioni di input output ad ogni richiesta, memorizzo listamedici
     _listaMedici = None
+    _listaEnti = None
 
     @staticmethod
     def getMedico(idMedico):
@@ -34,9 +34,16 @@ class MedicoService:
 
     @classmethod
     def getListaMedici(cls):
-        if cls._listaMedici is None:
-            cls._listaMedici = Medico.query.all()
-        return cls._listaMedici
+        if cls._listaEnti is None:
+            cls._listaEnti = Medico.query.all()
+        return cls._listaEnti
+
+    @classmethod
+    def getListaEnti(cls):
+        if cls._listaEnti is None:
+            cls._listaEnti = EnteSanitario.query.all()
+        return cls._listaEnti
+
 
     def filtraMedici(cls, specializzazione = None, citta = None):
         cls._listaMedici = cls.getListaMedici()

@@ -102,6 +102,10 @@ def modificaDatiUtente():
 def listamedici():
     return render_template("ListaMedici.html")
 
+@app.route('/listaenti')
+def listaenti():
+    return render_template("ListaEnti.html")
+
 @app.route('/profilomedico')
 def profilomedico():
     return render_template("ProfiloMedico.html")
