@@ -19,15 +19,28 @@ class FarmaciService:
 
     @classmethod
     def filtraCatalogo(cls,categoria = None, prezzo=2):
-        print(prezzo)
         if categoria is not None and prezzo > 2:
             return db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.prezzo<=prezzo, Farmaco.categoria==categoria))
         elif categoria is None:
             return db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.prezzo<=prezzo))
         elif prezzo == 2:
-            print(categoria)
             return db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.categoria==categoria))
         else:
             return cls.getFarmaci()
+
+    @classmethod
+    def ricerca(cls,tip=None):
+        if tip is not None and tip!="":
+            suggerimenti={farmaco.nome for farmaco in Farmaco.query.filter(Farmaco.nome.like(tip+'%')).all()}
+            suggest=list(suggerimenti)
+            return suggest
+
+    @classmethod
+    def ricercaNome(cls, nome=None):
+        if nome is not None:
+            return db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.nome==nome))
+
+
+
 
 

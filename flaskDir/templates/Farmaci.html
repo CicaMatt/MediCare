@@ -6,32 +6,58 @@
     <link rel="stylesheet" href="{{url_for('static',filename='grafica/main.css')}}">
 </head>
 <body onload="resetLive()">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+</script>
 {% include 'Navbar.html' %}
 
 <script>
   function seeLive(){
-    prezzo=document.getElementById("prezzo").value
-    document.getElementById("live").innerHTML=prezzo
-    document.getElementById("live").style.display="inline"
+    prezzo=document.getElementById("prezzo").value;
+    document.getElementById("live").innerHTML=prezzo;
+    document.getElementById("live").style.display="inline";
   }
   function resetLive(){
-    document.getElementById("live").style.display="none"
+    document.getElementById("live").style.display="none";
+  }
+
+  function navBar(find) {
+    let xmlhttp = new XMLHttpRequest();
+    $("#suggest>li").remove();
+    xmlhttp.onreadystatechange = function () {
+      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        const sugg = JSON.parse(xmlhttp.responseText);
+        for (let i = 0; i < sugg.result.length; i++) {
+          let li="<li onclick='launch(this.innerHTML)'>"+sugg.result[i]+"</li>";
+          $("#suggest").append(li);
+        }
+      }
+    }
+    xmlhttp.open("POST", "/farmacia/ricerca", true)
+      xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      let data = "search=" + encodeURIComponent(find)
+      xmlhttp.send(data);
+  }
+  function launch(tip){
+      $("#search").val(tip);
+	  $("#search").focus();
   }
 
 </script>
 
   <div class="flex flex-col">
     <div class="rounded-xl border border-gray-200 bg-white p-6 shadow-lg">
-      <form class="" method="POST", action="{{url_for('farmacia.filtroFarmaci')}}">
+      <form class="" method="POST", action="{{url_for('farmacia.ricercaNome')}}">
         <div class="relative mb-10 w-full flex  items-center justify-between rounded-md">
           <svg class="absolute left-2 block h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="11" cy="11" r="8" class=""></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65" class=""></line>
           </svg>
-          <input type="search" name="search" class="h-12 w-full cursor-text rounded-md border border-gray-100 bg-gray-100 py-4 pr-40 pl-12 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50" placeholder="Nome farmaco" />
+          <input type="search" id="search" name="search" onkeyup="navBar(this.value)" class="h-12 w-full cursor-text rounded-md border border-gray-100 bg-gray-100 py-4 pr-40 pl-12 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50" placeholder="Nome farmaco" />
+            <ul id="suggest" class="block">
+            </ul>
         </div>
-
+        </form>
+         <form class="" method="POST", action="{{url_for('farmacia.filtroFarmaci')}}">
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 
 

@@ -20,7 +20,6 @@ def load_user(id): #Bisogna aggiungere anche l'utente
     elif user_role == 'ente':
         return db.session.get(EnteSanitario, id)
 
-
 def login_page(request):
     if current_user.is_authenticated:
         return redirect(url_for('home'))
@@ -39,7 +38,7 @@ def login_page(request):
             return redirect(url_for('home'))
 
         else:
-            paziente = pazienteService.retrievePaziente(email,password)
+            paziente = pazienteService.retrievePaziente(email, password)
             if paziente == None:
                 return redirect(url_for('auth.login_page'))
             login_user(paziente)
