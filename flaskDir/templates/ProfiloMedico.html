@@ -256,31 +256,35 @@
           From: "opacity-100 translate-y-0 sm:scale-100"
           To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
       -->
+        <form id="myForm" action="{{'prenotazioni.getMedico'}}" method="post">
       <div class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
         <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
           <div class="sm:flex sm:items-start">
               <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
                   <div class="col-span-2 sm:col-span-1">
                       <label for="category" class="block mb-2 text-sm font-medium text-gray-900">Seleziona l'orario tra quelli disponibili</label>
-                      <select id="category" class="bg-navbarreg border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                      <select id="category" name="ora" class="bg-navbarreg border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                           <option selected="">Select time</option>
-                          <option value="TV">9:00</option>
-                          <option value="PC">10:00</option>
-                          <option value="GA">11:00</option>
-                          <option value="PH">12:00</option>
+                          <option value="9">9:00</option>
+                          <option value="10">10:00</option>
+                          <option value="11">11:00</option>
+                          <option value="12">12:00</option>
                       </select>
                   </div>
               </div>
           </div>
         </div>
+              <input type="hidden" id="modalId" name="data" value="">
+
 
           <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
               <button type="button" class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">Accetta</button>
-              <button id="close-modal" type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Cancel</button>
+              <button id="close-modal" type="button" onclick="submitForm()" class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Cancel</button>
 
 
         </div>
       </div>
+        </form>
     </div>
   </div>
 </div>
@@ -325,29 +329,43 @@ svg.paint-icon {
 
 </style>
 
-
 <script>
-    function getId(event){
-        id=event.target.id
-        setModal(id)
-    }
-function setModal(idModal) {
-    const openModalBtn = document.getElementById(id);
-    const closeModalBtn = document.getElementById("close-modal");
-    const modal = document.getElementById("modal");
+    var modalId = "";  // Define a global variable to store the current modal ID
 
-    openModalBtn.addEventListener("click", openModal);
-    closeModalBtn.addEventListener("click", closeModal);
-}
-function openModal() {
-  console.log("apro modal");
-  modal.classList.remove("hidden");
-}
-function closeModal() {
-  console.log("chiudo modal");
-  modal.classList.add("hidden");
-}
+    function getId(event) {
+        id = event.target.id;
+        setModal(id);
+    }
+
+    function setModal(idModal) {
+        modalId = idModal;  // Set the global variable to the current modal ID
+        const openModalBtn = document.getElementById(idModal);
+        const closeModalBtn = document.getElementById("close-modal");
+        const modal = document.getElementById("modal");
+
+        openModalBtn.addEventListener("click", openModal);
+        closeModalBtn.addEventListener("click", closeModal);
+    }
+
+    function openModal() {
+        console.log("apro modal");
+        modal.classList.remove("hidden");
+
+        // Set the value of the hidden input field in the form
+        document.getElementById("modalId").value = modalId;
+    }
+
+    function closeModal() {
+        console.log("chiudo modal");
+        modal.classList.add("hidden");
+    }
+
+    function submitForm() {
+        // Manually submit the form
+        document.getElementById("myForm").submit();
+    }
 </script>
+
 
 
 

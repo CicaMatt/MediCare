@@ -173,5 +173,17 @@ def impostazioni():
 
 
 
+
+@app.route('/prova')
+def prova():
+    return render_template("prova.html")
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('ErrorPage.html', error='404'), 404
+@app.errorhandler(500)
+def page_not_found(e):
+    return render_template('ErrorPage.html', error='500'), 500
+
 if __name__ == '__main__':
     app.run()
