@@ -4,7 +4,32 @@
     <meta charset="UTF-8">
     <title>Farmaci</title>
     <link rel="stylesheet" href="{{url_for('static',filename='grafica/main.css')}}">
+
 </head>
+<style>
+    /* CSS per il cursore del range */
+    input[type="range"]::-webkit-slider-thumb {
+        margin-left: -6px; /* Modifica il valore del margine sinistro per spostare il cursore */
+    }
+
+
+    /* Modifica per posizionare i suggerimenti sotto la barra di ricerca */
+#suggest {
+  position: absolute;
+  top: 100%; /* Posiziona i suggerimenti sotto la barra di ricerca */
+  left: 0; /* Allinea i suggerimenti con il bordo sinistro della barra di ricerca */
+  width: calc(100% - 2px); /* Larghezza uguale a quella della barra di ricerca con i bordi */
+  background-color: #fff; /* Colore di sfondo dei suggerimenti */
+  border: 1px solid #ccc; /* Aggiungi un bordo intorno ai suggerimenti */
+  border-top: none; /* Rimuovi il bordo superiore per evitare duplicati */
+  z-index: 999; /* Imposta la profondità per sovrapporre gli altri elementi, se necessario */
+  max-height: 150px; /* Imposta l'altezza massima dei suggerimenti per la scorrevolezza */
+  overflow-y: auto; /* Abilita lo scrolling verticale se i suggerimenti superano l'altezza massima */
+  padding: 0; /* Rimuovi eventuali spaziatura interna ai suggerimenti */
+  margin-top: 4px; /* Spazio tra la barra di ricerca e i suggerimenti */
+}
+
+</style>
 <body onload="resetLive()">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js">
 </script>
@@ -65,9 +90,11 @@
             <label for="manufacturer" class="text-sm font-medium text-stone-600"> Per Tipo</label>
 
             <select id="manufacturer" name="categoria" class="mt-2 block w-full rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+              <option>-</option>
               <option>Sciroppo</option>
               <option>Compresse</option>
               <option>Orosolubile</option>
+              <option>Supposte</option>
             </select>
           </div>
 
@@ -76,7 +103,7 @@
           <div class="flex flex-col">
             <label for="prezzo" class="text-sm font-medium text-stone-600">Per prezzo</label>
 
-            <input type="range" id="prezzo" name="prezzo" onmousemove="seeLive()" value="2" min="2" max="80" step="1" class="mt-2 block w-full cursor-pointer rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
+            <input type="range" id="prezzo" name="prezzo" onmousemove="seeLive()" value="0" min="0" max="80" step="1" class="mt-2 block w-full cursor-pointer rounded-md border border-gray-100 bg-gray-100 px-2 py-2 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50">
             <span id="live">0</span>
           </div>
         </div>
