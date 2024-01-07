@@ -1,5 +1,5 @@
 from flaskDir.source.ModuloIA import df,pd,np,plt
-
+"""
 fig, (primo,secondo,terzo,quarto)=plt.subplots(1,4,figsize=(28,6))
 
 primo.boxplot(df['age'])
@@ -15,7 +15,7 @@ quarto.boxplot(df['oldpeak'])
 quarto.set_title("oldpeak")
 
 plt.show()
-
+"""
 
 #Si parte con la feature scaling
 #Normalizziamo l'età
@@ -74,5 +74,8 @@ colonne_cat=['sex',"cp",'fbs','restecg','exng','slp','caa','thall']
 
 df=pd.get_dummies(df,columns=colonne_cat, prefix=colonne_cat)
 print(df)
+
+train=df.drop('HeartDisease', axis=1)
+predict=df['HeartDisease'].values
 
 
