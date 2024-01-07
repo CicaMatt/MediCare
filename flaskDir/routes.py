@@ -166,5 +166,10 @@ def terminiecondizioni():
 def storiaMediCare():
     return render_template("StoriaMedicare.html")
 
+@app.route('/impostazioni')
+# @login_required and user is ente
+def impostazioni():
+    return render_template("Impostazioni.html")
+
 if __name__ == '__main__':
     app.run()
