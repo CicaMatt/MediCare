@@ -12,3 +12,5 @@ impostazioni_blueprint = Blueprint('impostazioni', __name__)
 @login_required
 def getMetodi():
     return render_template("Impostazioni.html",lista= PagamentoService.getMetodi(current_user.CF).all())
+
+

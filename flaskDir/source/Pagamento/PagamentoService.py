@@ -9,6 +9,16 @@ class PagamentoService:
     def getMetodi(cls,cf):
         return MetodoPagamento.query.filter_by(beneficiario=cf)
 
+    @classmethod
+    def eliminaMetodo(cls,pan):
+        carte_da_cancellare = MetodoPagamento.query.filter_by(PAN=pan).all()
+
+        for metodo_pagamento in carte_da_cancellare:
+            db.session.delete(metodo_pagamento)
+
+        db.session.commit()
+
+
 
 
 
