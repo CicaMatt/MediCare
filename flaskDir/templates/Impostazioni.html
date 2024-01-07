@@ -82,24 +82,28 @@
             <div>
                 <div class="px-4 sm:px-0">
                     <h3 class="text-base font-semibold leading-7 text-gray-900">Informazioni personali</h3>
-                    <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Personal details and application.</p>
+                    <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Qui troverai i tuoi dati personali e potrai compilare il tuo campo ISEE se non l'hai ancora fatto.</p>
                 </div>
 
                 <div class="mt-6 border-t border-gray-100">
                     <dl class="divide-y divide-gray-100">
                         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                            <dt class="text-sm font-medium leading-6 text-gray-900">Full name</dt>
-                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">Margot Foster</dd>
+                            <dt class="text-sm font-medium leading-6 text-gray-900">Nome e cognome</dt>
+                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{current_user.nome}} {{current_user.cognome}}</dd>
                         </div>
 
                         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                            <dt class="text-sm font-medium leading-6 text-gray-900">Email address</dt>
-                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">margotfoster@example.com</dd>
+                            <dt class="text-sm font-medium leading-6 text-gray-900">Indirizzo e-mail</dt>
+                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{current_user.email}}</dd>
                         </div>
 
                         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0 items-center">
                             <dt class="text-sm font-medium leading-6 text-gray-900 sm:col-span-1">ISEE</dt>
-                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-1">12.000</dd>
+                            {% if current_user.ISEE_ordinario == None%}
+                                <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-1">Non hai ancora inserito il tuo ISEE, fallo premendo il pulsante 'Modifica'</dd>
+                            {% else %}
+                                <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-1">€{{current_user.ISEE_ordinario}}</dd>
+                            {% endif %}
                             <a href="{{url_for('isee')}}"  class="text-sm font-medium text-indigo-600 hover:text-indigo-500 sm:col-span-1 ml-auto mr-4">Modifica</a>
                         </div>
 
@@ -116,10 +120,8 @@
             <form>
                 <div class="space-y-12">
                     <div class="pb-2">
-                        <h2 class="text-base font-semibold leading-7 text-gray-900">Le tue carte</h2>
-                        <p class="mt-1 text-sm leading-6 text-gray-600">Ci preoccupiamo della tua comodità! Hai la possibilità di scegliere il metodo di pagamento che
-                            preferisci. Sia che tu voglia pagare in sede o con carta di credito al momento della prenotazione, siamo qui per rendere il processo facile e
-                            flessibile. Scegli la modalità che meglio si adatta alle tue esigenze e goditi la tua esperienza senza preoccupazioni.</p>
+                        <h2 class="text-base font-semibold leading-7 text-gray-900">I tuoi metodi di pagamento</h2>
+                        <p class="mt-1 text-sm leading-6 text-gray-600">In questa sezione potrai visualizzare i metodi di pagamento che hai salvato sulla piattaforma e inserirne di nuovi dall'apposito form in basoo a destra.</p>
                     </div>
 
                     <div class="border-b border-gray-900/10 pb-12">
@@ -166,7 +168,7 @@
 
 
                                                 <div class="flex justify-end">
-                                                    <a href="" class="text-sm font-medium text-indigo-600 hover:text-indigo-500 sm:col-span-1 mr-4 ml-2 mt-2">Elimina</a>
+                                                    <a href="{{url_for('impostazioni.getMetodi',pan=metodo_pagamento.PAN)}}" class="text-sm font-medium text-indigo-600 hover:text-indigo-500 sm:col-span-1 mr-4 ml-2 mt-2" >Elimina</a>
 
                                                 </div>
 

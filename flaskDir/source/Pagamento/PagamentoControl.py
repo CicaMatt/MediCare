@@ -8,9 +8,11 @@ from flaskDir.source.Pagamento.PagamentoService import PagamentoService
 impostazioni_blueprint = Blueprint('impostazioni', __name__)
 
 
-@impostazioni_blueprint.route('/pagamento',methods=['GET','POST'])
+
+@impostazioni_blueprint.route('/pagamento', methods=['GET','POST'])
 @login_required
 def getMetodi():
+    da_elimare = request.args.get('pan')
+    if da_elimare is not None:
+        PagamentoService.eliminaMetodo(da_elimare)
     return render_template("Impostazioni.html",lista= PagamentoService.getMetodi(current_user.CF).all())
-
-
