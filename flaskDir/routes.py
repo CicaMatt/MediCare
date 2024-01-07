@@ -171,10 +171,7 @@ def storiaMediCare():
 def impostazioni():
     return render_template("Impostazioni.html")
 
-@app.route('/metodopagamento')
-# @login_required and user is ente
-def metodopagamento():
-    return render_template("MetodoPagamento.html")
+
 
 if __name__ == '__main__':
     app.run()
