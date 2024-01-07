@@ -40,3 +40,7 @@ INSERT INTO medico(email, password_hash, reparto, ente_sanitario, specializzazio
 INSERT INTO Prenotazione(oraVisita,dataVisita,tipoVisita,prezzo,pazienteCF,medico) VALUES(10,'2024-02-01',"visita medica",30.00,"RCLFNCHS0098HNBH","giovannicasaburi@gmail.com");//Avere i valori di foreign key nel database oppure non farà l'insert
 INSERT INTO Prenotazione(oraVisita,dataVisita,tipoVisita,prezzo,pazienteCF,medico) VALUES(11,'2024-12-01',"vaccino",25.00,"BBBJSC90L54C352E","luigipagano@gmail.com");
 INSERT INTO Prenotazione(oraVisita,dataVisita,tipoVisita,prezzo,pazienteCF,medico) VALUES(12,'2024-11-01',"analisi",20.00,"BBNNMR97R70B774R","paolochecchi20@gmail.com");
+
+//Metodi pagamento
+INSERT INTO metodo_pagamento VALUES(123,1234567891234567,"Mario Rossi", "2029-08-26","MRSRSS029DGH6712");
+INSERT INTO metodo_pagamento VALUES(654,6472092537463874,"Mario Rossi", "2025-12-01","MRSRSS029DGH6712");
