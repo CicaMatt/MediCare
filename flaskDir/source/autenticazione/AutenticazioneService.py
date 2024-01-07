@@ -5,7 +5,8 @@ from flaskDir import db, app, login
 from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
 from flaskDir.MediCare.model.entity.Medici import Medico
 from flaskDir.MediCare.model.entity.Paziente import Paziente
-from flaskDir.source.prenotazioni.services import MedicoService, EnteService, PazienteService
+from flaskDir.source.prenotazioni.services import MedicoService, PazienteService
+from flaskDir.source.EnteFunction.EnteService import EnteService
 
 medicoService = MedicoService()
 pazienteService = PazienteService()
