@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+                  <link rel="stylesheet" href="../static/grafica/main.css">
+
+</head>
+<body class="bg-gradient-to-bl from-rose-100 to-teal-100">
+  	{% include 'Navbar.html' %}
+
+		<header>
+		  <!-- Hero Container -->
+		  <div class="mx-auto w-full max-w-7xl px-5 py-16 ">
+		    <!-- Component -->
+		    <div class="grid grid-cols-1 items-center justify-items-start gap-8 sm:gap-20 lg:grid-cols-2">
+		      <!-- Hero Content -->
+		      <div class="flex flex-col">
+		        <!-- Hero Title -->
+		        <h1 class="mb-4 text-4xl font-bold md:text-6xl"> Il tuo cuore parla, noi <span class="bg-gradient-to-tl from-slate-800 via-violet-500 to-zinc-400 bg-clip-text text-transparent"> ascoltiamo</span> </h1>
+		        <p class="mb-6 max-w-lg text-base text-[#636262] md:mb-10 lg:mb-12"> Scopri come l'intelligenza artificiale può prevenire le malattie cardiache </p>
+		        <!-- Hero Button -->
+		        <div class="flex items-center">{% if current_user.is_authenticated %}
+		          <a href="{{url_for('feature.results')}}" class="mr-5 flex items-center bg-[#276ef1] px-8 py-4 font-semibold text-white transition [box-shadow:rgb(171,_196,245)-8px_8px] hover:[box-shadow:rgb(171,_196,_245)_0px_0px] md:mr-6 lg:mr-8">
+		            <p class="mr-6 font-bold">Scopri</p>
+                    {% else %}
+                    <a href="{{url_for('auth.login_page')}}" class="mr-5 flex items-center bg-[#276ef1] px-8 py-4 font-semibold text-white transition [box-shadow:rgb(171,_196,245)-8px_8px] hover:[box-shadow:rgb(171,_196,_245)_0px_0px] md:mr-6 lg:mr-8">
+		            <p class="mr-6 font-bold">Login</p>
+                      {% endif %}
+		            <svg fill="currentColor" viewBox="0 0 20 21" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-none">
+		              <title>Arrow Right</title>
+		              <polygon points="16.172 9 10.101 2.929 11.515 1.515 20 10 19.293 10.707 11.515 18.485 10.101 17.071 16.172 11 0 11 0 9"></polygon>
+		            </svg>
+		          </a>
+
+		        </div>
+		      </div>
+		      <!-- Hero Image -->
+		      <img src="{{ url_for('static', filename='images/aidottore.jpg') }}" alt="" class="inline-block h-full w-full max-w-[640px]" />
+		    </div>
+		  </div>
+		</header>
+<section>
+  <!-- Container -->
+  <div class="mx-auto max-w-7xl px-5 py-16 md:px-10 md:py-24 lg:py-32">
+    <!-- Heading Div -->
+    <div class="mx-auto w-full max-w-3xl">
+      <!-- Component -->
+      <div class="text-center">
+        <p class="uppercase text-[#1353fe]">3 semplici passi</p>
+        <h2 class="text-3xl font-semibold md:text-5xl">Come <span class="bg-cover bg-center bg-no-repeat px-4 text-white" style="background-image: url('https://assets.website-files.com/63904f663019b0d8edf8d57c/639156ce1c70c97aeb755c8a_Rectangle%2010%20(1).svg');">funziona</span>
+        </h2>
+        <div class="mx-auto mb-8 mt-4 max-w-[528px] md:mb-12 lg:mb-16">
+          <p class="text-[#636262]">Metti la salute al primo posto. Con semplici test puoi prenderti cura del tuo cuore</p>
+        </div>
+      </div>
+    </div>
+    <!-- How it Works Div -->
+    <div class="mx-auto grid grid-cols-1 gap-4 sm:justify-items-stretch md:grid-cols-3 lg:gap-8">
+      <!-- How it Works Item -->
+      <div class="relative flex flex-col items-center gap-4 p-8 text-center">
+        <div class="mb-5 flex max-w-[400px] flex-col items-center justify-center rounded-xl border border-solid border-black bg-white px-8 py-5 [box-shadow:rgb(0,_0,_0)_4px_4px] md:mb-6 lg:mb-8">
+          <p class="text-xl font-bold">1</p>
+        </div>
+        <p class="mb-2 text-xl font-semibold">Analisi</p>
+        <p class="text-sm text-[#636262]">In base alle tue caratteristiche particolari, verranno effettuati i test necessari.</p>
+        <img src="https://assets.website-files.com/63904f663019b0d8edf8d57c/639833af1925275b6f0b43e1_Vector%2032.svg" alt="" class="absolute bottom-[-33%] left-0 right-auto top-auto -z-10 hidden w-96 md:bottom-auto md:left-[136px] md:right-[-50%] md:top-[18%] md:inline-block lg:left-auto" />
+      </div>
+      <!-- How it Works Item -->
+      <div class="relative flex flex-col items-center gap-4 p-8 text-center">
+        <div class="mb-5 flex max-w-[400px] flex-col items-center justify-center rounded-xl border border-solid border-black bg-white px-8 py-5 [box-shadow:rgb(0,_0,_0)_4px_4px] md:mb-6 lg:mb-8">
+          <p class="text-xl font-bold">2</p>
+        </div>
+        <p class="mb-2 text-xl font-semibold">Elaborazione congiunta delle analisi</p>
+        <p class="text-sm text-[#636262]">Grazie all'aiuto dei più moderni modelli di Machine Learning.</p>
+        <img src="https://assets.website-files.com/63904f663019b0d8edf8d57c/639834731925279c5e0b4ee5_Vector%2033.svg" alt="" class="absolute bottom-[-33%] left-0 right-auto top-auto -z-10 hidden w-96 md:bottom-auto md:left-[136px] md:right-[-50%] md:top-[8%] md:inline-block lg:left-auto" />
+      </div>
+      <!-- How it Works Item -->
+      <div class="relative flex flex-col items-center gap-4 p-8 text-center">
+        <div class="mb-5 flex max-w-[400px] flex-col items-center justify-center rounded-xl border border-solid border-black bg-white px-8 py-5 [box-shadow:rgb(0,_0,_0)_4px_4px] md:mb-6 lg:mb-8">
+          <p class="text-xl font-bold">3</p>
+        </div>
+        <p class="mb-2 text-xl font-semibold">Risultati</p>
+        <p class="text-sm text-[#636262]">In semplici passi puoi venire a conoscenza della salute del tuo cuore</p>
+      </div>
+    </div>
+  </div>
+</section>
+  {% include 'Footer2.0.html' %}
+
+</body>
+</html>
