@@ -1,4 +1,5 @@
-from flaskDir.source.ModuloIA.DataPreparation import df,train,predict,pd
+
+from flaskDir.source.ModuloIA.DataPreparation2 import df,train,predict
 from sklearn.model_selection import StratifiedKFold
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
@@ -7,7 +8,8 @@ from sklearn.metrics import classification_report, confusion_matrix, roc_auc_sco
 
 acc_log=[]
 
-kfold= StratifiedKFold(n_splits=7)
+
+kfold= StratifiedKFold(n_splits=5)
 
 for fold, (train_index, val_index) in enumerate(kfold.split(X=df, y=predict)):
 

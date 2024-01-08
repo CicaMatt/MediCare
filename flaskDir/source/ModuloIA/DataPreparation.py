@@ -1,6 +1,6 @@
 from flaskDir.source.ModuloIA import df,pd,np,plt
 """
-fig, (primo,secondo,terzo,quarto)=plt.subplots(1,4,figsize=(28,6))
+fig, (primo,secondo,terzo,quarto,quinto)=plt.subplots(1,5,figsize=(28,6))
 
 primo.boxplot(df['age'])
 primo.set_title("age")
@@ -13,6 +13,9 @@ terzo.set_title("thalach")
 
 quarto.boxplot(df['oldpeak'])
 quarto.set_title("oldpeak")
+
+quinto.boxplot(df['chol'])
+quinto.set_title("chol")
 
 plt.show()
 """
@@ -34,9 +37,9 @@ max_prev=prev.max()
 
 normale=(prev-min_prev)/(max_prev-min_prev)
 
-df['thalach']=normale
+df['thalachh']=normale
 
-print(df['thalach'])
+print(df['thalachh'])
 
 #Normalizziamo OldPeak
 prev=df['oldpeak']
@@ -69,13 +72,15 @@ df['chol']=normale
 print(df['chol'])
 
 
+
 #Normalizziamo le categoriche con OneHotEncode
 colonne_cat=['sex',"cp",'fbs','restecg','exng','slp','caa','thall']
 
 df=pd.get_dummies(df,columns=colonne_cat, prefix=colonne_cat)
 print(df)
 
-train=df.drop('HeartDisease', axis=1)
+train=df.columns.tolist()
+train.remove('HeartDisease')
 predict=df['HeartDisease'].values
 
 
