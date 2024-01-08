@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
 
-df=pd.read_csv("heart.csv")
-if __name__=="__main__":
+df = pd.read_csv("/Users/salvatorebasilicata/PycharmProjects/MediCareAI/flaskDir/source/ModuloIA/heart.csv")
+if __name__ == "__main__":
     """""
     fig, axes = plt.subplots(2, 2, figsize=(15, 12))
 
@@ -133,4 +133,3 @@ if __name__=="__main__":
     plt.title("Correlation Matrix of Heath Disease")
 
     plt.savefig("Matrice.png")
-

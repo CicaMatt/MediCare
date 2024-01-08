@@ -1,7 +1,9 @@
+from datetime import date
+
 import sqlalchemy
 from sqlalchemy.exc import SQLAlchemyError
 
-from flaskDir import db
+from flaskDir import db, app
 from flaskDir.MediCare.model.entity.DocumentoSanitario import DocumentoSanitario
 from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
 from flaskDir.MediCare.model.entity.Medici import Medico
@@ -120,6 +122,7 @@ class PazienteService:
         return db.session.scalars(sqlalchemy.select(Prenotazione).where(Prenotazione.pazienteCF == user.CF))
 
 
+
     @classmethod
     def eliminaPaziente(cls, cf):
         try:
@@ -139,6 +142,25 @@ class PazienteService:
             # Rollback in caso di errore
             db.session.rollback()
             return False
+    @staticmethod
+    def getmoduloAIresult(user):
+        return db.session.scalar(sqlalchemy.select(DocumentoSanitario).where(DocumentoSanitario.titolare == user.CF and DocumentoSanitario.tipo=="Risultati AI: malattia cardiaca" ))
+
+    @staticmethod
+    def addDocumentoSanitario(self, tipo, descrizione, user, medico:Medico):
+        documento = DocumentoSanitario()
+        with app.app_context():
+            documento.titolare=user.cf
+            documento.tipo = tipo
+            documento.descrizione=descrizione
+            documento.dataEmissione=date.today()
+            numerodocumenti = len(FascicoloService.getDocumentiSanitari(user.cf))
+            documento.NumeroDocumento=tipo+user.cf+numerodocumenti+"_"+medico.nome+medico.cognome+medico.email
+            db.session.add(documento)
+            db.session.commit()
+            return documento
+
+
 
 class PrenotazioneService:
 
@@ -224,10 +246,6 @@ class FascicoloService:
     @classmethod
     def getDocumentiSanitari(cls, cf):
         return DocumentoSanitario.query.filter_by(titolare=cf)
-
-
-
-
 
 
 
