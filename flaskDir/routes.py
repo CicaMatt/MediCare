@@ -56,10 +56,10 @@ def vaccini():
 def farmaci():
     return render_template("Farmaci.html")
 
-@app.route('/impostazioni')
+@app.route('/informazionipersonali')
 # @login_required and user is ente
-def impostazioni():
-    return render_template("Impostazioni.html")
+def informazionipersonali():
+    return render_template("InformazioniPersonali.html")
 
 @app.route('/dettagliFarmaco', methods=['GET', 'POST'])
 def dettagliFarmaco():

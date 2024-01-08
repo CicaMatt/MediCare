@@ -16,4 +16,4 @@ def modificaISEE():
         newISEE = request.form.get('isee')
         if paziente is not None and newISEE is not None:
             ISEEService.changeISEE(paziente,newISEE)
-        return render_template("Impostazioni.html")
+        return render_template("InformazioniPersonali.html")
