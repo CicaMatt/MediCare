@@ -17,18 +17,3 @@ class PagamentoService:
             db.session.delete(metodo_pagamento)
 
         db.session.commit()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
