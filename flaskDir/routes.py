@@ -1,7 +1,7 @@
 from flask import render_template
 
 from flaskDir.source.Farmaci.FarmaciControl import farmacia_blueprint
-from flaskDir.source.Pagamento.PagamentoControl import impostazioni_blueprint
+from flaskDir.source.Pagamento.PagamentoControl import informazionipersonali_blueprint
 from flaskDir.source.Utente.AreaUtenteControl import areautente_blueprint
 from flaskDir.source.prenotazioni.PrenotazioneControl import prenotazione_blueprint
 from flaskDir.source.autenticazione .UserControl import auth_blueprint
@@ -22,7 +22,7 @@ app.register_blueprint(prenotazione_blueprint, url_prefix='/prenotazione')
 app.register_blueprint(auth_blueprint, url_prefix='/auth')
 app.register_blueprint(areautente_blueprint, url_prefix='/areautente')
 app.register_blueprint(farmacia_blueprint, url_prefix='/farmacia')
-app.register_blueprint(impostazioni_blueprint, url_prefix='/impostazioni')
+app.register_blueprint(informazionipersonali_blueprint, url_prefix='/informazionipersonali')
 @app.route('/')
 def home():
     return render_template("HomePage.html")
@@ -53,10 +53,10 @@ def vaccini():
 def farmaci():
     return render_template("Farmaci.html")
 
-@app.route('/impostazioni')
+@app.route('/informazionipersonali')
 # @login_required and user is ente
-def impostazioni():
-    return render_template("Impostazioni.html")
+def informazionipersonali():
+    return render_template("InformazioniPersonali.html")
 
 @app.route('/dettagliFarmaco', methods=['GET', 'POST'])
 def dettagliFarmaco():
