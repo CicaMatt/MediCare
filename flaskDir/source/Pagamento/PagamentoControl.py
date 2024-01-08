@@ -9,6 +9,7 @@ informazionipersonali_blueprint = Blueprint('informazionipersonali', __name__)
 
 
 
+
 @informazionipersonali_blueprint.route('/pagamento', methods=['GET','POST'])
 @login_required
 def getMetodi():
