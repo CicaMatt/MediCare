@@ -4,9 +4,13 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/grafica/main.css">
 </head>
-<body>
+<body class="bg-navbarreg rounded-lg">
 
 {% include 'NavbarLaterale.html' %}
+
+<div class="p-4 sm:ml-64">
+        <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg min-h-96">
     <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
         <div>
@@ -118,6 +122,8 @@
 
         </tbody>
     </table>
+</div>
+        </div>
 </div>
  {% include 'Footer2.0.html' %}
 </body>
