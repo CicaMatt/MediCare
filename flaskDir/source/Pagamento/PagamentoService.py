@@ -19,6 +19,15 @@ class PagamentoService:
         db.session.commit()
 
 
+    @classmethod
+    def creaMetodo(cls, metodopagamento, cf):
+        cls.listaCarte = cls.getMetodi(cls, cf)
+        cls.listaCarte.append(metodopagamento)
+
+
+
+
+
 
 
 
