@@ -80,39 +80,34 @@
 
 <div class="p-4 sm:ml-64">
     <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
-    <form>
-  <div class="space-y-12">
-    <div class="pb-2">
-      <h2 class="text-base font-semibold leading-7 text-gray-900">Compilazione dichiarazione ISEE</h2>
-      <p class="mt-1 text-sm leading-6 text-gray-600">Le modalità di esenzione dalla quota di partecipazione alla spesa sanitaria (ticket per visite, esami specialistici) si differenziano in base a
-          specifiche condizioni e categorie di cittadini.</p>
-    </div>
-
-    <div class="border-b border-gray-900/10 pb-12">
 
 
-      <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-        <div class="sm:col-span-3">
-          <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">ISEE</label>
-          <div class="mt-2">
-            <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="block w-1/2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 pl-2 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+
+        <form method="POST" action={{url_for('isee.modificaISEE')}}>
+          <div class="space-y-12">
+            <div class="pb-2">
+              <h2 class="text-base font-semibold leading-7 text-gray-900">Compilazione dichiarazione ISEE</h2>
+              <p class="mt-1 text-sm leading-6 text-gray-600">Le modalità di esenzione dalla quota di partecipazione alla spesa sanitaria (ticket per visite, esami specialistici) si differenziano in base a
+                  specifiche condizioni e categorie di cittadini.</p>
+            </div>
+            <div class="border-b border-gray-900/10 pb-12">
+              <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+                <div class="sm:col-span-3">
+                  <label for="isee" class="block text-sm font-medium leading-6 text-gray-900">ISEE</label>
+                  <div class="mt-2">
+                    <input type="text" name="isee" id="isee" class="block w-1/2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 pl-2 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    <input type="hidden" name="cf" id="cf" value={{current_user.CF}}>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+          <div class="mt-6 flex items-center justify-end gap-x-6">
+            <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Salva</button>
+          </div>
+        </form>
 
-      </div>
     </div>
-
-  </div>
-
-  <div class="mt-6 flex items-center justify-end gap-x-6">
-    <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
-    <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
-  </div>
-</form>
-    </div>
-
-
-
 
 </div>
 

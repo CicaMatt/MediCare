@@ -3,6 +3,7 @@ from flask import render_template
 from flaskDir.source.Farmaci.FarmaciControl import farmacia_blueprint
 from flaskDir.source.Pagamento.PagamentoControl import impostazioni_blueprint
 from flaskDir.source.Utente.AreaUtenteControl import areautente_blueprint
+from flaskDir.source.Utente.ISEEControl import isee_blueprint
 from flaskDir.source.prenotazioni.PrenotazioneControl import prenotazione_blueprint
 from flaskDir.source.autenticazione .UserControl import auth_blueprint
 
@@ -23,6 +24,8 @@ app.register_blueprint(auth_blueprint, url_prefix='/auth')
 app.register_blueprint(areautente_blueprint, url_prefix='/areautente')
 app.register_blueprint(farmacia_blueprint, url_prefix='/farmacia')
 app.register_blueprint(impostazioni_blueprint, url_prefix='/impostazioni')
+app.register_blueprint(isee_blueprint, url_prefix='/isee')
+
 @app.route('/')
 def home():
     return render_template("HomePage.html")
@@ -171,7 +174,6 @@ def terminiecondizioni():
 @app.route('/StoriaMediCare')
 def storiaMediCare():
     return render_template("StoriaMedicare.html")
-
 
 
 @app.route('/prova')
