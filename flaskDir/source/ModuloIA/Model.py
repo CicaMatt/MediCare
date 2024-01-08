@@ -7,7 +7,7 @@ from sklearn.metrics import classification_report, confusion_matrix, roc_auc_sco
 
 acc_log=[]
 
-kfold= StratifiedKFold(n_splits=7)
+kfold= StratifiedKFold(n_splits=7,shuffle=True,random_state=42)
 
 for fold, (train_index, val_index) in enumerate(kfold.split(X=df, y=predict)):
 
@@ -17,7 +17,7 @@ for fold, (train_index, val_index) in enumerate(kfold.split(X=df, y=predict)):
     X_val=df.loc[val_index,train]
     Y_val=df.loc[val_index,'HeartDisease']
 
-    modello = KNeighborsClassifier(n_neighbors=32)
+    modello = KNeighborsClassifier(n_neighbors=10)
     modello.fit(X_train,Y_train)
     y_pred=modello.predict(X_val)
     print(f"The fold is : {fold} : ")
