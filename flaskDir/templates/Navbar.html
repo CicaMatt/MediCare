@@ -40,7 +40,7 @@
         {% elif session.get('user_role')=='ente' %}
       <a href="{{url_for('AreaEnte')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Ciao, {{current_user.nome}} </a>
         {% elif session.get('user_role')=='medico' %}
-      <a href="{{url_for('informazionipersonali')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Ciao, medico </a>
+      <a href="{{url_for('areaMedico')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Ciao, medico </a>
         {% endif %}
       {% endif %}
     </div>
