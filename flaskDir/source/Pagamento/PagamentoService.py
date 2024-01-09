@@ -7,7 +7,7 @@ class PagamentoService:
 
     @classmethod
     def getMetodi(cls,cf):
-        return MetodoPagamento.query.filter_by(beneficiario=cf)
+        return db.session.scalars(sqlalchemy.select(MetodoPagamento).where(MetodoPagamento.beneficiario == cf))
 
     @classmethod
     def eliminaMetodo(cls,pan):
