@@ -39,122 +39,12 @@
 </style>
 
 
-<script>
-  // Codice JavaScript per gestire i click sui link della barra laterale e mostrare/nascondere i contenitori corrispondenti
-  document.addEventListener("DOMContentLoaded", function() {
-    const specialistiche = document.getElementById("specialistiche");
-    const diagnostiche = document.getElementById("diagnostiche");
-    const vaccinali = document.getElementById("vaccinali");
-
-    const specialistiche1 = document.getElementById("specialistiche1");
-    const diagnostiche1 = document.getElementById("diagnostiche1");
-    const vaccinali1 = document.getElementById("vaccinali1");
-
-    const contenitoreSpecialistiche = document.querySelector(".contenitore-specialistiche");
-    const contenitoreDiagnostiche = document.querySelector(".contenitore-diagnostiche");
-    const contenitoreVaccinali = document.querySelector(".contenitore-vaccinali");
-
-    // Impostazione predefinita: mostro solo le visite specialistiche
-    contenitoreSpecialistiche.style.display = "block";
-    contenitoreDiagnostiche.style.display = "none";
-    contenitoreVaccinali.style.display = "none";
-
-    // Aggiungi i listener per i click
-    specialistiche.addEventListener("click", function() {
-      contenitoreSpecialistiche.style.display = "block";
-      contenitoreDiagnostiche.style.display = "none";
-      contenitoreVaccinali.style.display = "none";
-    });
-
-    specialistiche1.addEventListener("click", function() {
-      contenitoreSpecialistiche.style.display = "block";
-      contenitoreDiagnostiche.style.display = "none";
-      contenitoreVaccinali.style.display = "none";
-    });
-
-    diagnostiche.addEventListener("click", function() {
-      contenitoreSpecialistiche.style.display = "none";
-      contenitoreDiagnostiche.style.display = "block";
-      contenitoreVaccinali.style.display = "none";
-    });
-
-    diagnostiche1.addEventListener("click", function() {
-      contenitoreSpecialistiche.style.display = "none";
-      contenitoreDiagnostiche.style.display = "block";
-      contenitoreVaccinali.style.display = "none";
-    });
-
-    vaccinali.addEventListener("click", function() {
-      contenitoreSpecialistiche.style.display = "none";
-      contenitoreDiagnostiche.style.display = "none";
-      contenitoreVaccinali.style.display = "block";
-    });
-
-    vaccinali1.addEventListener("click", function() {
-      contenitoreSpecialistiche.style.display = "none";
-      contenitoreDiagnostiche.style.display = "none";
-      contenitoreVaccinali.style.display = "block";
-    });
-  });
-
-
-/*
-  document.addEventListener("DOMContentLoaded", function() {
-    const links = document.querySelectorAll("ul li");
-
-    links.forEach(link => {
-      link.addEventListener("click", function() {
-        // Rimuove la classe 'active' da tutti gli elementi
-        links.forEach(item => {
-          item.classList.remove("active");
-        });
-
-        // Aggiunge la classe 'active' all'elemento cliccato
-        this.classList.add("active");
-      });
-    });
-
-
-  });
-
-*/
-
-</script>
 
 
 <body>
 
 
       {% include 'Navbar.html' %}
-<div id="alert-container" class="relative">
-  <div id="alert" class="bg-indigo-900 text-center py-4 lg:px-4 absolute top-0 left-0 right-0 opacity-0 transform translateY-0 transition-all duration-500 ease-out">
-    <div class="p-2 bg-indigo-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
-      <span class="flex rounded-full bg-indigo-500 uppercase px-2 py-1 text-xs font-bold mr-3">Hey!</span>
-      <span class="font-semibold mr-2 text-left flex-auto">Sei già loggato</span>
-    </div>
-  </div>
-</div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var alertContainer = document.getElementById('alert-container');
-        var alertElement = document.getElementById('alert');
-
-        // Trigger a reflow to apply the initial style
-        alertElement.offsetHeight;
-
-        // Show the alert with a subtle fade and upward transition
-        alertElement.style.opacity = '1';
-        alertElement.style.transform = 'translateY(0)';
-
-        // Set a timeout to start the fade-out after 3000 milliseconds (3 seconds)
-        setTimeout(function () {
-            // Hide the alert with a smooth opacity and upward transition
-            alertElement.style.opacity = '0';
-            alertElement.style.transform = 'translateY(-100%)';
-        }, 3000);
-    });
-</script>
 
 
 
