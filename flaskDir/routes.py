@@ -178,6 +178,14 @@ def storiaMediCare():
 def areaMedico():
     return render_template("AreaMedico.html")
 
+@app.route('/fascicolosanitariomedico')
+def fascicolosanitariomedico():
+    return render_template("FascicoloSanitarioMedico.html")
+
+@app.route('/storicoprenotazionimedico')
+def storicoprenotazionimedico():
+    return render_template("StoricoPrenotazioniMedico.html")
+
 
 @app.route('/prova')
 def prova():
