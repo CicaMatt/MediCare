@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, session, request, jsonify
+from flask import Blueprint, render_template, session, request, jsonify, redirect, url_for
 from flask_login import current_user, login_required
 
 
@@ -20,7 +20,7 @@ def getMetodi():
 
 
 
-@informazionipersonali_blueprint.route('/pagamento', methods=['GET','POST'])
+@informazionipersonali_blueprint.route('/addPagamento', methods=['GET','POST'])
 @login_required
 def addCarta():
     print("Control finito")
@@ -34,4 +34,4 @@ def addCarta():
         cf = request.form.get('cf')
         scadenza = mese+"/"+anno
         PagamentoService.addCarta(cvv,pan,titolare,scadenza,cf)
-    return render_template("InformazioniPersonali.html")
+    return redirect(url_for('informazionipersonali.getMetodi'))

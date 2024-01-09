@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Loopple/loopple-public-assets@main/motion-tailwind/motion-tailwind.css" rel="stylesheet">
+              <link rel="stylesheet" href="../static/grafica/main.css">
+
+    </head>
+    <body class="bg-navbarreg rounded-lg">
+
+
+    {% include 'NavbarLateraleMedico.html' %}
+
+
+
+    <div class="p-4 sm:ml-64">
+        <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+            <div>
+                <div class="px-4 sm:px-0">
+                    <h3 class="text-base font-semibold leading-7 text-gray-900">Informazioni personali</h3>
+                    <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Qui troverai i tuoi dati personali e potrai compilare il tuo campo ISEE se non l'hai ancora fatto.</p>
+                </div>
+
+                <div class="mt-6 border-t border-gray-100">
+                    <dl class="divide-y divide-gray-100">
+                        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                            <dt class="text-sm font-medium leading-6 text-gray-900">Nome e cognome</dt>
+                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{current_user.nome}} {{current_user.cognome}}</dd>
+                        </div>
+
+                        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+                            <dt class="text-sm font-medium leading-6 text-gray-900">Indirizzo e-mail</dt>
+                            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{current_user.email}}</dd>
+                        </div>
+
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+</html>

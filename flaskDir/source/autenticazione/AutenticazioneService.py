@@ -143,12 +143,14 @@ def registrazioneEnte(request):
         nome=request.form.get('nome')
         email=request.form.get('email')
         password=request.form.get('password')
+        citta=request.form.get('citta')
 
         with app.app_context():
             ente=EnteSanitario()
             ente.nome=nome
             ente.email=email
             ente.set_password(password)
+            ente.città=citta
             db.session.add(ente)
             db.session.commit()
         return redirect(url_for('auth.loginEnte_page'))
