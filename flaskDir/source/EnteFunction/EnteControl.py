@@ -14,3 +14,10 @@ def creaReparto():
         ente=request.form.get('ente')
         EnteService.creaReparto(nome,email,password,specializzazione, citta,ente)
         return render_template('AreaEnte.html')
+
+@ente_blueprint.route('/deleteReparto', methods=['GET'])
+def deleteReparto():
+    if request.method == 'GET':
+        email=request.args.get('email')
+        EnteService.deleteReparto(email)
+        return render_template('AreaEnte.html')

@@ -19,7 +19,14 @@ class EnteService:
             medico.specializzazione=specializzazione
             medico.città=citta
             medico.ente_sanitario=ente
-            medico.reparto_sanitario=ente
 
             db.session.add(medico)
+            db.session.commit()
+
+
+    @staticmethod
+    def deleteReparto(email):
+        with app.app_context():
+            medico=db.session.scalar(sqlalchemy.select(Medico).where(Medico.email ==email))
+            db.session.delete(medico)
             db.session.commit()

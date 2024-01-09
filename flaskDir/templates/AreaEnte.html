@@ -39,30 +39,29 @@
                     </thead>
 
                     <tbody>
-                    {%if lista != None%}
-                        {% for Prenotazione in lista %}
+                        {% for medico in current_user.reparti %}
                             <tr class="text-center bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ Prenotazione.tipoVisita }}
+                                    {{ medico.reparto }}
                                 </th>
                                 <td class="px-6 py-4">
-                                    {{ Prenotazione.medico }}
+                                    {{ medico.email }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ Prenotazione.prezzo }}
+                                    {{ medico.specializzazione }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ Prenotazione.dataVisita }}
+                                    {{ medico.città }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    {{ Prenotazione.oraVisita }}
+                                    {{ current_user.nome }}
                                 </td>
                                 <td class="px-6 py-4">
-                                    <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
+                                    <a href="{{url_for('ente.deleteReparto', email=medico.email)}}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
                                 </td>
                             </tr>
                         {% endfor %}
-                    {% endif %}
+
                     </tbody>
                 </table>
             </div>
@@ -108,7 +107,7 @@
                                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-last-name">
                                                 Reparto
                                             </label>
-                                            <input name="nome" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Cardiologia">
+                                            <input name="reparto" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Cardiologia">
                                         </div>
                                         <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
