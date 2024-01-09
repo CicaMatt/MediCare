@@ -174,6 +174,10 @@ def terminiecondizioni():
 def storiaMediCare():
     return render_template("StoriaMedicare.html")
 
+@app.route('/areaMedico')
+def areaMedico():
+    return render_template("AreaMedico.html")
+
 
 @app.route('/prova')
 def prova():
