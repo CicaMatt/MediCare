@@ -1,6 +1,6 @@
 import sqlalchemy
 from sqlalchemy.exc import SQLAlchemyError
-from flaskDir import db
+from flaskDir import db, app
 from flaskDir.MediCare.model.entity.MetodoPagamento import MetodoPagamento
 
 class PagamentoService:
@@ -17,3 +17,18 @@ class PagamentoService:
             db.session.delete(metodo_pagamento)
 
         db.session.commit()
+
+    @classmethod
+    def addCarta(cls,cvv,pan,titolare,scadenza,cf):
+        print("Service finito")
+        with app.app_context():
+            metodo=MetodoPagamento()
+            metodo.CVV=cvv
+            metodo.PAN=pan
+            metodo.nome_titolare=titolare
+            metodo.dataScadenza=scadenza
+            metodo.beneficiario=cf
+            db.session.add(metodo)
+            db.session.commit()
+
+

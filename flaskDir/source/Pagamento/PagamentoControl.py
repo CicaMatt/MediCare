@@ -17,3 +17,21 @@ def getMetodi():
     if da_elimare is not None:
         PagamentoService.eliminaMetodo(da_elimare)
     return render_template("InformazioniPersonali.html", lista= PagamentoService.getMetodi(current_user.CF).all())
+
+
+
+@informazionipersonali_blueprint.route('/pagamento', methods=['GET','POST'])
+@login_required
+def addCarta():
+    print("Control finito")
+
+    if request.method == 'POST':
+        cvv = request.form.get('cvv')
+        pan = request.form.get('pan')
+        titolare = request.form.get('titolare')
+        mese = request.form.get('mese')
+        anno = request.form.get('anno')
+        cf = request.form.get('cf')
+        scadenza = mese+"/"+anno
+        PagamentoService.addCarta(cvv,pan,titolare,scadenza,cf)
+    return render_template("InformazioniPersonali.html")
