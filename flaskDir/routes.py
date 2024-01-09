@@ -77,9 +77,6 @@ def CreaMedico():
     return render_template("CreaMedico.html")
 
 
-@app.route('/areaUtente')
-def AreaUtente():
-    return render_template('AreaUtente.html')
 
 @app.route('/fascicoloSanitario')
 def fascicoloSanitario():
