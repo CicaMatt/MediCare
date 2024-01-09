@@ -35,11 +35,17 @@
       {% if not current_user.is_authenticated %}
       <a href="{{url_for('auth.login_page')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Log in <span aria-hidden="true">&rarr;</span></a>
       {% else %}
-      <a href="{{url_for('informazionipersonali.getMetodi')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Ciao, {{current_user.nome}} </a>
+        {% if session.get('user_role')=='paziente' %}
+      <a href="{{url_for('informazionipersonali')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Ciao, {{current_user.nome}} </a>
+        {% elif session.get('user_role')=='ente' %}
+      <a href="{{url_for('AreaEnte')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Ciao, {{current_user.nome}} </a>
+        {% elif session.get('user_role')=='medico' %}
+      <a href="{{url_for('informazionipersonali')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Ciao, medico </a>
+        {% endif %}
       {% endif %}
     </div>
   </nav>
-  <!-- Mobile menu,  show/hide based on menu open state. -->
+  <!-- Mobile menu, show/hide based on menu open state. -->
   <div class="lg:hidden" role="dialog" aria-modal="true">
     <!-- Background backdrop, show/hide based on slide-over state. -->
     <div class="fixed inset-0 z-10"></div>
