@@ -3,11 +3,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
-
-df = pd.read_csv("/Users/salvatorebasilicata/PycharmProjects/MediCareAI/flaskDir/source/ModuloIA/heart.csv")
+df = pd.read_csv("heart.csv")
 if __name__ == "__main__":
-    """""
-    fig, axes = plt.subplots(2, 2, figsize=(15, 12))
+    """
+    fig, axes = plt.subplots(3, 2, figsize=(15, 12))
 
     sns.histplot(df['age'], kde=True, ax=axes[0, 0])
     axes[0, 0].set_title('Age Distribution')
@@ -20,6 +19,9 @@ if __name__ == "__main__":
 
     sns.histplot(df['trtbps'], kde=True, ax=axes[1, 1])
     axes[1, 1].set_title('Resting Blood Pressure Distribution')
+
+    sns.histplot(df['oldpeak'], kde=True, ax=axes[2,0])
+    axes[2, 0].set_title('Old Peak Distribution')
     plt.savefig('figures')
 
     plt.tight_layout()
