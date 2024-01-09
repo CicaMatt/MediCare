@@ -4,7 +4,7 @@ from deap import base, creator, tools, algorithms
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import precision_score
 from sklearn.model_selection import train_test_split
-from flaskDir.source.ModuloIA.DataPreparation import df,predict,train
+from flaskDir.source.ModuloIA.DataPreparation2 import df,predict,train
 
 # Definire la funzione di fitness (accuratezza del modello KNN)
 def fitness_function(K):

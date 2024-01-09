@@ -1,4 +1,4 @@
-from flaskDir.source.ModuloIA.DataPreparation import df,train,predict
+from flaskDir.source.ModuloIA.DataPreparation2 import df,train,predict
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
@@ -25,7 +25,6 @@ modello2 = SVC(kernel='linear')
 modello2.fit(X_train,y_train)
 y_pred=modello2.predict(X_val)
 print(classification_report(y_val, y_pred))
-
 
 
 print("DC")
