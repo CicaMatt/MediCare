@@ -1,6 +1,6 @@
 import sqlalchemy
 from sqlalchemy.exc import SQLAlchemyError
-
+from datetime import datetime,timedelta
 from flaskDir import db, app
 from flaskDir.MediCare.model.entity.DocumentoSanitario import DocumentoSanitario
 from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
@@ -154,6 +154,9 @@ class PrenotazioneService:
         return PazienteService.getListaPrenotazioni(user)
     @classmethod
     def confirmIsFree(cls, idmedico, data, ora):
+        mese=datetime.now().strftime("%m")+"-"
+        anno=datetime.now().strftime("%Y")+"-"
+        data=str(anno)+str(mese)+str(data)
         prenotazioni = Prenotazione.query.filter_by(medico=idmedico, oraVisita=ora, dataVisita=data).first()
         if prenotazioni: #Se ci sono prenotazioni per quella data allora non è free
             return False
@@ -164,7 +167,10 @@ class PrenotazioneService:
 
         try:
             medico=MedicoService().getMedico(idmedico)
-
+            print(idmedico)
+            mese = datetime.now().strftime("%m") + "-"
+            anno = datetime.now().strftime("%Y") + "-"
+            data = str(anno) + str(mese) + str(data)
             prenotazione = Prenotazione()
             prenotazione.medico = idmedico
             prenotazione.pazienteCF = CF
@@ -208,6 +214,27 @@ class PrenotazioneService:
             db.session.rollback()
 
             return False
+
+    @classmethod
+    def getGiorniCorrenti(cls):
+        # Ottenere la data corrente
+        oggi = datetime.now()
+
+        # Ottenere l'anno e il mese corrente
+        anno_corrente = oggi.year
+        mese_corrente = oggi.month
+
+        # Calcolare il primo giorno del mese corrente
+        primo_giorno_mese = datetime(anno_corrente, mese_corrente, 1)
+
+        # Calcolare il primo giorno del mese successivo per ottenere l'ultimo giorno del mese corrente
+        primo_giorno_mese_successivo = datetime(anno_corrente, mese_corrente + 1,1) if mese_corrente < 12 else datetime(anno_corrente + 1, 1, 1)
+        ultimo_giorno_mese_corrente = primo_giorno_mese_successivo - timedelta(days=1)
+
+        # Calcolare il numero di giorni nel mese corrente
+        numero_giorni_mese_corrente = (ultimo_giorno_mese_corrente - primo_giorno_mese).days + 1
+
+        return numero_giorni_mese_corrente
 
 
 class FascicoloService:

@@ -33,23 +33,26 @@ def getMedico():
         return render_template("ListaMedici.html", lista=PrenotazioneService.getListaMedici())
 
     current_date=datetime.now().strftime("%B %Y")
-    data = request.form.get('data')
+    giorni=PrenotazioneService.getGiorniCorrenti()
+    data = request.form.get('giorno')
     ora = request.form.get('ora')
     medico = MedicoService.getMedico(idMedico)
 
     #Dopo che ha scelto la data e l'ora
     if data and ora and current_user.is_authenticated:
-        user = session['user']
-        if PrenotazioneService.confirmIsFree(data, ora):
-            PrenotazioneService.savePrenotazione(data, ora, medico, user)
+
+        user = session['_user_id']
+        if PrenotazioneService.confirmIsFree(idMedico,data, ora):
+            print("fatta")
+            PrenotazioneService.savePrenotazione(idMedico,data, ora,medico.specializzazione, user,50)
             #Pagina Prenotazione??
-            return render_template("ProfiloMedico.html", medico=medico)
+            return render_template("HomePage.html", medico=medico)
         else:
             return render_template("ProfiloMedico.html", medico=medico, alert="error", message="Impossibile salvare la prenotazione: data occupata")
 
     # Era meglio usare l'id come identificativo, adesso invece ogni utente può vedere la mail ei medici
     else:
-        return render_template("ProfiloMedico.html", medico=medico, data=current_date)
+        return render_template("ProfiloMedico.html", medico=medico, data=current_date, giorni=giorni)
 
 
 @app.route('/prenotazione/listavaccini')
@@ -60,33 +63,6 @@ def getListaVaccini():
     return render_template("Prenotazione.html")
 
 
-"""
-from flask import render_template, request
-from flaskDir import app
-from flaskDir.MediCare.model.entity import Medici
-from flaskDir.source.prenotazioni import MedicoControl
-from flaskDir.source.prenotazioni.services import PrenotazioneService
 
-class PrenotazioneControl:
-    _prService = PrenotazioneService()
 
-    @staticmethod
-    @app.route('/prenotazione/listamedici', methods=['GET'])
-    def getListaMedici(cls):
-        specializzazione = request.args.get('specializzazione')
-        citta = request.args.get('citta')
-        return render_template("ListaMedici.html", lista=PrenotazioneControl._prService.getListaMedici())
 
-    @staticmethod
-    @app.route('/prenotazione/listamedici/<medico>', methods=['GET'])
-    def getMedico(cls, medico=None):
-        mailMedico = request.args.get('medico')
-        return render_template("PaginaMedico.html", medico=mailMedico)
-
-    @staticmethod
-    @app.route('/prenotazione/listavaccini', methods=['GET'])
-    def getListaVaccini(cls):
-        user = request.args.get('user')  # Assicurati di passare 'user' come parametro o dal client
-        return render_template("Vaccini.html", lista=PrenotazioneControl._prService.getListaVaccini(user))
-
-"""
