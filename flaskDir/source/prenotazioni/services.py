@@ -1,7 +1,7 @@
 import sqlalchemy
 from sqlalchemy.exc import SQLAlchemyError
 
-from flaskDir import db
+from flaskDir import db, app
 from flaskDir.MediCare.model.entity.DocumentoSanitario import DocumentoSanitario
 from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
 from flaskDir.MediCare.model.entity.Medici import Medico
@@ -217,7 +217,17 @@ class FascicoloService:
         return DocumentoSanitario.query.filter_by(titolare=cf)
 
 
-
+    @classmethod
+    def addDocumento(cls,num,tipo,data,descrizione,paziente):
+        with app.app_context():
+            documento=DocumentoSanitario()
+            documento.NumeroDocumento=num
+            documento.tipo=tipo
+            documento.dataEmissione=data
+            documento.descrizione=descrizione
+            documento.titolare=paziente
+            db.session.add(documento)
+            db.session.commit()
 
 
 
