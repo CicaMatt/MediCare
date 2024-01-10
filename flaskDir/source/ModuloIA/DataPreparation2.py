@@ -1,4 +1,19 @@
 from flaskDir.source.ModuloIA import df,pd
+from scipy import stats
+from scipy.stats._mstats_basic import winsorize
+
+
+winsorize_percentile_oldpeak=(stats.percentileofscore(df['oldpeak'],4)/100)
+old_peak_winsorize=winsorize(df['oldpeak'],(0,(1-winsorize_percentile_oldpeak)))
+df['oldpeak']=old_peak_winsorize
+
+winsorize_percentile_trtbps=(stats.percentileofscore(df['trtbps'],170)/100)
+trtbps_winsorize=winsorize(df['trtbps'],(0,(1-winsorize_percentile_trtbps)))
+df['trtbps']=trtbps_winsorize
+
+winsorize_percentile_chol=(stats.percentileofscore(df['chol'],360)/100)
+chol_winsorize=winsorize(df['chol'],(0,(1-winsorize_percentile_chol)))
+df['chol']=chol_winsorize
 
 #Si parte con la feature scaling
 #Normalizziamo l'età

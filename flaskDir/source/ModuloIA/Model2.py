@@ -7,7 +7,7 @@ from sklearn.metrics import classification_report, confusion_matrix, roc_auc_sco
 
 acc_log=[]
 
-kfold= StratifiedKFold(n_splits=5,shuffle=True,random_state=42)
+kfold= StratifiedKFold(n_splits=7,shuffle=True,random_state=42)
 print("KNN")
 for fold, (train_index, val_index) in enumerate(kfold.split(X=df, y=predict)):
 
