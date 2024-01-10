@@ -147,15 +147,15 @@ class PazienteService:
         return db.session.scalar(sqlalchemy.select(DocumentoSanitario).where(DocumentoSanitario.titolare == user.CF and DocumentoSanitario.tipo=="Risultati AI: malattia cardiaca" ))
 
     @staticmethod
-    def addDocumentoSanitario(self, tipo, descrizione, user, medico:Medico):
+    def addDocumentoSanitario(self, tipo, descrizione, usercf, medico:Medico):
         documento = DocumentoSanitario()
         with app.app_context():
-            documento.titolare=user.cf
+            documento.titolare=usercf
             documento.tipo = tipo
             documento.descrizione=descrizione
             documento.dataEmissione=date.today()
-            numerodocumenti = len(FascicoloService.getDocumentiSanitari(user.cf))
-            documento.NumeroDocumento=tipo+user.cf+numerodocumenti+"_"+medico.nome+medico.cognome+medico.email
+            numerodocumenti = len(FascicoloService.getDocumentiSanitari(usercf))
+            documento.NumeroDocumento=tipo+usercf+numerodocumenti+"_"+medico.nome+medico.cognome+medico.email
             db.session.add(documento)
             db.session.commit()
             return documento
