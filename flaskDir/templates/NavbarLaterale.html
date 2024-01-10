@@ -71,7 +71,14 @@
                <span class="flex-1 ms-3 whitespace-nowrap">Storico Prenotazioni</span>
             </a>
          </li>
-
+         <li>
+            <button onclick="confermaEliminazione()" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+               <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"viewBox="0 0 20 16">
+    		<path d="M19 0H1a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1ZM2 6v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6H2Zm11 3a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V8a1 1 0 0 1 2 0h2a1 1 0 0 1 2 0v1Z"/>
+		        </svg>
+               <span class="flex-1 ms-3 whitespace-nowrap">Elimina Account</span>
+            </button>
+        </li>
          <li>
             <a href="{{url_for('auth.logout')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
@@ -83,6 +90,27 @@
       </ul>
    </div>
 </aside>
+<script>
+        function confermaEliminazione() {
+            // Chiedi la conferma all'utente
+            var conferma = confirm("Sei sicuro di voler eliminare il paziente?");
+
+            // Se l'utente conferma, esegui la chiamata alla funzione eliminaPaziente
+            if (conferma) {
+                // Utilizza AJAX per chiamare il tuo endpoint di eliminazione
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/areautente/eliminapaziente", true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState == 4 && xhr.status == 200) {
+                        // Opzionale: Puoi gestire la risposta qui se necessario
+                        console.log(xhr.responseText);
+                    }
+                };
+                xhr.send();
+            }
+        }
+    </script>
 
 
 </body>
