@@ -125,7 +125,7 @@ class PazienteService:
         try:
             Prenotazione.query.filter_by(pazienteCF=cf).delete()
             DocumentoSanitario.query.filter_by(titolare=cf).delete()
-            MetodoPagamento.query.filter_by(beneficiaro=cf).delete()
+            MetodoPagamento.query.filter_by(beneficiario=cf).delete()
             paziente = Paziente.query.filter_by(CF=cf).first()
             if paziente:
                 db.session.delete(paziente)
