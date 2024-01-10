@@ -4,6 +4,7 @@ from flaskDir.source.Farmaci.FarmaciControl import farmacia_blueprint
 from flaskDir.source.Pagamento.PagamentoControl import informazionipersonali_blueprint
 from flaskDir.source.Utente.AreaUtenteControl import areautente_blueprint
 from flaskDir.source.Utente.ISEEControl import isee_blueprint
+from flaskDir.source.prenotazioni.MedicoControl import medico_blueprint
 from flaskDir.source.prenotazioni.PrenotazioneControl import prenotazione_blueprint
 from flaskDir.source.autenticazione .UserControl import auth_blueprint
 from flaskDir.source.EnteFunction.EnteControl import ente_blueprint
@@ -27,6 +28,7 @@ app.register_blueprint(farmacia_blueprint, url_prefix='/farmacia')
 app.register_blueprint(informazionipersonali_blueprint, url_prefix='/informazionipersonali')
 app.register_blueprint(isee_blueprint, url_prefix='/isee')
 app.register_blueprint(ente_blueprint,url_prefix='/ente')
+app.register_blueprint(medico_blueprint,url_prefix='/medico')
 
 @app.route('/')
 def home():
@@ -40,7 +42,9 @@ def registrazioneutente():
     return render_template("RegistrazionePaziente.html")
 
 
-
+@app.route('/listaPazienti')
+def fascicolosanitariomedico():
+    return render_template("ListaPazienti.html")
 
 @app.route('/prenotazione')
 # @login required and user is paziente
@@ -177,10 +181,6 @@ def storiaMediCare():
 @app.route('/areaMedico')
 def areaMedico():
     return render_template("AreaMedico.html")
-
-@app.route('/fascicolosanitariomedico')
-def fascicolosanitariomedico():
-    return render_template("FascicoloSanitarioMedico.html")
 
 @app.route('/storicoprenotazionimedico')
 def storicoprenotazionimedico():

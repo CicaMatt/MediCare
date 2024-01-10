@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fascicolo Elettronico</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='grafica/main.css')}}">
+</head>
+<style>
+    .non-cliccabile {
+    pointer-events: none;
+}
+</style>
+
+<body class="bg-navbarreg rounded-lg">
+
+{% include 'NavbarLateraleMedico.html' %}
+
+<div class="p-4 sm:ml-64">
+        <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+
+{% if lista %}
+    {% for paziente in lista %}
+        <div class="m-5">
+          <div class="bg-white group mx-2 mt-10 grid max-w-screen-md grid-cols-12 space-x-8 overflow-hidden rounded-lg border py-8 text-gray-700 shadow transition hover:shadow-lg sm:mx-auto">
+            <a href="#" class="order-2 col-span-1 mt-4 -ml-14 text-left text-gray-600 hover:text-gray-700 sm:-order-1 sm:ml-4 non-cliccabile">
+                <div class="group relative h-16 w-16 overflow-hidden rounded-lg">
+                <!--icona paziente-->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <circle style="fill:#49A0AE;" cx="236.966" cy="236.966" r="236.966"/>
+                        <rect x="132.492" y="90.171" transform="matrix(-0.9875 0.1577 -0.1577 -0.9875 523.8987 447.5848)" style="fill:#FFFFFF;" width="223.401" height="308.811"/>
+                        <g>
+                            <circle style="fill:#F1EDCD;" cx="230.455" cy="156.211" r="49.893"/>
+                            <g>
+                                <path style="fill:#D62127;" d="M245.546,184.394c0.55,3.199-1.598,6.238-4.789,6.784l-8.355,1.429c-3.192,0.546-6.234-1.601-6.78-4.793l-10.23-59.782c-0.55-3.199,1.601-6.234,4.793-6.776l8.359-1.437c3.192-0.546,6.223,1.605,6.773,4.797L245.546,184.394z"/>
+                                <path style="fill:#D62127;" d="M202.287,171.294c-3.195,0.546-6.234-1.598-6.78-4.797l-1.433-8.355c-0.543-3.192,1.605-6.226,4.797-6.78l59.782-10.23c3.195-0.546,6.234,1.609,6.78,4.797l1.433,8.348c0.543,3.199-1.609,6.238-4.797,6.784L202.287,171.294z"/>
+                            </g>
+                        </g>
+                        <g>
+                            <rect x="155.361" y="244.746" transform="matrix(-0.9875 0.1577 -0.1577 -0.9875 529.3362 459.021)" style="fill:#E84849;" width="182.192" height="11.529"/>
+                            <rect x="160.552" y="273.17" transform="matrix(-0.9875 0.1577 -0.1577 -0.9875 544.131 514.6945)" style="fill:#E84849;" width="182.189" height="11.529"/>
+                            <rect x="165.338" y="303.4" transform="matrix(-0.9875 0.1577 -0.1577 -0.9875 558.415 574.0211)" style="fill:#E84849;" width="182.192" height="11.529"/>
+                        </g>
+                        <polygon style="fill:none;stroke:#E84849;stroke-miterlimit:10;" points="284.202,342.614 172.409,360.474 170.276,347.116282.155,329.788 "/>
+                        <rect x="239.198" y="112.516" transform="matrix(-0.1581 -0.9874 0.9874 -0.1581 57.791 497.6981)" style="fill:#E7474A;" width="3.742" height="223.393"/>
+                </svg>
+              </div>
+            </a>
+            <div class="col-span-11 flex flex-col pr-8 text-left sm:pl-4">
+              <h3 class="text-sm text-gray-600">Codice fiscale: {{ paziente.CF }}</h3>
+              <a href="#" class="mb-3 overflow-hidden pr-7 text-lg font-semibold sm:text-xl non-cliccabile">Nome: {{ paziente.nome }} {{ paziente.cognome }}</a>
+              <p class="overflow-hidden pr-7 text-sm">Sesso : {{ paziente.sesso }}. Nato in: {{ paziente.luogoNascita }}, il giorno: {{ paziente.dataNascita }}, residenta presso: {{ paziente.domicilio }}</p>
+              <div class="mt-5 flex flex-col space-y-3 text-sm font-medium text-gray-500 sm:flex-row sm:items-center sm:space-y-0 sm:space-x-2">
+                <div class="">Recapito telefonico:<span class="ml-2 mr-3 rounded-full bg-green-100 px-2 py-0.5 text-green-900">{{ paziente.cellulare }}</span></div>
+                <div class="">E-mail:<span class="ml-2 mr-3 rounded-full bg-blue-100 px-2 py-0.5 text-blue-900">{{ paziente.email }}</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+    {% endfor %}
+{% else %}
+      <!-- component -->
+        <div class="lg:px-24 lg:py-24 md:py-20 md:px-44 px-4 py-24 items-center flex justify-center flex-col-reverse lg:flex-row md:gap-28 gap-16">
+                    <div class="xl:pt-24 w-full xl:w-1/2 relative pb-12 lg:pb-0">
+                        <div class="relative">
+                            <div class="absolute">
+                                <div class="">
+                                    <h1 class="my-2 text-gray-800 font-bold text-2xl">
+                                        Sembra che non ci siano pazienti in cura
+                                    </h1>
+                                    <p class="my-2 text-gray-800">Attendi le prime prenotazioni</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="{{ url_for('static', filename='images/hospital.png') }}" alt="...">
+                    </div>
+        </div>
+{% endif %}
+     </div>
+</div>
+
+
+
+
+
+</body>
+</html>
