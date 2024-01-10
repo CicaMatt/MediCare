@@ -66,6 +66,28 @@
                 </div>
             {% endfor %}
         {% else %}
+
+            {% if session.get("user_role") ==  "medico" %}
+                <!-- component -->
+                <div class="lg:px-24 lg:py-24 md:py-20 md:px-44 px-4 py-24 items-center flex justify-center flex-col-reverse lg:flex-row md:gap-28 gap-16">
+                            <div class="xl:pt-24 w-full xl:w-1/2 relative pb-12 lg:pb-0">
+                                <div class="relative">
+                                    <div class="absolute">
+                                        <div class="">
+                                            <h1 class="my-2 text-gray-800 font-bold text-2xl">
+                                                Sembra che il fascicolo sanitario del paziente sia attualmente vuoto
+                                            </h1>
+                                            <p class="my-2 text-gray-800">Crea un documento per il paziente dal pulsante in alto a destra</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <img src="{{ url_for('static', filename='images/hospital.png') }}" alt="...">
+                            </div>
+                </div>
+
+            {% else%}
               <!-- component -->
                 <div class="lg:px-24 lg:py-24 md:py-20 md:px-44 px-4 py-24 items-center flex justify-center flex-col-reverse lg:flex-row md:gap-28 gap-16">
                             <div class="xl:pt-24 w-full xl:w-1/2 relative pb-12 lg:pb-0">
@@ -87,6 +109,7 @@
                                 <img src="{{ url_for('static', filename='images/hospital.png') }}" alt="...">
                             </div>
                 </div>
+            {% endif %}
         {% endif %}
 
 </div>
