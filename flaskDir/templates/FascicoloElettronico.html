@@ -21,7 +21,7 @@
 {% if listaDOC %}
     {% for documento_sanitario in listaDOC %}
         <div class="m-5">
-          <div class="group mx-2 mt-10 grid max-w-screen-md grid-cols-12 space-x-8 overflow-hidden rounded-lg border py-8 text-gray-700 shadow transition hover:shadow-lg sm:mx-auto">
+          <div class="bg-white group mx-2 mt-10 grid max-w-screen-md grid-cols-12 space-x-8 overflow-hidden rounded-lg border py-8 text-gray-700 shadow transition hover:shadow-lg sm:mx-auto">
             <a href="#" class="order-2 col-span-1 mt-4 -ml-14 text-left text-gray-600 hover:text-gray-700 sm:-order-1 sm:ml-4 non-cliccabile">
                 <div class="group relative h-16 w-16 overflow-hidden rounded-lg">
                 {% if documento_sanitario.tipo == "Analisi" %}
