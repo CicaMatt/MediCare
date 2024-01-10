@@ -47,7 +47,7 @@
             </a>
             <div class="col-span-11 flex flex-col pr-8 text-left sm:pl-4">
               <h3 class="text-sm text-gray-600">Codice fiscale: {{ paziente.CF }}</h3>
-              <a href="#" class="mb-3 overflow-hidden pr-7 text-lg font-semibold sm:text-xl non-cliccabile">Nome: {{ paziente.nome }} {{ paziente.cognome }}</a>
+              <a href="{{url_for('areautente.getFascicolobyUtente', paziente=paziente.CF)}}" class="mb-3 overflow-hidden pr-7 text-lg font-semibold sm:text-xl">Nome: {{ paziente.nome }} {{ paziente.cognome }}</a>
               <p class="overflow-hidden pr-7 text-sm">Sesso : {{ paziente.sesso }}. Nato in: {{ paziente.luogoNascita }}, il giorno: {{ paziente.dataNascita }}, residenta presso: {{ paziente.domicilio }}</p>
               <div class="mt-5 flex flex-col space-y-3 text-sm font-medium text-gray-500 sm:flex-row sm:items-center sm:space-y-0 sm:space-x-2">
                 <div class="">Recapito telefonico:<span class="ml-2 mr-3 rounded-full bg-green-100 px-2 py-0.5 text-green-900">{{ paziente.cellulare }}</span></div>

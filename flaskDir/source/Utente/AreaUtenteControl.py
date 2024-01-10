@@ -16,4 +16,5 @@ def storico():
 @areautente_blueprint.route('/fascicolo',methods=['GET','POST'])
 @login_required
 def getFascicolobyUtente():
-    return render_template("FascicoloElettronico.html",listaDOC= FascicoloService.getDocumentiSanitari(current_user.CF).all())
+    paziente = request.args.get('paziente')
+    return render_template("FascicoloElettronico.html",listaDOC= FascicoloService.getDocumentiSanitari(paziente).all())
