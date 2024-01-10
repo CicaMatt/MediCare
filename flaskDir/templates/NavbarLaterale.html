@@ -105,8 +105,10 @@
                     if (xhr.readyState == 4 && xhr.status == 200) {
                         // Opzionale: Puoi gestire la risposta qui se necessario
                         console.log(xhr.responseText);
+                        window.location.href = "/";
                     }
                 };
+
                 xhr.send();
             }
         }

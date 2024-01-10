@@ -6,7 +6,7 @@ from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
 from flaskDir.MediCare.model.entity.Medici import Medico
 from flaskDir.MediCare.model.entity.Paziente import Paziente
 from flaskDir.MediCare.model.entity.Prenotazione import Prenotazione
-from flaskDir.source.prenotazioni.services import PrenotazioneService, EnteService, PazienteService, MedicoService
+from flaskDir.source.prenotazioni.services import PrenotazioneService, PazienteService, MedicoService
 
 
 @pytest.fixture
@@ -242,13 +242,13 @@ def test_creazioneMedico():
         assert medico_pubblico is not None
 def test_rimuoviMedico():
     with app.app_context():
-        medico = MedicoService.rimuoviMedico('domenicourciuoli01@gmail.com')#scrivere l'email del medico che hai nel databse da rimuovere
+        medico = MedicoService.rimuoviMedico('primojkunm@gmail.com')#scrivere l'email del medico che hai nel databse da rimuovere
         assert medico is True
 
 
 
-def test_delete_utente(client):
+def test_delete_utente():
     with app.app_context():
-        user = PazienteService.eliminaPaziente("clbpm15p01i496a")
+        user = PazienteService.eliminaPaziente("clbpm15p01i496ab")
         assert user is True
 

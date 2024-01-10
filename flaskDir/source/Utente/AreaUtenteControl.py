@@ -1,6 +1,7 @@
-from flask import Blueprint, render_template, session, request, redirect, url_for
+from flask import Blueprint, render_template, session, request, redirect, url_for, jsonify
 from flask_login import current_user, login_required
 
+from flaskDir.source.prenotazioni import services
 from flaskDir.source.prenotazioni.services import PrenotazioneService, FascicoloService
 
 areautente_blueprint = Blueprint('areautente', __name__)
@@ -21,6 +22,19 @@ def getFascicolobyUtente(paziente=None):
     return render_template("FascicoloElettronico.html",listaDOC= FascicoloService.getDocumentiSanitari(paziente).all(),cfPaziente=paziente)
 
 
+@areautente_blueprint.route('/eliminapaziente',methods=['GET','POST'])
+@login_required
+def eliminaPaziente():
+    cf = current_user.CF
+    if cf is None:
+        return jsonify({"error": "Utente non trovato nella sessione"}), 400
+
+    success = services.PazienteService.eliminaPaziente(cf)
+
+    if success:
+        return jsonify({"message": "Paziente eliminato con successo"})
+    else:
+        return jsonify({"error": "Errore durante l'eliminazione del paziente"}), 500
 
 @areautente_blueprint.route('/addDocumento',methods=['GET','POST'])
 @login_required
