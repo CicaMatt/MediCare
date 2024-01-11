@@ -9,8 +9,13 @@ areautente_blueprint = Blueprint('areautente', __name__)
 @areautente_blueprint.route('/storico')
 @login_required
 def storico():
-
     return render_template("Storico.html", lista=PrenotazioneService.getListaPrenotazioni(current_user))
+
+@areautente_blueprint.route('/storicoMedico',methods=['GET','POST'])
+@login_required
+def getstoricoMedico():
+    medico = request.args.get('medico')
+    return render_template("StoricoPrenotazioniMedico.html", lista=PrenotazioneService.getListaPrenotazioniMedico(medico))
 
 
 

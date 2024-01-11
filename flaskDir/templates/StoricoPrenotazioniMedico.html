@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>Lista prenotazioni</title>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/grafica/main.css">
 </head>
@@ -74,7 +75,7 @@
                     Tipo
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    Medico Curante
+                    CF Paziente
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Prezzo
@@ -98,7 +99,7 @@
                     {{ Prenotazione.tipoVisita }}
                 </th>
                 <td class="px-6 py-4">
-                    {{ Prenotazione.medico }}
+                    {{ Prenotazione.pazienteCF }}
                 </td>
                 <td class="px-6 py-4">
                     {{ Prenotazione.prezzo }}
@@ -112,7 +113,7 @@
                 <td class="px-6 py-4">
                     <form action="{{ url_for('prenotazioni.getMedico') }}" method="post">
                     <input type="hidden" name="medico" value="{{ Prenotazione.medico }}">
-                    <button type="submit"  class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editable</button>
+                    <button type="submit"  class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifica</button>
                     </form>
                 </td>
             </tr>

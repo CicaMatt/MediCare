@@ -145,6 +145,7 @@ class PrenotazioneService:
     @classmethod
     def getListaMedici(cls,specializzazione = None, citta= None):
         return MedicoService().filtraMedici(specializzazione,citta)
+
     @classmethod
     def getListaVaccini(cls,user):
         return PrenotazioneService.getListaVaccini(user)
@@ -152,6 +153,11 @@ class PrenotazioneService:
     @classmethod
     def getListaPrenotazioni(cls, user):
         return PazienteService.getListaPrenotazioni(user)
+
+    @classmethod
+    def getListaPrenotazioniMedico(cls, medico):
+        return db.session.scalars(sqlalchemy.select(Prenotazione).where(Prenotazione.medico == medico))
+
     @classmethod
     def confirmIsFree(cls, idmedico, data, ora):
         mese=datetime.now().strftime("%m")+"-"
