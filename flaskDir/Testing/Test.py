@@ -252,3 +252,7 @@ def test_delete_utente():
         user = PazienteService.eliminaPaziente("clbpm15p01i496ab")
         assert user is True
 
+
+
+
+
