@@ -72,7 +72,7 @@
             </a>
          </li>
          <li>
-            <button id="open-modal" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" onclick="openModal()">
+            <button id="open-modal-1" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" onclick="openModal()">
                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="2 2 20 20">
                     <path d="M12 19H5C3.89543 19 3 18.1046 3 17V7C3 5.89543 3.89543 5 5 5H9.58579C9.851 5 10.1054 5.10536 10.2929 5.29289L12 7H19C20.1046 7 21 7.89543 21 9V11" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M16 15L18.5 17.5M21 20L18.5 17.5M18.5 17.5L21 15M18.5 17.5L16 20" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -93,7 +93,7 @@
 </aside>
 
 
-    <div id="modal"  class="relative z-10 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+    <div id="modal-1"  class="relative z-10 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
         <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
             <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
@@ -110,7 +110,7 @@
                                 Yes, I'm sure
                             </button>
 
-                            <button id="close-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
+                            <button id="close-modal-1" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
                         </div>
                     </div>
                 </div>
@@ -121,34 +121,33 @@
 
 
 
+<!-- Script per il primo modal -->
 <script>
-const openModalBtn = document.getElementById("open-modal");
-const closeModalBtn = document.getElementById("close-modal");
-const modal = document.getElementById("modal");
+  const openModalBtn1 = document.getElementById("open-modal-1");
+  const closeModalBtn1 = document.getElementById("close-modal-1");
+  const modal1 = document.getElementById("modal-1");
 
-openModalBtn.addEventListener("click", openModal);
-closeModalBtn.addEventListener("click", closeModal);
+  openModalBtn1.addEventListener("click", function (event) {
+    event.preventDefault();
+    openModal(modal1);
+  });
 
-openModalBtn.addEventListener("click", function (event) {
-  event.preventDefault();
-  openModal();
-});
+  closeModalBtn1.addEventListener("click", function (event) {
+    event.preventDefault();
+    closeModal(modal1);
+  });
 
-closeModalBtn.addEventListener("click", function (event) {
-  event.preventDefault();
-  closeModal();
-});
+  function openModal(modal) {
+    console.log("Apro modal");
+    modal.classList.remove("hidden");
+  }
 
-
-function openModal() {
-  console.log("apro modal");
-  modal.classList.remove("hidden");
-}
-function closeModal() {
-  console.log("chiudo modal");
-  modal.classList.add("hidden");
-}
+  function closeModal(modal) {
+    console.log("Chiudo modal");
+    modal.classList.add("hidden");
+  }
 </script>
+
 
 
 </body>
