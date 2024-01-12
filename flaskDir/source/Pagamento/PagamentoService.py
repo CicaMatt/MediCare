@@ -20,7 +20,6 @@ class PagamentoService:
 
     @classmethod
     def addCarta(cls,cvv,pan,titolare,scadenza,cf):
-        print("Service finito")
         with app.app_context():
             metodo=MetodoPagamento()
             metodo.CVV=cvv

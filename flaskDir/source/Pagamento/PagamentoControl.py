@@ -23,7 +23,6 @@ def getMetodi():
 @informazionipersonali_blueprint.route('/addPagamento', methods=['GET','POST'])
 @login_required
 def addCarta():
-    print("Control finito")
 
     if request.method == 'POST':
         cvv = request.form.get('cvv')
