@@ -11,6 +11,7 @@ module.exports = {
       'navbarreg': '#B5CBE8',
       'blu400':`#63B3DE`,
       'formpers':  '#f5f6f7',
+      'prova': '#03396c',
     },
     },
 
