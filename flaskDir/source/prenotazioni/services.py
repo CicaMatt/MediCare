@@ -173,7 +173,6 @@ class PrenotazioneService:
 
         try:
             medico=MedicoService().getMedico(idmedico)
-            print(idmedico)
             mese = datetime.now().strftime("%m") + "-"
             anno = datetime.now().strftime("%Y") + "-"
             data = str(anno) + str(mese) + str(data)
@@ -185,7 +184,7 @@ class PrenotazioneService:
             prenotazione.oraVisita = ora
             prenotazione.prezzo = prezzo
             prenotazione.prenMed = medico
-            if carta is not None:
+            if carta.isdigit():
                 prenotazione.pagata = True
 
 

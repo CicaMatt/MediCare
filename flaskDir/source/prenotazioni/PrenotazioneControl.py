@@ -46,7 +46,7 @@ def getMedico():
 
 
         if PrenotazioneService.confirmIsFree(idMedico,data, ora):
-            print("fatta")
+
             PrenotazioneService.savePrenotazione(idMedico,data, ora,medico.specializzazione, user,50,carta)
             #Pagina Prenotazione??
             return render_template("HomePage.html", medico=medico)
