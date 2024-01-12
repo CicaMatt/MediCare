@@ -174,13 +174,15 @@
                   <p class="mt-4 mb-4 text-sm font-normal text-gray-700 dark:text-gray-400">Il nostro sito ti permette di pagare la prenotazione online o anche in sede. Se vuoi pagare in sede non selezionare alcuna carta.</p>
 
                   <div class="col-span-2 sm:col-span-1">
-                      <label for="category" class="block mb-2 text-sm font-medium text-gray-900">Seleziona una carta tra quelle disponibili</label>
-                      <select id="category" name="ora" class="bg-navbarreg border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
+                      <label for="category1" class="block mb-2 text-sm font-medium text-gray-900">Seleziona una carta tra quelle disponibili</label>
+                      <select id="category1" name="carta" class="bg-navbarreg border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
                           <option selected="">Select card</option>
-                          <option value="9">Card1</option>
+                          {% if carte %}
+                          {% for carta in carte %}
+                          <option value="{{carta.PAN}}">{{carta.PAN}}</option>
+                          {% endfor %}
+                          {% endif %}
                       </select>
-                      <input type="hidden" id="giorno" name="giorno" value="">
-                      <input type="hidden" name="medico" value="{{medico.email}}">
                   </div>
               </div>
           </div>

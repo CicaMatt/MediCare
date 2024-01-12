@@ -2,6 +2,7 @@ import sqlalchemy
 from sqlalchemy.exc import SQLAlchemyError
 from flaskDir import db, app
 from flaskDir.MediCare.model.entity.MetodoPagamento import MetodoPagamento
+from flaskDir.MediCare.model.entity.Paziente import Paziente
 
 class PagamentoService:
 
@@ -21,12 +22,14 @@ class PagamentoService:
     @classmethod
     def addCarta(cls,cvv,pan,titolare,scadenza,cf):
         with app.app_context():
+            paziente=Paziente.query.filter(Paziente.CF==cf).first()
             metodo=MetodoPagamento()
             metodo.CVV=cvv
             metodo.PAN=pan
             metodo.nome_titolare=titolare
             metodo.dataScadenza=scadenza
             metodo.beneficiario=cf
+            metodo.paziente=paziente
             db.session.add(metodo)
             db.session.commit()
 

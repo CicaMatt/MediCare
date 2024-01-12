@@ -169,7 +169,7 @@ class PrenotazioneService:
         return True
 
     @staticmethod
-    def savePrenotazione (idmedico, data, ora, tipo, CF, prezzo):
+    def savePrenotazione (idmedico, data, ora, tipo, CF, prezzo, carta=None):
 
         try:
             medico=MedicoService().getMedico(idmedico)
@@ -185,6 +185,8 @@ class PrenotazioneService:
             prenotazione.oraVisita = ora
             prenotazione.prezzo = prezzo
             prenotazione.prenMed = medico
+            if carta is not None:
+                prenotazione.pagata = True
 
 
             db.session.add(prenotazione)
