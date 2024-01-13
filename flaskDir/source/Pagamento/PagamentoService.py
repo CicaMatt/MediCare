@@ -33,3 +33,5 @@ class PagamentoService:
             db.session.add(metodo)
             db.session.commit()
 
+        print(f"SQL Statement: {str(db.session.query(MetodoPagamento).statement)}")
+
