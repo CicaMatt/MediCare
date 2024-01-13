@@ -18,6 +18,7 @@ class EnteService:
             medico.set_password(password)
             medico.specializzazione=specializzazione
             medico.città=citta
+            medico.tariffa=20.00
             medico.ente_sanitario=ente
 
             db.session.add(medico)

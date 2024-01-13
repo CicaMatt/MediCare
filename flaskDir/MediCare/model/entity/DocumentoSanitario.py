@@ -5,5 +5,6 @@ class DocumentoSanitario(db.Model):
     tipo = db.Column(db.String(255), nullable=False)
     dataEmissione = db.Column(db.Date, nullable=False)
     descrizione = db.Column(db.Text, nullable=False)
+    richiamo= db.Column(db.Date, nullable=True)
     titolare = db.Column(db.String(16), db.ForeignKey('paziente.CF'), nullable=True, primary_key=True)
 

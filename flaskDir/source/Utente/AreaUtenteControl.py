@@ -48,7 +48,10 @@ def addDocumento():
         num=request.form.get('num')
         tipo=request.form.get('tipo')
         data = request.form.get('data')
+        richiamo=None
         descrizione = request.form.get('descrizione')
         paziente = request.form.get('cf')
-        FascicoloService.addDocumento(num,tipo,data,descrizione,paziente)
+        if tipo == "Vaccino":
+            richiamo=request.form.get('richiamo')
+        FascicoloService.addDocumento(num,tipo,data,descrizione,richiamo,paziente)
     return redirect(url_for('areautente.getFascicolobyUtente', paziente=paziente))

@@ -39,6 +39,7 @@ def getMedico():
     data = request.form.get('giorno')
     ora = request.form.get('ora')
     carta=request.form.get('carta')
+    prezzo=float(request.form.get('prezzo'))
     medico = MedicoService.getMedico(idMedico)
 
     #Dopo che ha scelto la data e l'ora
@@ -47,15 +48,20 @@ def getMedico():
 
         if PrenotazioneService.confirmIsFree(idMedico,data, ora):
 
-            PrenotazioneService.savePrenotazione(idMedico,data, ora,medico.specializzazione, user,50,carta)
+            if paziente.ISEE_ordinario is not None and paziente.ISEE_ordinario <=10000:
+                prezzo=prezzo-(prezzo*33)/100
+            elif paziente.ISEE_ordinario is not None and paziente.ISEE_ordinario <=20000:
+                prezzo=prezzo-(prezzo*10)/100
+
+            PrenotazioneService.savePrenotazione(idMedico,data, ora,medico.specializzazione, user,prezzo,carta)
             #Pagina Prenotazione??
             return render_template("HomePage.html", medico=medico)
         else:
-            return render_template("ProfiloMedico.html", medico=medico, alert="error", message="Impossibile salvare la prenotazione: data occupata", data=data, giorni=giorni, carte=Paziente.carte)
+            return render_template("ProfiloMedico.html", medico=medico, alert="error", message="Impossibile salvare la prenotazione: data occupata", data=data, giorni=giorni, carte=Paziente.carte, prezzo=prezzo)
 
     # Era meglio usare l'id come identificativo, adesso invece ogni utente può vedere la mail ei medici
     else:
-        return render_template("ProfiloMedico.html", medico=medico, data=current_date, giorni=giorni, carte=paziente.carte)
+        return render_template("ProfiloMedico.html", medico=medico, data=current_date, giorni=giorni, carte=paziente.carte, prezzo=prezzo)
 
 
 @app.route('/prenotazione/listavaccini')

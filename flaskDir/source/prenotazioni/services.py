@@ -113,7 +113,7 @@ class PazienteService:
         return paziente
     @classmethod
     def getListaVaccini(cls, user):
-        return DocumentoSanitario.query.filter_by(titolare=user.CF, tipo="vaccino")
+        return DocumentoSanitario.query.filter_by(titolare=user.CF, tipo="Vaccino")
 
     @classmethod
     def getListaPrenotazioni(cls, user):
@@ -252,13 +252,14 @@ class FascicoloService:
 
 
     @classmethod
-    def addDocumento(cls,num,tipo,data,descrizione,paziente):
+    def addDocumento(cls,num,tipo,data,descrizione,richiamo,paziente):
         with app.app_context():
             documento=DocumentoSanitario()
             documento.NumeroDocumento=num
             documento.tipo=tipo
             documento.dataEmissione=data
             documento.descrizione=descrizione
+            documento.richiamo=richiamo
             documento.titolare=paziente
             db.session.add(documento)
             db.session.commit()

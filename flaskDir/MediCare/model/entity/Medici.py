@@ -25,6 +25,7 @@ class Medico(db.Model, UserMixin):
     iscrizione_albo = db.Column(db.Integer)
     specializzazione = db.Column(db.String(255), nullable=False)
     città = db.Column(db.String(255), nullable=False)
+    tariffa=db.Column(db.Numeric(precision=6, scale=2), nullable=False)
     prenotazioni=db.relationship('Prenotazione',backref="prenMed",lazy=True)
 
     def set_password(self, password):

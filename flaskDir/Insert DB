@@ -1,19 +1,15 @@
 use medicare;
-
-
-//Paziente con documenti sanitari
 INSERT INTO paziente VALUES ("MRSRSS029DGH6712",234,"Mario","Rossi","mariorossi@gmail.com","password","3662530040","Via dei Pini 47","1978-02-10","Italia","maschio",23456);
 
 
-INSERT INTO documento_sanitario VALUES	("732892","Analisi","2023-11-26","Analisi del sangue, con emocromo e controllo di: trigliceridi, colesterolemia, antitrombina III, sidermia, ferritina, transferrina, FSH, prolattina, calcio e sodio","MRSRSS029DGH6712");
-INSERT INTO documento_sanitario VALUES	("834232","Vaccino","2021-05-17","Vaccino COVID-19, somministrazione terza dose COVID-19, Var Omicron","MRSRSS029DGH6712");
-INSERT INTO documento_sanitario VALUES	("834900","Ricetta","2022-09-21","Prescrizione Amoxicillina: 10 capsule| 1 capsula due volte al giorno\nPrescrizione Loratadina: 30 compresse| 1 compressa al giorno al bisogno","MRSRSS029DGH6712");
-INSERT INTO documento_sanitario VALUES	("432949","Visita","2018-01-18","Visita oculistica completa: refrazione(visus), osservazione del segmento anteriore e del segmento posteriore, tonometria oculare, esame del fundus oculi e acutezza visiva","MRSRSS029DGH6712");
+INSERT INTO documento_sanitario VALUES	("732892","Analisi","2023-11-26","Analisi del sangue, con emocromo e controllo di: trigliceridi, colesterolemia, antitrombina III, sidermia, ferritina, transferrina, FSH, prolattina, calcio e sodio",null,"MRSRSS029DGH6712");
+INSERT INTO documento_sanitario VALUES	("834232","Vaccino","2021-05-17","Vaccino COVID-19, somministrazione terza dose COVID-19, Var Omicron",null,"MRSRSS029DGH6712");
+INSERT INTO documento_sanitario VALUES	("834900","Ricetta","2022-09-21","Prescrizione Amoxicillina: 10 capsule| 1 capsula due volte al giorno\nPrescrizione Loratadina: 30 compresse| 1 compressa al giorno al bisogno",null,"MRSRSS029DGH6712");
+INSERT INTO documento_sanitario VALUES	("432949","Visita","2018-01-18","Visita oculistica completa: refrazione(visus), osservazione del segmento anteriore e del segmento posteriore, tonometria oculare, esame del fundus oculi e acutezza visiva",null,"MRSRSS029DGH6712");
 
 
 
 
-//Farmaci
 INSERT INTO farmaco(id,prezzo,nome,categoria,descrizione,immagine) VALUES(1,2.45,"Tachipirina", "Sciroppo","Il Miglior rimedio per l'influenza, un cucchiaio di Tachipirina e si saluta l'influenza","tachipirinaSciroppo.png");
 INSERT INTO farmaco(id,prezzo,nome,categoria,descrizione,immagine) VALUES(2,2.60,"Tachipirina","Orosolubile","Farmaco che non richiede prescrizione, è il miglior metodo per indebolire una forte influenza, per la somministrazione è necessario un bicchiere di acqua in cui scioglierla. Nella confezione sono presenti 20 bustine","tachipirinaOrosolubile.png");
 INSERT INTO farmaco(id,prezzo,nome,categoria,descrizione,immagine) VALUES(3,4.91,"OkiTask","Orosolubile","Un farmaco molto potente idrosolubile che è consigliato somministrare ad un paziente più maturo. La confezione contiene 20 bustine di OkiTask al sapore di menta","okitaskOrosolubile.png");
@@ -21,26 +17,26 @@ INSERT INTO farmaco(id,prezzo,nome,categoria,descrizione,immagine) VALUES(4,8.90
 INSERT INTO farmaco(id,prezzo,nome,categoria,descrizione,immagine) VALUES(5,4.05,"Brufen","Compresse","Brufen è un antinfiammatorio utile per il trattamento del dolore come mal di testa,mal di denti,dolori mestruali, febbre e dolore associati a raffreddore. Somministrabile a paiente sopra i6 anni di età","brufen.png");
 
 
-//Medici ed enti
+
 INSERT INTO ente_sanitario Values("Policlinico Universitario A. Gemelli ","policlinotwin@pec.it","twin2023", "Roma");
 INSERT INTO ente_sanitario Values("Ospedale Papa Giovanni XXIII", "ospedaleBergamo23@pec.it","Papa23", "Bergamo");
-INSERT INTO medico(email,password_hash, nome,cognome,iscrizione_albo,specializzazione,città) VALUES("giovannicasaburi@gmail.com","IlDottorCasaburi","Giovanni","Casaburi",1,"Oculistica","Piccola Svizzera");
-INSERT INTO medico(email,password_hash,nome,cognome,iscrizione_albo, specializzazione,città) VALUES("barbaradamico@gmail.com","DelfinoBiricchino","Barbara","D'Amico",22,"Oculistica","Benevento");
-INSERT INTO medico(email,password_hash,reparto,ente_sanitario,specializzazione,città) VALUES("repartoOcchiGemelli@gmail.com","OcchiGemelli","oculisticaGemelli","policlinotwin@pec.it","Oculistica","Roma");
-INSERT INTO medico(email, password_hash,nome,cognome, iscrizione_albo,specializzazione,città) VALUES("luigipagano@gmail.com","HeartPagano","Luigi","Pagano",15,"Cardiologia","Cava de'Tirreni");
-INSERT INTO medico(email, password_hash, nome, cognome, iscrizione_albo, specializzazione,città) VALUES("paolochecchi20@gmail.com","PurpleDoc","Paolo","Cecchi",12,"Cardiologia","Firenze");
-INSERT INTO medico(email, password_hash,reparto, ente_sanitario, specializzazione, città) VALUES("repartoCardio44@gmail.com","SaveTheHeart","CardiologiaXXIII","ospedaleBergamo23@pec.it","Cardiologia","Bergamo");
-INSERT INTO medico(email, password_hash, nome, cognome, iscrizione_albo, specializzazione, città) VALUES("angelaromano10@gmail.com","TakeCareB","Angela","Romano",24,"Ginecologia","Roma");
-INSERT INTO medico(email, password_hash, reparto, ente_sanitario, specializzazione, città) VALUES("repartoGinecologiGemelli@gmail.com","Twins","Ginecologi","policlinotwin@pec.it","Ginecologia", "Roma");
-INSERT INTO medico(email, password_hash, reparto, ente_sanitario, specializzazione, città) VALUES("repartoUrologiaGemelli@gmail.com","UroTwin","reparto Urologi","policlinotwin@pec.it","Urologia","Roma");
-INSERT INTO medico(email, password_hash, nome, cognome, iscrizione_albo, specializzazione, città) VALUES("gianmarcotocco@gmail.com","ToccoUro","Gianmarco","Tocco",54,"Urologia","Napoli");
-INSERT INTO medico(email, password_hash, reparto, ente_sanitario, specializzazione, città) VALUES ("repartoEmatologiGemelli@gmail.com","Rome's Blood","reparto Ematologi","policlinotwin@pec.it","Ematologia","Roma");
+INSERT INTO medico(email,password_hash, nome,cognome,iscrizione_albo,specializzazione,città,tariffa) VALUES("giovannicasaburi@gmail.com","IlDottorCasaburi","Giovanni","Casaburi",1,"Oculistica","Piccola Svizzera",50);
+INSERT INTO medico(email,password_hash,nome,cognome,iscrizione_albo, specializzazione,città,tariffa) VALUES("barbaradamico@gmail.com","DelfinoBiricchino","Barbara","D'Amico",22,"Oculistica","Benevento",50);
+INSERT INTO medico(email,password_hash,reparto,ente_sanitario,specializzazione,città,tariffa) VALUES("repartoOcchiGemelli@gmail.com","OcchiGemelli","oculisticaGemelli","policlinotwin@pec.it","Oculistica","Roma",20);
+INSERT INTO medico(email, password_hash,nome,cognome, iscrizione_albo,specializzazione,città,tariffa) VALUES("luigipagano@gmail.com","HeartPagano","Luigi","Pagano",15,"Cardiologia","Cava de'Tirreni",50);
+INSERT INTO medico(email, password_hash, nome, cognome, iscrizione_albo, specializzazione,città,tariffa) VALUES("paolochecchi20@gmail.com","PurpleDoc","Paolo","Cecchi",12,"Cardiologia","Firenze",50);
+INSERT INTO medico(email, password_hash,reparto, ente_sanitario, specializzazione, città,tariffa) VALUES("repartoCardio44@gmail.com","SaveTheHeart","CardiologiaXXIII","ospedaleBergamo23@pec.it","Cardiologia","Bergamo",20);
+INSERT INTO medico(email, password_hash, nome, cognome, iscrizione_albo, specializzazione, città,tariffa) VALUES("angelaromano10@gmail.com","TakeCareB","Angela","Romano",24,"Ginecologia","Roma",50);
+INSERT INTO medico(email, password_hash, reparto, ente_sanitario, specializzazione, città,tariffa) VALUES("repartoGinecologiGemelli@gmail.com","Twins","Ginecologi","policlinotwin@pec.it","Ginecologia", "Roma",20);
+INSERT INTO medico(email, password_hash, reparto, ente_sanitario, specializzazione, città,tariffa) VALUES("repartoUrologiaGemelli@gmail.com","UroTwin","reparto Urologi","policlinotwin@pec.it","Urologia","Roma",50);
+INSERT INTO medico(email, password_hash, nome, cognome, iscrizione_albo, specializzazione, città,tariffa) VALUES("gianmarcotocco@gmail.com","ToccoUro","Gianmarco","Tocco",54,"Urologia","Napoli",20);
+INSERT INTO medico(email, password_hash, reparto, ente_sanitario, specializzazione, città,tariffa) VALUES ("repartoEmatologiGemelli@gmail.com","Rome's Blood","reparto Ematologi","policlinotwin@pec.it","Ematologia","Roma",20);
 
-//Prenotazioni
-INSERT INTO Prenotazione(oraVisita,dataVisita,tipoVisita,prezzo,pazienteCF,medico) VALUES(10,'2024-02-01',"visita medica",30.00,"RCLFNCHS0098HNBH","giovannicasaburi@gmail.com");//Avere i valori di foreign key nel database oppure non farà l'insert
+
+INSERT INTO Prenotazione(oraVisita,dataVisita,tipoVisita,prezzo,pazienteCF,medico) VALUES(10,'2024-02-01',"visita medica",30.00,"RCLFNCHS0098HNBH","giovannicasaburi@gmail.com");
 INSERT INTO Prenotazione(oraVisita,dataVisita,tipoVisita,prezzo,pazienteCF,medico) VALUES(11,'2024-12-01',"vaccino",25.00,"BBBJSC90L54C352E","luigipagano@gmail.com");
 INSERT INTO Prenotazione(oraVisita,dataVisita,tipoVisita,prezzo,pazienteCF,medico) VALUES(12,'2024-11-01',"analisi",20.00,"BBNNMR97R70B774R","paolochecchi20@gmail.com");
 
-//Metodi pagamento
+
 INSERT INTO metodo_pagamento VALUES(123,1234567891234567,"Mario Rossi", "2029-08-26","MRSRSS029DGH6712");
 INSERT INTO metodo_pagamento VALUES(654,6472092537463874,"Mario Rossi", "2025-12-01","MRSRSS029DGH6712");

@@ -60,6 +60,9 @@
                       <div class="mt-5 flex flex-col space-y-3 text-sm font-medium text-gray-500 sm:flex-row sm:items-center sm:space-y-0 sm:space-x-2">
                         <div class="">Data emissione:<span class="ml-2 mr-3 rounded-full bg-green-100 px-2 py-0.5 text-green-900">{{ documento_sanitario.dataEmissione }}</span></div>
                         <div class="">Tipo:<span class="ml-2 mr-3 rounded-full bg-blue-100 px-2 py-0.5 text-blue-900">{{ documento_sanitario.tipo }}</span></div>
+                          {% if documento_sanitario.tipo=="Vaccino" %}
+                          <div class="">Data Richiamo:<span class="ml-2 mr-3 rounded-full bg-blue-100 px-2 py-0.5 text-blue-900">{{ documento_sanitario.richiamo }}</span></div>
+                        {% endif %}
                       </div>
                     </div>
                   </div>
@@ -156,7 +159,7 @@
                                                 Tipo
                                               </label>
                                               <div class="relative">
-                                                <select name="tipo" id="tipo" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
+                                                <select name="tipo"  onchange="setRichiamo(this)" id="tipo" class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500">
                                                   <option>Visita</option>
                                                   <option>Analisi</option>
                                                   <option>Vaccino</option>
@@ -180,6 +183,13 @@
                                                     N. documento
                                                   </label>
                                                   <input name="num" id="num" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="grid-zip" type="text" placeholder="90210">
+                                              </div>
+
+                                              <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 mt-4">
+                                                  <label class="hidden uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip" id="labrichiamo">
+                                                    Data Richiamo
+                                                  </label>
+                                                  <input name="richiamo" id="richiamo" class=" hidden appearance-none w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="2024-01-21">
                                               </div>
                                           </div>
 
@@ -233,6 +243,17 @@ function openModal() {
 function closeModal() {
   console.log("chiudo modal");
   modal.classList.add("hidden");
+}
+
+function setRichiamo(vaccino){
+    if (vaccino.value=="Vaccino") {
+        document.getElementById("labrichiamo").style.display="block"
+        document.getElementById("richiamo").style.display="block"
+    }else{
+        document.getElementById("richiamo").style.display="none"
+        document.getElementById("labrichiamo").style.display="none"
+    }
+
 }
 </script>
 

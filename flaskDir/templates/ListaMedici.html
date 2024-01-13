@@ -7,6 +7,7 @@
 </head>
 <body>
 
+
 {% include 'Navbar.html' %}
 
 <div class="bg-white p-8 rounded-md w-full">
@@ -96,7 +97,7 @@
                                         </div>
 											<div class="ml-3">
 
-												<button type="submit" class="text-gray-900 hover:text-sky-400 whitespace-no-wrap">
+												<button type="submit" class="text-gray-900 hover:text-sky-400 whitespace-no-wrap" onclick="setPrezzo()">
 													{{medico.reparto}}
 												</button>
 
@@ -126,8 +127,9 @@
 								</td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 									<p class="text-gray-900 whitespace-no-wrap">
-										20$
+										{{medico.tariffa}}$
 									</p>
+									<input type="hidden" name="prezzo" value="{{medico.tariffa}}">
 								</td>
 							</tr>
 							<!--Fine esempio dati medico pubblico-->
@@ -172,8 +174,9 @@
 								</td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 									<p class="text-gray-900 whitespace-no-wrap">
-										50$
+										{{medico.tariffa}}$
 									</p>
+									<input type="hidden" name="prezzo" value="{{medico.tariffa}}">
 								</td>
 							</tr>
 							<!--Fine esempio dati medico privato-->

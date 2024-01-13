@@ -92,6 +92,7 @@ def registrazione_pageMedico(request):
             medico.cognome=cognome
             medico.iscrizione_albo=int(iscrizione_albo)
             medico.specializzazione=specializzazione
+            medico.tariffa=50.00
             medico.città=citta
             db.session.add(medico)
             db.session.commit()
