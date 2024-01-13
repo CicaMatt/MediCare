@@ -1,10 +1,12 @@
 import pytest
 import sqlalchemy
 
-from flaskDir import app, db
+from flaskDir import app, test
 from flaskDir.MediCare.model.entity.MetodoPagamento import MetodoPagamento
 from flaskDir.source.Pagamento.PagamentoService import PagamentoService
+from urllib.parse import quote
 
+app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{quote('Cancello1@')}@localhost:3306/testmedicare"
 
 @pytest.fixture
 def client():
@@ -43,8 +45,8 @@ def test_eliminaCarta(client):
         # Inserisci un metodo di pagamento di esempio nel database
         pan_di_test = '1234567890123456'
         metodo_di_test = MetodoPagamento(CVV=123, PAN=pan_di_test, nome_titolare='Nome Cognome', dataScadenza='01/2025', beneficiario='MRSRSS029DGH6712')
-        db.session.add(metodo_di_test)
-        db.session.commit()
+        test.session.add(metodo_di_test)
+        test.session.commit()
 
         # Verifica che il metodo di pagamento sia stato inserito correttamente nel database
         assert MetodoPagamento.query.filter_by(PAN=pan_di_test).count() == 1
@@ -80,4 +82,4 @@ def test_addCarta(client):
 
             # Elimina la carta dal database una volta che il test e' stato eseguito
             MetodoPagamento.query.filter_by(PAN='8342645371625349').delete()
-            db.session.commit()
+            test.session.commit()
