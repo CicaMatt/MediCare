@@ -15,7 +15,7 @@ from flaskDir.source.Pagamento.PagamentoService import PagamentoService
 @pytest.fixture(autouse=True, scope='session')
 def setUp(request):
     # Configura il database di test
-    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{quote('Cancello1@')}@localhost:3306/testmedicare"
+    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{quote('Gio210302DVK')}@localhost:3306/testmedicare"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["TESTING"] = True
     db.init_app(app)
@@ -80,17 +80,37 @@ def test_addCarta():
         assert carta_inserita.dataScadenza == '12/2024'
         assert carta_inserita.beneficiario == 'PROVAS029DGH6712'
 
+        db.session.delete(carta_inserita)
+        db.session.delete(paziente)
+        db.session.commit()
+
 
 
 # Paziente presente nel database
 def test_mostraCarte1():
     with app.app_context():
-        paziente_test = Paziente(CF='PROVAS029DGH6712', chiaveSPID=123, nome='Mario', cognome='Rossi',
-                                 email='mariorossi@gmail.com', password_hash='mario', cellulare='3457895647',
-                                 domicilio='Salerno', dataNascita='2000-12-31', luogoNascita='Salerno', sesso='maschio',
-                                 ISEE_ordinario=23456)
+        mario = Paziente()
+        mario.nome = "Mario"
+        mario.cognome = "Rossi"
+        mario.email = "mariorossi@gmail.com"
+        mario.password_hash = "cancello"
+        mario.chiaveSPID = 10
+        mario.ISEE_ordinario = 10000
+        mario.CF = "PROVAS029DGH6712"
+        mario.cellulare = "3312258345"
+        mario.luogoNascita = "Salerno"
+        mario.dataNascita = "2000-12-31"
+        mario.domicilio = "Salerno"
+        mario.sesso = "Maschio"
+        db.session.add(mario)
+        db.session.commit()
+        cf = mario.CF
 
-        cf = paziente_test.CF
+        metodo_di_test = MetodoPagamento(CVV=123, PAN='1234567890123456', nome_titolare='Nome Cognome', dataScadenza='01/2025',
+                                         beneficiario='PROVAS029DGH6712')
+        db.session.add(metodo_di_test)
+        db.session.commit()
+
         listaCarte = list(PagamentoService.getMetodi(cf))
 
         assert all(metodopagamento.beneficiario == cf for metodopagamento in listaCarte)
@@ -98,6 +118,10 @@ def test_mostraCarte1():
         attributiOracolo = {(metodopagamento.PAN) for metodopagamento in oracolo}
         attributiListaCarte = {(metodopagamento.PAN) for metodopagamento in listaCarte}
         assert attributiOracolo == attributiListaCarte
+
+        db.session.delete(metodo_di_test)
+        db.session.delete(mario)
+        db.session.commit()
 
 
 
@@ -119,6 +143,22 @@ def test_eliminaCarta():
     with app.app_context():
         # Inserisci un metodo di pagamento di esempio nel database
         pan_di_test = '1234567890123456'
+        mario = Paziente()
+        mario.nome = "Mario"
+        mario.cognome = "Rossi"
+        mario.email = "mariorossi@gmail.com"
+        mario.password_hash = "cancello"
+        mario.chiaveSPID = 10
+        mario.ISEE_ordinario = 10000
+        mario.CF = "PROVAS029DGH6712"
+        mario.cellulare = "3312258345"
+        mario.luogoNascita = "Salerno"
+        mario.dataNascita = "2000-12-31"
+        mario.domicilio = "Salerno"
+        mario.sesso = "Maschio"
+        db.session.add(mario)
+        db.session.commit()
+
         paziente_test = Paziente.query.filter_by(CF="PROVAS029DGH6712").first()
         metodo_di_test = MetodoPagamento(CVV=123, PAN=pan_di_test, nome_titolare='Nome Cognome', dataScadenza='01/2025', beneficiario='PROVAS029DGH6712')
         db.session.add(metodo_di_test)
@@ -132,6 +172,10 @@ def test_eliminaCarta():
 
         # Verifica che il metodo di pagamento sia stato eliminato correttamente
         assert MetodoPagamento.query.filter_by(PAN=pan_di_test).count() == 0
+
+        db.session.delete(metodo_di_test)
+        db.session.delete(mario)
+        db.session.commit()
 
 
 

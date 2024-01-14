@@ -18,7 +18,7 @@ from flaskDir.source.prenotazioni.services import FascicoloService
 @pytest.fixture(autouse=True, scope='session')
 def setUp(request):
     # Configura il database di test
-    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{quote('Cancello1@')}@localhost:3306/testmedicare"
+    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{quote('Gio210302DVK')}@localhost:3306/testmedicare"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["TESTING"] = True
     db.init_app(app)
@@ -80,18 +80,30 @@ def test_addDocumento():
         assert documento.descrizione == 'test'
         assert  documento.tipo == 'Ricetta'
 
+        db.session.delete(documento)
+        db.session.delete(paziente)
+        db.session.commit()
+
 
 
 def test_getDocumentiSanitari():
     with app.app_context():
-        paziente_test = Paziente(CF='PROVAS029DGH6712', chiaveSPID=123, nome='Mario', cognome='Rossi',
-                                 email='mariorossi@gmail.com', password_hash='mario', cellulare='3457895647',
-                                 domicilio='Salerno', dataNascita='2000-12-31', luogoNascita='Salerno', sesso='maschio',
-                                 ISEE_ordinario=None)
-        # Senza inserirlo nel db
-        # db.session.add(paziente_test)
-        # db.session.commit()
-        cf = paziente_test.CF
+        mario = Paziente()
+        mario.nome = "Mario"
+        mario.cognome = "Rossi"
+        mario.email = "mariorossi@gmail.com"
+        mario.password_hash = "cancello"
+        mario.chiaveSPID = 10
+        mario.ISEE_ordinario = None
+        mario.CF = "PROVAS029DGH6712"
+        mario.cellulare = "3312258345"
+        mario.luogoNascita = "Salerno"
+        mario.dataNascita = "2000-12-31"
+        mario.domicilio = "Salerno"
+        mario.sesso = "Maschio"
+        db.session.add(mario)
+        db.session.commit()
+        cf = mario.CF
 
         listaDocumenti = FascicoloService.getDocumentiSanitari(cf)
         assert all(documento.titolare == cf for documento in listaDocumenti)
@@ -101,17 +113,37 @@ def test_getDocumentiSanitari():
         attributiListaDocumenti = {(documento.NumeroDocumento) for documento in listaDocumenti}
         assert attributiOracolo == attributiListaDocumenti
 
+        db.session.delete(mario)
+        db.session.commit()
+
 
 
 def test_changeISEE():
     with app.app_context():
+        mario = Paziente()
+        mario.nome = "Mario"
+        mario.cognome = "Rossi"
+        mario.email = "mariorossi@gmail.com"
+        mario.password_hash = "cancello"
+        mario.chiaveSPID = 10
+        mario.ISEE_ordinario = None
+        mario.CF = "PROVAS029DGH6712"
+        mario.cellulare = "3312258345"
+        mario.luogoNascita = "Salerno"
+        mario.dataNascita = "2000-12-31"
+        mario.domicilio = "Salerno"
+        mario.sesso = "Maschio"
+        db.session.add(mario)
+        db.session.commit()
 
 
-        cf = 'PROVAS029DGH6712'
         new = 10000
 
-        ISEEService.changeISEE(cf,new)
+        ISEEService.changeISEE(mario.CF,new)
 
-        paziente = Paziente.query.filter_by(CF=cf).first()
+        paziente = Paziente.query.filter_by(CF=mario.CF).first()
         assert paziente.ISEE_ordinario is not None
         assert paziente.ISEE_ordinario == new
+
+        db.session.delete(paziente)
+        db.session.commit()

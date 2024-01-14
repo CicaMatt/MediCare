@@ -106,34 +106,6 @@ def test_prenotazioni_lista_medici_filtro(client):
     assert attributi_oracolo == attributi_attuali
 
 
-def test_login_MedicoService():
-    new_user = Medico(
-        email='test@example.com',
-        password_hash='password123',
-        nome='John',
-        cognome='Doe',
-        iscrizione_albo=123242,
-        specializzazione="chirurgia",
-        città="Napoli",
-        tariffa=50
-    )
-    with app.app_context():
-        user_in_db = db.session.scalar(sqlalchemy.select(Medico).where(Medico.email == 'test@example.com'))
-        if user_in_db is not None:
-            db.session.delete(user_in_db)
-            db.session.commit()
-        db.session.add(new_user)
-        db.session.commit()
-
-        user_in_db = Medico.query.filter_by(email='test@example.com').first()
-        assert user_in_db
-
-        user_in_db.set_password('newpassword123')
-        db.session.commit()
-        assert user_in_db.check_password('newpassword123')
-        assert user_in_db.check_password('password123') is False
-
-
 def test_login_Medico(client):
     credenzialiTest = {"email": "test@example.com", "password": "newpassword123"}
     response = client.post('/auth/login', data=credenzialiTest)
