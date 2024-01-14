@@ -12,23 +12,35 @@ from flaskDir.source.Pagamento.PagamentoService import PagamentoService
 
 #pip install mysqlclient
 
-@pytest.fixture(autouse=True)
-def setUp():
+@pytest.fixture(autouse=True, scope='session')
+def setUp(request):
     # Configura il database di test
-    app.config['SQLALCHEMY_DATABASE_URI_TEST'] = f"mysql+pymysql://root:{quote('Cancello1@')}@localhost:3306/testmedicare"
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS_TEST"] = False
+    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{quote('Gio210302DVK')}@localhost:3306/testmedicare"
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    app.config["TESTING"] = True
+    db.init_app(app)
     # Crea le tabelle del database di test
-    with app.app_context():
-        #db.drop_all()
-        if not database_exists(app.config["SQLALCHEMY_DATABASE_URI_TEST"]):
-            create_database(app.config["SQLALCHEMY_DATABASE_URI_TEST"])
+    with app.test_client():
+        with app.app_context():
+            #db.drop_all()
 
-        db.create_all()
+            if not database_exists(app.config["SQLALCHEMY_DATABASE_URI"]):
+                create_database(app.config["SQLALCHEMY_DATABASE_URI"])
+
+            db.create_all()
+
+        def teardown():
+            # Tuo codice di tearDown qui
+            with app.app_context():
+                db.session.close_all()
+                db.drop_all()
+
+        # Aggiungi la funzione di tearDown alla richiesta
+        request.addfinalizer(teardown)
 
 
 def test_addCarta():
     # Cambia il URI del database a quello di test
-    app.config['SQLALCHEMY_DATABASE_URI'] = app.config['SQLALCHEMY_DATABASE_URI_TEST']
 
     with app.app_context():
         mario=Paziente()
@@ -46,7 +58,7 @@ def test_addCarta():
         mario.sesso="Maschio"
         db.session.add(mario)
         db.session.commit()
-    app.app_context().push()
+
     with app.app_context():
         cvv = 123
         pan = "8342645371625349"
@@ -68,11 +80,6 @@ def test_addCarta():
         assert carta_inserita.dataScadenza == '12/2024'
         assert carta_inserita.beneficiario == 'PROVAS029DGH6712'
 
-        # Elimina la carta dal database una volta che il test è stato eseguito
-        db.session.delete(paziente)
-        db.session.delete(carta_inserita)
-        db.session.commit()
-
 
 
 # Paziente presente nel database
@@ -82,20 +89,15 @@ def test_mostraCarte1():
                                  email='mariorossi@gmail.com', password_hash='mario', cellulare='3457895647',
                                  domicilio='Salerno', dataNascita='2000-12-31', luogoNascita='Salerno', sesso='maschio',
                                  ISEE_ordinario=23456)
-        db.session.add(paziente_test)
+
         cf = paziente_test.CF
+        listaCarte = list(PagamentoService.getMetodi(cf))
 
-        listaCarte = PagamentoService.getMetodi(cf)
         assert all(metodopagamento.beneficiario == cf for metodopagamento in listaCarte)
-
         oracolo = MetodoPagamento.query.filter_by(beneficiario=cf).all()
-        attributiOracolo = {(metodopagamento.CVV) for metodopagamento in oracolo}
-        attributiListaCarte = {(metodopagamento.CVV) for metodopagamento in listaCarte}
+        attributiOracolo = {(metodopagamento.PAN) for metodopagamento in oracolo}
+        attributiListaCarte = {(metodopagamento.PAN) for metodopagamento in listaCarte}
         assert attributiOracolo == attributiListaCarte
-
-        # Elimina il paziente
-        Paziente.query.filter_by(CF='PROVAS029DGH6712').delete()
-        db.session.commit()
 
 
 
@@ -117,10 +119,9 @@ def test_eliminaCarta():
     with app.app_context():
         # Inserisci un metodo di pagamento di esempio nel database
         pan_di_test = '1234567890123456'
-        paziente_test = Paziente(CF='PROVAS029DGH6712',chiaveSPID=123,nome='Mario',cognome='Rossi',email='mariorossi@gmail.com',password_hash='mario',cellulare='3457895647',domicilio='Salerno',dataNascita='2000-12-31',luogoNascita='Salerno',sesso='maschio',ISEE_ordinario=23456)
+        paziente_test = Paziente.query.filter_by(CF="PROVAS029DGH6712").first()
         metodo_di_test = MetodoPagamento(CVV=123, PAN=pan_di_test, nome_titolare='Nome Cognome', dataScadenza='01/2025', beneficiario='PROVAS029DGH6712')
         db.session.add(metodo_di_test)
-        db.session.add(paziente_test)
         db.session.commit()
 
         # Verifica che il metodo di pagamento sia stato inserito correttamente nel database
@@ -132,6 +133,7 @@ def test_eliminaCarta():
         # Verifica che il metodo di pagamento sia stato eliminato correttamente
         assert MetodoPagamento.query.filter_by(PAN=pan_di_test).count() == 0
 
-        #Elimina il paziente
-        Paziente.query.filter_by(CF='PROVAS029DGH6712').delete()
-        db.session.commit()
+
+
+
+
