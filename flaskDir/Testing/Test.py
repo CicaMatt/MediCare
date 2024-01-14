@@ -114,7 +114,8 @@ def test_login_MedicoService():
         cognome='Doe',
         iscrizione_albo=123242,
         specializzazione="chirurgia",
-        città="Napoli"
+        città="Napoli",
+        tariffa=50
     )
     with app.app_context():
         user_in_db = db.session.scalar(sqlalchemy.select(Medico).where(Medico.email == 'test@example.com'))
@@ -154,6 +155,7 @@ def test_login_EnteSanitario():
         nome='Ente Test',
         email='test@example.com',
         password_hash='sfjfsgs',
+        città="Napoli"
     )
     with app.app_context():
         user_in_db = db.session.scalar(
