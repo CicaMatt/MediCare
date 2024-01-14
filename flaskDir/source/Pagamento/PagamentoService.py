@@ -11,8 +11,8 @@ class PagamentoService:
         return db.session.scalars(sqlalchemy.select(MetodoPagamento).where(MetodoPagamento.beneficiario == cf))
 
     @classmethod
-    def eliminaMetodo(cls,pan):
-        carte_da_cancellare = MetodoPagamento.query.filter_by(PAN=pan).all()
+    def eliminaMetodo(cls,pan,cf):
+        carte_da_cancellare = MetodoPagamento.query.filter_by(PAN=pan,beneficiario=cf).all()
 
         for metodo_pagamento in carte_da_cancellare:
             db.session.delete(metodo_pagamento)
@@ -33,5 +33,4 @@ class PagamentoService:
             db.session.add(metodo)
             db.session.commit()
 
-        print(f"SQL Statement: {str(db.session.query(MetodoPagamento).statement)}")
 

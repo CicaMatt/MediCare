@@ -6,13 +6,13 @@ from sqlalchemy_utils import create_database, database_exists
 
 app = Flask(__name__)
 from urllib.parse import quote
+
 app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{quote('Cancello1@')}@localhost:3306/medicare"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 db.init_app(app)
 login = LoginManager(app)
-
 
 from flaskDir.MediCare.model.entity import Paziente, Farmaco, Medici, Prenotazione, MetodoPagamento, DocumentoSanitario, \
     EnteSanitario, ConsultaFarmaco, VisualizzaFarmaco, AutorizzazioniFSE
@@ -26,5 +26,5 @@ else:
         db.create_all()
 
 
-from flaskDir import routes
 
+from flaskDir import routes

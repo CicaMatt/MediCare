@@ -14,8 +14,9 @@ informazionipersonali_blueprint = Blueprint('informazionipersonali', __name__)
 @login_required
 def getMetodi():
     da_elimare = request.args.get('pan')
+    cf= request.args.get('cf')
     if da_elimare is not None:
-        PagamentoService.eliminaMetodo(da_elimare)
+        PagamentoService.eliminaMetodo(da_elimare,cf)
     return render_template("InformazioniPersonali.html", lista= PagamentoService.getMetodi(current_user.CF).all())
 
 
