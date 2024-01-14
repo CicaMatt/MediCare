@@ -18,7 +18,7 @@
 		<!--Titolo con nome della specializzazione-->
 			<div>
 				<h2 class="text-gray-900 font-semibold">Vaccini</h2>
-				<span class="text-s">Lista degli enti pubblici presso cui effettuare la vaccinazione</span>
+				<span class="text-s">Lista dei centri vaccianli presso cui effettuare la vaccinazione</span>
 			</div>
 		<!--Fine Titolo-->
 
@@ -80,12 +80,15 @@
 
 
 						{% if lista %}
-						    {% for ente_sanitario in lista %}
+						    {% for centro in lista %}
 
 
 
 							<!--Esempio dati medico privato-->
 							<tr>
+								<form action="{{url_for('prenotazioni.saveVaccino')}}" method="POST">
+									<input type="hidden" name="medico" value="{{centro.email}}">
+									<input type="hidden" name="richiamo" value="{{richiamo}}">
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 									<div class="flex items-center">
 										<div class="flex-shrink-0 w-10 h-10">
@@ -95,17 +98,17 @@
                                         </div>
 											<div class="ml-3">
 												<div class="text-gray-900 whitespace-no-wrap">
-													{{ente_sanitario.nome}}
+													{{centro.reparto}}
                                                 </div>
 											</div>
 										</div>
 								</td>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<p class="text-gray-900 whitespace-no-wrap">{{ente_sanitario.email}}</p>
+									<p class="text-gray-900 whitespace-no-wrap">{{centro.email}}</p>
 								</td>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 									<p class="text-gray-900 whitespace-no-wrap">
-										{{ente_sanitario.città}}
+										{{centro.città}}
 									</p>
 								</td>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -113,14 +116,15 @@
                                         class="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">
                                         <span aria-hidden
                                             class="absolute inset-0 bg-orange-200 opacity-50 rounded-full"></span>
-									<span class="relative">{{ente_sanitario.nome}}</span>
+									<span class="relative">{{centro.ente_sanitario}}</span>
 									</span>
 								</td>
                                 <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 									<p class="text-gray-900 whitespace-no-wrap">
-                                        <a href="#" id="open-modal" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onclick="openModal()">Prenota</a>
+                                        <button type="submit" id="open-modal" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onclick="openModal()">Prenota</button>
 									</p>
                                 </td>
+								</form>
 							</tr>
 
 
@@ -156,7 +160,7 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
                             </svg>
 
-                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Hai prenotato il 23/12/2024</h3>
+                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Hai prenotato il {{richiamo}}</h3>
 
                             <button id="close-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600" onclick="closeModal()">ok</button>
                         </div>

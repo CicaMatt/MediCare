@@ -18,7 +18,7 @@ class MedicoService:
     """
     #Invece di fare operazioni di input output ad ogni richiesta, memorizzo listamedici
     _listaMedici = None
-    _listaEnti = None
+    _listaCentri = None
 
     @staticmethod
     def getMedico(idMedico):
@@ -39,10 +39,10 @@ class MedicoService:
         return cls._listaMedici
 
     @classmethod
-    def getListaEnti(cls):
-        if cls._listaEnti is None:
-            cls._listaEnti = EnteSanitario.query.all()
-        return cls._listaEnti
+    def getListaCentri(cls):
+        if cls._listaCentri is None:
+            cls._listaCentri = Medico.query.filter(Medico.specializzazione == "Vaccini").all()
+        return cls._listaCentri
 
 
     def filtraMedici(cls, specializzazione = None, citta = None):
@@ -113,7 +113,7 @@ class PazienteService:
         return paziente
     @classmethod
     def getListaVaccini(cls, user):
-        return DocumentoSanitario.query.filter_by(titolare=user.CF, tipo="Vaccino")
+        return DocumentoSanitario.query.filter_by(titolare=user.CF, tipo="Vaccino").all()
 
     @classmethod
     def getListaPrenotazioni(cls, user):
@@ -148,7 +148,7 @@ class PrenotazioneService:
 
     @classmethod
     def getListaVaccini(cls,user):
-        return PrenotazioneService.getListaVaccini(user)
+        return PazienteService.getListaVaccini(user)
 
     @classmethod
     def getListaPrenotazioni(cls, user):
@@ -156,7 +156,11 @@ class PrenotazioneService:
 
     @classmethod
     def getListaPrenotazioniMedico(cls, medico):
-        return db.session.scalars(sqlalchemy.select(Prenotazione).where(Prenotazione.medico == medico))
+        medico=Medico.query.filter(Medico.email==medico).first()
+        if medico.ente_sanitario is None:
+            return db.session.scalars(sqlalchemy.select(Prenotazione).where(Prenotazione.medico == medico.email))
+        else:
+            return db.session.scalars(sqlalchemy.select(Prenotazione).where(Prenotazione.medico == medico.email or Prenotazione.medico == medico.ente_sanitario))
 
     @classmethod
     def confirmIsFree(cls, idmedico, data, ora):
@@ -198,8 +202,30 @@ class PrenotazioneService:
             db.session.rollback()
 
             return False
+    @staticmethod
+    def saveVaccino(idmedico, data, ora, tipo, CF, prezzo=0):
 
+        try:
+            medico=MedicoService().getMedico(idmedico)
+            prenotazione = Prenotazione()
+            prenotazione.medico = idmedico
+            prenotazione.pazienteCF = CF
+            prenotazione.tipoVisita = tipo
+            prenotazione.dataVisita = data
+            prenotazione.oraVisita = ora
+            prenotazione.prezzo = prezzo
+            prenotazione.prenMed = medico
 
+            db.session.add(prenotazione)
+
+            db.session.commit()
+
+        except SQLAlchemyError as e:
+            print("Errore mentre salvavo la prenotazione: {}".format(e))
+
+            db.session.rollback()
+
+            return False
 
 
     @classmethod
@@ -242,6 +268,12 @@ class PrenotazioneService:
         numero_giorni_mese_corrente = (ultimo_giorno_mese_corrente - primo_giorno_mese).days + 1
 
         return numero_giorni_mese_corrente
+    @classmethod
+    def confirmVaccino(cls, idmedico, data, ora):
+        prenotazioni = Prenotazione.query.filter_by(medico=idmedico, oraVisita=ora, dataVisita=data).first()
+        if prenotazioni: #Se ci sono prenotazioni per quella data allora non è free
+            return False
+        return True
 
 
 class FascicoloService:

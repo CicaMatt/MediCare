@@ -23,7 +23,8 @@ def getListaMedici():
 
 @prenotazione_blueprint.route('/listaenti')
 def getListaEnti():
-    return render_template("ListaEnti.html", lista=MedicoService.getListaEnti())
+    richiamo=request.args.get('richiamo')
+    return render_template("ListaEnti.html", lista=MedicoService.getListaCentri(), richiamo=richiamo)
 
 
 @prenotazione_blueprint.route('/listamedici/paginamedico', methods=['GET','POST'])
@@ -39,8 +40,8 @@ def getMedico():
     data = request.form.get('giorno')
     ora = request.form.get('ora')
     carta=request.form.get('carta')
-    prezzo=float(request.form.get('prezzo'))
     medico = MedicoService.getMedico(idMedico)
+    prezzo=float(medico.tariffa)
 
     #Dopo che ha scelto la data e l'ora
     if data and ora and current_user.is_authenticated:
@@ -64,12 +65,23 @@ def getMedico():
         return render_template("ProfiloMedico.html", medico=medico, data=current_date, giorni=giorni, carte=paziente.carte, prezzo=prezzo)
 
 
-@app.route('/prenotazione/listavaccini')
+@prenotazione_blueprint.route('/prenotazione/listavaccini')
 def getListaVaccini():
-    if 'user' in session:
-        user = session['user']
+    if '_user_id' in session:
+        user = Paziente.query.filter(Paziente.CF==session.get('_user_id')).first()
         return render_template("Vaccini.html", lista=PrenotazioneService.getListaVaccini(user))
     return render_template("Prenotazione.html")
+
+@prenotazione_blueprint.route('/saveVaccino', methods=['POST'])
+def saveVaccino():
+    if '_user_id' in session and request.method == 'POST':
+        user = session['_user_id']
+        medico=request.form['medico']
+        richiamo=request.form['richiamo']
+        if PrenotazioneService.confirmVaccino(medico,richiamo,11):
+            PrenotazioneService.saveVaccino(medico,richiamo,11,"Vaccino",user)
+            return render_template("HomePage.html")
+        else: return render_template("ListaEnti.html", lista=MedicoService.getListaCentri(), richiamo=richiamo)
 
 
 

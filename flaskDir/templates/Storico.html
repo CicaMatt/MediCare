@@ -109,12 +109,16 @@
                 <td class="px-6 py-4">
                     {{ Prenotazione.oraVisita }}
                 </td>
+
                 <td class="px-6 py-4">
+                    {% if Prenotazione.tipoVisita != "Vaccino" %}
                     <form action="{{ url_for('prenotazioni.getMedico') }}" method="post">
                     <input type="hidden" name="medico" value="{{ Prenotazione.medico }}">
                     <button type="submit"  class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editable</button>
                     </form>
+                    {% endif %}
                 </td>
+
             </tr>
             {% endfor %}
         {% endif %}
