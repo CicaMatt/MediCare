@@ -5,6 +5,7 @@ from flaskDir import app, db
 from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
 from flaskDir.MediCare.model.entity.Medici import Medico
 from flaskDir.MediCare.model.entity.Paziente import Paziente
+from flaskDir.source.autenticazione import AutenticazioneService
 from sqlalchemy_utils import create_database, database_exists
 
 @pytest.fixture
@@ -41,32 +42,12 @@ def setUp(request):
         request.addfinalizer(teardown)
 
 
-def test_login_MedicoService():
-    new_user = Medico(
-        email='test@example.com',
-        password_hash='password123',
-        nome='John',
-        cognome='Doe',
-        iscrizione_albo=123242,
-        specializzazione="chirurgia",
-        città="Napoli",
-        tariffa=50
-    )
-    with app.app_context():
-        db.session.add(new_user)
-        db.session.commit()
-
-        user_in_db = Medico.query.filter_by(email='test@example.com').first()
-        assert user_in_db
-        db.session.delete(user_in_db)
-        db.session.commit()
 
 
 
 def testfail_login_MedicoService():
     new_user = Medico(
         email='test@example.com',
-        password_hash='password123',
         nome='John',
         cognome='Doe',
         iscrizione_albo=123242,
@@ -74,10 +55,57 @@ def testfail_login_MedicoService():
         città="Napoli",
         tariffa=50
     )
+    new_user.set_password('123password')
     with app.app_context():
 
-        user_in_db = Medico.query.filter_by(email='test@example.com').first()
-        oracolo=None
+        user_in_db = AutenticazioneService.login_page(new_user.email, "123password", "medico")
+        oracolo=False
         assert user_in_db==oracolo
+
+
+
+def test_emailInvalid_login():
+    new_user = Medico(
+        email='test@example.com',
+        nome='John',
+        cognome='Doe',
+        iscrizione_albo=123242,
+        specializzazione="chirurgia",
+        città="Napoli",
+        tariffa=50
+    )
+    new_user.set_password('123password')
+    with app.app_context():
+        db.session.add(new_user)
+        db.session.commit()
+
+        user_in_db = AutenticazioneService.login_page("pincopalllo@gmail.com", "123password", "medico")
+        oracolo = False
+        assert user_in_db == oracolo
+        db.session.delete(new_user)
+        db.session.commit()
+
+def test_passwordInvalid_login():
+    new_user = Medico(
+        email='test@example.com',
+        nome='John',
+        cognome='Doe',
+        iscrizione_albo=123242,
+        specializzazione="chirurgia",
+        città="Napoli",
+        tariffa=50
+    )
+    new_user.set_password('123password')
+    with app.app_context():
+        db.session.add(new_user)
+        db.session.commit()
+
+        user_in_db = AutenticazioneService.login_page("pincopalllo@gmail.com", "Pallino", "medico")
+        oracolo = False
+        assert user_in_db == oracolo
+        db.session.delete(new_user)
+        db.session.commit()
+
+
 
 

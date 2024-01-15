@@ -21,143 +21,111 @@ def load_user(id): #Bisogna aggiungere anche l'utente
     elif user_role == 'ente':
         return db.session.get(EnteSanitario, id)
 
-def login_page(request):
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
-
-    if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
-
-        if request.form.get('tipo')=='medico':
-
-            medico = medicoService.retrieveMedico(email, password)
-            if medico == None:
-                return redirect(url_for('auth.login_page'))  # Gli potrei aggiungere la notifica che le credenziali son oerrate
-            login_user(medico)
-            session['user_role'] = 'medico'
-            return redirect(url_for('home'))
-
-        else:
-            paziente = pazienteService.retrievePaziente(email, password)
-            if paziente == None:
-                return redirect(url_for('auth.login_page'))
-            login_user(paziente)
-            session['user_role'] = 'paziente'
-            return redirect(url_for('home'))
+def login_page(email,password,tipo):
+    if current_user:
+        if current_user.is_authenticated:
+            return True
+    if tipo =='medico':
+        medico = medicoService.retrieveMedico(email, password)
+        if medico == None:
+            return False # Gli potrei aggiungere la notifica che le credenziali son oerrate
+        login_user(medico)
+        session['user_role'] = 'medico'
+        return medico
 
     else:
-        return render_template("Login.html")
+        paziente = pazienteService.retrievePaziente(email, password)
+        if paziente == None:
+            return False
+        login_user(paziente)
+        session['user_role'] = 'paziente'
+        return True
 
 
 
-def loginEnte_page(request):
-    if current_user.is_authenticated:  # Aggiungere ROLE ENTE; ELSE ERROR
-        return redirect(url_for('home'))
+def loginEnte_page(email,password):
+    if current_user:
+        if current_user.is_authenticated:  # Aggiungere ROLE ENTE; ELSE ERROR
+            return True
+    ente = EnteService.retrieveEnte(email, password)
+    if ente is None:
+        return False  # Gli potrei aggiungere la notifica che le credenziali son oerrate
+    login_user(ente)  # Potremmo chidere anche se l'utente vuole essere ricordato
+    session['user_role'] = 'ente'
 
-    if request.method == 'POST':
-        email = request.form.get('email')
-        password = request.form.get('password')
-        ente = EnteService.retrieveEnte(email, password)
-        if ente is None:
-            return redirect(url_for('auth.loginEnte_page'))  # Gli potrei aggiungere la notifica che le credenziali son oerrate
-        login_user(ente)  # Potremmo chidere anche se l'utente vuole essere ricordato
-        session['user_role'] = 'ente'
-
-        return redirect(url_for('home'))
-    else:
-        return render_template("LoginEnte.html")
+    return True
 
 
 
-def registrazione_pageMedico(request):
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
-    if request.method == 'POST':
-        email=request.form.get('email')
+def registrazione_pageMedico(email,password,nome,cognome,iscrizione,specializzazione,citta):
+    if current_user:
+        if current_user.is_authenticated:
+            return False
+    medico=medicoService.retrieveMedico(email,password)
+    if medico is not None:
+        return False
+    medico=Medico()
+    with app.app_context():
+        medico.email=email
+        medico.set_password(password)
+        medico.nome=nome
+        medico.cognome=cognome
+        medico.iscrizione_albo=int(iscrizione)
+        medico.specializzazione=specializzazione
+        medico.tariffa=50.00
+        medico.città=citta
+        db.session.add(medico)
+        db.session.commit()
 
-        password = request.form.get('password')
-        nome=request.form.get('nome')
-        cognome=request.form.get('cognome')
-        iscrizione_albo=request.form.get('code')
-        specializzazione=request.form.get('specializzazione')
+        medicoService.addMedicotoLista(medico)
 
-        citta=request.form.get('citta')
+        return True
 
+
+def registrazionePaziente(email,password,nome,cognome,CF,cellulare,luogoNascita,domicilio,dataNascita,sesso):
+    if current_user:
+        if current_user.is_authenticated:
+            return False
+
+    paziente=PazienteService.retrievePaziente(email,password)
+    if paziente:
+        return False
+    paziente=Paziente()
+    with app.app_context():
+        paziente.CF=CF
+        paziente.chiaveSPID=1
+        paziente.email=email
+        paziente.nome=nome
+        paziente.cognome=cognome
+        paziente.set_password(password)
+        paziente.cellulare=cellulare
+        paziente.domicilio=domicilio
+        paziente.dataNascita=dataNascita
+        paziente.luogoNascita=luogoNascita
+        paziente.sesso=sesso
+
+        db.session.add(paziente)
+        db.session.commit()
+        return True
+
+
+
+def registrazioneEnte(email,password,nome,citta):
+    if current_user:
+        if current_user.is_authenticated:
+            return False
+        ente=EnteService.retrieveEnte(email,password)
+        if ente is not None:
+            return False
+        ente=EnteSanitario()
         with app.app_context():
-            medico=Medico()
-            medico.email=email
-            medico.set_password(password)
-            medico.nome=nome
-            medico.cognome=cognome
-            medico.iscrizione_albo=int(iscrizione_albo)
-            medico.specializzazione=specializzazione
-            medico.tariffa=50.00
-            medico.città=citta
-            db.session.add(medico)
-            db.session.commit()
-
-            medicoService.addMedicotoLista(medico)
-
-        return redirect(url_for('auth.login_page'))
-    else: return render_template('RegistrazioneMedico.html')
-
-
-def registrazionePaziente(request):
-    if request.method == 'POST':
-        email=request.form.get('email')
-        password=request.form.get('password')
-        nome=request.form.get('nome')
-        cognome=request.form.get('cognome')
-        CF=request.form.get('code')
-        cellulare=request.form.get('cellulare')
-        luogoNascita=request.form.get('cittanascita')
-        domicilio=request.form.get('domicilio')
-        dataNascita=request.form.get('datanascita')
-        sesso=request.form.get('sesso')
-
-        paziente=Paziente()
-        with app.app_context():
-            paziente.CF=CF
-            paziente.chiaveSPID=1
-            paziente.email=email
-            paziente.nome=nome
-            paziente.cognome=cognome
-            paziente.set_password(password)
-            paziente.cellulare=cellulare
-            paziente.domicilio=domicilio
-            paziente.dataNascita=dataNascita
-            paziente.luogoNascita=luogoNascita
-            paziente.sesso=sesso
-
-            db.session.add(paziente)
-            db.session.commit()
-        return render_template("Login.html")
-    else: return render_template('RegistrazionePaziente.html')
-
-
-
-def registrazioneEnte(request):
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
-    if request.method == 'POST':
-        nome=request.form.get('nome')
-        email=request.form.get('email')
-        password=request.form.get('password')
-        citta=request.form.get('citta')
-
-        with app.app_context():
-            ente=EnteSanitario()
             ente.nome=nome
             ente.email=email
             ente.set_password(password)
             ente.città=citta
             db.session.add(ente)
             db.session.commit()
-        return redirect(url_for('auth.loginEnte_page'))
-    else:
-        return render_template('RegistrazioneEnte.html')
-
+        return True
 
 
 def logout():
