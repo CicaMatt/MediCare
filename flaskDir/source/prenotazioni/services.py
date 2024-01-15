@@ -173,7 +173,7 @@ class PrenotazioneService:
         return True
 
     @staticmethod
-    def savePrenotazione (idmedico, data, ora, tipo, CF, prezzo, carta=None):
+    def savePrenotazione (idmedico, data, ora, tipo, CF, prezzo, carta="SSS"):
 
         try:
             medico=MedicoService().getMedico(idmedico)
@@ -185,8 +185,12 @@ class PrenotazioneService:
             prenotazione.pazienteCF = CF
             prenotazione.tipoVisita = tipo
             prenotazione.dataVisita = data
-            prenotazione.oraVisita = ora
-            prenotazione.prezzo = prezzo
+            if  8<=int(ora)<=19:
+                prenotazione.oraVisita = int(ora)
+            else: raise SQLAlchemyError
+            if float(prezzo)<=0:
+                raise SQLAlchemyError
+            prenotazione.prezzo = float(prezzo)
             prenotazione.prenMed = medico
             if carta.isdigit():
                 prenotazione.pagata = True
