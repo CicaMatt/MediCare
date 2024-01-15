@@ -1,6 +1,10 @@
 import pytest
 import sqlalchemy
 from urllib.parse import quote
+
+from flask import session
+from flask_login import current_user
+
 from flaskDir import app, db
 from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
 from flaskDir.MediCare.model.entity.Medici import Medico
@@ -8,17 +12,12 @@ from flaskDir.MediCare.model.entity.Paziente import Paziente
 from flaskDir.source.autenticazione import AutenticazioneService
 from sqlalchemy_utils import create_database, database_exists
 
-@pytest.fixture
-def client():
-    app.config.update({"TESTING": True})
-    with app.test_client() as client:
-        yield client
 
 
 @pytest.fixture(autouse=True, scope='session')
 def setUp(request):
     # Configura il database di test
-    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{quote('Gio210302DVK')}@localhost:3306/testmedicare"
+    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:lollipop@localhost:3306/testmedicare"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["TESTING"] = True
     db.init_app(app)
@@ -42,6 +41,31 @@ def setUp(request):
         request.addfinalizer(teardown)
 
 
+
+def test_Validlogin_Medico():
+    mail = "test@example1.com"
+    password = "123password"
+    new_user = Medico(
+        email='test@example1.com',
+        nome='John',
+        cognome='Doe',
+        iscrizione_albo=123242,
+        specializzazione="chirurgia",
+        città="Napoli",
+        tariffa=50
+    )
+    new_user.set_password(password)
+    with app.app_context():
+        db.session.add(new_user)
+        db.session.commit()
+
+
+    credenzialiTest = {"email": mail, "password": password, "tipo":"medico"}
+    with app.test_client() as client:
+        response = client.post('/auth/login', data=credenzialiTest)
+        assert response.status_code == 200
+        assert current_user.is_authenticated is True
+        assert session.get('user_role') == "medico"
 
 
 
