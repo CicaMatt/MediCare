@@ -42,6 +42,8 @@ print(df)
 prev=df['age']
 min_prev=prev.min()
 max_eta=prev.max()
+min_eta=prev.min()
+
 
 normale=(prev-min_prev)/(max_eta-min_prev)
 df['age']=normale
@@ -51,6 +53,8 @@ df['age']=normale
 prev=df['thalachh']
 min_prev=prev.min()
 max_prev=prev.max()
+min_thal=prev.min()
+max_thal=prev.max()
 
 normale=(prev-min_prev)/(max_prev-min_prev)
 
@@ -62,6 +66,8 @@ print(df['thalachh'])
 prev=df['oldpeak']
 min_prev=prev.min()
 max_prev=prev.max()
+min_oldpeak=prev.min()
+max_oldpeak=prev.max()
 
 normale=(prev-min_prev)/(max_prev-min_prev)
 
@@ -73,6 +79,8 @@ print(df['oldpeak'])
 prev=df['trtbps']
 min_prev=prev.min()
 max_prev=prev.max()
+min_trtbps=prev.min()
+max_trtbps=prev.max()
 
 normale=(prev-min_prev)/(max_prev-min_prev)
 
@@ -83,6 +91,8 @@ print(df['trtbps'])
 prev=df['chol']
 min_prev=prev.min()
 max_prev=prev.max()
+min_chol=prev.min()
+max_chol=prev.max()
 
 normale=(prev-min_prev)/(max_prev-min_prev)
 df['chol']=normale
