@@ -1,6 +1,8 @@
 from flaskDir.source.ModuloIA.Modello_definitivo import modelloAccurato, modelloSimple
 from flaskDir.source.ModuloIA.DataPreparation import min_eta,max_eta,min_thal,max_thal,min_oldpeak,max_oldpeak,min_chol,max_chol,min_trtbps, max_trtbps, colonne_cat
 from flaskDir.source.ModuloIA.DataPreparation2 import colonne_cat as colonne_simple
+from flaskDir.source.ModuloIA.DataPreparation import df as df_accurato
+from flaskDir.source.ModuloIA.DataPreparation import df as df_simple
 import pandas as pd
 class ModuloIAService:
     @classmethod
@@ -13,6 +15,9 @@ class ModuloIAService:
         new_istance['chol']=(chol-min_chol)/(max_chol-min_chol)
         new_istance['trtbps']=(trtbps-min(trtbps))/(max_trtbps-min_trtbps)
         new_istance=pd.get_dummies(new_istance,columns=colonne_cat,prefix=colonne_cat)
+        colonne_mancanti=set(df_accurato.columns)-set(new_istance.columns)
+        for col in colonne_mancanti:
+            new_istance[col]=0
         result=modelloAccurato.predict(new_istance)
 
 
@@ -29,4 +34,7 @@ class ModuloIAService:
         new_istance['chol'] = (chol - min_chol) / (max_chol - min_chol)
         new_istance['trtbps'] = (trtbps - min(trtbps)) / (max_trtbps - min_trtbps)
         new_istance = pd.get_dummies(new_istance, columns=colonne_simple, prefix=colonne_simple)
+        colonne_mancanti = set(df_simple.columns) - set(new_istance.columns)
+        for col in colonne_mancanti:
+            new_istance[col] = 0
         result = modelloSimple.predict(new_istance)
