@@ -29,4 +29,4 @@ class ModuloIAService:
         new_istance['chol'] = (chol - min_chol) / (max_chol - min_chol)
         new_istance['trtbps'] = (trtbps - min(trtbps)) / (max_trtbps - min_trtbps)
         new_istance = pd.get_dummies(new_istance, columns=colonne_simple, prefix=colonne_simple)
-        result = modelloAccurato.predict(new_istance)
+        result = modelloSimple.predict(new_istance)
