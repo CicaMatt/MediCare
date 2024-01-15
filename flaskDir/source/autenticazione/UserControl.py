@@ -1,11 +1,14 @@
 from flask import Blueprint, request, render_template
+from flask_login import current_user
 from flaskDir.source.autenticazione import AutenticazioneService
 
 auth_blueprint = Blueprint('auth', __name__)
 
 
-@auth_blueprint.route('/login', methods=['POST'])
+@auth_blueprint.route('/login', methods=['GET','POST'])
 def login_page():
+    if current_user.is_authenticated:
+        return render_template('HomePage.html')
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
@@ -16,17 +19,22 @@ def login_page():
     else: return render_template('Login.html')
 
 
-@auth_blueprint.route('/loginente', methods=['POST'])
+@auth_blueprint.route('/loginente', methods=['GET','POST'])
 def loginEnte_page():
-    email=request.form.get('email')
-    password=request.form.get('password')
-    if AutenticazioneService.loginEnte_page(email, password):
+    if current_user.is_authenticated:
         return render_template('HomePage.html')
+    if request.method == 'POST':
+        email=request.form.get('email')
+        password=request.form.get('password')
+        if AutenticazioneService.loginEnte_page(email, password):
+            return render_template('HomePage.html')
     else: return render_template('LoginEnte.html')
 
 
-@auth_blueprint.route('/registrazioneMedico', methods=['POST'])
+@auth_blueprint.route('/registrazioneMedico', methods=['GET','POST'])
 def registrazioneMedico():
+    if current_user.is_authenticated:
+        return render_template('HomePage.html')
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
@@ -40,8 +48,10 @@ def registrazioneMedico():
         else: return render_template('RegistrazioneMedico.html')
 
 
-@auth_blueprint.route('/registrazionePaziente', methods=['POST'])
+@auth_blueprint.route('/registrazionePaziente', methods=['GET','POST'])
 def registrazionePaziente():
+    if current_user.is_authenticated:
+        return render_template('HomePage.html')
     if request.method == 'POST':
         email=request.form.get('email')
         password=request.form.get('password')
@@ -58,8 +68,10 @@ def registrazionePaziente():
         else: return render_template('RegistrazionePaziente.html')
 
 
-@auth_blueprint.route('/registrazione/ente', methods=['POST'])
+@auth_blueprint.route('/registrazione/ente', methods=['GET','POST'])
 def registrazioneEnte():
+    if current_user.is_authenticated:
+        return render_template('HomePage.html')
     if request.method == 'POST':
         nome = request.form.get('nome')
         email = request.form.get('email')

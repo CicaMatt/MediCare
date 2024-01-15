@@ -22,9 +22,6 @@ def load_user(id): #Bisogna aggiungere anche l'utente
         return db.session.get(EnteSanitario, id)
 
 def login_page(email,password,tipo):
-    if current_user:
-        if current_user.is_authenticated:
-            return True
     if tipo =='medico':
         medico = medicoService.retrieveMedico(email, password)
         if medico == None:
@@ -44,9 +41,6 @@ def login_page(email,password,tipo):
 
 
 def loginEnte_page(email,password):
-    if current_user:
-        if current_user.is_authenticated:  # Aggiungere ROLE ENTE; ELSE ERROR
-            return True
     ente = EnteService.retrieveEnte(email, password)
     if ente is None:
         return False  # Gli potrei aggiungere la notifica che le credenziali son oerrate
@@ -58,9 +52,6 @@ def loginEnte_page(email,password):
 
 
 def registrazione_pageMedico(email,password,nome,cognome,iscrizione,specializzazione,citta):
-    if current_user:
-        if current_user.is_authenticated:
-            return False
     medico=medicoService.retrieveMedico(email,password)
     if medico is not None:
         return False
@@ -83,9 +74,6 @@ def registrazione_pageMedico(email,password,nome,cognome,iscrizione,specializzaz
 
 
 def registrazionePaziente(email,password,nome,cognome,CF,cellulare,luogoNascita,domicilio,dataNascita,sesso):
-    if current_user:
-        if current_user.is_authenticated:
-            return False
 
     paziente=PazienteService.retrievePaziente(email,password)
     if paziente:
@@ -111,9 +99,7 @@ def registrazionePaziente(email,password,nome,cognome,CF,cellulare,luogoNascita,
 
 
 def registrazioneEnte(email,password,nome,citta):
-    if current_user:
-        if current_user.is_authenticated:
-            return False
+
         ente=EnteService.retrieveEnte(email,password)
         if ente is not None:
             return False
