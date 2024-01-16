@@ -76,14 +76,6 @@ def dettagliFarmaco():
 def AreaEnte():
     return render_template("AreaEnte.html")
 
-
-@app.route('/creaMedico', methods=['GET', 'POST'])
-# @login_required and user is ente
-def CreaMedico():
-    return render_template("CreaMedico.html")
-
-
-
 @app.route('/fascicoloSanitario')
 def fascicoloSanitario():
     return render_template('FascicoloElettronico.html')
@@ -91,18 +83,6 @@ def fascicoloSanitario():
 @app.route('/isee')
 def isee():
     return render_template('isee.html')
-
-
-@app.route('/datiSanitari')
-def datiSanitari():
-    return render_template("DatiSanitari.html")
-
-
-@app.route('/areaDiagnostica')
-# @login_required and user is ente
-def AreaDiagnostica():
-    return render_template("AreaDiagnostica.html")
-
 
 @app.route('/modificaDatiUtente')
 def modificaDatiUtente():
