@@ -1,4 +1,6 @@
 import sqlalchemy
+from sqlalchemy.exc import SQLAlchemyError
+
 from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario, Medico
 from flaskDir import db, app
 class EnteService:
