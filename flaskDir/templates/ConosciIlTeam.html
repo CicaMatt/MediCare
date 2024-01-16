@@ -7,48 +7,21 @@
 </head>
 <body>
 {% include 'Navbar.html' %}
-<div class="flex-column justify-center items-center text-center">
-<h1 class="font-serif text-3xl font-bold leading-6 ml-30 mt-3 text-stone-600 block transition">Team Medicare</h1>
-    <div class="font serif text-base mt-4 ml-30 justify-content-between">Il team di medicare è formato da 8 persone, ognuno con vari ruoli in modo tale da avere una più chiara<br>
-        e facile suddivisone delle mansioni:
-        <ul>
-            <li>Progect Manager</li>
-            <li>Grafici</li>
-            <li>Sviluppatori</li>
-        </ul>
-        </div>
-        <h1 class="font-serif text-3xl font-bold leading-6 ml-30 mt-3 text-stone-600 block">Project Manager</h1>
-            <div class="font serif text-base mt-4 ml-30 justify-content-between">I project manager coinvolti sono due: Matteo Cicalese e Luca Contrasto.<br>
-                Dotati entrambi di una grande leadership, hanno guidato tutti gli altri team member nello svolgimento <br>dei vari compiti, suggerendo i tipi
-                di approccio da utilizzare e le tecnologie in fase d'implementazioni.
-    </div>
-    <h1 class="font-serif text-3xl font-bold leading-6 ml-30 mt-3 text-stone-600 block">Grafici</h1>
-        <div class="font serif text-base mt-4 ml-30 justify-content-between">
-            I Grafici della piattaforma MediCare sono sempre 2 come i project Manager: Matteo Avella e Gianluca Palumbo.
-            Tramite l'utlizzo di appropriati<br> tool grafici per il CSS, sono riusciti in pochissimo tempo a realizzare
-            un template generale per la piattaforma web, inoltre, si sono occupati di <br>tutta la parte di front-end della piattaforma
-            sviluppando tutta l'interfaccia grafica per l'utente.
-        </div>
-     <h1 class="font-serif text-3xl font-bold leading-6 ml-30 mt-8 text-stone-600 block">Sviluppatori</h1>
-    <div class="font serif text-base mt-4 ml-30 justify-content-between mb-3">
-        Per gli sviluppatori si intende tutta la parte del team che si è occupata d'implementare la logica di business della piattaforma,<br>
-        in questo caso tale parte del gruppo era formata da 4 persone: Giovanni Casaburi, Salvatore Basilicata, Primo Vinicio Calabrese e Domenico Alessandro Urciuoli.<br>
-    </div>
-</div>
+
 
 <section class="bg-white dark:bg-gray-900">
   <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
       <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
           <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Team MediCare</h2>
-          <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Il team MediCare è composto da 8 persone, ognuno con vari ruoli, in modo tale da avere una più chiara
+          <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400">Il team MediCare è composto da 8 persone, ognuno con diversi ruoli, in modo tale da avere una più chiara
               e facile suddivisone delle mansioni</p>
       </div>
       <div class="grid grid-cols-2 gap-8 mb-10">
 
           <div class="text-center text-gray-500 dark:text-gray-400">
-              <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png" alt="Michael Avatar">
+              <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="{{ url_for('static', filename='images/fotoprofilo/luca.jpg') }}" alt="Michael Avatar">
               <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  <a href="#">Matteo Cicalese</a>
+                  <a href="#">Luca Contrasto</a>
               </h3>
               <p>Project Manager</p>
               <ul class="flex justify-center mt-4 space-x-4">
@@ -75,11 +48,11 @@
               </ul>
           </div>
           <div class="text-center text-gray-500 dark:text-gray-400">
-              <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/neil-sims.png" alt="Neil Avatar">
+              <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="{{ url_for('static', filename='images/fotoprofilo/matteoc.jpg') }}" alt="Neil Avatar">
               <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  <a href="#">Luca Contrasto</a>
+                  <a href="#">Matteo Cicalese</a>
               </h3>
-              <p>Vue.js Developer</p>
+              <p>Project Manager</p>
               <ul class="flex justify-center mt-4 space-x-4">
                   <li>
                       <a href="#" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
@@ -108,11 +81,14 @@
       <div class="grid grid-cols-6 gap-8">
 
           <div class="text-center text-gray-500 dark:text-gray-400">
-              <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/michael-gouch.png" alt="Michael Avatar">
+              <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="{{ url_for('static', filename='images/fotoprofilo/matteoa.jpg') }}" alt="Michael Avatar">
               <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  <a href="#">Matteo Cicalese</a>
+                  <a href="#">Matteo</a>
+                  <br>
+                  <a href="#">Avella</a>
+
               </h3>
-              <p>Project Manager</p>
+              <p>Team Member</p>
               <ul class="flex justify-center mt-4 space-x-4">
                   <li>
                       <a href="#" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
@@ -137,11 +113,11 @@
               </ul>
           </div>
           <div class="text-center text-gray-500 dark:text-gray-400">
-              <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/neil-sims.png" alt="Neil Avatar">
+              <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="{{ url_for('static', filename='images/fotoprofilo/salvatore.jpg') }}" alt="Neil Avatar">
               <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  <a href="#">Luca Contrasto</a>
+                  <a href="#">Salvatore Basilicata</a>
               </h3>
-              <p>Vue.js Developer</p>
+              <p>Team Member</p>
               <ul class="flex justify-center mt-4 space-x-4">
                   <li>
                       <a href="#" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
@@ -166,11 +142,13 @@
               </ul>
           </div>
           <div class="text-center text-gray-500 dark:text-gray-400">
-              <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/neil-sims.png" alt="Neil Avatar">
+              <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="{{ url_for('static', filename='images/fotoprofilo/primo.jpg') }}" alt="Neil Avatar">
               <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  <a href="#">Luca Contrasto</a>
+                  <a href="#">Primo</a>
+                  <br>
+                  <a href="#">Calabrese</a>
               </h3>
-              <p>Vue.js Developer</p>
+              <p>Team Member</p>
               <ul class="flex justify-center mt-4 space-x-4">
                   <li>
                       <a href="#" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
@@ -195,11 +173,11 @@
               </ul>
           </div>
           <div class="text-center text-gray-500 dark:text-gray-400">
-              <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/neil-sims.png" alt="Neil Avatar">
+              <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="{{ url_for('static', filename='images/fotoprofilo/giovanni.jpg') }}" alt="Neil Avatar">
               <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  <a href="#">Luca Contrasto</a>
+                  <a href="#">Giovanni Casaburi</a>
               </h3>
-              <p>Vue.js Developer</p>
+              <p>Team Member</p>
               <ul class="flex justify-center mt-4 space-x-4">
                   <li>
                       <a href="#" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
@@ -224,11 +202,11 @@
               </ul>
           </div>
           <div class="text-center text-gray-500 dark:text-gray-400">
-              <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/neil-sims.png" alt="Neil Avatar">
+              <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="{{ url_for('static', filename='images/fotoprofilo/gianluca.jpg') }}" alt="Neil Avatar">
               <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  <a href="#">Luca Contrasto</a>
+                  <a href="#">Gianluca Palumbo</a>
               </h3>
-              <p>Vue.js Developer</p>
+              <p>Team Member</p>
               <ul class="flex justify-center mt-4 space-x-4">
                   <li>
                       <a href="#" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
@@ -253,11 +231,11 @@
               </ul>
           </div>
           <div class="text-center text-gray-500 dark:text-gray-400">
-              <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/neil-sims.png" alt="Neil Avatar">
+              <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="{{ url_for('static', filename='images/fotoprofilo/domenico.jpg') }}" alt="Neil Avatar">
               <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-                  <a href="#">Luca Contrasto</a>
+                  <a href="#">Alessandro Urciuoli</a>
               </h3>
-              <p>Vue.js Developer</p>
+              <p>Team Member</p>
               <ul class="flex justify-center mt-4 space-x-4">
                   <li>
                       <a href="#" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
