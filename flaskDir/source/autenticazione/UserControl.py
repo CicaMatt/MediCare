@@ -15,7 +15,7 @@ def login_page():
         tipo=request.form.get('tipo')
         if AutenticazioneService.login_page(email,password,tipo):
             return render_template('HomePage.html')
-        else: return render_template('Login.html')
+        else: return render_template('Login.html',error=False)
     else: return render_template('Login.html')
 
 

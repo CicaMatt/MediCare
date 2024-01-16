@@ -33,10 +33,10 @@
     </div>
     <div class="hidden lg:flex lg:flex-1 lg:justify-end">
       {% if not current_user.is_authenticated %}
-      <a href="{{url_for('auth.login_page')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Log in <span aria-hidden="true">&rarr;</span></a>
+      <a href="{{url_for('auth.login_page')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200" id="login">Log in <span aria-hidden="true">&rarr;</span></a>
       {% else %}
         {% if session.get('user_role')=='paziente' %}
-      <a href="{{url_for('informazionipersonali.getMetodi')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Ciao, {{current_user.nome}} </a>
+      <a href="{{url_for('informazionipersonali.getMetodi')}}" id="paziente" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Ciao, {{current_user.nome}} </a>
         {% elif session.get('user_role')=='ente' %}
       <a href="{{url_for('AreaEnte')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Ciao, {{current_user.nome}} </a>
         {% elif session.get('user_role')=='medico' %}
