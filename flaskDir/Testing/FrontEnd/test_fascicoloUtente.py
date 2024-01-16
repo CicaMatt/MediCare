@@ -36,13 +36,7 @@ class TestFascicolo():
             paziente.sesso="Maschio"
             paziente.ISEE_ordinario=10000
 
-            documento1=DocumentoSanitario.DocumentoSanitario(NumeroDocumento="AB230",tipo="Visita",descrizione="Visita oculistica, diagnosticata Miopia",
-                                                            titolare=paziente.CF, dataEmissione="2023/12/12")
-            documento2=DocumentoSanitario.DocumentoSanitario(NumeroDocumento="AB233",tipo="Analisi",descrizione="Analisi delle urine",
-                                                             titolare=paziente.CF, dataEmissione="2024/01/10")
             db.session.add(paziente)
-            db.session.commit()
-            db.session.add_all([documento1,documento2])
             db.session.commit()
         self.driver.get("http://127.0.0.1:5000/")
         self.driver.set_window_size(1920,1080)
@@ -57,18 +51,40 @@ class TestFascicolo():
         self.driver.quit()
         if database_exists(app.config['SQLALCHEMY_DATABASE_URI']):
             with app.app_context():
-                db.session.delete(DocumentoSanitario.DocumentoSanitario.query.filter_by(NumeroDocumento="AB230").first())
-                db.session.delete(DocumentoSanitario.DocumentoSanitario.query.filter_by(NumeroDocumento="AB233").first())
-                db.session.commit()
                 db.session.delete(Paziente.Paziente.query.filter_by(CF="CSBGNN2103456VBM").first())
                 db.session.commit()
 
     def test_fascicoloPieno(self):
+        with app.app_context():
+            documento1 = DocumentoSanitario.DocumentoSanitario(NumeroDocumento="AB230", tipo="Visita",
+                                                           descrizione="Visita oculistica, diagnosticata Miopia",
+                                                           titolare="CSBGNN2103456VBM", dataEmissione="2023/12/12")
+            documento2 = DocumentoSanitario.DocumentoSanitario(NumeroDocumento="AB233", tipo="Analisi",
+                                                           descrizione="Analisi delle urine",
+                                                           titolare="CSBGNN2103456VBM", dataEmissione="2024/01/10")
+            db.session.add_all([documento1,documento2])
+            db.session.commit()
+
         self.driver.get("http://127.0.0.1:5000/")
         self.driver.set_window_size(1934, 1046)
-        element=WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID,"paziente")))
+        element = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.ID,"paziente")))
         element.click()
-        element=WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, "Fascicolo")))
+        element = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.ID, "Fascicolo")))
         element.click()
         assert self.driver.current_url == "http://127.0.0.1:5000/areautente/fascicolo?paziente=CSBGNN2103456VBM"
+        with app.app_context():
+            db.session.delete(documento1)
+            db.session.delete(documento2)
+            db.session.commit()
 
+
+    def test_fascicoloVuoto(self):
+        self.driver.get("http://127.0.0.1:5000/")
+        self.driver.set_window_size(1934, 1046)
+        element = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, "paziente")))
+        element.click()
+        element = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, "Fascicolo")))
+        element.click()
+        assert self.driver.current_url == "http://127.0.0.1:5000/areautente/fascicolo?paziente=CSBGNN2103456VBM"
+        element=self.driver.find_element(By.ID,"vuoto").text
+        assert element == "Sembra che il tuo fascicolo sanitario sia attualmente vuoto"
