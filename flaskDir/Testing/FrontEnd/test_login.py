@@ -48,6 +48,7 @@ class TestLogin():
     def test_loginUserNotRegistered(self):
         self.driver.get("http://127.0.0.1:5000/")
         self.driver.set_window_size(1920,1080)
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "login")))
         self.driver.find_element(By.ID, "login").click()
         self.driver.find_element(By.ID, "email").click()
         self.driver.find_element(By.ID, "email").send_keys("paperino@gmail.com")
@@ -58,6 +59,7 @@ class TestLogin():
     def test_login_failedForEmail(self):
         self.driver.get("http://127.0.0.1:5000")
         self.driver.set_window_size(1920,1080)
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "login")))
         self.driver.find_element(By.ID, "login").click()
         self.driver.find_element(By.ID,"user").click()
         self.driver.find_element(By.ID,"email").send_keys("pippi@gmail.com")
@@ -70,6 +72,7 @@ class TestLogin():
     def test_login_failedForPassword(self):
         self.driver.get("http://127.0.0.1:5000")
         self.driver.set_window_size(1920,1080)
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "login")))
         self.driver.find_element(By.ID, "login").click()
         self.driver.find_element(By.ID,"user").click()
         self.driver.find_element(By.ID,"email").send_keys("pippo@gmail.com")
@@ -82,6 +85,7 @@ class TestLogin():
     def test_login_success(self):
         self.driver.get("http://127.0.0.1:5000")
         self.driver.set_window_size(1920,1080)
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "login")))
         self.driver.find_element(By.ID, "login").click()
         self.driver.find_element(By.ID,"user").click()
         self.driver.find_element(By.ID,"email").send_keys("pippo@gmail.com")
