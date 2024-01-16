@@ -46,7 +46,7 @@ class TestFascicolo():
             db.session.commit()
         self.driver.get("http://127.0.0.1:5000/")
         self.driver.set_window_size(1920,1080)
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID,"login")))
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID,"login")))
         self.driver.find_element(By.ID, "login").click()
         self.driver.find_element(By.ID, "user").click()
         self.driver.find_element(By.ID, "email").send_keys("pippo@gmail.com")
