@@ -32,9 +32,6 @@
                 <th scope="col" class="px-6 py-3">
                     Ora
                 </th>
-                <th scope="col" class="px-6 py-3">
-                    Status
-                </th>
             </tr>
         </thead>
         <tbody>
@@ -55,12 +52,6 @@
                 </td>
                 <td class="px-6 py-4">
                     {{ Prenotazione.oraVisita }}
-                </td>
-                <td class="px-6 py-4">
-                    <form action="{{ url_for('prenotazioni.getMedico') }}" method="post">
-                    <input type="hidden" name="medico" value="{{ Prenotazione.medico }}">
-                    <button type="submit"  class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Modifica</button>
-                    </form>
                 </td>
             </tr>
             {% endfor %}
