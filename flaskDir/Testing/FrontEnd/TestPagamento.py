@@ -76,4 +76,23 @@ class TestLogin():
         self.driver.find_element(By.ID, "mese").send_keys("01")
         self.driver.find_element(By.CSS_SELECTOR, ".hover\\3A bg-red-500").click()
 
+    # come cvv vengono isnerite delle lettere
+    def test_addCartaFailure(self):
+        self.driver.get("http://127.0.0.1:5000/")
+        self.driver.set_window_size(1936, 1056)
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, "paziente")))
+        self.driver.find_element(By.ID, "paziente").click()
+        self.driver.find_element(By.ID, "open-modal-2").click()
+        self.driver.find_element(By.ID, "titolare").click()
+        self.driver.find_element(By.ID, "titolare").send_keys("Nome Cognome")
+        self.driver.find_element(By.ID, "pan").click()
+        self.driver.find_element(By.ID, "pan").send_keys("3452123409875647")
+        self.driver.find_element(By.ID, "cvv").click()
+        self.driver.find_element(By.ID, "cvv").send_keys("sads")
+        self.driver.find_element(By.ID, "anno").click()
+        self.driver.find_element(By.ID, "anno").send_keys("2024")
+        self.driver.find_element(By.ID, "mese").click()
+        self.driver.find_element(By.ID, "mese").send_keys("12")
+        self.driver.find_element(By.CSS_SELECTOR, ".hover\\3A bg-red-500").click()
+
 
