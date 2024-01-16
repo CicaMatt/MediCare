@@ -58,7 +58,7 @@ class TestLogin():
                 db.session.delete(Paziente.Paziente.query.filter_by(CF="CSBGNN2103456VBM").first())
                 db.session.commit()
 
-    def test_addCarta(self):
+    def test_addCartaSuccess(self):
         self.driver.get("http://127.0.0.1:5000/")
         self.driver.set_window_size(1936, 1056)
         WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID,"paziente")))

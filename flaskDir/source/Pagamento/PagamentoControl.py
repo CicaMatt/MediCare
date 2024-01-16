@@ -33,5 +33,23 @@ def addCarta():
         anno = request.form.get('anno')
         cf = request.form.get('cf')
         scadenza = mese+"/"+anno
-        PagamentoService.addCarta(cvv,pan,titolare,scadenza,cf)
-    return redirect(url_for('informazionipersonali.getMetodi'))
+
+        try:
+            if not cvv.isdigit() or not len(cvv) in {3}:
+                return render_template("ErroreCarta.html")
+            if not pan.isdigit() or not len(pan) == 16:
+                return render_template("ErroreCarta.html")
+            if len(cf)>16:
+                return render_template("ErroreCarta.html")
+            mese_numero = int(mese)
+            if not(1 <= mese_numero <= 12):
+                return render_template("ErroreCarta.html")
+            anno_numero = int(anno)
+            if not(2024 <= anno_numero <= 3000):
+                return render_template("ErroreCarta.html")
+            PagamentoService.addCarta(cvv,pan,titolare,scadenza,cf)
+            return redirect(url_for('informazionipersonali.getMetodi'))
+
+        except ValueError as e:
+            # Se si verifica un errore, restituisci una pagina di errore con il messaggio
+            return render_template("ErroreCarta.html")
