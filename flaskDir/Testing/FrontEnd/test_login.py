@@ -65,7 +65,7 @@ class TestLogin():
         self.driver.find_element(By.ID,"email").send_keys("pippi@gmail.com")
         self.driver.find_element(By.ID,"password").send_keys("123password")
         self.driver.find_element(By.ID,"invio").click()
-        WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.ID,"errore")))
+        WebDriverWait(self.driver,10).until(EC.element_to_be_clickable((By.ID,"errore")))
         msg_content=self.driver.find_element(By.ID,"errore").text
         assert "Credenziali fornite errate" == msg_content
 
@@ -78,20 +78,20 @@ class TestLogin():
         self.driver.find_element(By.ID,"email").send_keys("pippo@gmail.com")
         self.driver.find_element(By.ID,"password").send_keys("password")
         self.driver.find_element(By.ID,"invio").click()
-        WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.ID,"errore")))
+        WebDriverWait(self.driver,10).until(EC.element_to_be_clickable((By.ID,"errore")))
         msg_content=self.driver.find_element(By.ID,"errore").text
         assert "Credenziali fornite errate" == msg_content
 
     def test_login_success(self):
         self.driver.get("http://127.0.0.1:5000")
         self.driver.set_window_size(1920,1080)
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "login")))
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, "login")))
         self.driver.find_element(By.ID, "login").click()
         self.driver.find_element(By.ID,"user").click()
         self.driver.find_element(By.ID,"email").send_keys("pippo@gmail.com")
         self.driver.find_element(By.ID,"password").send_keys("123password")
         self.driver.find_element(By.ID,"invio").click()
-        WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.ID,"paziente")))
+        WebDriverWait(self.driver,10).until(EC.element_to_be_clickable((By.ID,"paziente")))
         msg_content=self.driver.find_element(By.ID,"paziente").text
         assert "Ciao, Pippo" == msg_content
 
