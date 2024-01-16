@@ -2,165 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-                  <link rel="stylesheet" href="../static/grafica/main.css">
-
+    <title>Title</title>
 </head>
-<body class="bg-gradient-to-bl from-rose-100 to-teal-100">
-  	{% include 'Navbar.html' %}
-
-
-<section class="lg:py-32">
-    <div class="font-semibold font-sans py-6 mx-auto bg-indigo-500 bg-gradient-to-bl from-slate-900 via-purple-900 to-slate-900 text-white p-4 rounded-lg xl:max-w-7xl">
-  <h2 class="text-lg mb-4">Inserisci i dati</h2>
-  <form method="post" action="{{url_for('feature.results')}}">
-     <div class="grid grid-cols-2 gap-4">
-    <!-- Numerical Values -->
-    <div class="mb-4">
-      <label class="block mb-2" for="age">Età del paziente:</label>
-      <input class="w-full border border-gray-300 bg-purple-100 text-black tex px-3 py-2 rounded-md" type="number" id="age" name="age" required>
-    </div>
-    <div class="mb-4">
-      <label class="block mb-2" for="trtbps">Pressione sanguigna a riposo (in mmHg):</label>
-      <input class="w-full border border-gray-300 bg-purple-100 text-black px-3 py-2 rounded-md" type="number" id="trtbps" name="trtbps" required>
-    </div>
-    <div class="mb-4">
-      <label class="block mb-2" for="thalach">Frequenza cardiaca massima raggiunta:</label>
-      <input class="w-full border border-gray-300 bg-purple-100 text-black px-3 py-2 rounded-md" type="number" id="thalach" name="thalach" required>
-    </div>
-         <div class="mb-4">
-      <label class="block mb-2" for="chol">Livello di colesterolo (in mg/dl):</label>
-      <input class="w-full border border-gray-300 bg-purple-100 text-black px-3 py-2 rounded-md" type="number" id="chol" name="chol" required>
-    </div>
-
-    <!-- Categorical Values -->
-    <div class="mb-4">
-      <label class="block mb-2" for="sex">Sesso:</label>
-      <select class="w-full border border-gray-300 bg-purple-100 text-black px-3 py-2 rounded-md" id="sex" name="sex" required>
-        <option value="">Select</option>
-        <option value="1">Male</option>
-        <option value="0">Female</option>
-      </select>
-    </div>
-    <div class="mb-4">
-      <label class="block mb-2" for="exng">Angina indotta dall’esercizio:</label>
-      <select class="w-full border border-gray-300 px-3 bg-purple-100 text-black py-2 rounded-md" id="exng" name="exng" required>
-        <option value="">Select</option>
-        <option value="0">No</option>
-        <option value="1">Si</option>
-      </select>
-    </div>
-    <div class="mb-4">
-      <label class="block mb-2" for="thall">Tipo di Talassemia:</label>
-      <select class="w-full border border-gray-300 px-3 bg-purple-100 text-black py-2 rounded-md" id="thall" name="thall" required>
-        <option value="">Select</option>
-          <option value="0">Difetto fisso</option>
-
-        <option value="1">Difetto fisso</option>
-        <option value="2">Normale</option>
-        <option value="3">Difetto Reversibile</option>
-      </select>
-    </div>
-    <div class="mb-4">
-      <label class="block mb-2" for="caa">Numero di vasi principali colorati dalla fluoroscopia:</label>
-      <select class="w-full border border-gray-300 bg-purple-100 text-black px-3 py-2 rounded-md" id="caa" name="caa" required>
-        <option value="">Select</option>
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-      </select>
-    </div>
-    <div class="mb-4">
-      <label class="block mb-2" for="fbs">Livello di glucosio nel sangue a digiuno:</label>
-      <select class="w-full border border-gray-300  bg-purple-100 text-black px-3 py-2 rounded-md" id="fbs" name="fbs" required>
-        <option value="">Select</option>
-        <option value="0">Inferiore a 120 mg/dl</option>
-        <option value="1">Superiore a 120 mg/dl,</option>
-      </select>
-    </div>
-    <div class="mb-4">
-      <label class="block mb-2" for="restecg">Risultato dell’ecocardiogramma a riposo:</label>
-      <select class="w-full border border-gray-300 bg-purple-100 text-black px-3 py-2 rounded-md" id="restecg" name="restecg" required>
-        <option value="">Select</option>
-        <option value="0">Normale</option>
-        <option value="1">Anormalità dell’onda ST-T</option>
-        <option value="2">Ipertrofia ventricolare sinistra</option>
-      </select>
-    </div>
-    <div class="mb-4">
-      <label class="block mb-2" for="cp">Tipo di dolore al torace:</label>
-      <select class="w-full border border-gray-300 bg-purple-100 text-black px-3 py-2 rounded-md" id="cp" name="cp" required>
-        <option value="">Select</option>
-        <option value="0">Angina Tipica</option>
-        <option value="1">Angina atipica</option>
-        <option value="2">Dolore non anginoso</option>
-        <option value="3">Asintomatico</option>
-      </select>
-    </div>
-    <div class="mb-4">
-      <label class="block mb-2" for="slp">Pendenza del segmento ST durante l'esercizio:</label>
-      <select class="w-full border border-gray-300 bg-purple-100 text-black px-3 py-2 rounded-md" id="slp" name="slp" required>
-        <option value="">Select</option>
-        <option value="0">Ascendente</option>
-        <option value="1">Piatta</option>
-        <option value="2">Discendente</option>
-      </select>
-    </div>
-
-    <div class="mb-4">
-      <label class="block mb-2" for="oldpeak">Depressione del segmento ST indotta dall’esercizio rispetto al
-riposo:</label>
-      <input class="w-full border border-gray-300 bg-purple-100 text-black px-3 py-2 rounded-md" type="number" id="oldpeak" name="oldpeak" required>
-    </div>
-                  </div>
-
-
-    <button class="bg-indigo-700 hover:bg-indigo-800 text-white px-4 py-2 rounded-md" type="submit">Ottieni il risultato</button>
-  </form>
-</div>
-  <!-- Container -->
-  <div class="mx-auto w-full max-w-5xl px-5 py-16 md:px-10 md:py-24 lg:py-32">
-    <!-- Heading Text -->
-    <div class="mx-auto mb-8 w-full max-w-3xl text-center">
-      <h2 class="text-3xl font-semibold md:text-5xl">Un processo <span class="bg-cover bg-center bg-no-repeat px-4 text-white" style="background-image: url('https://assets.website-files.com/63904f663019b0d8edf8d57c/63915f9749aaab0572c48dae_Rectangle%2018.svg');">all'avanguardia</span>
-      </h2>
-      <p class="mx-auto mt-4 max-w-[528px] text-[#636262] md:mb-12 lg:mb-16">Elaboriamo i dati dei pazienti nel rispetto della privacy e con la massima sicurezza</p>
-    </div>
-    <!-- Content Div -->
-    <div class="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-20">
-      <!-- Features Div -->
-      <div class="flex flex-col items-start">
-        <!-- Features Item -->
-        <a class="my-4 flex max-w-[480px] items-center rounded-xl border border-solid border-[#4273f6] bg-[#4273f6] p-6 font-bold text-white [box-shadow:rgb(0,_0,_0)_-4px_4px]">
-          <div class="relative mr-2 flex h-14 w-14 flex-none flex-col items-center justify-center rounded-md border border-[#9b9b9b] bg-white [box-shadow:rgb(0,_0,_0)_2px_2px]">
-            <img alt="" src="https://assets.website-files.com/63904f663019b0d8edf8d57c/6391586264bf263c3a734e6d_Group%2047875.png" class="inline-block h-8" />
-          </div>
-          <p class="ml-4 text-sm font-normal">Inserisci i dati di un paziente. Se il paziente non ha quei dati, e se lo si ritiene opportuno, si procede a fare le analisi necessarie per ottenere quei dati.</p>
-        </a>
-        <!-- Features Item -->
-        <a class="my-4 flex max-w-[480px] items-center rounded-xl border border-solid border-black p-6 font-bold [box-shadow:rgb(0,_0,_0)_-4px_4px]">
-          <div class="relative mr-2 flex h-14 w-14 flex-none flex-col items-center justify-center rounded-md border border-[#9b9b9b] bg-white [box-shadow:rgb(0,_0,_0)_2px_2px]">
-            <img alt="" src="https://assets.website-files.com/63904f663019b0d8edf8d57c/6391586264bf263c3a734e6d_Group%2047875.png" class="inline-block h-8" />
-          </div>
-          <p class="ml-4 text-sm font-normal">Il sistema elabora i dati tramite sistemi di intelligenza artificiale.</p>
-        </a>
-        <!-- Features Item -->
-        <a class="my-4 flex max-w-[480px] items-center rounded-xl border border-solid border-black p-6 font-bold [box-shadow:rgb(0,_0,_0)_-4px_4px]">
-          <div class="relative mr-2 flex h-14 w-14 flex-none flex-col items-center justify-center rounded-md border border-[#9b9b9b] bg-white [box-shadow:rgb(0,_0,_0)_2px_2px]">
-            <img alt="" src="https://assets.website-files.com/63904f663019b0d8edf8d57c/6391586264bf263c3a734e6d_Group%2047875.png" class="inline-block h-8" />
-          </div>
-          <p class="ml-4 text-sm font-normal">I risultati vengono mostrati al medico, che decide il da farsi in base all'esito.</p>
-        </a>
-      </div>
-      <!-- Image Div -->
-      <div class="relative left-4 h-full max-h-[560px] w-[85%] md:left-0 md:w-[95%] lg:w-full">
-        <img src="https://assets.website-files.com/63904f663019b0d8edf8d57c/63915d18de7d116535cb3813_magicpattern-am-yg8wLLIo-unsplash.jpg" alt="" class="relative mx-auto block h-[560px] w-full -rotate-[3.5deg] rounded-2xl object-cover" />
-        <div class="absolute bottom-0 left-4 right-0 top-4 -z-10 h-full w-full rounded-2xl bg-black"></div>
-      </div>
-    </div>
+<body>
+<div class="mx-auto max-w-screen-lg bg-blue-500 p-8 text-white md:flex md:items-center md:justify-around md:p-16 lg:rounded-xl">
+  <div class="mr-10 mb-10 md:mb-0">
+    <h2 class="mb-8 max-w-lg text-3xl font-bold sm:text-4xl">Ecco i tuoi risultati</h2>
+    <ul class="flex max-w-xl flex-wrap gap-4">
+      <li class="flex space-x-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6 text-green-300">
+          <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+        </svg>
+        <p class="text-gray-100">A new feature for you</p>
+      </li>
+      <li class="flex space-x-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6 text-green-300">
+          <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+        </svg>
+        <p class="text-gray-100">Feature Enhancements</p>
+      </li>
+      <li class="flex space-x-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6 text-green-300">
+          <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+        </svg>
+        <p class="text-gray-100">Site Speedup</p>
+      </li>
+      <li class="flex space-x-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6 text-green-300">
+          <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+        </svg>
+        <p class="text-gray-100">More Components</p>
+      </li>
+      <li class="flex space-x-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-6 w-6 text-green-300">
+          <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+        </svg>
+        <p class="text-gray-100">Further Enhancements to the Dashboard</p>
+      </li>
+    </ul>
   </div>
-</section>
-  {% include 'Footer2.0.html' %}
+  <div class="whitespace-nowrap">
+    <button class="focus:outline-4 rounded-xl bg-emerald-400 px-4 py-3 font-medium text-white shadow-md outline-white transition hover:bg-emerald-500">Try these now</button>
+  </div>
+</div>
+
 
 </body>
 </html>

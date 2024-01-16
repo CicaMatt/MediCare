@@ -295,5 +295,6 @@ def test_rimuoviMedico():
 def test_delete_utente(client):
     with app.app_context():
         user = PazienteService.eliminaPaziente("clbpm15p01i496a")
+
         assert user is True
 
