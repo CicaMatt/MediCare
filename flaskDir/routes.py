@@ -84,12 +84,6 @@ def fascicoloSanitario():
 def isee():
     return render_template('isee.html')
 
-@app.route('/modificaDatiUtente')
-def modificaDatiUtente():
-    return render_template("ModificaDatiUtente.html")
-
-
-
 @app.route('/listamedici')
 def listamedici():
     return render_template("ListaMedici.html")
