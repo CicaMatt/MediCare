@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, session, request, redirect, url_fo
 from flask_login import current_user, login_required
 
 from flaskDir.source.prenotazioni import services
-from flaskDir.source.prenotazioni.services import PrenotazioneService, FascicoloService
+from flaskDir.source.prenotazioni.services import PrenotazioneService, FascicoloService, PazienteService
 
 areautente_blueprint = Blueprint('areautente', __name__)
 
@@ -55,3 +55,14 @@ def addDocumento():
             richiamo=request.form.get('richiamo')
         FascicoloService.addDocumento(num,tipo,data,descrizione,richiamo,paziente)
     return redirect(url_for('areautente.getFascicolobyUtente', paziente=paziente))
+
+
+
+@areautente_blueprint.route('/modificaPrenotazione', methods=['GET','POST'])
+def modificaPrenotazione():
+    if request.method == 'POST':
+        data=request.form.get('data')
+        ora=request.form.get('ora')
+        id=request.form.get('id')
+        if(PrenotazioneService.modificaPrenotazione(id,data,ora)):
+            return render_template("Storico.html", lista=PazienteService.getListaPrenotazioni(current_user))

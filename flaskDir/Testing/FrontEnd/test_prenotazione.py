@@ -9,6 +9,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from sqlalchemy_utils import create_database, database_exists
 from flaskDir.MediCare.model.entity import Paziente
+from flaskDir.MediCare.model.entity.Prenotazione import Prenotazione
+from flaskDir.source.prenotazioni.services import PrenotazioneService
 
 
 class TestEffettuazioneprenotazione():
@@ -50,6 +52,9 @@ class TestEffettuazioneprenotazione():
         self.driver.quit()
         if database_exists(app.config['SQLALCHEMY_DATABASE_URI']):
             with app.app_context():
+                prenotazioni = Prenotazione.query.filter_by(pazienteCF="AAAAAAAAAAAAAAAA")
+                for prenotazione in prenotazioni:
+                    db.session.delete(prenotazione)
                 db.session.delete(Paziente.Paziente.query.filter_by(CF="AAAAAAAAAAAAAAAA").first())
                 db.session.commit()
 
