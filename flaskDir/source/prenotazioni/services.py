@@ -1,6 +1,6 @@
 import sqlalchemy
 from sqlalchemy.exc import SQLAlchemyError
-from datetime import datetime,timedelta
+import datetime
 from flaskDir import db, app
 from flaskDir.MediCare.model.entity.DocumentoSanitario import DocumentoSanitario
 from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
@@ -266,7 +266,7 @@ class PrenotazioneService:
 
         # Calcolare il primo giorno del mese successivo per ottenere l'ultimo giorno del mese corrente
         primo_giorno_mese_successivo = datetime(anno_corrente, mese_corrente + 1,1) if mese_corrente < 12 else datetime(anno_corrente + 1, 1, 1)
-        ultimo_giorno_mese_corrente = primo_giorno_mese_successivo - timedelta(days=1)
+        ultimo_giorno_mese_corrente = primo_giorno_mese_successivo - datetime.timedelta(days=1)
 
         # Calcolare il numero di giorni nel mese corrente
         numero_giorni_mese_corrente = (ultimo_giorno_mese_corrente - primo_giorno_mese).days + 1
@@ -288,15 +288,16 @@ class FascicoloService:
 
 
     @classmethod
-    def addDocumento(cls,num,tipo,data,descrizione,richiamo,paziente):
+    def addDocumento(cls,tipo,descrizione,richiamo,codicefiscale):
         with app.app_context():
             documento=DocumentoSanitario()
-            documento.NumeroDocumento=num
+            quantiDocumenti = len(list(db.session.scalars(sqlalchemy.select(DocumentoSanitario).where(DocumentoSanitario.titolare == codicefiscale))))
+            documento.NumeroDocumento= "FSE"+str(quantiDocumenti)+tipo[0]
             documento.tipo=tipo
-            documento.dataEmissione=data
+            documento.dataEmissione=datetime.date.today()
             documento.descrizione=descrizione
             documento.richiamo=richiamo
-            documento.titolare=paziente
+            documento.titolare=codicefiscale
             db.session.add(documento)
             db.session.commit()
 

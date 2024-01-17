@@ -1,6 +1,6 @@
 
 from flask import render_template, session, request, Blueprint
-from flask_login import current_user
+from flask_login import current_user, login_required
 
 from flaskDir import app
 from flaskDir.MediCare.model.entity.Paziente import Paziente
@@ -28,6 +28,7 @@ def getListaEnti():
 
 
 @prenotazione_blueprint.route('/listamedici/paginamedico', methods=['GET','POST'])
+@login_required
 def getMedico():
     idMedico = request.form.get('medico')
     user = session['_user_id']

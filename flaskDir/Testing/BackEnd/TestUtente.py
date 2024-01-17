@@ -1,3 +1,5 @@
+import datetime
+
 import pytest
 import sqlalchemy
 from flask_sqlalchemy import SQLAlchemy
@@ -18,7 +20,7 @@ from flaskDir.source.prenotazioni.services import FascicoloService
 @pytest.fixture(autouse=True, scope='session')
 def setUp(request):
     # Configura il database di test
-    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{quote('Gio210302DVK')}@localhost:3306/testmedicare"
+    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:lollipop@localhost:3306/testmedicare"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["TESTING"] = True
     db.init_app(app)
@@ -63,20 +65,23 @@ def test_addDocumento():
     with app.app_context():
         num = 123
         tipo = 'Ricetta'
-        data = '2024-01-12'
+        data = datetime.date.today()
         descrizione = 'test'
         richiamo = None
         titolare = "PROVAS029DGH6712"
 
-        FascicoloService.addDocumento(num,tipo,data,descrizione,richiamo,titolare)
+        FascicoloService.addDocumento(tipo,descrizione,richiamo,titolare)
 
         # Verifica che il documento sia stato inserito nel database di testmedicare
-
-        documento = DocumentoSanitario.query.filter_by(NumeroDocumento=num).first()
+        quantiDocumenti = len(list(db.session.scalars(
+            sqlalchemy.select(DocumentoSanitario).where(DocumentoSanitario.titolare == "PROVAS029DGH6712"))))
+        assert quantiDocumenti==1
+        oracoloNum = "FSE" + "0" + tipo[0]
+        documento = DocumentoSanitario.query.filter_by(NumeroDocumento=oracoloNum).first()
         paziente=Paziente.query.filter_by(CF=titolare).first()
         assert documento is not None
         assert documento.titolare == 'PROVAS029DGH6712'
-        assert documento.dataEmissione.strftime('%Y-%m-%d') == '2024-01-12'
+        assert documento.dataEmissione == datetime.date.today()
         assert documento.descrizione == 'test'
         assert  documento.tipo == 'Ricetta'
 

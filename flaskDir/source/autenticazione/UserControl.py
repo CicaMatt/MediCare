@@ -1,4 +1,6 @@
-from flask import Blueprint, request, render_template
+from urllib.parse import urlsplit
+
+from flask import Blueprint, request, render_template, url_for, redirect
 from flask_login import current_user
 from flaskDir.source.autenticazione import AutenticazioneService
 
@@ -14,7 +16,10 @@ def login_page():
         password = request.form.get('password')
         tipo=request.form.get('tipo')
         if AutenticazioneService.login_page(email,password,tipo):
-            return render_template('HomePage.html')
+            next_page = request.args.get('next')
+            if not next_page or urlsplit(next_page).netloc != '':
+                next_page = url_for('home')
+            return redirect(next_page)
         else: return render_template('Login.html',error=False)
     else: return render_template('Login.html')
 
