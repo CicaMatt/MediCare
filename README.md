@@ -1,4 +1,4 @@
-# BeeHave
+# MediCare
 
 <p align = "center">
   <img src = "medicare-logo.png" width = "256" heigth = "256">
