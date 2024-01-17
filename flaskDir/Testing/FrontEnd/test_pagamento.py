@@ -76,7 +76,7 @@ class TestLogin():
         self.driver.find_element(By.ID, "mese").send_keys("01")
         self.driver.find_element(By.CSS_SELECTOR, ".hover\\3A bg-red-500").click()
 
-    # come cvv vengono isnerite delle lettere
+    # come cvv vengono inserite delle lettere
     def test_addCartaFailure(self):
         self.driver.get("http://127.0.0.1:5000/")
         self.driver.set_window_size(1936, 1056)

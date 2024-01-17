@@ -47,7 +47,8 @@ def addCarta():
             anno_numero = int(anno)
             if not(2024 <= anno_numero <= 3000):
                 return render_template("ErroreCarta.html")
-            PagamentoService.addCarta(cvv,pan,titolare,scadenza,cf)
+            if not PagamentoService.addCarta(cvv,pan,titolare,scadenza,cf):
+                return render_template("CartaDuplicata.html")
             return redirect(url_for('informazionipersonali.getMetodi'))
 
         except ValueError as e:

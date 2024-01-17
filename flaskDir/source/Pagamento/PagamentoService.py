@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import sqlalchemy
 from sqlalchemy.exc import SQLAlchemyError
 from flaskDir import db, app
@@ -22,15 +24,31 @@ class PagamentoService:
     @classmethod
     def addCarta(cls,cvv,pan,titolare,scadenza,cf):
         with app.app_context():
-            paziente=Paziente.query.filter(Paziente.CF==cf).first()
-            metodo=MetodoPagamento()
-            metodo.CVV=cvv
-            metodo.PAN=pan
-            metodo.nome_titolare=titolare
-            metodo.dataScadenza=scadenza
-            metodo.beneficiario=cf
-            metodo.paziente=paziente
-            db.session.add(metodo)
-            db.session.commit()
+            try:
+                paziente=Paziente.query.filter(Paziente.CF==cf).first()
 
+                try:
+                    scadenza_date = datetime.strptime(scadenza, '%m/%Y')
+                except ValueError:
+                    return False
+
+                if len(str(cvv)) != 3:
+                    return False
+
+                cartaEsistente = MetodoPagamento.query.filter_by(PAN=pan, beneficiario=cf).first()
+                if cartaEsistente:
+                    return None
+                else:
+                    metodo=MetodoPagamento()
+                    metodo.CVV=cvv
+                    metodo.PAN=pan
+                    metodo.nome_titolare=titolare
+                    metodo.dataScadenza=scadenza
+                    metodo.beneficiario=cf
+                    metodo.paziente=paziente
+                    db.session.add(metodo)
+                    db.session.commit()
+                    return True
+            except SQLAlchemyError as e:
+                return False
 

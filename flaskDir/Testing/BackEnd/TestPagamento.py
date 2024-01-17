@@ -15,7 +15,7 @@ from flaskDir.source.Pagamento.PagamentoService import PagamentoService
 @pytest.fixture(autouse=True, scope='session')
 def setUp(request):
     # Configura il database di test
-    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:lollipop@localhost:3306/testmedicare"
+    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{quote('Cancello1@')}@localhost:3306/testmedicare"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["TESTING"] = True
     db.init_app(app)
@@ -39,8 +39,183 @@ def setUp(request):
         request.addfinalizer(teardown)
 
 
-def test_addCarta():
-    # Cambia il URI del database a quello di test
+#Formato PAN non valido
+def test_addCarta1():
+    with app.app_context():
+        mario = Paziente()
+        mario.nome = "Mario"
+        mario.cognome = "Rossi"
+        mario.email = "mariorossi@gmail.com"
+        mario.password_hash = "cancello"
+        mario.chiaveSPID = 10
+        mario.ISEE_ordinario = 10000
+        mario.CF = "PROVAS029DGH6712"
+        mario.cellulare = "3312258345"
+        mario.luogoNascita = "Salerno"
+        mario.dataNascita = "2000-12-31"
+        mario.domicilio = "Salerno"
+        mario.sesso = "Maschio"
+        db.session.add(mario)
+        db.session.commit()
+
+    with app.app_context():
+        cvv = 123
+        pan = "83426453716253494"
+        titolare = "Nome Cognome"
+        mese = 12
+        anno = 2024
+        meseStr = str(mese)
+        annoStr = str(anno)
+        beneficiario = "PROVAS029DGH6712"
+        scadenza = meseStr + "/" + annoStr
+
+        PagamentoService.addCarta(cvv, pan, titolare, scadenza, beneficiario)
+
+        # Verifica che la carta non sia stata inserita nel database di testmedicare
+        carta_inserita = MetodoPagamento.query.filter_by(PAN=pan, beneficiario=beneficiario).first()
+        paziente = Paziente.query.filter_by(CF=beneficiario).first()
+        assert carta_inserita is None
+
+        db.session.delete(paziente)
+        db.session.commit()
+
+
+#Formato Data non valido
+def test_addCarta2():
+    with app.app_context():
+        mario = Paziente()
+        mario.nome = "Mario"
+        mario.cognome = "Rossi"
+        mario.email = "mariorossi@gmail.com"
+        mario.password_hash = "cancello"
+        mario.chiaveSPID = 10
+        mario.ISEE_ordinario = 10000
+        mario.CF = "PROVAS029DGH6712"
+        mario.cellulare = "3312258345"
+        mario.luogoNascita = "Salerno"
+        mario.dataNascita = "2000-12-31"
+        mario.domicilio = "Salerno"
+        mario.sesso = "Maschio"
+        db.session.add(mario)
+        db.session.commit()
+
+    with app.app_context():
+        cvv = 123
+        pan = "8342645371625349"
+        titolare = "Nome Cognome"
+        mese = 13
+        anno = 2024
+        meseStr = str(mese)
+        annoStr = str(anno)
+        beneficiario = "PROVAS029DGH6712"
+        scadenza = meseStr + "/" + annoStr
+
+        PagamentoService.addCarta(cvv, pan, titolare, scadenza, beneficiario)
+
+        # Verifica che la carta non sia stata inserita nel database di testmedicare
+        carta_inserita = MetodoPagamento.query.filter_by(PAN=pan, beneficiario=beneficiario).first()
+        paziente = Paziente.query.filter_by(CF=beneficiario).first()
+        assert carta_inserita is None
+
+        db.session.delete(paziente)
+        db.session.commit()
+
+
+#Formato CVV non valido
+def test_addCarta3():
+    with app.app_context():
+        mario = Paziente()
+        mario.nome = "Mario"
+        mario.cognome = "Rossi"
+        mario.email = "mariorossi@gmail.com"
+        mario.password_hash = "cancello"
+        mario.chiaveSPID = 10
+        mario.ISEE_ordinario = 10000
+        mario.CF = "PROVAS029DGH6712"
+        mario.cellulare = "3312258345"
+        mario.luogoNascita = "Salerno"
+        mario.dataNascita = "2000-12-31"
+        mario.domicilio = "Salerno"
+        mario.sesso = "Maschio"
+        db.session.add(mario)
+        db.session.commit()
+
+    with app.app_context():
+        cvv = 1234
+        pan = "8342645371625349"
+        titolare = "Nome Cognome"
+        mese = 12
+        anno = 2024
+        meseStr = str(mese)
+        annoStr = str(anno)
+        beneficiario = "PROVAS029DGH6712"
+        scadenza = meseStr + "/" + annoStr
+
+        PagamentoService.addCarta(cvv, pan, titolare, scadenza, beneficiario)
+
+        # Verifica che la carta non sia stata inserita nel database di testmedicare
+        carta_inserita = MetodoPagamento.query.filter_by(PAN=pan, beneficiario=beneficiario).first()
+        paziente = Paziente.query.filter_by(CF=beneficiario).first()
+        assert carta_inserita is None
+
+        db.session.delete(paziente)
+        db.session.commit()
+
+
+#Carta gia presente nel db
+def test_addCarta4():
+    with app.app_context():
+        mario = Paziente()
+        mario.nome = "Mario"
+        mario.cognome = "Rossi"
+        mario.email = "mariorossi@gmail.com"
+        mario.password_hash = "cancello"
+        mario.chiaveSPID = 10
+        mario.ISEE_ordinario = 10000
+        mario.CF = "PROVAS029DGH6712"
+        mario.cellulare = "3312258345"
+        mario.luogoNascita = "Salerno"
+        mario.dataNascita = "2000-12-31"
+        mario.domicilio = "Salerno"
+        mario.sesso = "Maschio"
+        db.session.add(mario)
+        db.session.commit()
+
+    with app.app_context():
+        carta = MetodoPagamento()
+        carta.CVV = 123
+        carta.PAN = "8342645371625349"
+        carta.nome_titolare = "Nome Cognome"
+        carta.dataScadenza = 12/2024
+        carta.beneficiario = "PROVAS029DGH6712"
+        db.session.add(carta)
+        db.session.commit()
+
+    with app.app_context():
+        cvv = 123
+        pan = "8342645371625349"
+        titolare = "Nome Cognome"
+        mese = 12
+        anno = 2024
+        meseStr = str(mese)
+        annoStr = str(anno)
+        beneficiario = "PROVAS029DGH6712"
+        scadenza = meseStr + "/" + annoStr
+
+        cartaNew = PagamentoService.addCarta(cvv, pan, titolare, scadenza, beneficiario)
+        assert cartaNew is None
+
+
+        carta_inserita = MetodoPagamento.query.filter_by(PAN=pan, beneficiario=beneficiario).first()
+        paziente = Paziente.query.filter_by(CF=beneficiario).first()
+        assert carta_inserita is not None
+
+        db.session.delete(carta_inserita)
+        db.session.delete(paziente)
+        db.session.commit()
+
+#Caso di successo
+def test_addCartaSuccess():
 
     with app.app_context():
         mario=Paziente()
