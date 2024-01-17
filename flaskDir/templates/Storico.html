@@ -74,7 +74,7 @@
 
                 <td class="px-6 py-4">
                     {% if Prenotazione.tipoVisita != "Vaccino" %}
-                        <button name="id" value="{{ Prenotazione.ID }}" data-value="{{ Prenotazione.medico }}" id="open-modal" type="submit"  class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onclick="openModal()">Modifica</button>
+                        <button name="id" value="{{ Prenotazione.ID }}" id="modalPren" type="submit"  class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onclick="openModalPren(this.value)">Modifica</button>
                     {% else %}
                         N/D
                     {% endif %}
@@ -86,7 +86,7 @@
 
 
 
-        <div id="modal"  class="relative z-10 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div id="modal-pren"  class="relative z-10 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                 <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
                 <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
                     <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
@@ -129,7 +129,7 @@
                                                       <option value="19">19:00</option>
                                                   </select>
                                                   <input name="id" id="id" type="hidden">
-                                                  <input name="medico" id="medico" type="hidden">
+
                                               </div>
 
 
@@ -154,12 +154,12 @@
 
 
 <script>
-    const openModalBtn = document.getElementById("open-modal");
+    const openModalBtn = document.getElementById("modalPren");
     const closeModalBtn = document.getElementById("close-modal");
-    const modal = document.getElementById("modal");
+    const modal = document.getElementById("modal-pren");
 
-    openModalBtn.addEventListener("click", openModal);
-    closeModalBtn.addEventListener("click", closeModal);
+    openModalBtn.addEventListener("click", openModalPren);
+    closeModalBtn.addEventListener("click", closeModalPren);
 
     openModalBtn.addEventListener("click", function (event) {
       event.preventDefault();
@@ -172,14 +172,13 @@
     });
 
 
-    function openModal() {
+    function openModalPren(id) {
       console.log("apro modal");
-      document.getElementById("form")["medico"].value=openModalBtn.getAttribute("data-value")
-      document.getElementById("form")["id"].value=openModalBtn.value
+      document.getElementById("form")["id"].value=id
 
       modal.classList.remove("hidden");
     }
-    function closeModal() {
+    function closeModalPren() {
       console.log("chiudo modal");
       modal.classList.add("hidden");
     }

@@ -165,6 +165,9 @@ class PrenotazioneService:
     @classmethod
     def confirmIsFree(cls, idmedico, data, ora):
         mese=datetime.datetime.now().strftime("%m")+"-"
+        if int(data) <= datetime.datetime.now().day:
+            mese = str(datetime.datetime.now().month + 1)
+            mese = mese + "-"
         anno=datetime.datetime.now().strftime("%Y")+"-"
         data=str(anno)+str(mese)+str(data)
         prenotazioni = Prenotazione.query.filter_by(medico=idmedico, oraVisita=ora, dataVisita=data).first()
@@ -178,6 +181,10 @@ class PrenotazioneService:
         try:
             medico=MedicoService().getMedico(idmedico)
             mese = datetime.datetime.now().strftime("%m") + "-"
+
+            if int(data)<=datetime.datetime.now().day:
+                mese = str(datetime.datetime.now().month+1)
+                mese=mese+"-"
             anno = datetime.datetime.now().strftime("%Y") + "-"
             data = str(anno) + str(mese) + str(data)
             prenotazione = Prenotazione()
@@ -236,7 +243,7 @@ class PrenotazioneService:
     def modificaPrenotazione(cls, id, data, ora):
         try:
             prenotazioni = Prenotazione.query.filter_by(ID=id).first()
-            if prenotazioni:
+            if prenotazioni and PrenotazioneService.confirmIsFree(prenotazioni.medico,data, ora):
                 mese = datetime.datetime.now().strftime("%m") + "-"
                 anno = datetime.datetime.now().strftime("%Y") + "-"
                 data = str(anno) + str(mese) + str(data)
@@ -267,14 +274,24 @@ class PrenotazioneService:
         # Calcolare il primo giorno del mese corrente
         primo_giorno_mese = datetime.datetime(anno_corrente, mese_corrente, 1)
 
-        # Calcolare il primo giorno del mese successivo per ottenere l'ultimo giorno del mese corrente
-        primo_giorno_mese_successivo = datetime.datetime(anno_corrente, mese_corrente + 1,1) if mese_corrente < 12 else datetime.datetime(anno_corrente + 1, 1, 1)
+        # Calcolare il numero di giorni rimanenti nel mese corrente
+        giorni_passati = oggi.day   # Giorni già passati nel mese corrente
+
+
+        # Calcolare il primo giorno del mese successivo
+        primo_giorno_mese_successivo = datetime.datetime(anno_corrente, mese_corrente + 1,
+                                                         1) if mese_corrente < 12 else datetime.datetime(
+            anno_corrente + 1, 1, 1)
         ultimo_giorno_mese_corrente = primo_giorno_mese_successivo - datetime.timedelta(days=1)
 
         # Calcolare il numero di giorni nel mese corrente
         numero_giorni_mese_corrente = (ultimo_giorno_mese_corrente - primo_giorno_mese).days + 1
 
-        return numero_giorni_mese_corrente
+        # Calcolare il numero di giorni nel mese successivo
+        giorni_mese_successivo = giorni_passati
+
+        return numero_giorni_mese_corrente, giorni_mese_successivo
+
     @classmethod
     def confirmVaccino(cls, idmedico, data, ora):
         prenotazioni = Prenotazione.query.filter_by(medico=idmedico, oraVisita=ora, dataVisita=data).first()
