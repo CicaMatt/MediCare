@@ -53,10 +53,12 @@ for i, z in list(zip(numeric_var, numeric_axis_name)):
 """
 #Istogramma del sesso
 fig=px.histogram(df,
+
                  x="sex",
                  color="HeartDisease",
                  hover_data=df.columns,
                  barmode="group")
+
 fig.show()
 """
 """
@@ -67,6 +69,7 @@ fig=px.histogram(df,
                  hover_data=df.columns,
                  barmode="group"
                 )
+
 fig.show()
 """
 """
@@ -76,6 +79,7 @@ fig=px.histogram(df,
                  color="HeartDisease",
                  hover_data=df.columns,
                  barmode="group")
+
 
 fig.show()
 """
@@ -87,6 +91,7 @@ fig=px.histogram(df,
                  color="HeartDisease",
                  hover_data=df.columns,
                  barmode="group")
+
 fig.show()
 """
 
@@ -97,6 +102,7 @@ fig=px.histogram(df,
                  color="HeartDisease",
                  hover_data=df.columns,
                  barmode="group")
+
 fig.show()
 """
 """
@@ -106,6 +112,7 @@ fig=px.histogram(df,
                  color="HeartDisease",
                  hover_data=df.columns,
                  barmode="group")
+
 fig.show()
 """
 """
@@ -115,6 +122,7 @@ fig=px.histogram(df,
                  color="HeartDisease",
                  hover_data=df.columns,
                  barmode="group")
+
 fig.show()
 """
 """
@@ -124,6 +132,7 @@ fig=px.histogram(df,
                  color="HeartDisease",
                  hover_data=df.columns,
                  barmode="group")
+
 fig.show()
 """
 

@@ -1,5 +1,6 @@
 import pytest
 import sqlalchemy
+from flask_login import current_user
 
 from flaskDir import app, db
 from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
@@ -32,7 +33,7 @@ def test_paginaLogin(client):
 
 
 def test_paginaRegistrazione(client):
-    response = client.get('/registrazione')
+    response = client.get('/registrazioneutente')
     assert response.status_code == 200
 
 
@@ -134,14 +135,59 @@ def test_login_MedicoService():
 
 
 def test_login_Medico(client):
-    credenzialiTest = {"email": "test@example.com", "password": "newpassword123"}
+    new_user = Medico(
+        email='test@example.com',
+        password_hash='password123',
+        nome='John',
+        cognome='Doe',
+        iscrizione_albo=123242,
+        specializzazione="chirurgia",
+        città="Napoli"
+    )
+    with app.app_context():
+        user_in_db = db.session.scalar(sqlalchemy.select(Medico).where(Medico.email == 'test@example.com'))
+        if user_in_db is not None:
+            db.session.delete(user_in_db)
+            db.session.commit()
+        db.session.add(new_user)
+        db.session.commit()
+
+        user_in_db = Medico.query.filter_by(email='test@example.com').first()
+        assert user_in_db
+
+        user_in_db.set_password('newpassword123')
+        db.session.commit()
+    credenzialiTest = {"email": "test@example.com", "password": "newpassword123", "tipo":"medico"}
     response = client.post('/auth/login', data=credenzialiTest)
     assert response.status_code == 302
     assert not response.location.endswith('/login')
+    assert current_user.is_authenticated is True
     ##Controlla che il path sia relativo
 
 
 def test_login_Medico2(client):
+    new_user = Medico(
+        email='test@example.com',
+        password_hash='password123',
+        nome='John',
+        cognome='Doe',
+        iscrizione_albo=123242,
+        specializzazione="chirurgia",
+        città="Napoli"
+    )
+    with app.app_context():
+        user_in_db = db.session.scalar(sqlalchemy.select(Medico).where(Medico.email == 'test@example.com'))
+        if user_in_db is not None:
+            db.session.delete(user_in_db)
+            db.session.commit()
+        db.session.add(new_user)
+        db.session.commit()
+
+        user_in_db = Medico.query.filter_by(email='test@example.com').first()
+        assert user_in_db
+
+        user_in_db.set_password('newpassword123')
+        db.session.commit()
     credenzialiTest = {"email": "test@example.com", "password": "sbagliata"}
     response = client.post('/auth/login', data=credenzialiTest)
     assert response.status_code == 302
@@ -149,15 +195,14 @@ def test_login_Medico2(client):
     ##Controlla che il path sia relativo
 
 
-def test_login_EnteSanitario():
+def test_registrazione_login_EnteSanitario():
     new_user = EnteSanitario(
         nome='Ente Test',
         email='test@example.com',
         password_hash='sfjfsgs',
     )
     with app.app_context():
-        user_in_db = db.session.scalar(
-            sqlalchemy.select(EnteSanitario).where(EnteSanitario.email == 'test@example.com'))
+        user_in_db = db.session.scalar(sqlalchemy.select(EnteSanitario).where(EnteSanitario.email == 'test@example.com'))
         if user_in_db is not None:
             db.session.delete(user_in_db)
             db.session.commit()
@@ -171,8 +216,8 @@ def test_login_EnteSanitario():
 
         user_in_db.set_password('corretta')
         db.session.commit()
-        assert user_in_db.check_password('corretta')
-        assert user_in_db.check_password('password123') is False
+    assert user_in_db.check_password('corretta')
+    assert user_in_db.check_password('password123') is False
 
 
 def test_login_Ente(client):
@@ -250,5 +295,6 @@ def test_rimuoviMedico():
 def test_delete_utente(client):
     with app.app_context():
         user = PazienteService.eliminaPaziente("clbpm15p01i496a")
+
         assert user is True
 
