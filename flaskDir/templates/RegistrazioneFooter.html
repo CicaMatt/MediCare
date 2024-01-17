@@ -2,36 +2,79 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-<title>Registrazione</title>
-    <link rel="stylesheet" href="../static/grafica/main.css">
+    <title>Come Accedere</title>
+     <link rel="stylesheet" href="../static/grafica/main.css">
 </head>
-<body>
 {% include 'Navbar.html' %}
-<div class="flex flex-wrap justify-center items-center mx-auto max-w-screen-xl">
-    <h1 class="font-serif text-4xl font-bold leading-6 mb-3 mt-3 text-stone-600 block">Come funziona la Registrazione?</h1>
-    <div class="font serif mt-4 ml-30 justify-content-between text-2xl leading-normal">
-    Sei un un utente diverso da un Ente Sanitario che è interessato a sapere come può registrarsi sulla piattaforma MediCare
-    ed accedere alle sue funzionalità? Se sì questa pagina fa per te altrimenti visita questo
-        <u><a href="{{url_for('seiunEnteSanitario')}}" class="text-blue-600">link.</a></u>
-        <br>
-    MediCare permette di registrarsi come due tipologie di utenti: Medico Privato e Paziente.
-        La registrazione del medico pubblico verrà svolta dall'Ente Sanitario come spiegato dalla pagina apposita, adesso
-        iniziamo spiegando la procedura di registrazione del Paziente.
-        <br>
-        <h2 class="font-serif font-bold leading-5 mt-4 text-blue-600 text-3xl mb-3">Registrazione Paziente </h2>
-        La procedura di registrazione del paziente richiede l'inserimento di molti dati quali: Codice Fiscale,
-        nome, cognome, domicilio, luogo e data di nascita, email, password e cellulare. Ovviamente MediCare garantirà la
-        protezione e la privacy di questi dati che sono molto sensibili per l'utente che compila il modulo.
-        <img src="{{url_for('static', filename='images/RegistrazioneFooter1.png')}}">
-        <br>
-        <h2 class="font-serif font-bold leading-5 mt-4 text-blue-600 text-3xl mb-3">Registrazione Medico</h2>
-        La registrazione del medico richiede dati completamente diverse da quelli richieste da un utente di tipo paziente.
-        Il medico privato sarà tenuto a fornire alla piattaforma i seguenti dati: nome, specializzazione, email, password,
-        città dello studio e numero d'iscrizione all'albo. A differenza dell'Ente Sanitario il medico privato può fornire
-        qualsiasi tipologia di indirizzo di posta elettronica che ha a disposizione.
-        <img src="{{url_for('static', filename='images/RegistrazioneFooter2.png')}}" class="mb-7">
-    </div>
-</div>
+<body>
+
+
+
+ <section class="pb-11 bg-white">
+        <div class="object-cover w-full bg-center bg-cover h-[35rem] "
+            style="background-image: url(https://i.postimg.cc/P5gCz1Wc/pexels-marc-mueller-380769.jpg);">
+            <div class="flex items-center justify-center w-full h-full bg-blue-800 bg-opacity-50 ">
+                <div class="text-center">
+                    <h1 class="text-2xl font-semibold text-white uppercase lg:text-3xl">Come funziona la Registrazione?</h1>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto">
+            <div>
+                <div>
+                    <div class="p-4">
+
+                        <div class="font-poppins dark:text-gray-400">
+                            <p class="pb-4 text-black"> Sei un un utente diverso da un Ente Sanitario che è interessato a sapere come può registrarsi sulla
+                                piattaforma MediCare ed accedere alle sue funzionalità? Se sì questa pagina fa per te altrimenti visita questo
+                                <u><a href="{{url_for('seiunEnteSanitario')}}" class="text-blue-600">link.</a></u>
+
+                                <br>
+
+                                MediCare permette di registrarsi come due tipologie di utenti: Medico Privato e Paziente.
+                                La registrazione del medico pubblico verrà svolta dall'Ente Sanitario come spiegato dalla pagina apposita, adesso
+                                iniziamo spiegando la procedura di registrazione del Paziente.
+                            </p>
+
+                            <p class="text-lg font-medium text-gray-900">Registrazione Paziente</p>
+
+                            <p class="pb-4 text-black">
+                                La procedura di registrazione del paziente richiede l'inserimento di molti dati quali: Codice Fiscale,
+                                nome, cognome, domicilio, luogo e data di nascita, email, password e cellulare. Ovviamente MediCare garantirà la
+                                protezione e la privacy di questi dati che sono molto sensibili per l'utente che compila il modulo.
+                            </p>
+
+                        </div>
+
+                        <img src="{{url_for('static', filename='images/RegistrazioneFooter1.png')}}" class="pb-4" alt="">
+
+
+                        <div class="font-poppins dark:text-gray-400">
+
+
+                            <p class="text-lg font-medium text-gray-900">Registrazione Medico</p>
+
+                            <p class="pb-4 text-black">
+                                La registrazione del medico richiede dati completamente diverse da quelli richieste da un utente di tipo paziente.
+                                Il medico privato sarà tenuto a fornire alla piattaforma i seguenti dati: nome, specializzazione, email, password,
+                                città dello studio e numero d'iscrizione all'albo. A differenza dell'Ente Sanitario il medico privato può fornire
+                                qualsiasi tipologia di indirizzo di posta elettronica che ha a disposizione.
+                            </p>
+
+                        </div>
+
+                        <img src="{{url_for('static', filename='images/RegistrazioneFooter2.png')}}" class="pb-4" alt="">
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
 {% include 'Footer2.0.html' %}
+
 </body>
 </html>
