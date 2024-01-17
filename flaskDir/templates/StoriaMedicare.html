@@ -6,6 +6,17 @@
     <link rel="stylesheet" href="../static/grafica/main.css">
 </head>
 <body>
+
+<style>
+
+    footer {
+    /* Fissa il footer al fondo dello schermo */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+</style>
 {% include 'Navbar.html' %}
 
   <section class="flex items-center bg-stone-50 xl:h-screen font-poppins ">
@@ -96,6 +107,8 @@
             </div>
         </div>
     </section>
-{% include 'Footer2.0.html' %}
+<footer class="mt-auto">
+    {% include 'Footer2.0.html' %}
+</footer>
 </body>
 </html>

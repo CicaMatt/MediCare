@@ -6,6 +6,17 @@
      <link rel="stylesheet" href="../static/grafica/main.css">
 </head>
 {% include 'Navbar.html' %}
+
+<style>
+
+    footer {
+    /* Fissa il footer al fondo dello schermo */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+</style>
 <body>
 
 
@@ -43,7 +54,9 @@
     </section>
 
 
-{% include 'Footer2.0.html' %}
+<footer class="mt-auto">
+    {% include 'Footer2.0.html' %}
+</footer>
 
 </body>
 </html>

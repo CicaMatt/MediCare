@@ -6,7 +6,16 @@
     <link rel="stylesheet" href="{{url_for('static',filename='grafica/main.css')}}">
 </head>
 
+<style>
 
+    footer {
+    /* Fissa il footer al fondo dello schermo */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+</style>
 
 <body class="bg-navbarreg rounded-lg">
 
@@ -291,7 +300,9 @@ svg.paint-icon {
 
 
 
-  {% include 'Footer2.0.html' %}
+<footer class="mt-auto">
+    {% include 'Footer2.0.html' %}
+</footer>
 
 
 </body>

@@ -5,6 +5,17 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../static/grafica/main.css">
 </head>
+
+<style>
+
+    footer {
+    /* Fissa il footer al fondo dello schermo */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+</style>
 <body class="bg-navbarreg rounded-lg">
 
 {% include 'NavbarLaterale.html' %}
@@ -63,10 +74,7 @@
 
                 <td class="px-6 py-4">
                     {% if Prenotazione.tipoVisita != "Vaccino" %}
-
-
-                    <button name="id" value="{{ Prenotazione.ID }}" data-value="{{ Prenotazione.medico }}" id="open-modal" type="submit"  class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onclick="openModal()">Modifica</button>
-
+                        <button name="id" value="{{ Prenotazione.ID }}" data-value="{{ Prenotazione.medico }}" id="open-modal" type="submit"  class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onclick="openModal()">Modifica</button>
                     {% endif %}
                 </td>
 

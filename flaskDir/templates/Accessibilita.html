@@ -5,6 +5,17 @@
     <title>Come Accedere</title>
      <link rel="stylesheet" href="../static/grafica/main.css">
 </head>
+<style>
+
+    footer {
+    /* Fissa il footer al fondo dello schermo */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+</style>
+
 {% include 'Navbar.html' %}
 <body>
 
@@ -41,8 +52,8 @@
         </div>
     </section>
 
-
-{% include 'Footer2.0.html' %}
-
+<footer class="mt-auto">
+    {% include 'Footer2.0.html' %}
+</footer>
 </body>
 </html>

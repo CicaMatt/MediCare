@@ -5,6 +5,16 @@
     <title>Lista enti</title>
     <link rel="stylesheet" href="{{url_for('static',filename='grafica/main.css')}}">
 </head>
+<style>
+
+    footer {
+    /* Fissa il footer al fondo dello schermo */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+</style>
 <body>
 
 {% include 'Navbar.html' %}
@@ -193,6 +203,8 @@
 </script>
 
 
-{% include 'Footer2.0.html' %}
+<footer class="mt-auto">
+    {% include 'Footer2.0.html' %}
+</footer>
 </body>
 </html>
