@@ -14,7 +14,7 @@ from flaskDir.source.prenotazioni.services import PrenotazioneService
 
 
 class TestEffettuazioneprenotazione():
-    def setup_method(self, method):
+    def setup_method(self):
         self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
         self.vars = {}
 
@@ -38,6 +38,10 @@ class TestEffettuazioneprenotazione():
             paziente.ISEE_ordinario=10000
             db.session.add(paziente)
             db.session.commit()
+            esistente=Prenotazione(oraVisita=9,dataVisita="2024-01-11",tipoVisita="Oculistica",prezzo=50, pazienteCF=paziente.CF, medico="giovannicasaburi@gmail.com")
+
+            db.session.add(esistente)
+            db.session.commit()
 
             self.driver.get("http://127.0.0.1:5000/")
             self.driver.set_window_size(1920, 1080)
@@ -58,6 +62,25 @@ class TestEffettuazioneprenotazione():
                 db.session.delete(Paziente.Paziente.query.filter_by(CF="AAAAAAAAAAAAAAAA").first())
                 db.session.commit()
 
+
+
+    def test_effettua_PrenotazioneNotFree(self):
+        self.driver.get("http://127.0.0.1:5000/")
+        self.driver.set_window_size(1920, 1032)
+        self.driver.find_element(By.LINK_TEXT, "Prenotazioni").click()
+        self.driver.find_element(By.LINK_TEXT, "Oculistica").click()
+        self.driver.find_element(By.CSS_SELECTOR, "tr:nth-child(4) .flex .text-gray-900").click()
+        self.driver.find_element(By.ID, "open-modal11").click()
+        self.driver.find_element(By.ID, "open-modal11").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".bg-red-600").click()
+        with app.app_context():
+            prenotazioni=Prenotazione.query.filter_by(pazienteCF="AAAAAAAAAAAAAAAA").all()
+            assert prenotazioni
+            assert len(prenotazioni)==1
+            assert self.driver.current_url=="http://127.0.0.1:5000/prenotazione/listamedici/paginamedico"
+
+
+
     def test_effettua_prenotazione_Success(self):
         self.driver.get("http://127.0.0.1:5000/")
         self.driver.set_window_size(1936, 1056)
@@ -73,5 +96,9 @@ class TestEffettuazioneprenotazione():
         self.driver.find_element(By.CSS_SELECTOR, ".bg-red-600").click()
         self.driver.find_element(By.ID, "paziente").click()
         self.driver.find_element(By.CSS_SELECTOR, "li:nth-child(3) .flex-1").click()
-        self.driver.find_element(By.CSS_SELECTOR, ".text-center:nth-child(3) > .px-6 .font-medium").click()
+        with app.app_context():
+            prenotazioni=Prenotazione.query.filter_by(pazienteCF="AAAAAAAAAAAAAAAA").all()
+            assert prenotazioni
+            assert len(prenotazioni)>0
+
 

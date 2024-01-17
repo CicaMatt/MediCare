@@ -59,7 +59,7 @@ def getMedico():
             #Pagina Prenotazione??
             return render_template("HomePage.html", medico=medico)
         else:
-            return render_template("ProfiloMedico.html", medico=medico, alert="error", message="Impossibile salvare la prenotazione: data occupata", data=data, giorni=giorni, carte=Paziente.carte, prezzo=prezzo)
+            return render_template("ProfiloMedico.html", medico=medico, alert="error", message="Impossibile salvare la prenotazione: data occupata", data=data, giorni=giorni, carte=paziente.carte, prezzo=prezzo)
 
     # Era meglio usare l'id come identificativo, adesso invece ogni utente può vedere la mail ei medici
     else:
