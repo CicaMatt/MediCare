@@ -42,7 +42,7 @@
                       <h3 class="text-sm text-gray-600">Numero documento: {{ documento_sanitario.NumeroDocumento }}</h3>
                         <div class="inline">
                                 <a href="{{url_for('prenotazioni.getListaEnti', richiamo=documento_sanitario.richiamo)}}">
-                                <span class="mr-3 rounded-full bg-blue-100 px-2 py-0.5 text-blue-900">Prenota Visita</span>
+                                <span class="ml-2 mr-3 rounded-full bg-blue-100 px-2 py-0.5 text-blue-900">Prenota Visita</span>
                                 </a>
                             </div>
                       <a href="#" class="mb-3 overflow-hidden pr-7 text-lg font-semibold sm:text-xl non-cliccabile">CF: {{ documento_sanitario.titolare }}</a>
@@ -66,9 +66,9 @@
                                     <div class="absolute">
                                         <div class="">
                                             <h1 class="my-2 text-gray-800 font-bold text-2xl">
-                                                Sembra che il tuo fascicolo sanitario sia attualmente vuoto
+                                                Il tuo fascicolo sanitario non contiene documenti relativi alla vaccinazione
                                             </h1>
-                                            <p class="my-2 text-gray-800">Visita la sezione prenotazioni per scoprire come prenotare una visita</p>
+                                            <p class="my-2 text-gray-800">Consultati con un medico per poter prenotare il tuo vaccino</p>
                                             <a href="{{url_for('prenotazione')}}">
                                             <button class="sm:w-full lg:w-auto my-2 border rounded md py-4 px-8 text-center bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-700 focus:ring-opacity-50">Prenota</button>
                                             </a>

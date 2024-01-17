@@ -75,6 +75,8 @@
                 <td class="px-6 py-4">
                     {% if Prenotazione.tipoVisita != "Vaccino" %}
                         <button name="id" value="{{ Prenotazione.ID }}" data-value="{{ Prenotazione.medico }}" id="open-modal" type="submit"  class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onclick="openModal()">Modifica</button>
+                    {% else %}
+                        N/D
                     {% endif %}
                 </td>
 
