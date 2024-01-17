@@ -237,6 +237,9 @@ class PrenotazioneService:
         try:
             prenotazioni = Prenotazione.query.filter_by(ID=id).first()
             if prenotazioni:
+                mese = datetime.datetime.now().strftime("%m") + "-"
+                anno = datetime.datetime.now().strftime("%Y") + "-"
+                data = str(anno) + str(mese) + str(data)
                 prenotazioni.dataVisita = data
                 prenotazioni.oraVisita = ora
                 db.session.commit()
