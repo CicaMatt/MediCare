@@ -1,5 +1,5 @@
 import bcrypt
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service as ChromeService
 from flaskDir import app, db
@@ -18,6 +18,7 @@ class TestAddMedico():
     def setup_method(self):
         self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
         self.vars = {}
+        self.is_second_test=False
 
         with app.app_context():
             password = "123password"
@@ -36,9 +37,12 @@ class TestAddMedico():
         self.driver.quit()
         if database_exists(app.config['SQLALCHEMY_DATABASE_URI']):
             with app.app_context():
+                if self.is_second_test:
+                    db.session.delete(Medico.query.filter_by(email="domenicourciuoli20@gmail.com").first())
+
                 db.session.delete(EnteSanitario.query.filter_by(email="domenico@gmail.com").first())
-                db.session.delete(Medico.query.filter_by(email="domenicourciuoli01@gmail.com").first())
                 db.session.commit()
+
 
     def test_addMedico(self):
         self.driver.get("http://127.0.0.1:5000/")
@@ -53,7 +57,7 @@ class TestAddMedico():
         self.driver.find_element(By.LINK_TEXT, "Ciao, Sanità").click()
         self.driver.find_element(By.ID, "open-modal").click()
         self.driver.find_element(By.NAME, "email").click()
-        self.driver.find_element(By.NAME, "email").send_keys("domenicourciuoli01@gmail.com")
+        self.driver.find_element(By.NAME, "email").send_keys("domenicourciuoli20@gmail.com")
         self.driver.find_element(By.NAME, "password").click()
         element = self.driver.find_element(By.NAME, "password")
         actions = ActionChains(self.driver)
@@ -65,4 +69,35 @@ class TestAddMedico():
         self.driver.find_element(By.NAME, "specializzazione").click()
         self.driver.find_element(By.NAME, "specializzazione").send_keys("chirurgia")
         self.driver.find_element(By.CSS_SELECTOR, ".bg-red-600").click()
+
+    def test_failaddmedico(self):#e-mail medico già esistente
+        self.is_second_test=True
+        self.driver.get("http://127.0.0.1:5000/")
+        self.driver.set_window_size(1048, 768)
+        self.driver.find_element(By.ID, "login").click()
+        self.driver.find_element(By.LINK_TEXT, "Accedi come Ente").click()
+        self.driver.find_element(By.ID, "email").click()
+        self.driver.find_element(By.ID, "email").send_keys("domenico@gmail.com")
+        self.driver.find_element(By.ID, "password").click()
+        self.driver.find_element(By.ID, "password").send_keys("123password")
+        self.driver.find_element(By.CSS_SELECTOR, ".px-6").click()
+        self.driver.find_element(By.LINK_TEXT, "Ciao, Sanità").click()
+        self.driver.find_element(By.ID, "open-modal").click()
+        self.driver.find_element(By.NAME, "email").click()
+        self.driver.find_element(By.NAME, "email").send_keys("domenicourciuoli20@gmail.com")
+        self.driver.find_element(By.NAME, "password").click()
+        element = self.driver.find_element(By.NAME, "password")
+        actions = ActionChains(self.driver)
+        actions.double_click(element).perform()
+        self.driver.find_element(By.NAME, "password").send_keys("password")
+        self.driver.find_element(By.NAME, "reparto").click()
+        self.driver.find_element(By.NAME, "reparto").send_keys("Cardiologia")
+        self.driver.find_element(By.CSS_SELECTOR, ".md\\3Amb-0:nth-child(2)").click()
+        self.driver.find_element(By.NAME, "specializzazione").click()
+        self.driver.find_element(By.NAME, "specializzazione").send_keys("chirurgia")
+        self.driver.find_element(By.CSS_SELECTOR, ".bg-red-600").click()
+
+
+
+
 
