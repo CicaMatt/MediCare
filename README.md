@@ -38,9 +38,9 @@ MediCare has the purpose of helping patients handling their reservations, manage
 
 Follow these steps:
 1. Clone this repository locally;
-2. Clone the virtual environment using the file MedicareEnvironment.yaml;
+2. Clone the virtual environment using the file *MedicareEnvironment.yaml*;
 3. Setup the *root* user with *root* password;
-4. Run the "app.py" file and open the web application available at the URL "http://localhost:5000"
+4. Run the *app.py* file and open the web application available at the URL *http://localhost:5000*
 
 ## Built With
 
