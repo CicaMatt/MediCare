@@ -243,15 +243,21 @@ class PrenotazioneService:
     def modificaPrenotazione(cls, id, data, ora):
         try:
             prenotazioni = Prenotazione.query.filter_by(ID=id).first()
-            if prenotazioni and PrenotazioneService.confirmIsFree(prenotazioni.medico,data, ora):
-                mese = datetime.datetime.now().strftime("%m") + "-"
-                anno = datetime.datetime.now().strftime("%Y") + "-"
-                data = str(anno) + str(mese) + str(data)
-                prenotazioni.dataVisita = data
-                prenotazioni.oraVisita = ora
-                db.session.commit()
 
-                return True
+            domani = datetime.datetime.now() + datetime.timedelta(days=1)
+
+            if prenotazioni and PrenotazioneService.confirmIsFree(prenotazioni.medico,data, ora):
+                    mese = datetime.datetime.now().strftime("%m") + "-"
+                    anno = datetime.datetime.now().strftime("%Y") + "-"
+                    data1 = str(anno) + str(mese) + str(data)
+                    if datetime.datetime.strptime(data1, "%Y-%m-%d") >= domani:
+                        prenotazioni.dataVisita = data1
+                        prenotazioni.oraVisita = ora
+                        db.session.commit()
+
+                        return True
+                    else:
+                        return False
             else:
                 return False
 
