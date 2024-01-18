@@ -25,7 +25,7 @@
       <div class="flex items-center justify-center w-full lg:p-10">
         <div class="flex items-center bg-white p-10" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
           <form method="POST" class="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl" action="{{url_for('auth.registrazioneEnte')}}">
-            <h3 class="mb-3 text-4xl font-extrabold text-dark-grey-900">Create your Account</h3>
+            <h3 class="mb-3 text-4xl font-extrabold text-dark-grey-900">Crea il tuo Account</h3>
 
               <div class="flex">
                   <a class="flex items-center justify-center w-full py-4 mb-6 text-sm font-medium transition duration-300 rounded-2xl text-grey-900 bg-grey-300 hover:bg-grey-400 focus:ring-4 focus:ring-grey-300">
@@ -35,22 +35,23 @@
 
             <div class="items-center mb-3">
                 <p class="mx-4 text-grey-600">Salve!</p>
-                <p class="mx-4 text-grey-600">Riempi i campi per registrarsi</p>
+                <p class="mx-4 text-grey-600">Riempi i campi per registrarti</p>
             </div>
 
-            <label for="nome" class="mb-2 text-sm text-start text-grey-900">Name</label>
-            <input name="nome"  id="nome" type="text" placeholder="Enter a name" class="border border-grey-900 flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+            <label for="nome" class="mb-2 text-sm text-start text-grey-900">Nome</label>
+            <input name="nome"  id="nome" type="text" placeholder="Inserisci il nome" pattern="[a-zA-ZÀ-ÖØ-öø-ÿ\s']{1,70}" class="border border-grey-900 flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
 
             <label for="email" class="mb-2 text-sm text-start text-grey-900">Email</label>
-            <input name ="email" id="email" type="email" placeholder="mail@loopple.com" class="border border-grey-900 flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
-              <label for="citta" class="mb-2 text-sm text-start text-grey-900">City</label>
-              <input name="citta"  id="citta" type="text" placeholder="Enter a City" class="border border-grey-900 flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+            <input name ="email" id="email" type="email" placeholder="mail@loopple.com" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" class="border border-grey-900 flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+
+            <label for="citta" class="mb-2 text-sm text-start text-grey-900">Città</label>
+            <input name="citta"  id="citta" type="text" placeholder="Città" pattern="^[a-zA-ZÀ-ÖØ-öø-ÿ\s']{1,50}$" class="border border-grey-900 flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+
             <label for="password" class="mb-2 text-sm text-start text-grey-900">Password</label>
             <input name="password"  id="password" type="password" placeholder="Enter a password" class="border border-grey-900 flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
 
 
-
-            <button type="submit" class="bg-navbarreg w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">Create your Account</button>
+            <button type="submit" class="bg-navbarreg w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">Crea Account</button>
           </form>
         </div>
       </div>

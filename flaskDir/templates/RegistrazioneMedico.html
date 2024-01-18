@@ -32,7 +32,7 @@
            <div class="flex justify-center w-full h-full my-auto xl:gap-14 lg:justify-normal md:gap-5 draggable">
       <div class="flex items-center justify-center w-full lg:p-12">
         <div class="flex items-center bg-white xl:p-10" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-          <form method="POST" class="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl" action="{{url_for('auth.registrazioneMedico')}}">
+          <form method="POST" class="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl" action="{{url_for('auth.registrazioneMedico')}}" onsubmit="return validatePassword()">
             <h3 class="mb-3 text-4xl font-extrabold text-dark-grey-900">Crea il tuo Account</h3>
 
               <div class="flex">
@@ -43,49 +43,79 @@
 
             <div class="items-center mb-3">
                 <p class="mx-4 text-grey-600">Salve Dottore!</p>
-                <p class="mx-4 text-grey-600">Riempi i campi per registrarsi</p>
+                <p class="mx-4 text-grey-600">Riempi i campi per registrarti</p>
             </div>
 
             <label for="email" class="mb-2 text-sm text-start text-grey-900">Email</label>
-            <input name ="email" id="email" type="email" placeholder="mail@loopple.com" class="border border-grey-900 flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+            <input name ="email" id="email" type="email" placeholder="mail@loopple.com" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" class="border border-grey-900 flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
             <label for="password" class="mb-2 text-sm text-start text-grey-900">Password</label>
-            <input name="password"  id="password" type="password" placeholder="Enter a password" class="border border-grey-900 flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+            <input name="password"  id="password" type="password" placeholder="Password" class="border border-grey-900 flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+            <div id="passwordErrorMessage" class="text-red-500 text-sm mb-3 hidden">La password deve essere lunga almeno 6 caratteri.</div>
 
              <div class="grid grid-cols-3 grid-rows-2 gap-4">
                  <!-- Prima riga -->
                  <div class="flex-1 pr-4 mb-5">
-                     <label for="nome" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Name</label>
-                     <input name="nome" id="nome" type="text" placeholder="Enter a name" class="border border-grey-900 flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+                     <label for="nome" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Nome</label>
+                     <input name="nome" id="nome" type="text" placeholder="Inserisci il nome" pattern="[a-zA-ZÀ-ÖØ-öø-ÿ\s']{1,50}" class="border border-grey-900 flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
                  </div>
 
                  <div class="flex-1 pr-4 mb-5">
-                     <label for="cognome" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Surname</label>
-                     <input name="cognome" id="cognome" type="text" placeholder="Enter a surname" class="border border-grey-900 flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+                     <label for="cognome" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Cognome</label>
+                     <input name="cognome" id="cognome" type="text" placeholder="Inserisci il cognome" pattern="[a-zA-ZÀ-ÖØ-öø-ÿ\s']{1,50}" class="border border-grey-900 flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
                  </div>
 
                  <div class="flex-1 mb-5">
-                     <label for="code" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Albo Code</label>
-                     <input name="code" id="code" type="text" placeholder="Enter a code" class="border border-grey-900 flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+                     <label for="code" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Codice Albo</label>
+                     <input name="code" id="code" type="text" placeholder="0000000" pattern="\d{1,7}" class="border border-grey-900 flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
                  </div>
 
                  <!-- Seconda riga -->
                  <div class="flex-1 pr-4 mb-5">
-                     <label for="specializzazione" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Specialization</label>
-                     <input name="specializzazione" id="specializzazione" type="text" placeholder="Enter a specialization" class="border border-grey-900 flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+                    <label for="specializzazione" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Specialization</label>
+                    <select name="specializzazione" id="specializzazione" class="border border-grey-900 flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required>
+                        <option value="" disabled selected>Scegli una specializzazione</option>
+                        <option value="Oculistica">Oculistica</option>
+                        <option value="Odontoiatria">Odontoiatria</option>
+                        <option value="Cardiologia">Cardiologia</option>
+                        <option value="Pediatria">Pediatria</option>
+                        <option value="Ginecologia">Ginecologia</option>
+                        <option value="Urologia">Urologia</option>
+                        <option value="Ematologia">Ematologia</option>
+                        <option value="Genetica">Genetica</option>
+                        <option value="Nefrologia">Nefrologia</option>
+                    </select>
                  </div>
 
+
                  <div class="flex-1 pr-4 mb-5">
-                     <label for="citta" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">City</label>
-                     <input name="citta" id="citta" type="text" placeholder="Enter a city" class="border border-grey-900 flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+                     <label for="citta" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Città</label>
+                     <input name="citta" id="citta" type="text" placeholder="Città" pattern="^[a-zA-ZÀ-ÖØ-öø-ÿ\s']{1,50}$" class="border border-grey-900 flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
                  </div>
              </div>
 
 
-            <button type="submit" class="bg-navbarreg mx-auto w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">Create an Account</button>
+            <button type="submit" class="bg-navbarreg mx-auto w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">Crea Account</button>
           </form>
         </div>
       </div>
     </div>
         </div>
     </body>
+
+
+
+    <script>
+        function validatePassword() {
+            var passwordInput = document.getElementById("password");
+            var errorMessage = document.getElementById("passwordErrorMessage");
+
+            if (passwordInput.value.length < 6) {
+                errorMessage.style.display = "block";
+                return false;
+            } else {
+                errorMessage.style.display = "none";
+                return true;
+            }
+        }
+    </script>
 </html>
