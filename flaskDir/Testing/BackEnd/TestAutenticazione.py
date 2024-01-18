@@ -1,5 +1,4 @@
 import pytest
-import sqlalchemy
 from urllib.parse import quote
 
 from flask import session
@@ -7,7 +6,6 @@ from flask_login import current_user
 
 from flaskDir import app, db
 from flaskDir.MediCare.model.entity.Medici import Medico
-from flaskDir.MediCare.model.entity.Paziente import Paziente
 from flaskDir.source.autenticazione import AutenticazioneService
 from sqlalchemy_utils import create_database, database_exists
 
@@ -16,7 +14,7 @@ class TestAutenticazione:
     @pytest.fixture(autouse=True, scope='session')
     def setUp(self,request):
         # Configura il database di test
-        app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root@localhost:3306/testmedicare"
+        app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{quote('querty')}@localhost:3306/testmedicare"
         app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
         app.config["TESTING"] = True
         db.init_app(app)

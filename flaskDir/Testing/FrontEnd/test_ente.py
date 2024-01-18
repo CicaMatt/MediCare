@@ -1,15 +1,15 @@
+from telnetlib import EC
+
 import bcrypt
-from selenium.webdriver import ActionChains, Keys
+from selenium.webdriver import ActionChains
+from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service as ChromeService
 from flaskDir import app, db
-from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from sqlalchemy_utils import create_database, database_exists
-from flaskDir.MediCare.model.entity import Paziente, Medici, EnteSanitario
-from flaskDir.MediCare.model.entity import Medici
+from sqlalchemy_utils import  database_exists
+from flaskDir.MediCare.model.entity import  EnteSanitario
 from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
 from flaskDir.MediCare.model.entity.Medici import Medico
 
@@ -18,7 +18,7 @@ class TestAddMedico():
     def setup_method(self):
         self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
         self.vars = {}
-        self.is_second_test=False
+        self.is_second_test = False
 
         with app.app_context():
             password = "123password"
@@ -43,11 +43,9 @@ class TestAddMedico():
                 db.session.delete(EnteSanitario.query.filter_by(email="domenico@gmail.com").first())
                 db.session.commit()
 
-
     def test_addMedico(self):
         self.driver.get("http://127.0.0.1:5000/")
         self.driver.set_window_size(1046, 766)
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID,"login")))
         self.driver.find_element(By.ID, "login").click()
         self.driver.find_element(By.LINK_TEXT, "Accedi come Ente").click()
         self.driver.find_element(By.ID, "email").click()
@@ -71,11 +69,10 @@ class TestAddMedico():
         self.driver.find_element(By.NAME, "specializzazione").send_keys("chirurgia")
         self.driver.find_element(By.CSS_SELECTOR, ".bg-red-600").click()
 
-    def test_failaddmedico(self):#e-mail medico già esistente
-        self.is_second_test=True
+    def test_failaddmedico(self):  # e-mail medico già esistente
+        self.is_second_test = True
         self.driver.get("http://127.0.0.1:5000/")
         self.driver.set_window_size(1048, 768)
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID,"login")))
         self.driver.find_element(By.ID, "login").click()
         self.driver.find_element(By.LINK_TEXT, "Accedi come Ente").click()
         self.driver.find_element(By.ID, "email").click()
@@ -98,8 +95,3 @@ class TestAddMedico():
         self.driver.find_element(By.NAME, "specializzazione").click()
         self.driver.find_element(By.NAME, "specializzazione").send_keys("chirurgia")
         self.driver.find_element(By.CSS_SELECTOR, ".bg-red-600").click()
-
-
-
-
-

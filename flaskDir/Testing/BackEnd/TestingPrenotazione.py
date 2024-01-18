@@ -1,3 +1,5 @@
+from urllib.parse import quote
+
 import pytest
 from flask import session
 from flask_login import current_user
@@ -5,15 +7,16 @@ from flaskDir import app, db
 from flaskDir.MediCare.model.entity.Medici import Medico
 from flaskDir.MediCare.model.entity.Paziente import Paziente
 from flaskDir.MediCare.model.entity.Prenotazione import Prenotazione
-from flaskDir.source.prenotazioni.services import PrenotazioneService
 from sqlalchemy_utils import create_database, database_exists
+
+from flaskDir.source.prenotazioni.PrenotazioneService import PrenotazioneService
 
 
 class TestPrenotazione():
     @pytest.fixture(autouse=True, scope='session')
     def setUp(self, request):
         # Configura il database di test
-        app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root@localhost:3306/testmedicare"
+        app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{quote('querty')}@localhost:3306/testmedicare"
         app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
         app.config["TESTING"] = True
         db.init_app(app)

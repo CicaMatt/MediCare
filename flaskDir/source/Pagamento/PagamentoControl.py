@@ -1,8 +1,7 @@
-from flask import Blueprint, render_template, session, request, jsonify, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import current_user, login_required
 
 
-from flaskDir.source.Farmaci.FarmaciService import FarmaciService
 from flaskDir.source.Pagamento.PagamentoService import PagamentoService
 
 informazionipersonali_blueprint = Blueprint('informazionipersonali', __name__)

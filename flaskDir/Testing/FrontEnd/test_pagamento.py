@@ -6,8 +6,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
-from sqlalchemy_utils import create_database, database_exists
-from flaskDir.MediCare.model.entity import Paziente, Medici, EnteSanitario
+from sqlalchemy_utils import database_exists
+from flaskDir.MediCare.model.entity import Paziente
 from flaskDir.MediCare.model.entity.MetodoPagamento import MetodoPagamento
 
 

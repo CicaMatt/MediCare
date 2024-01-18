@@ -2,10 +2,12 @@
 from flask import render_template, session, request, Blueprint
 from flask_login import current_user, login_required
 
-from flaskDir import app
 from flaskDir.MediCare.model.entity.Paziente import Paziente
-from flaskDir.source.prenotazioni.services import PrenotazioneService, MedicoService
+
 from datetime import datetime
+
+from flaskDir.source.Medico.MedicoService import MedicoService
+from flaskDir.source.prenotazioni.PrenotazioneService import PrenotazioneService
 
 # Dovrebbe essere un singleton?!
 

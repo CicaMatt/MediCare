@@ -1,8 +1,9 @@
-from flask import Blueprint, render_template, session, request, redirect, url_for, jsonify
+from flask import Blueprint, render_template, request, redirect, url_for, jsonify
 from flask_login import current_user, login_required
 import datetime
-from flaskDir.source.prenotazioni import services
-from flaskDir.source.prenotazioni.services import PrenotazioneService, FascicoloService, PazienteService
+from flaskDir.source.Fascicolo.FascicoloService import FascicoloService
+from flaskDir.source.Utente.PazienteService import PazienteService
+from flaskDir.source.prenotazioni.PrenotazioneService import PrenotazioneService
 
 areautente_blueprint = Blueprint('areautente', __name__)
 
@@ -34,7 +35,7 @@ def eliminaPaziente():
     if cf is None:
         return jsonify({"error": "Utente non trovato nella sessione"}), 400
 
-    success = services.PazienteService.eliminaPaziente(cf)
+    success = PazienteService.eliminaPaziente(cf)
 
     if success:
         return jsonify({"message": "Paziente eliminato con successo"})

@@ -6,7 +6,10 @@ from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
 from flaskDir.MediCare.model.entity.Medici import Medico
 from flaskDir.MediCare.model.entity.Paziente import Paziente
 from flaskDir.MediCare.model.entity.Prenotazione import Prenotazione
-from flaskDir.source.prenotazioni.services import PrenotazioneService, PazienteService, MedicoService
+from flaskDir.source.EnteFunction.EnteService import EnteService
+from flaskDir.source.Medico.MedicoService import MedicoService
+from flaskDir.source.Utente.PazienteService import PazienteService
+from flaskDir.source.prenotazioni.PrenotazioneService import PrenotazioneService
 
 
 @pytest.fixture

@@ -10,9 +10,9 @@ from flaskDir import app, db
 from flaskDir.MediCare.model.entity.DocumentoSanitario import DocumentoSanitario
 from flaskDir.MediCare.model.entity.MetodoPagamento import MetodoPagamento
 from flaskDir.MediCare.model.entity.Paziente import Paziente
+from flaskDir.source.Fascicolo.FascicoloService import FascicoloService
 from flaskDir.source.Pagamento.PagamentoService import PagamentoService
 from flaskDir.source.Utente.ISEEService import ISEEService
-from flaskDir.source.prenotazioni.services import FascicoloService
 
 
 #pip install mysqlclient
@@ -20,7 +20,7 @@ from flaskDir.source.prenotazioni.services import FascicoloService
 @pytest.fixture(autouse=True, scope='session')
 def setUp(request):
     # Configura il database di test
-    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:Gio210302DVK@localhost:3306/testmedicare"
+    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{quote('querty')}@localhost:3306/testmedicare"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["TESTING"] = True
     db.init_app(app)

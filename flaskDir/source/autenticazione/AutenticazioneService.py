@@ -1,12 +1,12 @@
-from flask import redirect, url_for, render_template, session
-from flask_login import current_user, login_user, logout_user
-import sqlalchemy
+from flask import redirect, url_for, session
+from flask_login import login_user, logout_user
 from flaskDir import db, app, login
 from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
 from flaskDir.MediCare.model.entity.Medici import Medico
 from flaskDir.MediCare.model.entity.Paziente import Paziente
-from flaskDir.source.prenotazioni.services import MedicoService, PazienteService
 from flaskDir.source.EnteFunction.EnteService import EnteService
+from flaskDir.source.Medico.MedicoService import MedicoService
+from flaskDir.source.Utente.PazienteService import PazienteService
 
 medicoService = MedicoService()
 pazienteService = PazienteService()
