@@ -13,7 +13,7 @@ class FarmaciService:
         Returns:
             list: Una lista contenente tutti i farmaci nel catalogo.
         """
-        return db.session.scalars(sqlalchemy.select(Farmaco))
+        return list(db.session.scalars(sqlalchemy.select(Farmaco)))
 
     @classmethod
     def getDettagliFarmaco(cls, id):
@@ -54,17 +54,17 @@ class FarmaciService:
             list: Una lista di farmaci filtrati in base alla categoria e/o al prezzo.
         """
         if categoria == "-" and prezzo == 0 :
-            return db.session.scalars(sqlalchemy.select(Farmaco))
+            return list(db.session.scalars(sqlalchemy.select(Farmaco)))
         elif categoria == "-" and prezzo != 0 :
-            return db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.prezzo <= prezzo))
+            return list(db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.prezzo <= prezzo)))
         elif categoria != "-" and prezzo == 0:
-            return db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.categoria==categoria))
+            return list(db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.categoria==categoria)))
         elif categoria is not None and prezzo > 0:
-            return db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.prezzo<=prezzo, Farmaco.categoria==categoria))
+            return list(db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.prezzo<=prezzo, Farmaco.categoria==categoria)))
         elif categoria is None:
-            return db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.prezzo<=prezzo))
+            return list(db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.prezzo<=prezzo)))
         elif prezzo == 0:
-            return db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.categoria==categoria))
+            return list(db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.categoria==categoria)))
         else:
             return cls.getFarmaci()
 

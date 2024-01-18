@@ -173,18 +173,18 @@ def registrazioneEnte(email,password,nome,citta):
         Returns:
             bool: True se la registrazione ha avuto successo, False altrimenti.
     """
-        ente=EnteService.retrieveEnte(email,password)
-        if ente is not None:
-            return False
-        ente=EnteSanitario()
-        with app.app_context():
-            ente.nome=nome
-            ente.email=email
-            ente.set_password(password)
-            ente.città=citta
-            db.session.add(ente)
-            db.session.commit()
-        return True
+    ente = EnteService.retrieveEnte(email, password)
+    if ente is not None:
+        return False
+    ente = EnteSanitario()
+    with app.app_context():
+        ente.nome = nome
+        ente.email = email
+        ente.set_password(password)
+        ente.città = citta
+        db.session.add(ente)
+        db.session.commit()
+    return True
 
 
 def logout():
