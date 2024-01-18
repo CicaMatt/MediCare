@@ -63,6 +63,6 @@ def modificaPrenotazione():
         ora=request.form.get('ora')
         id=request.form.get('id')
         if PrenotazioneService.modificaPrenotazione(id, data, ora):
-            return render_template("Storico.html", lista=PazienteService.getListaPrenotazioni(current_user), messaggio=None)
+            return render_template("Storico.html", lista=PazienteService.getListaPrenotazioni(current_user), messaggio=None, oggi=datetime.date.today())
         else:
-            return render_template("Storico.html", lista=PazienteService.getListaPrenotazioni(current_user), messaggio="messaggio")
+            return render_template("Storico.html", lista=PazienteService.getListaPrenotazioni(current_user), messaggio="messaggio", oggi=datetime.date.today())
