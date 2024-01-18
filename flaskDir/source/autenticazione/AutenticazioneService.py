@@ -28,7 +28,7 @@ def login_page(email,password,tipo):
             return False # Gli potrei aggiungere la notifica che le credenziali son oerrate
         login_user(medico)
         session['user_role'] = 'medico'
-        return medico
+        return True
 
     else:
         paziente = pazienteService.retrievePaziente(email, password)

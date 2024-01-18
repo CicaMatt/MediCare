@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, session, request, redirect, url_for, jsonify
 from flask_login import current_user, login_required
-
+import datetime
 from flaskDir.source.prenotazioni import services
 from flaskDir.source.prenotazioni.services import PrenotazioneService, FascicoloService, PazienteService
 
@@ -9,7 +9,7 @@ areautente_blueprint = Blueprint('areautente', __name__)
 @areautente_blueprint.route('/storico')
 @login_required
 def storico():
-    return render_template("Storico.html", lista=PrenotazioneService.getListaPrenotazioni(current_user))
+    return render_template("Storico.html", lista=PrenotazioneService.getListaPrenotazioni(current_user), oggi=datetime.date.today())
 
 @areautente_blueprint.route('/storicoMedico',methods=['GET','POST'])
 @login_required

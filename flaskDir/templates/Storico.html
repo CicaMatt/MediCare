@@ -73,8 +73,8 @@
                 </td>
 
                 <td class="px-6 py-4">
-                    {% if Prenotazione.tipoVisita != "Vaccino" %}
-                        <button name="id" value="{{ Prenotazione.ID }}" id="modalPren" type="submit"  class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onclick="openModalPren(this.value)">Modifica</button>
+                    {% if Prenotazione.tipoVisita != "Vaccino" and Prenotazione.dataVisita>=oggi%}
+                        <button name="pren" value="{{ Prenotazione.ID }}" id="modalPren" type="submit"  class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onclick="openModalPren(this.value)">Modifica</button>
                     {% else %}
                         N/D
                     {% endif %}
@@ -154,17 +154,12 @@
 
 
 <script>
-    const openModalBtn = document.getElementById("modalPren");
+
     const closeModalBtn = document.getElementById("close-modal");
     const modal = document.getElementById("modal-pren");
-
-    openModalBtn.addEventListener("click", openModalPren);
     closeModalBtn.addEventListener("click", closeModalPren);
 
-    openModalBtn.addEventListener("click", function (event) {
-      event.preventDefault();
-      openModal();
-    });
+
 
     closeModalBtn.addEventListener("click", function (event) {
       event.preventDefault();
@@ -175,7 +170,6 @@
     function openModalPren(id) {
       console.log("apro modal");
       document.getElementById("form")["id"].value=id
-
       modal.classList.remove("hidden");
     }
     function closeModalPren() {
