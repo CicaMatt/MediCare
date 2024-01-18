@@ -47,6 +47,7 @@ class TestAddMedico():
     def test_addMedico(self):
         self.driver.get("http://127.0.0.1:5000/")
         self.driver.set_window_size(1046, 766)
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID,"login")))
         self.driver.find_element(By.ID, "login").click()
         self.driver.find_element(By.LINK_TEXT, "Accedi come Ente").click()
         self.driver.find_element(By.ID, "email").click()
@@ -74,6 +75,7 @@ class TestAddMedico():
         self.is_second_test=True
         self.driver.get("http://127.0.0.1:5000/")
         self.driver.set_window_size(1048, 768)
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID,"login")))
         self.driver.find_element(By.ID, "login").click()
         self.driver.find_element(By.LINK_TEXT, "Accedi come Ente").click()
         self.driver.find_element(By.ID, "email").click()

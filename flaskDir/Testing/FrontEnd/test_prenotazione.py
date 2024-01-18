@@ -38,7 +38,7 @@ class TestEffettuazioneprenotazione():
             paziente.ISEE_ordinario=10000
             db.session.add(paziente)
             db.session.commit()
-            esistente=Prenotazione(oraVisita=9,dataVisita="2024-01-11",tipoVisita="Oculistica",prezzo=50, pazienteCF=paziente.CF, medico="giovannicasaburi@gmail.com")
+            esistente=Prenotazione(oraVisita=9,dataVisita="2024-01-31",tipoVisita="Oculistica",prezzo=50, pazienteCF=paziente.CF, medico="giovannicasaburi@gmail.com")
 
             db.session.add(esistente)
             db.session.commit()
@@ -70,8 +70,8 @@ class TestEffettuazioneprenotazione():
         self.driver.find_element(By.LINK_TEXT, "Prenotazioni").click()
         self.driver.find_element(By.LINK_TEXT, "Oculistica").click()
         self.driver.find_element(By.CSS_SELECTOR, "tr:nth-child(4) .flex .text-gray-900").click()
-        self.driver.find_element(By.ID, "open-modal11").click()
-        self.driver.find_element(By.ID, "open-modal11").click()
+        self.driver.find_element(By.ID, "open-modal31").click()
+        self.driver.find_element(By.ID, "open-modal31").click()
         self.driver.find_element(By.CSS_SELECTOR, ".bg-red-600").click()
         with app.app_context():
             prenotazioni=Prenotazione.query.filter_by(pazienteCF="AAAAAAAAAAAAAAAA").all()

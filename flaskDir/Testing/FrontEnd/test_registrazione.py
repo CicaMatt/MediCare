@@ -23,9 +23,12 @@ class TestRegistrazione():
 
     def test_registrazione(self):
         self.driver.get("http://127.0.0.1:5000/")
+        self.driver.set_window_size(1920,1080)
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID,"login")))
         self.driver.find_element(By.ID, "login").click()
         self.driver.find_element(By.CSS_SELECTOR, ".pb-6").click()
-        self.driver.find_element(By.LINK_TEXT, "Create an Account").click()
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT,"Crea Account")))
+        self.driver.find_element(By.LINK_TEXT, "Crea Account").click()
         self.driver.find_element(By.ID, "nome").click()
         self.driver.find_element(By.ID, "nome").send_keys("Gennaro")
         self.driver.find_element(By.ID, "cognome").click()
@@ -37,7 +40,7 @@ class TestRegistrazione():
         self.driver.find_element(By.ID, "code").click()
         self.driver.find_element(By.ID, "code").send_keys("VNTGNN80A01A783Y")
         self.driver.find_element(By.ID, "cellulare").click()
-        self.driver.find_element(By.ID, "cellulare").send_keys("233")
+        self.driver.find_element(By.ID, "cellulare").send_keys("3312258345")
         self.driver.find_element(By.ID, "cittanascita").click()
         self.driver.find_element(By.ID, "cittanascita").send_keys("Benevento")
         self.driver.find_element(By.ID, "datanascita").click()
@@ -47,7 +50,6 @@ class TestRegistrazione():
         self.driver.find_element(By.ID, "sesso").click()
         self.driver.find_element(By.ID, "sesso").send_keys("Maschio")
         self.driver.find_element(By.CSS_SELECTOR, ".px-6").click()
-
         WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, "login")))
         self.driver.find_element(By.ID, "login").click()
         self.driver.find_element(By.ID, "email").click()
