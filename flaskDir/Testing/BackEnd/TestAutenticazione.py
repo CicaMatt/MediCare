@@ -16,7 +16,7 @@ class TestAutenticazione:
     @pytest.fixture(autouse=True, scope='session')
     def setUp(self,request):
         # Configura il database di test
-        app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{quote('Cancello1@')}@localhost:3306/testmedicare"
+        app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:lollipop@localhost:3306/testmedicare"
         app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
         app.config["TESTING"] = True
         db.init_app(app)
@@ -62,7 +62,7 @@ class TestAutenticazione:
         credenzialiTest = {"email": mail, "password": password, "tipo":"medico"}
         with app.test_client() as client:
             response = client.post('/auth/login', data=credenzialiTest)
-            assert response.status_code == 200
+            assert response.status_code == 302
             assert current_user.is_authenticated is True
             assert session.get('user_role') == "medico"
 

@@ -29,7 +29,7 @@ def getListaEnti():
 
 @prenotazione_blueprint.route('/listamedici/paginamedico', methods=['GET','POST'])
 @login_required
-def getMedico():
+def getMedico(prenotazione=None):
     idMedico = request.form.get('medico')
     user = session['_user_id']
     paziente=Paziente.query.filter(Paziente.CF==user).first()
@@ -45,6 +45,8 @@ def getMedico():
     carta=request.form.get('carta')
     medico = MedicoService.getMedico(idMedico)
     prezzo=float(medico.tariffa)
+    prenotazioniMedico = PrenotazioneService.getListaPrenotazioniMedico(idMedico)
+    orariOccupati = list((prenotazione.oraVisita,prenotazione.dataVisita) for prenotazione in prenotazioniMedico)
 
     #Dopo che ha scelto la data e l'ora
     if data and ora and current_user.is_authenticated:
@@ -67,7 +69,7 @@ def getMedico():
     # Era meglio usare l'id come identificativo, adesso invece ogni utente può vedere la mail ei medici
     else:
         return render_template("ProfiloMedico.html", medico=medico, data=current_date, giorni=(giorni_rim,giorni_succ), carte=paziente.carte, prezzo=prezzo, day=current_day,
-                               week_day=day_of_week)
+                               week_day=day_of_week, orariOccupati = orariOccupati)
 
 
 @prenotazione_blueprint.route('/prenotazione/listavaccini')
