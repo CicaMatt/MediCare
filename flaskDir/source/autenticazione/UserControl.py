@@ -9,6 +9,13 @@ auth_blueprint = Blueprint('auth', __name__)
 
 @auth_blueprint.route('/login', methods=['GET','POST'])
 def login_page():
+    """
+    Gestisce la pagina di login.
+
+    Returns:
+        render_template: La pagina di login o la home se l'utente è già autenticato.
+        redirect: Reindirizza l'utente alla home dopo il login con successo.
+    """
     if current_user.is_authenticated:
         return render_template('HomePage.html')
     if request.method == 'POST':
@@ -26,6 +33,13 @@ def login_page():
 
 @auth_blueprint.route('/loginente', methods=['GET','POST'])
 def loginEnte_page():
+    """
+    Gestisce la pagina di login per gli enti sanitari.
+
+    Returns:
+        render_template: La pagina di login per gli enti o la home se l'utente è già autenticato.
+        render_template: La home se il login dell'ente sanitario ha successo.
+    """
     if current_user.is_authenticated:
         return render_template('HomePage.html')
     if request.method == 'POST':
@@ -38,6 +52,13 @@ def loginEnte_page():
 
 @auth_blueprint.route('/registrazioneMedico', methods=['GET','POST'])
 def registrazioneMedico():
+    """
+    Gestisce la registrazione di un nuovo medico.
+
+    Returns:
+        render_template: La pagina di registrazione del medico o la home se l'utente è già autenticato.
+        render_template: La pagina di login se la registrazione del medico ha successo.
+    """
     if current_user.is_authenticated:
         return render_template('HomePage.html')
     if request.method == 'POST':
@@ -55,6 +76,13 @@ def registrazioneMedico():
 
 @auth_blueprint.route('/registrazionePaziente', methods=['GET','POST'])
 def registrazionePaziente():
+    """
+    Gestisce la registrazione di un nuovo paziente.
+
+    Returns:
+        render_template: La pagina di registrazione del paziente o la home se l'utente è già autenticato.
+        render_template: La home se la registrazione del paziente ha successo.
+    """
     if current_user.is_authenticated:
         return render_template('HomePage.html')
     if request.method == 'POST':
@@ -75,6 +103,13 @@ def registrazionePaziente():
 
 @auth_blueprint.route('/registrazione/ente', methods=['GET','POST'])
 def registrazioneEnte():
+    """
+    Gestisce la registrazione di un nuovo ente sanitario.
+
+    Returns:
+        render_template: La pagina di registrazione dell'ente o la home se l'utente è già autenticato.
+        render_template: La home se la registrazione dell'ente sanitario ha successo.
+    """
     if current_user.is_authenticated:
         return render_template('HomePage.html')
     if request.method == 'POST':
@@ -89,4 +124,10 @@ def registrazioneEnte():
 
 @auth_blueprint.route('/logout')
 def logout():
+    """
+    Esegue il logout dell'utente corrente.
+
+    Returns:
+        redirect: Reindirizza l'utente alla home dopo il logout.
+    """
     return AutenticazioneService.logout()
