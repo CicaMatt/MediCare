@@ -50,12 +50,12 @@
                  <!-- Prima riga -->
                  <div class="flex-1 pr-4 mb-5">
                      <label for="nome" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Nome</label>
-                     <input name="nome" id="nome" type="text" placeholder="Inserisci il nome" pattern="[a-zA-ZÀ-ÖØ-öø-ÿ\s']{1,50}" class="border border-grey-900  flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+                     <input name="nome" id="nome" type="text" placeholder="Inserisci il nome" pattern="[a-zA-ZÀ-ÖØ-öø-ÿ\s']{1,50}" title="Il nome deve contenere solo caratteri alfabetici" class="border border-grey-900  flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
                  </div>
 
                  <div class="flex-1 pr-4 mb-5">
                      <label for="cognome" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Cognome</label>
-                     <input name="cognome" id="cognome" type="text" placeholder="Inserisci il cognome" pattern="[a-zA-ZÀ-ÖØ-öø-ÿ\s']{1,50}" class="border border-grey-900 flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+                     <input name="cognome" id="cognome" type="text" placeholder="Inserisci il cognome" pattern="[a-zA-ZÀ-ÖØ-öø-ÿ\s']{1,50}" title="Il cognome deve contenere solo caratteri alfabetici" class="border border-grey-900 flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
                  </div>
               </div>
 
@@ -63,35 +63,35 @@
             <input name ="email" id="email" type="email" placeholder="mail@loopple.com" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" class="border border-grey-900 flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
             <label for="password" class="mb-2 text-sm text-start text-grey-900">Password</label>
             <input name="password"  id="password" type="password" placeholder="Inserisci una password" class="border border-grey-900  flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
-            <div id="passwordErrorMessage" class="text-red-500 text-sm mb-3 hidden">La password deve essere lunga almeno 6 caratteri.</div>
+            <div id="passwordErrorMessage" class="text-red-500 text-sm mb-3 hidden">La password deve essere lunga almeno 8 caratteri.</div>
 
              <div class="grid grid-cols-3 grid-rows-2 gap-4">
                  <!-- Prima riga -->
 
                  <div class="flex-1 mb-5">
                      <label for="code" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Codice Fiscale</label>
-                     <input name="code" id="code" type="text" placeholder="XXXXXX00X00X000X" pattern="^[A-Z]{6}\d{2}[A-Z]\d{2}[A-Z]\d{3}[A-Z]$" class="border border-grey-900  flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+                     <input name="code" id="code" type="text" placeholder="XXXXXX00X00X000X" pattern="^[A-Z]{6}\d{2}[A-Z]\d{2}[A-Z]\d{3}[A-Z]$" title="XXXXXX00X00X000X" class="border border-grey-900  flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
                  </div>
 
                  <!-- Seconda riga -->
                  <div class="flex-1 pr-4 mb-5">
                      <label for="cellulare" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Cellulare</label>
-                     <input name="cellulare" id="cellulare" type="text" placeholder="0000000000" pattern="^\d{10}$" class="border border-grey-900  flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+                     <input name="cellulare" id="cellulare" type="text" placeholder="0000000000" title="Il numero deve contenere 10 cifre numeriche" pattern="^\d{10}$" class="border border-grey-900  flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
                  </div>
 
                  <div class="flex-1 pr-4 mb-5">
                      <label for="cittanascita" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Luogo di Nascita</label>
-                     <input name="cittanascita" id="cittanascita" type="text" placeholder="Città" pattern="^[a-zA-ZÀ-ÖØ-öø-ÿ\s']{1,50}$" class="border border-grey-900 flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+                     <input name="cittanascita" id="cittanascita" type="text" placeholder="Città" pattern="^[a-zA-ZÀ-ÖØ-öø-ÿ\s']{1,50}$" title="La città deve contenere solo caratteri alfabetici" class="border border-grey-900 flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
                  </div>
 
                  <div class="flex-1 pr-4 mb-5">
                      <label for="datanascita" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Data di Nascita</label>
-                     <input name="datanascita" id="datanascita" type="text" placeholder="YYYY-MM-DD" pattern="^\d{4}-\d{2}-\d{2}$"  class="border border-grey-900 flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+                     <input name="datanascita" id="datanascita" type="text" placeholder="YYYY-MM-DD" pattern="^\d{4}-\d{2}-\d{2}$"  title="YYYY-MM-DD" class="border border-grey-900 flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
                  </div>
 
                  <div class="flex-1 pr-4 mb-5">
                      <label for="domicilio" class="mb-2 text-sm text-grey-900" style="display: block; text-align: left;">Domicilio</label>
-                     <input name="domicilio" id="domicilio" type="text" placeholder="Città" pattern="^[a-zA-ZÀ-ÖØ-öø-ÿ\s']{1,50}$" class="border border-grey-900 flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+                     <input name="domicilio" id="domicilio" type="text" placeholder="Città" pattern="^[a-zA-ZÀ-ÖØ-öø-ÿ\s']{1,50}$" title="La città deve contenere solo caratteri alfabetici" class="border border-grey-900 flex items-center w-full px-5 py-4 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
                  </div>
 
                  <div class="flex-1 pr-4 mb-5">
@@ -118,7 +118,7 @@
             var passwordInput = document.getElementById("password");
             var errorMessage = document.getElementById("passwordErrorMessage");
 
-            if (passwordInput.value.length < 6) {
+            if (passwordInput.value.length < 8) {
                 errorMessage.style.display = "block";
                 return false;
             } else {

@@ -24,7 +24,7 @@
            <div class="flex justify-center w-full h-full my-auto xl:gap-14 lg:justify-normal md:gap-5 draggable">
       <div class="flex items-center justify-center w-full lg:p-10">
         <div class="flex items-center bg-white p-10" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-          <form method="POST" class="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl" action="{{url_for('auth.registrazioneEnte')}}">
+          <form method="POST" class="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl" action="{{url_for('auth.registrazioneEnte')}}" onsubmit="return validatePassword()">
             <h3 class="mb-3 text-4xl font-extrabold text-dark-grey-900">Crea il tuo Account</h3>
 
               <div class="flex">
@@ -39,17 +39,17 @@
             </div>
 
             <label for="nome" class="mb-2 text-sm text-start text-grey-900">Nome</label>
-            <input name="nome"  id="nome" type="text" placeholder="Inserisci il nome" pattern="[a-zA-ZÀ-ÖØ-öø-ÿ\s']{1,70}" class="border border-grey-900 flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+            <input name="nome"  id="nome" type="text" placeholder="Inserisci il nome" pattern="[a-zA-ZÀ-ÖØ-öø-ÿ\s']{1,70}" title="Il nome deve contenere solo caratteri alfabetici" class="border border-grey-900 flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
 
             <label for="email" class="mb-2 text-sm text-start text-grey-900">Email</label>
             <input name ="email" id="email" type="email" placeholder="mail@loopple.com" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" class="border border-grey-900 flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
 
             <label for="citta" class="mb-2 text-sm text-start text-grey-900">Città</label>
-            <input name="citta"  id="citta" type="text" placeholder="Città" pattern="^[a-zA-ZÀ-ÖØ-öø-ÿ\s']{1,50}$" class="border border-grey-900 flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+            <input name="citta"  id="citta" type="text" placeholder="Città" pattern="^[a-zA-ZÀ-ÖØ-öø-ÿ\s']{1,50}$" title="La città deve contenere solo caratteri alfabetici" class="border border-grey-900 flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
 
             <label for="password" class="mb-2 text-sm text-start text-grey-900">Password</label>
             <input name="password"  id="password" type="password" placeholder="Enter a password" class="border border-grey-900 flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
-
+            <div id="passwordErrorMessage" class="text-red-500 text-sm mb-3 hidden">La password deve essere lunga almeno 8 caratteri.</div>
 
             <button type="submit" class="bg-navbarreg w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">Crea Account</button>
           </form>
@@ -58,4 +58,20 @@
     </div>
         </div>
     </body>
+
+
+    <script>
+        function validatePassword() {
+            var passwordInput = document.getElementById("password");
+            var errorMessage = document.getElementById("passwordErrorMessage");
+
+            if (passwordInput.value.length < 8) {
+                errorMessage.style.display = "block";
+                return false;
+            } else {
+                errorMessage.style.display = "none";
+                return true;
+            }
+        }
+    </script>
 </html>
