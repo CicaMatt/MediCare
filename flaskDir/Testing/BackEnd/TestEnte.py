@@ -13,7 +13,7 @@ class TestEnte():
     def setUp(self, request):
         from urllib.parse import quote
 
-        app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{quote('Cancello1@')}@localhost:3306/testmedicare"
+        app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root@localhost:3306/testmedicare"
         app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
         app.config["TESTING"] = True
         db.init_app(app)
@@ -45,10 +45,10 @@ class TestEnte():
             db.session.add(ente)
             db.session.commit()
 
-            result = EnteService.creaReparto("RepartoCardiologia","ospedaleBergamo23Cardiologia@pec.it","Papa23","Cardiologia","Bergamo","ospedaleBergamo23@pec.it")
+            result = EnteService.creaReparto("RepartoCardiologia","ospedaleBergamo23Cardiologia@gmail.com","Papa230129","Cardiologia","Bergamo","ospedaleBergamo23@pec.it")
             oracle = True
             assert oracle == result
-            reparto=Medico.query.filter_by(email="ospedaleBergamo23Cardiologia@pec.it").first()
+            reparto=Medico.query.filter_by(email="ospedaleBergamo23Cardiologia@gmail.com").first()
             assert reparto
 
             db.session.delete(reparto)
@@ -65,8 +65,29 @@ class TestEnte():
             db.session.add(ente)
             db.session.commit()
 
-            result = EnteService.creaReparto("RepartoCardiologia", "ospedaleBergamo23Cardiologia@pec.it",
-                                                     "Papa23", "Cardiologia", "Bergamo", "ospedaleBergamo23")
+            result = EnteService.creaReparto("RepartoCardiologia", "ospedaleBergamo23Cardiologia@gmail.com",
+                                                     "Papa230129", "Cardiologia", "Bergamo", "ospedaleBergamo23")
+            oracle = False
+            assert oracle == result
+            reparto = Medico.query.filter_by(email="ospedaleBergamo23Cardiologia@gmail.com").first()
+            assert not reparto
+
+            db.session.delete(ente)
+            db.session.commit()
+
+
+    def test_InvalidEmail(self):
+        with app.app_context():
+            ente = EnteSanitario()
+            ente.nome = "Ospedale Papa Giovanni XXIII"
+            ente.email = "ospedaleBergamo23@pec.it"
+            ente.password_hash = "Papa23"
+            ente.città = "Bergamo"
+            db.session.add(ente)
+            db.session.commit()
+
+            result = EnteService.creaReparto("RepartoCardiologia", "ospedaleBergamo23",
+                                                     "Papa230122", "Cardiologia", "Bergamo", "ospedaleBergamo23@pec.it")
             oracle = False
             assert oracle == result
             reparto = Medico.query.filter_by(email="ospedaleBergamo23Cardiologia@pec.it").first()
@@ -74,3 +95,24 @@ class TestEnte():
 
             db.session.delete(ente)
             db.session.commit()
+
+    def test_InvalidPassword(self):
+        with app.app_context():
+            ente = EnteSanitario()
+            ente.nome = "Ospedale Papa Giovanni XXIII"
+            ente.email = "ospedaleBergamo23@pec.it"
+            ente.password_hash = "Papa23"
+            ente.città = "Bergamo"
+            db.session.add(ente)
+            db.session.commit()
+
+            result = EnteService.creaReparto("RepartoCardiologia", "ospedaleBergamo23@gmail.com",
+                                                     "Papa", "Cardiologia", "Bergamo", "ospedaleBergamo23@pec.it")
+            oracle = False
+            assert oracle == result
+            reparto = Medico.query.filter_by(email="ospedaleBergamo23Cardiologia@pec.it").first()
+            assert not reparto
+
+            db.session.delete(ente)
+            db.session.commit()
+
