@@ -10,6 +10,15 @@ class MedicoService:
 
     @classmethod
     def getPazienti(cls,dottore):
+        """
+        Restituisce la lista dei pazienti associati a un medico specifico.
+
+        Args:
+            dottore (str): Email del medico.
+
+        Returns:
+            list: Lista dei pazienti associati al medico.
+        """
         medico = Medico.query.filter_by(email=dottore).first()
 
         if medico:
@@ -22,10 +31,29 @@ class MedicoService:
 
     @staticmethod
     def getMedico(idMedico):
+        """
+        Restituisce le informazioni di un medico specifico.
+
+        Args:
+            idMedico (str): Email del medico.
+
+        Returns:
+            Medico: Oggetto Medico corrispondente all'ID.
+        """
         return Medico.query.filter_by(email=idMedico).first()
 
     @staticmethod
     def retrieveMedico(email, password):
+        """
+        Recupera un medico dal database in base all'email e verifica la password.
+
+        Args:
+            email (str): Email del medico.
+            password (str): Password del medico.
+
+        Returns:
+            Medico: Oggetto Medico se l'autenticazione è riuscita, altrimenti None.
+        """
         medico = db.session.scalar(sqlalchemy.select(Medico).where(Medico.email == email))
         if medico is None or not medico.check_password(password):
             return None
@@ -33,17 +61,39 @@ class MedicoService:
 
     @classmethod
     def getListaMedici(cls):
+        """
+        Restituisce la lista di tutti i medici.
+
+        Returns:
+            list: Lista di oggetti Medico.
+        """
         if cls._listaMedici is None:
             cls._listaMedici = Medico.query.all()
         return cls._listaMedici
 
     @classmethod
     def getListaCentri(cls):
+        """
+        Restituisce la lista di tutti i centri specializzati in vaccini.
+
+        Returns:
+            list: Lista di oggetti Medico.
+        """
         if cls._listaCentri is None:
             cls._listaCentri = Medico.query.filter(Medico.specializzazione == "Vaccini").all()
         return cls._listaCentri
 
     def filtraMedici(cls, specializzazione=None, citta=None):
+        """
+        Filtra i medici in base alla specializzazione e/o alla città.
+
+        Args:
+            specializzazione (str): Specializzazione del medico.
+            citta (str): Città del medico.
+
+        Returns:
+            list: Lista di oggetti Medico filtrati.
+        """
         cls._listaMedici = cls.getListaMedici()
 
         if specializzazione is None and citta is None:
@@ -63,6 +113,16 @@ class MedicoService:
         return newList
 
     def filtraMediciv2(cls, specializzazione=None, citta=None):
+        """
+        Versione avanzata del filtro dei medici in base alla specializzazione e/o alla città.
+
+        Args:
+            specializzazione (str): Specializzazione del medico.
+            citta (str): Città del medico.
+
+        Returns:
+            list: Lista di oggetti Medico filtrati.
+        """
         cls._listaMedici = cls.getListaMedici()
 
         if specializzazione is None and citta is None:
@@ -83,11 +143,29 @@ class MedicoService:
 
     @classmethod
     def addMedicotoLista(cls, medico):
+        """
+        Aggiunge un medico alla lista dei medici.
+
+        Args:
+            medico (Medico): Oggetto Medico da aggiungere alla lista.
+
+        Returns:
+            None
+        """
         cls._listaMedici = cls.getListaMedici()
         cls._listaMedici.append(medico)
 
     @classmethod
     def rimuoviMedico(cls, email):
+        """
+        Rimuove un medico dal database.
+
+        Args:
+            email (str): Email del medico da rimuovere.
+
+        Returns:
+            bool: True se la rimozione è avvenuta con successo, altrimenti False.
+        """
         try:
             medico = Medico.query.filter_by(email=email).first()
             if medico:
