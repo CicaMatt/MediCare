@@ -5,6 +5,12 @@ ente_blueprint=Blueprint('ente',__name__)
 
 @ente_blueprint.route('/creaReparto', methods=['POST'])
 def creaReparto():
+    """
+    Gestisce la creazione di un nuovo reparto medico da parte di un ente sanitario.
+
+    Returns:
+        render_template: La pagina dell'area ente dopo la creazione del reparto.
+    """
     if request.method == 'POST':
         nome=request.form.get('reparto')
         email=request.form.get('email')
@@ -17,6 +23,12 @@ def creaReparto():
 
 @ente_blueprint.route('/deleteReparto', methods=['GET'])
 def deleteReparto():
+    """
+    Gestisce l'eliminazione di un reparto medico da parte di un ente sanitario.
+
+    Returns:
+        render_template: La pagina dell'area ente dopo l'eliminazione del reparto.
+    """
     if request.method == 'GET':
         email=request.args.get('email')
         EnteService.deleteReparto(email)
