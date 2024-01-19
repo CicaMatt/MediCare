@@ -12,18 +12,55 @@ class PrenotazioneService:
 
     @classmethod
     def getListaMedici(cls,specializzazione = None, citta= None):
+        """
+            Restituisce la lista dei medici disponibili.
+
+            Args:
+                specializzazione (str): La specializzazione del medico.
+                citta (str): La città in cui cercare i medici.
+
+            Returns:
+                list: Lista dei medici filtrati per specializzazione e città.
+        """
         return MedicoService().filtraMedici(specializzazione,citta)
 
     @classmethod
     def getListaVaccini(cls,user):
+        """
+        Restituisce la lista dei vaccini disponibili per un paziente.
+
+        Args:
+            user (str): Il codice fiscale del paziente.
+
+        Returns:
+            list: Lista dei vaccini disponibili per il paziente.
+        """
         return PazienteService.getListaVaccini(user)
 
     @classmethod
     def getListaPrenotazioni(cls, user):
+        """
+        Restituisce la lista delle prenotazioni effettuate da un paziente.
+
+        Args:
+            user (str): Il codice fiscale del paziente.
+
+        Returns:
+            list: Lista delle prenotazioni effettuate dal paziente.
+        """
         return PazienteService.getListaPrenotazioni(user)
 
     @classmethod
     def getListaPrenotazioniMedico(cls, medico):
+        """
+        Restituisce la lista delle prenotazioni effettuate da un medico.
+
+        Args:
+            medico (str): L'email del medico.
+
+        Returns:
+            list: Lista delle prenotazioni effettuate dal medico.
+        """
         medico=Medico.query.filter(Medico.email==medico).first()
         if medico.ente_sanitario is None:
             return db.session.scalars(sqlalchemy.select(Prenotazione).where(Prenotazione.medico == medico.email))
@@ -32,6 +69,17 @@ class PrenotazioneService:
 
     @classmethod
     def confirmIsFree(cls, idmedico, data, ora):
+        """
+         Conferma se è possibile prenotare una visita per una certa data e ora.
+
+         Args:
+             idmedico (str): L'ID del medico.
+             data (str): La data della prenotazione.
+             ora (str): L'ora della prenotazione.
+
+         Returns:
+             bool: True se è possibile prenotare, False altrimenti.
+         """
         mese=datetime.datetime.now().strftime("%m")+"-"
         if int(data) <= datetime.datetime.now().day:
             mese = str(datetime.datetime.now().month + 1)
@@ -45,7 +93,21 @@ class PrenotazioneService:
 
     @staticmethod
     def savePrenotazione (idmedico, data, ora, tipo, CF, prezzo, carta="SSS"):
+        """
+        Salva una prenotazione nel database.
 
+        Args:
+            idmedico (str): L'ID del medico.
+            data (str): La data della prenotazione.
+            ora (str): L'ora della prenotazione.
+            tipo (str): Il tipo di visita (es. Vaccino).
+            CF (str): Il codice fiscale del paziente.
+            prezzo (float): Il prezzo della visita.
+            carta (str): Il numero della carta (default: "SSS").
+
+        Returns:
+            bool: True se la prenotazione è stata salvata con successo, False altrimenti.
+        """
         try:
             medico=MedicoService().getMedico(idmedico)
             mese = datetime.datetime.now().strftime("%m") + "-"
@@ -83,7 +145,20 @@ class PrenotazioneService:
             return False
     @staticmethod
     def saveVaccino(idmedico, data, ora, tipo, CF, prezzo=0):
+        """
+        Salva una prenotazione di vaccino nel database.
 
+        Args:
+            idmedico (str): L'ID del medico.
+            data (str): La data della prenotazione.
+            ora (str): L'ora della prenotazione.
+            tipo (str): Il tipo di visita (es. Vaccino).
+            CF (str): Il codice fiscale del paziente.
+            prezzo (float): Il prezzo della visita (default: 0).
+
+        Returns:
+            bool: True se la prenotazione è stata salvata con successo, False altrimenti.
+        """
         try:
             medico=MedicoService().getMedico(idmedico)
             prenotazione = Prenotazione()
@@ -109,6 +184,17 @@ class PrenotazioneService:
 
     @classmethod
     def modificaPrenotazione(cls, id, data, ora):
+        """
+        Modifica una prenotazione esistente.
+
+        Args:
+            id (int): L'ID della prenotazione da modificare.
+            data (str): La nuova data della prenotazione.
+            ora (str): La nuova ora della prenotazione.
+
+        Returns:
+            bool: True se la prenotazione è stata modificata con successo, False altrimenti.
+        """
         try:
             prenotazioni = Prenotazione.query.filter_by(ID=id).first()
             if prenotazioni and PrenotazioneService.confirmIsFree(prenotazioni.medico,data, ora):
@@ -134,6 +220,12 @@ class PrenotazioneService:
 
     @classmethod
     def getGiorniCorrenti(cls):
+        """
+        Restituisce il numero di giorni nel mese corrente e i giorni passati.
+
+        Returns:
+            tuple: Numero di giorni nel mese corrente e giorni passati.
+        """
         # Ottenere la data corrente
         oggi = datetime.datetime.now()
 
@@ -163,6 +255,17 @@ class PrenotazioneService:
 
     @classmethod
     def confirmVaccino(cls, idmedico, data, ora):
+        """
+        Conferma la disponibilità di un medico per la prenotazione di un vaccino.
+
+        Args:
+        - idmedico (str): Identificativo unico del medico.
+        - data (str): Data della prenotazione nel formato "YYYY-MM-DD".
+        - ora (str): Ora della prenotazione nel formato 24 ore.
+
+        Returns:
+        bool: True se il medico è disponibile per la prenotazione, False altrimenti.
+        """
         prenotazioni = Prenotazione.query.filter_by(medico=idmedico, oraVisita=ora, dataVisita=data).first()
         if prenotazioni:  # Se ci sono prenotazioni per quella data allora non è free
             return False

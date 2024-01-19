@@ -8,6 +8,16 @@ class ISEEService:
 
     @classmethod
     def changeISEE(cls,cf,newIsee):
+        """
+        Modifica l'ISEE di un paziente.
+
+        Args:
+        cf (str): Codice fiscale del paziente.
+        newIsee (float): Nuovo valore dell'ISEE.
+
+        Returns:
+        None
+        """
         paziente = Paziente.query.filter_by(CF=cf).first()
 
         if paziente:

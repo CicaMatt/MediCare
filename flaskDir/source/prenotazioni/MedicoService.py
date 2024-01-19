@@ -9,6 +9,15 @@ class MedicoService:
 
     @classmethod
     def getPazienti(cls,dottore):
+        """
+        Restituisce la lista dei pazienti associati a un medico.
+
+        Args:
+            dottore (str): Email del medico.
+
+        Returns:
+            list or None: Lista dei pazienti associati al medico o None se il medico non è trovato.
+        """
         medico = Medico.query.filter_by(email=dottore).first()
 
         if medico:
