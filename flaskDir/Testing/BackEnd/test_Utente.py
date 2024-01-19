@@ -20,7 +20,7 @@ from flaskDir.source.Utente.ISEEService import ISEEService
 @pytest.fixture(autouse=True, scope='session')
 def setUp(request):
     # Configura il database di test
-    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{quote('Cancello1@')}@localhost:3306/testmedicare"
+    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:lollipop@localhost:3306/testmedicare"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["TESTING"] = True
     db.init_app(app)
@@ -42,6 +42,53 @@ def setUp(request):
 
         # Aggiungi la funzione di tearDown alla richiesta
         request.addfinalizer(teardown)
+
+
+def test_addDocumento():
+    with app.app_context():
+        mario = Paziente()
+        mario.nome = "Mario"
+        mario.cognome = "Rossi"
+        mario.email = "mariorossi@gmail.com"
+        mario.password_hash = "cancello"
+        mario.chiaveSPID = 10
+        mario.ISEE_ordinario = None
+        mario.CF = "PROVAS029DGH6712"
+        mario.cellulare = "3312258345"
+        mario.luogoNascita = "Salerno"
+        mario.dataNascita = "2000-12-31"
+        mario.domicilio = "Salerno"
+        mario.sesso = "Maschio"
+        db.session.add(mario)
+        db.session.commit()
+    app.app_context().push()
+    with app.app_context():
+        num = 123
+        tipo = 'Ricetta'
+        data = datetime.date.today()
+        descrizione = 'test'
+        richiamo = None
+        titolare = "PROVAS029DGH6712"
+
+        FascicoloService.addDocumento(tipo,descrizione,richiamo,titolare)
+
+        # Verifica che il documento sia stato inserito nel database di testmedicare
+        quantiDocumenti = len(list(db.session.scalars(
+            sqlalchemy.select(DocumentoSanitario).where(DocumentoSanitario.titolare == "PROVAS029DGH6712"))))
+        assert quantiDocumenti==1
+        oracoloNum = "FSE" + "0" + tipo[0]
+        documento = DocumentoSanitario.query.filter_by(NumeroDocumento=oracoloNum).first()
+        paziente=Paziente.query.filter_by(CF=titolare).first()
+        assert documento is not None
+        assert documento.titolare == 'PROVAS029DGH6712'
+        assert documento.dataEmissione == datetime.date.today()
+        assert documento.descrizione == 'test'
+        assert  documento.tipo == 'Ricetta'
+
+        db.session.delete(documento)
+        db.session.delete(paziente)
+        db.session.commit()
+
 
 
 def test_getDocumentiSanitari():

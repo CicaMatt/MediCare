@@ -1,4 +1,7 @@
 import pytest
+import sqlalchemy
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy_utils import database_exists, create_database
 from urllib.parse import quote
 from flaskDir import app, db
@@ -12,7 +15,7 @@ from flaskDir.source.Pagamento.PagamentoService import PagamentoService
 @pytest.fixture(autouse=True, scope='session')
 def setUp(request):
     # Configura il database di test
-    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{quote('Cancello1@')}@localhost:3306/testmedicare"
+    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:lollipop@localhost:3306/testmedicare"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["TESTING"] = True
     db.init_app(app)
