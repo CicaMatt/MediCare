@@ -138,7 +138,200 @@
 
       {% include 'Navbar.html' %}
 
+<section>
+                <div class="items-center px-8 mx-auto max-w-7xl lg:px-16 md:px-12">
+                  <div class="justify-center w-full lg:p-10 max-auto">
+                    <div x-data="{ tab: 'tab1' }">
+                      <ul class="flex justify-between mx-auto overflow-hidden text-sm text-center text-black border divide-x rounded-xl">
+                      <li class="w-full">
+                        <a href="#visite_diagnostiche" id="diagnostiche" @click.prevent="tab = 'tab1'" href="#" class="inline-block w-full px-6 text-xl font-semibold py-2 font-medium border-b-2 border-transparent transition duration-300 hover:bg-blue-500 hover:text-white hover:border-blue-500" :class="{ ' bg-white text-blue-500 border-blue-500' : tab === 'tab1' }">
+                          Analisi
+                        </a>
+                      </li>
+                      <li class="w-full">
+                        <a href="#visite_specialistiche" id="specialistiche" @click.prevent="tab = 'tab2'" href="#" class="inline-block w-full text-xl font-semibold px-6 py-2 font-medium border-b-2 border-transparent transition duration-300 hover:bg-blue-500 hover:text-white hover:border-blue-500" :class="{ ' bg-white text-blue-500 border-blue-500' : tab === 'tab2' }">
+                          Visite
+                        </a>
+                      </li>
+                      <li class="w-full">
+                        <a href="{{url_for('prenotazioni.getListaVaccini')}}" @click.prevent="tab = 'tab3'" href="#" class="inline-block w-full text-xl font-semibold px-6 py-2 font-medium border-b-2 border-transparent transition duration-300 hover:bg-blue-500 hover:text-white hover:border-blue-500" :class="{ ' bg-white text-blue-500 border-blue-500' : tab === 'tab3' }">
+                          Vaccini
+                        </a>
+                      </li>
+                    </ul>
 
+                      <div class="py-4 pt-4 text-left bg-white content">
+                        <!-- show tab1 only -->
+                        <div x-show="tab==='tab1'" class="text-gray-500" style="display: none;">
+                          <main>
+                            <!-- === Remove and replace with your own content... === -->
+                            <div class="py-4">
+                              <span class="inline-flex items-center text-black">
+                                <span class="font-mono text-sm" aria-hidden="true">
+                                  01
+                                </span>
+                                <span class="ml-3 h-3.5 w-px bg-black"></span>
+                                <span class="ml-3 text-base font-medium tracking-tight">
+                                  Work in progress
+                                </span>
+                              </span>
+                              <div class="h-32 border border-gray-200 border-dashed rounded-lg"></div>
+                            </div>
+                            <!-- === End ===  -->
+                          </main>
+                        </div>
+                        <div x-show="tab==='tab2'" class="text-gray-500" style="display: none;">
+                          <main>
+                            <!-- === Remove and replace with your own content... === -->
+                            <div class="py-4">
+                              <span class="inline-flex items-center text-black">
+                                <span class="font-mono text-sm" aria-hidden="true">
+                                  02
+                                </span>
+                                <span class="ml-3 h-3.5 w-px bg-black"></span>
+                                <span class="ml-3 text-base font-medium tracking-tight">
+                                  Tab content
+                                </span>
+                              </span>
+                              <div class="h-32 border border-gray-200 border-dashed rounded-lg"></div>
+                            </div>
+                            <!-- === End ===  -->
+                          </main>
+                        </div>
+                        <div x-show="tab==='tab3'" class="text-gray-500" style="">
+                            <!-- === Remove and replace with your own content... === -->
+
+                                <!--Visite specialistiche-->
+                                <div class="contenitore-specialistiche" id="visite_specialistiche">
+                                  <div class="grid justify-center items-center">
+                                    <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg md:w-[85rem]">
+                                      <h1 class="text-xl font-bold text-gray-800 mt-4">Visite Specialistiche</h1>
+                                      <div class="flex flex-wrap grid grid-cols-3 gap-4 justify-between text-center mt-6">
+
+                                        <div class="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-indigo-700 via-indigo-500 to-indigo-300 hover:scale-105 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
+                                          <div class="flex items-center justify-center h-full">
+                                            <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Oculistica')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Oculistica</a>
+                                          </div>
+                                        </div>
+
+                                          <div class="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-indigo-700 via-indigo-500 to-indigo-300 hover:scale-105 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
+                                          <div class="flex items-center justify-center h-full">
+                                            <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Odontoiatria')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Odontoiatria</a>
+                                          </div>
+                                        </div>
+
+                                          <div class="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-indigo-700 via-indigo-500 to-indigo-300 hover:scale-105 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
+                                          <div class="flex items-center justify-center h-full">
+                                            <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Cardiologia')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Cardiologia</a>
+                                          </div>
+                                        </div>
+
+                                          <div class="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-indigo-700 via-indigo-500 to-indigo-300 hover:scale-105 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
+                                          <div class="flex items-center justify-center h-full">
+                                            <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Pediatria')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Pediatria</a>
+                                          </div>
+                                        </div>
+
+                                          <div class="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-indigo-700 via-indigo-500 to-indigo-300 hover:scale-105 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
+                                          <div class="flex items-center justify-center h-full">
+                                            <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Ginecologia')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Ginecologia</a>
+                                          </div>
+                                        </div>
+
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+
+
+                                <!--Visite diagnostiche-->
+                                <div class="contenitore-diagnostiche" id="visite_diagnostiche">
+                                    <div class="grid justify-center items-center">
+                                        <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg md:w-[85rem]">
+                                            <h1 class="text-xl font-bold text-gray-800 mt-4">Visite Diagnostiche</h1>
+                                            <div class="flex flex-wrap grid grid-cols-3 gap-4 justify-between text-center mt-6">
+
+                                                <div class="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-indigo-700 via-indigo-500 to-indigo-300 hover:scale-105 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
+                                                  <div class="flex items-center justify-center h-full">
+                                                    <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Urologia')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Analisi delle urine</a>
+                                                  </div>
+                                                </div>
+
+                                                <div class="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-indigo-700 via-indigo-500 to-indigo-300 hover:scale-105 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
+                                                  <div class="flex items-center justify-center h-full">
+                                                    <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Ematologia')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Analisi del sangue</a>
+                                                  </div>
+                                                </div>
+
+                                                <div class="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-indigo-700 via-indigo-500 to-indigo-300 hover:scale-105 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
+                                                 <div class="flex items-center justify-center h-full">
+                                                  <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Gastroenterologia')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Analisi delle feci</a>
+                                                 </div>
+                                                </div>
+
+                                                <div class="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-indigo-700 via-indigo-500 to-indigo-300 hover:scale-105 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
+                                                 <div class="flex items-center justify-center h-full">
+                                                  <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Genetica')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Analisi genetiche</a>
+                                                 </div>
+                                               </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <!--Visite vaccinali-->
+                                <div class="contenitore-vaccinali" id="visite_vaccinali">
+                                    <div class="grid justify-center items-center">
+                                        <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg" style="width: 1000px;">
+                                            <h1 class="text-xl font-bold text-gray-800 mt-4">Visite Vaccinali</h1>
+                                            <div class="flex flex-wrap grid grid-cols-4 gap-4 justify-between text-center mt-6">
+
+                                                <div class="bg-blu400 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
+                                                  <div class="flex items-center justify-center h-full">
+                                                    <a href="{{url_for('prenotazioni.getListaVaccini')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Covid-19</a>
+                                                  </div>
+                                                </div>
+
+                                                <div class="bg-blu400 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
+                                                  <div class="flex items-center justify-center h-full">
+                                                    <a href="{{url_for('prenotazioni.getListaVaccini')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Varicella</a>
+                                                  </div>
+                                                </div>
+
+                                                <div class="bg-blu400 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
+                                                 <div class="flex items-center justify-center h-full">
+                                                  <a href="{{url_for('prenotazioni.getListaVaccini')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Rosolia</a>
+                                                 </div>
+                                                </div>
+
+                                                <div class="bg-blu400 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
+                                                 <div class="flex items-center justify-center h-full">
+                                                  <a href="{{url_for('prenotazioni.getListaVaccini')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Morbillo</a>
+                                                 </div>
+                                               </div>
+
+                                               <div class="bg-blu400 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
+                                                 <div class="flex items-center justify-center h-full">
+                                                  <a href="{{url_for('prenotazioni.getListaVaccini')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Epatite B</a>
+                                                 </div>
+                                               </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                             </div>
+                                    <!-- === End ===  -->
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+              </section>
       <!-- Start Blog Area -->
 		<section class="blog section" id="blog">
 			<div class="container">
@@ -211,200 +404,7 @@
 
 
 
-      <section>
-                <div class="items-center px-8 mx-auto max-w-7xl lg:px-16 md:px-12">
-                  <div class="justify-center w-full lg:p-10 max-auto">
-                    <div x-data="{ tab: 'tab1' }">
-                      <ul class="flex justify-between mx-auto overflow-hidden text-sm text-center text-black border divide-x rounded-xl">
-                      <li class="w-full">
-                        <a href="#visite_diagnostiche" id="diagnostiche" @click.prevent="tab = 'tab1'" href="#" class="inline-block w-full px-6 text-xl font-semibold py-2 font-medium border-b-2 border-transparent transition duration-300 hover:bg-blue-500 hover:text-white hover:border-blue-500" :class="{ ' bg-white text-blue-500 border-blue-500' : tab === 'tab1' }">
-                          Analisi
-                        </a>
-                      </li>
-                      <li class="w-full">
-                        <a href="#visite_specialistiche" id="specialistiche" @click.prevent="tab = 'tab2'" href="#" class="inline-block w-full text-xl font-semibold px-6 py-2 font-medium border-b-2 border-transparent transition duration-300 hover:bg-blue-500 hover:text-white hover:border-blue-500" :class="{ ' bg-white text-blue-500 border-blue-500' : tab === 'tab2' }">
-                          Visite
-                        </a>
-                      </li>
-                      <li class="w-full">
-                        <a href="{{url_for('prenotazioni.getListaVaccini')}}" @click.prevent="tab = 'tab3'" href="#" class="inline-block w-full text-xl font-semibold px-6 py-2 font-medium border-b-2 border-transparent transition duration-300 hover:bg-blue-500 hover:text-white hover:border-blue-500" :class="{ ' bg-white text-blue-500 border-blue-500' : tab === 'tab3' }">
-                          Vaccini
-                        </a>
-                      </li>
-                    </ul>
 
-                      <div class="py-4 pt-4 text-left bg-white content">
-                        <!-- show tab1 only -->
-                        <div x-show="tab==='tab1'" class="text-gray-500" style="display: none;">
-                          <main>
-                            <!-- === Remove and replace with your own content... === -->
-                            <div class="py-4">
-                              <span class="inline-flex items-center text-black">
-                                <span class="font-mono text-sm" aria-hidden="true">
-                                  01
-                                </span>
-                                <span class="ml-3 h-3.5 w-px bg-black"></span>
-                                <span class="ml-3 text-base font-medium tracking-tight">
-                                  Work in progress
-                                </span>
-                              </span>
-                              <div class="h-32 border border-gray-200 border-dashed rounded-lg"></div>
-                            </div>
-                            <!-- === End ===  -->
-                          </main>
-                        </div>
-                        <div x-show="tab==='tab2'" class="text-gray-500" style="display: none;">
-                          <main>
-                            <!-- === Remove and replace with your own content... === -->
-                            <div class="py-4">
-                              <span class="inline-flex items-center text-black">
-                                <span class="font-mono text-sm" aria-hidden="true">
-                                  02
-                                </span>
-                                <span class="ml-3 h-3.5 w-px bg-black"></span>
-                                <span class="ml-3 text-base font-medium tracking-tight">
-                                  Tab content
-                                </span>
-                              </span>
-                              <div class="h-32 border border-gray-200 border-dashed rounded-lg"></div>
-                            </div>
-                            <!-- === End ===  -->
-                          </main>
-                        </div>
-                        <div x-show="tab==='tab3'" class="text-gray-500" style="">
-                            <!-- === Remove and replace with your own content... === -->
-
-                                    <!--Visite specialistiche-->
-    <div class="contenitore-specialistiche" id="visite_specialistiche">
-      <div class="grid justify-center items-center">
-        <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg md:w-[65rem]">
-          <h1 class="text-xl font-bold text-gray-800 mt-4">Visite Specialistiche</h1>
-          <div class="flex flex-wrap grid grid-cols-3 gap-4 justify-between text-center mt-6">
-
-            <div class="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-indigo-700 via-indigo-500 to-indigo-300 hover:scale-105 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
-              <div class="flex items-center justify-center h-full">
-                <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Oculistica')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Oculistica</a>
-              </div>
-            </div>
-
-              <div class="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-indigo-700 via-indigo-500 to-indigo-300 hover:scale-105 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
-              <div class="flex items-center justify-center h-full">
-                <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Odontoiatria')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Odontoiatria</a>
-              </div>
-            </div>
-
-              <div class="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-indigo-700 via-indigo-500 to-indigo-300 hover:scale-105 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
-              <div class="flex items-center justify-center h-full">
-                <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Cardiologia')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Cardiologia</a>
-              </div>
-            </div>
-
-              <div class="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-indigo-700 via-indigo-500 to-indigo-300 hover:scale-105 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
-              <div class="flex items-center justify-center h-full">
-                <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Pediatria')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Pediatria</a>
-              </div>
-            </div>
-
-              <div class="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-indigo-700 via-indigo-500 to-indigo-300 hover:scale-105 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
-              <div class="flex items-center justify-center h-full">
-                <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Ginecologia')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Ginecologia</a>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-
-
-    <!--Visite diagnostiche-->
-    <div class="contenitore-diagnostiche" id="visite_diagnostiche">
-        <div class="grid justify-center items-center">
-            <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg" style="width: 1000px;">
-                <h1 class="text-xl font-bold text-gray-800 mt-4">Visite Diagnostiche</h1>
-                <div class="flex flex-wrap grid grid-cols-3 gap-4 justify-between text-center mt-6">
-
-                    <div class="bg-blu400 hover:scale-105 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
-                      <div class="flex items-center justify-center h-full">
-                        <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Urologia')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Analisi delle urine</a>
-                      </div>
-                    </div>
-
-                    <div class="bg-blu400 hover:scale-105 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
-                      <div class="flex items-center justify-center h-full">
-                        <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Ematologia')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Analisi del sangue</a>
-                      </div>
-                    </div>
-
-                    <div class="bg-blu400 hover:scale-105 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
-                     <div class="flex items-center justify-center h-full">
-                      <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Gastroenterologia')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Analisi delle feci</a>
-                     </div>
-                    </div>
-
-                    <div class="bg-blu400 hover:scale-105 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
-                     <div class="flex items-center justify-center h-full">
-                      <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Genetica')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Analisi genetiche</a>
-                     </div>
-                   </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!--Visite vaccinali-->
-    <div class="contenitore-vaccinali" id="visite_vaccinali">
-        <div class="grid justify-center items-center">
-            <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg" style="width: 1000px;">
-                <h1 class="text-xl font-bold text-gray-800 mt-4">Visite Vaccinali</h1>
-                <div class="flex flex-wrap grid grid-cols-4 gap-4 justify-between text-center mt-6">
-
-                    <div class="bg-blu400 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
-                      <div class="flex items-center justify-center h-full">
-                        <a href="{{url_for('prenotazioni.getListaVaccini')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Covid-19</a>
-                      </div>
-                    </div>
-
-                    <div class="bg-blu400 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
-                      <div class="flex items-center justify-center h-full">
-                        <a href="{{url_for('prenotazioni.getListaVaccini')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Varicella</a>
-                      </div>
-                    </div>
-
-                    <div class="bg-blu400 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
-                     <div class="flex items-center justify-center h-full">
-                      <a href="{{url_for('prenotazioni.getListaVaccini')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Rosolia</a>
-                     </div>
-                    </div>
-
-                    <div class="bg-blu400 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
-                     <div class="flex items-center justify-center h-full">
-                      <a href="{{url_for('prenotazioni.getListaVaccini')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Morbillo</a>
-                     </div>
-                   </div>
-
-                   <div class="bg-blu400 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
-                     <div class="flex items-center justify-center h-full">
-                      <a href="{{url_for('prenotazioni.getListaVaccini')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Epatite B</a>
-                     </div>
-                   </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-                            </div>
-                            <!-- === End ===  -->
-                          </main>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </section>
 
 
 
