@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import plotly.express as px
-df = pd.read_csv("../flaskDir/source/ModuloIA/heart.csv")
+df = pd.read_csv("./flaskDir/source/ModuloIA/heart.csv")
 if __name__ == "__main__":
     """
     fig, axes = plt.subplots(3, 2, figsize=(15, 12))

@@ -17,24 +17,24 @@
         <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
             <div>
                 <div class="px-4 sm:px-0">
-                    <h3 class="text-base font-semibold leading-7 text-gray-900">Informazioni personali</h3>
+                    <h1 class="text-2xl font-bold leading-7 text-gray-900">Informazioni personali</h1>
                     <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Qui troverai i tuoi dati personali e potrai compilare il tuo campo ISEE se non l'hai ancora fatto.</p>
                 </div>
 
                 <div class="mt-6 border-t border-gray-100">
                     <dl class="divide-y divide-gray-100">
                         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                            <dt class="text-sm font-medium leading-6 text-gray-900">Nome e cognome</dt>
+                            <dt class="text-start font-medium leading-6 text-gray-900">Nome e cognome</dt>
                             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{current_user.nome}} {{current_user.cognome}}</dd>
                         </div>
 
                         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                            <dt class="text-sm font-medium leading-6 text-gray-900">Indirizzo e-mail</dt>
+                            <dt class="text-start font-medium leading-6 text-gray-900">Indirizzo e-mail</dt>
                             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{current_user.email}}</dd>
                         </div>
 
                         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0 items-center">
-                            <dt class="text-sm font-medium leading-6 text-gray-900 sm:col-span-1">ISEE</dt>
+                            <dt class="text-start font-medium leading-6 text-gray-900 sm:col-span-1">ISEE</dt>
                             {% if current_user.ISEE_ordinario == None%}
                                 <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-1">Non hai ancora inserito il tuo ISEE, fallo premendo il pulsante 'Modifica'</dd>
                             {% else %}
@@ -56,7 +56,7 @@
 
                 <div class="space-y-12">
                     <div class="pb-2">
-                        <h2 class="text-base font-semibold leading-7 text-gray-900">I tuoi metodi di pagamento</h2>
+                        <h1 class="text-2xl font-bold leading-7 text-gray-900">I tuoi metodi di pagamento</h1>
                         <p class="mt-1 text-sm leading-6 text-gray-600">In questa sezione potrai visualizzare i metodi di pagamento che hai salvato sulla piattaforma e inserirne di nuovi dall'apposito form in basoo a destra.</p>
                     </div>
 

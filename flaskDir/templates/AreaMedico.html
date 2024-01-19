@@ -16,7 +16,7 @@
         <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
             <div>
                 <div class="px-4 sm:px-0">
-                    <h3 class="text-base font-semibold leading-7 text-gray-900">Informazioni personali</h3>
+                    <h1 class="text-2xl font-bold leading-7 text-gray-900">Informazioni personali</h1>
                     <p class="mt-1 max-w-2xl text-sm leading-6 text-gray-500">Qui troverai i tuoi dati personali.</p>
                 </div>
 
@@ -25,27 +25,27 @@
 
                         {% if current_user.nome %}
                             <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                <dt class="text-sm font-medium leading-6 text-gray-900">Nome e cognome</dt>
+                                <dt class="text-start font-medium leading-6 text-gray-900">Nome e cognome</dt>
                                 <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{current_user.nome}} {{current_user.cognome}}</dd>
                             </div>
                         {% else %}
                             <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                <dt class="text-sm font-medium leading-6 text-gray-900">Ente sanitario</dt>
+                                <dt class="text-start font-medium leading-6 text-gray-900">Ente sanitario</dt>
                                 <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{current_user.ente_sanitario}}</dd>
                             </div>
 
                             <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                                <dt class="text-sm font-medium leading-6 text-gray-900">Reparto</dt>
+                                <dt class="text-start font-medium leading-6 text-gray-900">Reparto</dt>
                                 <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{current_user.reparto}}</dd>
                             </div>
                         {% endif %}
                         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                            <dt class="text-sm font-medium leading-6 text-gray-900">Città</dt>
+                            <dt class="text-start font-medium leading-6 text-gray-900">Città</dt>
                             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{current_user.città}}</dd>
                         </div>
 
                         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-                            <dt class="text-sm font-medium leading-6 text-gray-900">Indirizzo e-mail</dt>
+                            <dt class="text-start font-medium leading-6 text-gray-900">Indirizzo e-mail</dt>
                             <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">{{current_user.email}}</dd>
                         </div>
 

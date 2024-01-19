@@ -211,6 +211,10 @@
                           {% endif %}
                       </select>
                   </div>
+
+               {% if current_user.ISEE_ordinario <= 20000 %}
+                     <p class="mt-4 mb-4 text-sm font-bold text-black text-center">Sconto ISEE applicato.</p>
+               {% endif %}
               </div>
           </div>
         </div>
