@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, session, request, jsonify
 from flask_login import current_user, login_required
 
-
+from flaskDir.source.Pagamento.PagamentoService import PagamentoService
 from flaskDir.source.Utente.ISEEService import ISEEService
 
 isee_blueprint = Blueprint('isee', __name__)
@@ -22,4 +22,4 @@ def modificaISEE():
         newISEE = request.form.get('isee')
         if paziente is not None and newISEE is not None:
             ISEEService.changeISEE(paziente,newISEE)
-        return render_template("InformazioniPersonali.html")
+        return render_template("InformazioniPersonali.html", lista= PagamentoService.getMetodi(current_user.CF).all())
