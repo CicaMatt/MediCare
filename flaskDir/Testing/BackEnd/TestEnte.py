@@ -13,7 +13,8 @@ class TestEnte():
     def setUp(self, request):
         from urllib.parse import quote
 
-        app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{quote('Gio210302DVK')}@localhost:3306/testmedicare"
+        app.config[
+            'SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{quote('Cancello1@')}@localhost:3306/testmedicare"
         app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
         app.config["TESTING"] = True
         db.init_app(app)
