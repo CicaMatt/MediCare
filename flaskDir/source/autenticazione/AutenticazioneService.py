@@ -109,7 +109,7 @@ def registrazione_pageMedico(email,password,nome,cognome,iscrizione,specializzaz
         Returns:
             bool: True se la registrazione ha avuto successo, False altrimenti.
     """
-    medico=medicoService.retrieveMedico(email,password)
+    medico=Medico.query.filter_by(email=email).first()
     if medico is not None:
         return False
     medico=Medico()
@@ -149,7 +149,7 @@ def registrazionePaziente(email,password,nome,cognome,CF,cellulare,luogoNascita,
        Returns:
            bool: True se la registrazione ha avuto successo, False altrimenti.
     """
-    paziente=PazienteService.retrievePaziente(email,password)
+    paziente=Paziente.query.filter_by(email=email).first()
     if paziente:
         return False
     paziente=Paziente()
@@ -174,29 +174,29 @@ def registrazionePaziente(email,password,nome,cognome,CF,cellulare,luogoNascita,
 
 def registrazioneEnte(email,password,nome,citta):
     """
-        Registra un nuovo ente sanitario nel sistema.
+    Registra un nuovo ente sanitario nel sistema.
 
-        Args:
-            email (str): L'indirizzo email dell'ente.
-            password (str): La password dell'ente.
-            nome (str): Il nome dell'ente.
+    Args:
+        email (str): L'indirizzo email dell'ente.
+        password (str): La password dell'ente.
+        nome (str): Il nome dell'ente.
             citta (str): La città di ubicazione dell'ente.
 
         Returns:
-            bool: True se la registrazione ha avuto successo, False altrimenti.
+        bool: True se la registrazione ha avuto successo, False altrimenti.
     """
-    ente = EnteService.retrieveEnte(email, password)
+    ente=EnteSanitario.query.filter_by(email=email).first()
     if ente is not None:
         return False
-    ente = EnteSanitario()
+    ente=EnteSanitario()
     with app.app_context():
-        ente.nome = nome
-        ente.email = email
+        ente.nome=nome
+        ente.email=email
         ente.set_password(password)
-        ente.città = citta
+        ente.città=citta
         db.session.add(ente)
         db.session.commit()
-    return True
+        return True
 
 
 def logout():
