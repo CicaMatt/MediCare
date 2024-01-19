@@ -20,7 +20,7 @@ from flaskDir.source.Utente.ISEEService import ISEEService
 @pytest.fixture(autouse=True, scope='session')
 def setUp(request):
     # Configura il database di test
-    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{quote('querty')}@localhost:3306/testmedicare"
+    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{quote('Cancello1@')}@localhost:3306/testmedicare"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["TESTING"] = True
     db.init_app(app)
@@ -123,6 +123,37 @@ def test_getDocumentiSanitari():
 
 
 
+
+def test_changeISEEFailure():
+    with app.app_context():
+        mario = Paziente()
+        mario.nome = "Mario"
+        mario.cognome = "Rossi"
+        mario.email = "mariorossi@gmail.com"
+        mario.password_hash = "cancello"
+        mario.chiaveSPID = 10
+        mario.ISEE_ordinario = None
+        mario.CF = "PROVAS029DGH6712"
+        mario.cellulare = "3312258345"
+        mario.luogoNascita = "Salerno"
+        mario.dataNascita = "2000-12-31"
+        mario.domicilio = "Salerno"
+        mario.sesso = "Maschio"
+        db.session.add(mario)
+        db.session.commit()
+
+
+        new = -10000
+
+        result=ISEEService.changeISEE(mario.CF,new)
+
+        paziente = Paziente.query.filter_by(CF=mario.CF).first()
+        assert paziente.ISEE_ordinario is None
+        assert result is False
+
+        db.session.delete(paziente)
+        db.session.commit()
+
 def test_changeISEE():
     with app.app_context():
         mario = Paziente()
@@ -152,3 +183,6 @@ def test_changeISEE():
 
         db.session.delete(paziente)
         db.session.commit()
+
+
+

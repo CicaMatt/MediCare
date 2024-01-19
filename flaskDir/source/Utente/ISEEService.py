@@ -10,6 +10,11 @@ class ISEEService:
     def changeISEE(cls,cf,newIsee):
         paziente = Paziente.query.filter_by(CF=cf).first()
 
+        newIsee_float=float(newIsee)
+
+        if newIsee_float < 0:
+            return False
+
         if paziente:
             paziente.ISEE_ordinario=newIsee
             db.session.commit()
