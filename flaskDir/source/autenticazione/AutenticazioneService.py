@@ -1,3 +1,5 @@
+import re
+
 from flask import redirect, url_for, session
 from flask_login import login_user, logout_user
 from flaskDir import db, app, login
@@ -42,6 +44,11 @@ def login_page(email,password,tipo):
         Returns:
             bool: True se il login ha avuto successo, False altrimenti.
     """
+    formato_email = re.compile(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+    if not formato_email.match(email): return False
+    if not 8 <= len(password) <= 255: return False
+
+
     if tipo =='medico':
         medico = medicoService.retrieveMedico(email, password)
         if medico == None:
@@ -71,6 +78,11 @@ def loginEnte_page(email,password):
     Returns:
         bool: True se il login ha avuto successo, False altrimenti.
     """
+
+    formato_email = re.compile(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
+    if not formato_email.match(email): return False
+    if not 8 <= len(password) <= 255: return False
+
     ente = EnteService.retrieveEnte(email, password)
     if ente is None:
         return False  # Gli potrei aggiungere la notifica che le credenziali son oerrate

@@ -40,7 +40,7 @@ class EnteService:
         """
         formato_email=re.compile(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
         if not formato_email.match(email):return False
-        if not 8<=len(password)<=20:return False
+        if not 8<=len(password)<=255:return False
         with app.app_context():
             try:
                 medico=Medico()
