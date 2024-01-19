@@ -27,7 +27,7 @@
                 <div class="sm:col-span-3">
                   <label for="isee" class="block text-sm font-medium leading-6 text-gray-900">ISEE</label>
                   <div class="mt-2">
-                    <input type="text" name="isee" id="isee" class="block w-1/2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 pl-2 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required>
+                    <input type="text" pattern="[0-9]+(\.[0-9]+)?" title="Sono ammessi solo caratteri numerici" name="isee" id="isee" class="block w-1/2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 pl-2 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" required>
                     <input type="hidden" name="cf" id="cf" value={{current_user.CF}}>
                   </div>
                 </div>
