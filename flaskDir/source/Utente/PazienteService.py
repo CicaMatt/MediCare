@@ -81,3 +81,8 @@ class PazienteService:
             # Rollback in caso di errore
             db.session.rollback()
             return False
+
+    @staticmethod
+    def getmoduloAIresult(user):
+        return db.session.scalar(sqlalchemy.select(DocumentoSanitario).where((DocumentoSanitario.titolare == user.CF) &
+        (DocumentoSanitario.tipo == "Risultati AI: malattia cardiaca")))

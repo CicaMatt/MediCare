@@ -10,12 +10,14 @@ from flaskDir.source.prenotazioni.PrenotazioneControl import prenotazione_bluepr
 from flaskDir.source.autenticazione.UserControl import auth_blueprint
 from flaskDir.source.EnteFunction.EnteControl import ente_blueprint
 
+
+
 from flaskDir import app
 
 app.config.from_mapping(
-    SECRET_KEY='6Js.9JsPaq324Dc',
-    # Serve per avere le sessioni, una chiave sicura, non dovrebbe essere caricata su github
-    SAML_IDP_SETTINGS={  # Per lo spid, ad esempio devo identificare Posteitaliane
+    SECRET_KEY='6Js.9JsPaq324Dc', #Serve per avere le sessioni, una chiave sicura, non dovrebbe essere caricata su github
+    SAML_IDP_SETTINGS={ #Per lo spid, ad esempio devo identificare Posteitaliane
+
 
     }
 )

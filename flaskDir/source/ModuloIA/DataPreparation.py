@@ -109,5 +109,3 @@ print(df)
 train=df.columns.tolist()
 train.remove('HeartDisease')
 predict=df['HeartDisease'].values
-
-

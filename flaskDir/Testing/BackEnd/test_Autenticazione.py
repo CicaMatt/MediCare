@@ -1,15 +1,13 @@
-import pytest
-import sqlalchemy
 from urllib.parse import quote
 
+import pytest
 from flask import session
 from flask_login import current_user
+from sqlalchemy_utils import create_database, database_exists
 
 from flaskDir import app, db
 from flaskDir.MediCare.model.entity.Medici import Medico
-from flaskDir.MediCare.model.entity.Paziente import Paziente
 from flaskDir.source.autenticazione import AutenticazioneService
-from sqlalchemy_utils import create_database, database_exists
 
 
 @pytest.fixture(autouse=True, scope='session')
@@ -21,24 +19,24 @@ def testapp(request):
     db.init_app(app)
     # Crea le tabelle del database di test
 
+
 @pytest.fixture(autouse=True, scope='function')
 def setup_teardown():
     with app.test_client():
         with app.app_context():
-            #db.drop_all()
+            # db.drop_all()
 
             if not database_exists(app.config["SQLALCHEMY_DATABASE_URI"]):
                 create_database(app.config["SQLALCHEMY_DATABASE_URI"])
 
             db.create_all()
         yield
-            # Tuo codice di tearDown qui
+        # Tuo codice di tearDown qui
         with app.app_context():
             db.session.close_all()
             db.drop_all()
 
         # Aggiungi la funzione di tearDown alla richiesta
-
 
 
 def test_Validlogin_Medico():
@@ -58,14 +56,12 @@ def test_Validlogin_Medico():
         db.session.add(new_user)
         db.session.commit()
 
-
-    credenzialiTest = {"email": mail, "password": password, "tipo":"medico"}
+    credenzialiTest = {"email": mail, "password": password, "tipo": "medico"}
     with app.test_client() as client:
         response = client.post('/auth/login', data=credenzialiTest)
         assert response.status_code == 302
         assert current_user.is_authenticated is True
         assert session.get('user_role') == "medico"
-
 
 
 def testfail_login_MedicoService():
@@ -80,10 +76,9 @@ def testfail_login_MedicoService():
     )
     new_user.set_password('123password')
     with app.app_context():
-
         user_in_db = AutenticazioneService.login_page(new_user.email, "123password", "medico")
-        oracolo=False
-        assert user_in_db==oracolo
+        oracolo = False
+        assert user_in_db == oracolo
 
 
 def test_EmailInvalidFormat_login():
@@ -135,6 +130,7 @@ def test_PasswordInvalidFormat_login():
         assert not current_user.is_authenticated is True
         assert not session.get('user_role') == "medico"
 
+
 def test_emailInvalid_login():
     new_user = Medico(
         email='test@example.com',
@@ -173,8 +169,3 @@ def test_passwordInvalid_login():
         user_in_db = AutenticazioneService.login_page("pincopalllo@gmail.com", "Pallino", "medico")
         oracolo = False
         assert user_in_db == oracolo
-
-
-
-
-
