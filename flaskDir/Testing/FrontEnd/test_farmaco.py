@@ -65,6 +65,15 @@ class TestFarmaco():
         self.driver.find_element(By.ID, "manufacturer").click()
         dropdown = self.driver.find_element(By.ID, "manufacturer")
         dropdown.find_element(By.XPATH, "//option[. = 'Sciroppo']").click()
+        element = self.driver.find_element(By.ID, "prezzo")
+        actions = ActionChains(self.driver)
+        actions.move_to_element(element).click_and_hold().perform()
+        element = self.driver.find_element(By.ID, "prezzo")
+        actions = ActionChains(self.driver)
+        actions.move_to_element(element).perform()
+        element = self.driver.find_element(By.ID, "prezzo")
+        actions = ActionChains(self.driver)
+        actions.move_to_element(element).release().perform()
         self.driver.find_element(By.ID, "prezzo").send_keys("13")
         self.driver.find_element(By.ID, "prezzo").click()
         self.driver.find_element(By.CSS_SELECTOR, ".bg-blue-600").click()
@@ -93,7 +102,7 @@ class TestFarmaco():
         self.driver.find_element(By.ID, "search").send_keys(Keys.ENTER)
         error = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "noPresent")))
         assert error
-        assert error.text == "Ci dispiace ma questo farmaco non è presente nel nostro archivio di farmaci"
+        assert error.text == "Sembra non ci siano farmaci idonei"
 
     def test_farmacoFind(self):
         self.driver.get("http://127.0.0.1:5000/")
