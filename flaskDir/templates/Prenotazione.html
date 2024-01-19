@@ -225,7 +225,7 @@
                           </a>
                         </li>
                         <li class="w-full">
-                          <a href="#visite_vaccinali" id="vaccinali" @click.prevent="tab = 'tab3'" href="#" class="inline-block w-full px-6 py-2 font-medium border-b-2 border-transparent bg-white text-blue-500 border-blue-500" :class="{ ' bg-white text-blue-500  border-blue-500' : tab === 'tab3' }">
+                          <a href="{{url_for('prenotazioni.getListaVaccini')}}" id="vaccinali" @click.prevent="tab = 'tab3'" href="#" class="inline-block w-full px-6 py-2 font-medium border-b-2 border-transparent bg-white text-blue-500 border-blue-500" :class="{ ' bg-white text-blue-500  border-blue-500' : tab === 'tab3' }">
                             Vaccini
                           </a>
                         </li>
@@ -354,47 +354,7 @@
     </div>
 
 
-    <!--Visite vaccinali-->
-    <div class="contenitore-vaccinali" id="visite_vaccinali">
-        <div class="grid justify-center items-center">
-            <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg" style="width: 1000px;">
-                <h1 class="text-xl font-bold text-gray-800 mt-4">Visite Vaccinali</h1>
-                <div class="flex flex-wrap grid grid-cols-4 gap-4 justify-between text-center mt-6">
 
-                    <div class="bg-blu400 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
-                      <div class="flex items-center justify-center h-full">
-                        <a href="{{url_for('prenotazioni.getListaVaccini')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Covid-19</a>
-                      </div>
-                    </div>
-
-                    <div class="bg-blu400 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
-                      <div class="flex items-center justify-center h-full">
-                        <a href="{{url_for('prenotazioni.getListaVaccini')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Varicella</a>
-                      </div>
-                    </div>
-
-                    <div class="bg-blu400 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
-                     <div class="flex items-center justify-center h-full">
-                      <a href="{{url_for('prenotazioni.getListaVaccini')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Rosolia</a>
-                     </div>
-                    </div>
-
-                    <div class="bg-blu400 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
-                     <div class="flex items-center justify-center h-full">
-                      <a href="{{url_for('prenotazioni.getListaVaccini')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Morbillo</a>
-                     </div>
-                   </div>
-
-                   <div class="bg-blu400 hover:bg-blue-500 rounded-xl p-10" style="height: 100px;">
-                     <div class="flex items-center justify-center h-full">
-                      <a href="{{url_for('prenotazioni.getListaVaccini')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Epatite B</a>
-                     </div>
-                   </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
                             </div>
                             <!-- === End ===  -->
                           </main>
