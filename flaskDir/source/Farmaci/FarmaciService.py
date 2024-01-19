@@ -59,12 +59,6 @@ class FarmaciService:
             return list(db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.prezzo <= prezzo)))
         elif categoria != "-" and prezzo == 0:
             return list(db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.categoria==categoria)))
-        elif categoria is not None and prezzo > 0:
-            return list(db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.prezzo<=prezzo, Farmaco.categoria==categoria)))
-        elif categoria is None:
-            return list(db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.prezzo<=prezzo)))
-        elif prezzo == 0:
-            return list(db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.categoria==categoria)))
         else:
             return cls.getFarmaci()
 
