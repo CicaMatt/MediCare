@@ -12,6 +12,12 @@ informazionipersonali_blueprint = Blueprint('informazionipersonali', __name__)
 @informazionipersonali_blueprint.route('/pagamento', methods=['GET','POST'])
 @login_required
 def getMetodi():
+    """
+    Visualizza la lista dei metodi di pagamento associati all'utente corrente.
+
+    Returns:
+        render_template: Template HTML con la lista dei metodi di pagamento.
+    """
     da_elimare = request.args.get('pan')
     cf= request.args.get('cf')
     if da_elimare is not None:
@@ -23,7 +29,13 @@ def getMetodi():
 @informazionipersonali_blueprint.route('/addPagamento', methods=['GET','POST'])
 @login_required
 def addCarta():
+    """
+    Aggiunge un nuovo metodo di pagamento (carta di credito) associato all'utente corrente.
 
+    Returns:
+        redirect: Reindirizza alla pagina dei metodi di pagamento dopo l'aggiunta.
+        render_template: Template HTML di errore se si verifica un problema durante l'aggiunta.
+    """
     if request.method == 'POST':
         cvv = request.form.get('cvv')
         pan = request.form.get('pan')

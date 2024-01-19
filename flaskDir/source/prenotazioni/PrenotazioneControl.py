@@ -17,6 +17,12 @@ prenotazione_blueprint = Blueprint('prenotazioni', __name__)
 
 @prenotazione_blueprint.route('/listamedici')
 def getListaMedici():
+    """
+    Restituisce la lista dei medici disponibili.
+
+    Returns:
+        render_template: Template HTML con la lista dei medici.
+    """
     specializzazione = request.args.get('specializzazione')
     citta = request.args.get('citta')
     # Se usiamo la get request.args.get['']
@@ -25,6 +31,12 @@ def getListaMedici():
 
 @prenotazione_blueprint.route('/listaenti')
 def getListaEnti():
+    """
+    Restituisce la lista degli enti disponibili.
+
+    Returns:
+        render_template: Template HTML con la lista degli enti.
+    """
     richiamo=request.args.get('richiamo')
     return render_template("ListaEnti.html", lista=MedicoService.getListaCentri(), richiamo=richiamo)
 
@@ -32,6 +44,15 @@ def getListaEnti():
 @prenotazione_blueprint.route('/listamedici/paginamedico', methods=['GET','POST'])
 @login_required
 def getMedico(prenotazione=None):
+    """
+    Restituisce le informazioni relative a un medico selezionato.
+
+    Args:
+        prenotazione: Oggetto prenotazione.
+
+    Returns:
+        render_template: Template HTML con le informazioni del medico.
+    """
     idMedico = request.form.get('medico')
     user = session['_user_id']
     paziente=Paziente.query.filter(Paziente.CF==user).first()
@@ -76,6 +97,12 @@ def getMedico(prenotazione=None):
 
 @prenotazione_blueprint.route('/prenotazione/listavaccini')
 def getListaVaccini():
+    """
+    Restituisce la lista dei vaccini disponibili.
+
+    Returns:
+        render_template: Template HTML con la lista dei vaccini.
+    """
     if '_user_id' in session:
         user = Paziente.query.filter(Paziente.CF==session.get('_user_id')).first()
         return render_template("Vaccini.html", lista=PrenotazioneService.getListaVaccini(user))
@@ -83,6 +110,12 @@ def getListaVaccini():
 
 @prenotazione_blueprint.route('/saveVaccino', methods=['POST'])
 def saveVaccino():
+    """
+    Salva un vaccino per un paziente.
+
+    Returns:
+        render_template: Template HTML per la homepage.
+    """
     if '_user_id' in session and request.method == 'POST':
         user = session['_user_id']
         medico=request.form['medico']

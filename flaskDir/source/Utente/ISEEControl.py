@@ -11,6 +11,12 @@ isee_blueprint = Blueprint('isee', __name__)
 @isee_blueprint.route('/isee', methods=['GET','POST'])
 @login_required
 def modificaISEE():
+    """
+    Modifica l'ISEE di un paziente.
+
+    Returns:
+    str: Pagina HTML delle informazioni personali.
+    """
     if request.method == 'POST':
         paziente = request.form.get('cf')
         newISEE = request.form.get('isee')
