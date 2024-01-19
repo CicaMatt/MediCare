@@ -8,18 +8,18 @@ from flaskDir import login
 from flask_login import UserMixin
 
 def medico_required(func):
+    """
+    Decoratore per richiedere che l'utente abbia il ruolo di medico per accedere a determinate funzioni.
+
+    Parametri:
+    - func: Funzione da decorare.
+
+    Returns:
+    - Ritorna la funzione originale se l'utente ha il ruolo di medico, altrimenti reindirizza alla home.
+
+    """
     @wraps
     def wrapper(*args, **kwargs):
-        """
-        Decoratore per richiedere che l'utente abbia il ruolo di medico per accedere a determinate funzioni.
-
-        Parametri:
-        - func: Funzione da decorare.
-
-        Returns:
-        - Ritorna la funzione originale se l'utente ha il ruolo di medico, altrimenti reindirizza alla home.
-
-        """
         if session.get('user_role') == 'medico':
             return func(*args, **kwargs)
         return redirect(url_for('home'))
