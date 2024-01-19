@@ -1,4 +1,6 @@
 from flaskDir import db
+
+
 class Farmaco(db.Model):
     """
     La classe Farmaco rappresenta il modello di dati per la tabella "farmaco" nel database.
@@ -22,4 +24,3 @@ class Farmaco(db.Model):
     descrizione = db.Column(db.Text, nullable=False)
     immagine = db.Column(db.String(255), nullable=False)
     __table_args__ = (db.UniqueConstraint('nome', 'categoria'),)
-

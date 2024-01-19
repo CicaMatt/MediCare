@@ -21,9 +21,8 @@ class FascicoloService:
         """
         return DocumentoSanitario.query.filter_by(titolare=cf)
 
-
     @classmethod
-    def addDocumento(cls,tipo,descrizione,richiamo,codicefiscale):
+    def addDocumento(cls, tipo, descrizione, richiamo, codicefiscale):
         """
         Aggiunge un nuovo documento sanitario al fascicolo di un paziente.
 
@@ -37,13 +36,14 @@ class FascicoloService:
             None
         """
         with app.app_context():
-            documento=DocumentoSanitario()
-            quantiDocumenti = len(list(db.session.scalars(sqlalchemy.select(DocumentoSanitario).where(DocumentoSanitario.titolare == codicefiscale))))
-            documento.NumeroDocumento= "FSE"+str(quantiDocumenti)+tipo[0]
-            documento.tipo=tipo
-            documento.dataEmissione=datetime.date.today()
-            documento.descrizione=descrizione
-            documento.richiamo=richiamo
-            documento.titolare=codicefiscale
+            documento = DocumentoSanitario()
+            quantiDocumenti = len(list(db.session.scalars(
+                sqlalchemy.select(DocumentoSanitario).where(DocumentoSanitario.titolare == codicefiscale))))
+            documento.NumeroDocumento = "FSE" + str(quantiDocumenti) + tipo[0]
+            documento.tipo = tipo
+            documento.dataEmissione = datetime.date.today()
+            documento.descrizione = descrizione
+            documento.richiamo = richiamo
+            documento.titolare = codicefiscale
             db.session.add(documento)
             db.session.commit()

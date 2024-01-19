@@ -26,6 +26,7 @@ class PazienteService:
         if paziente is None or not paziente.check_password(password):
             return None
         return paziente
+
     @classmethod
     def getListaVaccini(cls, user):
         """
@@ -51,7 +52,6 @@ class PazienteService:
         list: Lista delle prenotazioni del paziente.
         """
         return db.session.scalars(sqlalchemy.select(Prenotazione).where(Prenotazione.pazienteCF == user.CF))
-
 
     @classmethod
     def eliminaPaziente(cls, cf):
@@ -84,5 +84,6 @@ class PazienteService:
 
     @staticmethod
     def getmoduloAIresult(user):
-        return db.session.scalar(sqlalchemy.select(DocumentoSanitario).where((DocumentoSanitario.titolare == user.CF) &
-        (DocumentoSanitario.tipo == "Risultati AI: malattia cardiaca")))
+        return db.session.scalar(sqlalchemy.select(DocumentoSanitario)
+                                 .where((DocumentoSanitario.titolare == user.CF)
+                                        & (DocumentoSanitario.tipo == "Risultati AI: malattia cardiaca")))

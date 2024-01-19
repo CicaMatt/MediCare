@@ -4,12 +4,13 @@ from flaskDir import db
 from flaskDir.MediCare.model.entity.Medici import Medico
 from flaskDir.MediCare.model.entity.Paziente import Paziente
 
+
 class MedicoService:
     _listaMedici = None
     _listaCentri = None
 
     @classmethod
-    def getPazienti(cls,dottore):
+    def getPazienti(cls, dottore):
         """
         Restituisce la lista dei pazienti associati a un medico specifico.
 
@@ -83,6 +84,7 @@ class MedicoService:
             cls._listaCentri = Medico.query.filter(Medico.specializzazione == "Vaccini").all()
         return cls._listaCentri
 
+    @classmethod
     def filtraMedici(cls, specializzazione=None, citta=None):
         """
         Filtra i medici in base alla specializzazione e/o alla città.
@@ -112,6 +114,7 @@ class MedicoService:
 
         return newList
 
+    @classmethod
     def filtraMediciv2(cls, specializzazione=None, citta=None):
         """
         Versione avanzata del filtro dei medici in base alla specializzazione e/o alla città.
@@ -179,9 +182,3 @@ class MedicoService:
             # Rollback in caso di errore
             db.session.rollback()
             return False
-
-
-
-
-
-

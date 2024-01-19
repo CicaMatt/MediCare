@@ -1,5 +1,6 @@
 from flaskDir import db
 
+
 class MetodoPagamento(db.Model):
     """
     Classe che rappresenta un metodo di pagamento.

@@ -1,5 +1,6 @@
 from flaskDir import db
 
+
 class VisualizzaFarmaco(db.Model):
     """
     Classe che rappresenta l'associazione tra un farmaco e un paziente per la visualizzazione.

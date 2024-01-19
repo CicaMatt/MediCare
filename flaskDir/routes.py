@@ -10,14 +10,12 @@ from flaskDir.source.prenotazioni.PrenotazioneControl import prenotazione_bluepr
 from flaskDir.source.autenticazione.UserControl import auth_blueprint
 from flaskDir.source.EnteFunction.EnteControl import ente_blueprint
 
-
-
 from flaskDir import app
 
 app.config.from_mapping(
-    SECRET_KEY='6Js.9JsPaq324Dc', #Serve per avere le sessioni, una chiave sicura, non dovrebbe essere caricata su github
-    SAML_IDP_SETTINGS={ #Per lo spid, ad esempio devo identificare Posteitaliane
-
+    SECRET_KEY='6Js.9JsPaq324Dc',
+    # Serve per avere le sessioni, una chiave sicura, non dovrebbe essere caricata su github
+    SAML_IDP_SETTINGS={  # Per lo spid, ad esempio devo identificare Posteitaliane
 
     }
 )
@@ -186,18 +184,13 @@ def storicoMedico():
     return render_template("StoricoPrenotazioniMedico.html")
 
 
-@app.route('/prova')
-def prova():
-    return render_template("prova.html")
-
-
 @app.errorhandler(404)
-def page_not_found(e):
+def page_not_found():
     return render_template('ErrorPage.html', error='404'), 404
 
 
 @app.errorhandler(500)
-def page_not_found(e):
+def page_not_found():
     return render_template('ErrorPage.html', error='500'), 500
 
 

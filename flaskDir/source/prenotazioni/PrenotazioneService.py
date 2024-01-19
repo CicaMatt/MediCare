@@ -11,7 +11,7 @@ from flaskDir.source.Utente.PazienteService import PazienteService
 class PrenotazioneService:
 
     @classmethod
-    def getListaMedici(cls,specializzazione = None, citta= None):
+    def getListaMedici(cls, specializzazione=None, citta=None):
         """
             Restituisce la lista dei medici disponibili.
 
@@ -22,10 +22,10 @@ class PrenotazioneService:
             Returns:
                 list: Lista dei medici filtrati per specializzazione e città.
         """
-        return MedicoService().filtraMedici(specializzazione,citta)
+        return MedicoService().filtraMedici(specializzazione, citta)
 
     @classmethod
-    def getListaVaccini(cls,user):
+    def getListaVaccini(cls, user):
         """
         Restituisce la lista dei vaccini disponibili per un paziente.
 
@@ -61,11 +61,12 @@ class PrenotazioneService:
         Returns:
             list: Lista delle prenotazioni effettuate dal medico.
         """
-        medico=Medico.query.filter(Medico.email==medico).first()
+        medico = Medico.query.filter(Medico.email == medico).first()
         if medico.ente_sanitario is None:
             return db.session.scalars(sqlalchemy.select(Prenotazione).where(Prenotazione.medico == medico.email))
         else:
-            return db.session.scalars(sqlalchemy.select(Prenotazione).where(Prenotazione.medico == medico.email or Prenotazione.medico == medico.ente_sanitario))
+            return db.session.scalars(sqlalchemy.select(Prenotazione).where(
+                Prenotazione.medico == medico.email or Prenotazione.medico == medico.ente_sanitario))
 
     @classmethod
     def confirmIsFree(cls, idmedico, data, ora):
@@ -80,19 +81,19 @@ class PrenotazioneService:
          Returns:
              bool: True se è possibile prenotare, False altrimenti.
          """
-        mese=datetime.datetime.now().strftime("%m")+"-"
+        mese = datetime.datetime.now().strftime("%m") + "-"
         if int(data) <= datetime.datetime.now().day:
             mese = str(datetime.datetime.now().month + 1)
             mese = mese + "-"
-        anno=datetime.datetime.now().strftime("%Y")+"-"
-        data=str(anno)+str(mese)+str(data)
+        anno = datetime.datetime.now().strftime("%Y") + "-"
+        data = str(anno) + str(mese) + str(data)
         prenotazioni = Prenotazione.query.filter_by(medico=idmedico, oraVisita=ora, dataVisita=data).first()
-        if prenotazioni: #Se ci sono prenotazioni per quella data allora non è free
+        if prenotazioni:  # Se ci sono prenotazioni per quella data allora non è free
             return False
         return True
 
     @staticmethod
-    def savePrenotazione (idmedico, data, ora, tipo, CF, prezzo, carta="SSS"):
+    def savePrenotazione(idmedico, data, ora, tipo, CF, prezzo, carta="SSS"):
         """
         Salva una prenotazione nel database.
 
@@ -109,12 +110,12 @@ class PrenotazioneService:
             bool: True se la prenotazione è stata salvata con successo, False altrimenti.
         """
         try:
-            medico=MedicoService().getMedico(idmedico)
+            medico = MedicoService().getMedico(idmedico)
             mese = datetime.datetime.now().strftime("%m") + "-"
 
-            if int(data)<=datetime.datetime.now().day:
-                mese = str(datetime.datetime.now().month+1)
-                mese=mese+"-"
+            if int(data) <= datetime.datetime.now().day:
+                mese = str(datetime.datetime.now().month + 1)
+                mese = mese + "-"
             anno = datetime.datetime.now().strftime("%Y") + "-"
             data = str(anno) + str(mese) + str(data)
             prenotazione = Prenotazione()
@@ -122,16 +123,16 @@ class PrenotazioneService:
             prenotazione.pazienteCF = CF
             prenotazione.tipoVisita = tipo
             prenotazione.dataVisita = data
-            if  8<=int(ora)<=19:
+            if 8 <= int(ora) <= 19:
                 prenotazione.oraVisita = int(ora)
-            else: raise SQLAlchemyError
-            if float(prezzo)<=0:
+            else:
+                raise SQLAlchemyError
+            if float(prezzo) <= 0:
                 raise SQLAlchemyError
             prenotazione.prezzo = float(prezzo)
             prenotazione.prenMed = medico
             if carta.isdigit():
                 prenotazione.pagata = True
-
 
             db.session.add(prenotazione)
 
@@ -143,6 +144,7 @@ class PrenotazioneService:
             db.session.rollback()
 
             return False
+
     @staticmethod
     def saveVaccino(idmedico, data, ora, tipo, CF, prezzo=0):
         """
@@ -160,7 +162,7 @@ class PrenotazioneService:
             bool: True se la prenotazione è stata salvata con successo, False altrimenti.
         """
         try:
-            medico=MedicoService().getMedico(idmedico)
+            medico = MedicoService().getMedico(idmedico)
             prenotazione = Prenotazione()
             prenotazione.medico = idmedico
             prenotazione.pazienteCF = CF
@@ -181,7 +183,6 @@ class PrenotazioneService:
 
             return False
 
-
     @classmethod
     def modificaPrenotazione(cls, id, data, ora):
         """
@@ -197,9 +198,9 @@ class PrenotazioneService:
         """
         try:
             prenotazioni = Prenotazione.query.filter_by(ID=id).first()
-            if prenotazioni and PrenotazioneService.confirmIsFree(prenotazioni.medico,data, ora):
+            if prenotazioni and PrenotazioneService.confirmIsFree(prenotazioni.medico, data, ora):
                 mese = datetime.datetime.now().strftime("%m") + "-"
-                if int(data)<=datetime.datetime.now().day:
+                if int(data) <= datetime.datetime.now().day:
                     mese = str(datetime.datetime.now().month + 1)
                     mese = mese + "-"
                 anno = datetime.datetime.now().strftime("%Y") + "-"

@@ -6,10 +6,11 @@ from flaskDir import db, app
 from flaskDir.MediCare.model.entity.MetodoPagamento import MetodoPagamento
 from flaskDir.MediCare.model.entity.Paziente import Paziente
 
+
 class PagamentoService:
 
     @classmethod
-    def getMetodi(cls,cf):
+    def getMetodi(cls, cf):
         """
         Restituisce la lista dei metodi di pagamento associati a un paziente.
 
@@ -22,7 +23,7 @@ class PagamentoService:
         return db.session.scalars(sqlalchemy.select(MetodoPagamento).where(MetodoPagamento.beneficiario == cf))
 
     @classmethod
-    def eliminaMetodo(cls,pan,cf):
+    def eliminaMetodo(cls, pan, cf):
         """
         Elimina un metodo di pagamento associato a un paziente.
 
@@ -33,7 +34,7 @@ class PagamentoService:
         Returns:
             None
         """
-        carte_da_cancellare = MetodoPagamento.query.filter_by(PAN=pan,beneficiario=cf).all()
+        carte_da_cancellare = MetodoPagamento.query.filter_by(PAN=pan, beneficiario=cf).all()
 
         for metodo_pagamento in carte_da_cancellare:
             db.session.delete(metodo_pagamento)
@@ -41,7 +42,7 @@ class PagamentoService:
         db.session.commit()
 
     @classmethod
-    def addCarta(cls,cvv,pan,titolare,scadenza,cf):
+    def addCarta(cls, cvv, pan, titolare, scadenza, cf):
         """
         Aggiunge un nuovo metodo di pagamento (carta di credito) associato a un paziente.
 
@@ -57,7 +58,7 @@ class PagamentoService:
         """
         with app.app_context():
             try:
-                paziente=Paziente.query.filter(Paziente.CF==cf).first()
+                paziente = Paziente.query.filter(Paziente.CF == cf).first()
 
                 try:
                     scadenza_date = datetime.strptime(scadenza, '%m/%Y')
@@ -71,16 +72,15 @@ class PagamentoService:
                 if cartaEsistente:
                     return None
                 else:
-                    metodo=MetodoPagamento()
-                    metodo.CVV=cvv
-                    metodo.PAN=pan
-                    metodo.nome_titolare=titolare
-                    metodo.dataScadenza=scadenza
-                    metodo.beneficiario=cf
-                    metodo.paziente=paziente
+                    metodo = MetodoPagamento()
+                    metodo.CVV = cvv
+                    metodo.PAN = pan
+                    metodo.nome_titolare = titolare
+                    metodo.dataScadenza = scadenza_date
+                    metodo.beneficiario = cf
+                    metodo.paziente = paziente
                     db.session.add(metodo)
                     db.session.commit()
                     return True
-            except SQLAlchemyError as e:
+            except SQLAlchemyError:
                 return False
-

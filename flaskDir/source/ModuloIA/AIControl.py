@@ -1,10 +1,6 @@
-import datetime
-
-import pandas as pd
 from flask import render_template, Blueprint, request, session, url_for, redirect
 from flask_login import login_required, current_user
 
-from flaskDir import app
 from flaskDir.source.Fascicolo.FascicoloService import FascicoloService
 from flaskDir.source.ModuloIA.AIService import ModuloIAService
 from flaskDir.source.Utente.PazienteService import PazienteService
@@ -35,7 +31,7 @@ def results():
         caa = int(request.form.get("caa"))
         thall = int(request.form.get("thall"))
 
-        if slp == None or caa == None or thall == None:
+        if slp is None or caa is None or thall is None:
             result = ModuloIAService.diagnosi_simple(age, sex, cp, trtbps, chol, fbs, restecg, thalach, exng, oldpeak)
             if str(result) == "[0]":
                 result = "Sei fortunato! Non c'è il sospetto che tu abbia una malattia cardiaca"
@@ -54,7 +50,7 @@ def results():
         # return ...
 
     documentoResult = PazienteService.getmoduloAIresult(current_user)
-    if documentoResult == None:
+    if documentoResult is None:
         return render_template('FormAI.html', paziente=request.args.get('paziente'))
     else:
         return render_template('RisultatiAI2.html', risultato=documentoResult)

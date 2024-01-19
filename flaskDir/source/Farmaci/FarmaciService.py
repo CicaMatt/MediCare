@@ -1,7 +1,8 @@
 import sqlalchemy
-from sqlalchemy.exc import SQLAlchemyError
+
 from flaskDir import db
 from flaskDir.MediCare.model.entity.Farmaco import Farmaco
+
 
 class FarmaciService:
 
@@ -40,9 +41,11 @@ class FarmaciService:
         Returns:
             list: Una lista di farmaci suggeriti.
         """
-        return db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.categoria==tipo, Farmaco.ID != id)).fetchall()
+        return db.session.scalars(
+            sqlalchemy.select(Farmaco).where(Farmaco.categoria == tipo, Farmaco.ID != id)).fetchall()
+
     @classmethod
-    def filtraCatalogo(cls,categoria = None, prezzo=0):
+    def filtraCatalogo(cls, categoria=None, prezzo=0):
         """
         Filtra il catalogo dei farmaci in base alla categoria e/o al prezzo.
 
@@ -53,17 +56,17 @@ class FarmaciService:
         Returns:
             list: Una lista di farmaci filtrati in base alla categoria e/o al prezzo.
         """
-        if categoria == "-" and prezzo == 0 :
+        if categoria == "-" and prezzo == 0:
             return list(db.session.scalars(sqlalchemy.select(Farmaco)))
-        elif categoria == "-" and prezzo != 0 :
+        elif categoria == "-" and prezzo != 0:
             return list(db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.prezzo <= prezzo)))
         elif categoria != "-" and prezzo == 0:
-            return list(db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.categoria==categoria)))
+            return list(db.session.scalars(sqlalchemy.select(Farmaco).where(Farmaco.categoria == categoria)))
         else:
             return cls.getFarmaci()
 
     @classmethod
-    def ricerca(cls,tip=None):
+    def ricerca(cls, tip=None):
         """
         Restituisce una lista di suggerimenti di farmaci basati sulla ricerca per nome.
 
@@ -73,9 +76,9 @@ class FarmaciService:
         Returns:
             list: Una lista di suggerimenti di farmaci.
         """
-        if tip is not None and tip!="":
-            suggerimenti={farmaco.nome for farmaco in Farmaco.query.filter(Farmaco.nome.like(tip+'%')).all()}
-            suggest=list(suggerimenti)
+        if tip is not None and tip != "":
+            suggerimenti = {farmaco.nome for farmaco in Farmaco.query.filter(Farmaco.nome.like(tip + '%')).all()}
+            suggest = list(suggerimenti)
             return suggest
 
     @classmethod
@@ -90,9 +93,4 @@ class FarmaciService:
             list: Una lista di farmaci filtrati per nome.
         """
         if nome is not None:
-            return Farmaco.query.filter(Farmaco.nome.like(nome+'%')).all()
-
-
-
-
-
+            return Farmaco.query.filter(Farmaco.nome.like(nome + '%')).all()
