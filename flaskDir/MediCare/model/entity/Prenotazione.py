@@ -1,6 +1,20 @@
 from flaskDir import db
 
 class Prenotazione(db.Model):
+    """
+    Classe che rappresenta una prenotazione.
+
+    Attributi:
+    - ID (int): Identificatore unico della prenotazione (chiave primaria).
+    - oraVisita (int): Ora della visita.
+    - dataVisita (Date): Data della visita.
+    - tipoVisita (str): Tipo di visita.
+    - prezzo (Numeric): Prezzo della prenotazione.
+    - pazienteCF (str): Codice Fiscale del paziente associato alla prenotazione (chiave primaria).
+    - medico (str): Email del medico associato alla prenotazione (chiave primaria).
+    - pagata (bool): Flag che indica se la prenotazione è stata pagata.
+
+    """
     ID = db.Column(db.Integer, primary_key=True, autoincrement=True)
     oraVisita = db.Column(db.Integer, nullable=False)
     dataVisita = db.Column(db.Date, nullable=False)
