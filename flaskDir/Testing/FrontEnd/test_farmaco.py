@@ -7,6 +7,7 @@ from selenium.webdriver.common.keys import Keys
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service as ChromeService
 from flaskDir.MediCare.model.entity.Farmaco import Farmaco
+import time
 
 from flaskDir import app, db
 
@@ -27,10 +28,106 @@ class TestFarmaco():
             db.session.delete(Farmaco.query.filter_by(ID=10).first())
             db.session.commit()
 
+
+
+    def test_perCategoria(self):
+        self.driver.get("http://127.0.0.1:5000/")
+        self.driver.set_window_size(1172, 1032)
+        self.driver.find_element(By.LINK_TEXT, "Farmaci").click()
+        self.driver.find_element(By.ID, "manufacturer").click()
+        dropdown = self.driver.find_element(By.ID, "manufacturer")
+        dropdown.find_element(By.XPATH, "//option[. = 'Sciroppo']").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".bg-blue-600").click()
+
+    def test_perPrezzo(self):
+        self.driver.get("http://127.0.0.1:5000/")
+        self.driver.set_window_size(1172, 1032)
+        self.driver.find_element(By.LINK_TEXT, "Farmaci").click()
+        element = self.driver.find_element(By.ID, "prezzo")
+        actions = ActionChains(self.driver)
+        actions.move_to_element(element).click_and_hold().perform()
+        element = self.driver.find_element(By.ID, "prezzo")
+        actions = ActionChains(self.driver)
+        actions.move_to_element(element).perform()
+        element = self.driver.find_element(By.ID, "prezzo")
+        actions = ActionChains(self.driver)
+        actions.move_to_element(element).release().perform()
+        self.driver.find_element(By.ID, "prezzo").send_keys("9")
+        self.driver.find_element(By.ID, "prezzo").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".bg-blue-600").click()
+
+    def test_perCategoriaePrezzo(self):
+        self.driver.get("http://127.0.0.1:5000/")
+        self.driver.set_window_size(1172, 1032)
+        self.driver.find_element(By.LINK_TEXT, "Farmaci").click()
+        self.driver.find_element(By.ID, "manufacturer").click()
+        dropdown = self.driver.find_element(By.ID, "manufacturer")
+        dropdown.find_element(By.XPATH, "//option[. = 'Sciroppo']").click()
+        self.driver.find_element(By.ID, "prezzo").send_keys("13")
+        self.driver.find_element(By.ID, "prezzo").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".bg-blue-600").click()
+
+    def test_farmacoNoFindCategoria(self):
+        self.driver.get("http://127.0.0.1:5000/")
+        self.driver.set_window_size(1172, 1032)
+        self.driver.find_element(By.LINK_TEXT, "Farmaci").click()
+        self.driver.find_element(By.ID, "manufacturer").click()
+        dropdown = self.driver.find_element(By.ID, "manufacturer")
+        dropdown.find_element(By.XPATH, "//option[. = 'Supposte']").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".bg-blue-600").click()
+
+        error=WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID,"noPresent")))
+        assert error
+        assert error.text=="Sembra non ci siano farmaci idonei"
+
+    def test_nonDDDva(self):
+        self.driver.get("http://127.0.0.1:5000/")
+        self.driver.set_window_size(1172, 1032)
+        self.driver.find_element(By.CSS_SELECTOR, ".max-w-7xl").click()
+        self.driver.find_element(By.LINK_TEXT, "Farmaci").click()
+        time.sleep(2)  # Add a delay of 2 seconds
+        self.driver.find_element(By.ID, "prezzo").send_keys("50")
+        self.driver.find_element(By.ID, "prezzo").click()
+
+        prezzo_input = self.driver.find_element(By.ID, "prezzo")
+        prezzo_value = prezzo_input.get_attribute("value")
+        print(prezzo_value)
+
+        error = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "noPresent")))
+        assert error
+        assert error.text == "Sembra non ci siano farmaci idonei"
+
+
+    def test_NonFunzionaAll(self):
+        self.driver.get("http://127.0.0.1:5000/")
+        self.driver.set_window_size(1172, 1032)
+        self.driver.find_element(By.LINK_TEXT, "Farmaci").click()
+        self.driver.find_element(By.ID, "manufacturer").click()
+        dropdown = self.driver.find_element(By.ID, "manufacturer")
+        dropdown.find_element(By.XPATH, "//option[. = 'Supposte']").click()
+        self.driver.find_element(By.ID, "prezzo").send_keys("2")
+        self.driver.find_element(By.ID, "prezzo").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".bg-blue-600").click()
+
+        error = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "noPresent")))
+        assert error
+        assert error.text == "Sembra non ci siano farmaci idonei"
+
+
+    def test_farmacoNoFindAll(self):
+        self.driver.get("http://127.0.0.1:5000/")
+        self.driver.set_window_size(1172, 1032)
+        self.driver.find_element(By.LINK_TEXT, "Farmaci").click()
+        self.driver.find_element(By.ID, "manufacturer").click()
+        dropdown = self.driver.find_element(By.ID, "manufacturer")
+        dropdown.find_element(By.XPATH, "//option[. = 'Sciroppo']").click()
+        self.driver.find_element(By.ID, "prezzo").send_keys("13")
+        self.driver.find_element(By.ID, "prezzo").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".bg-blue-600").click()
+
     def test_farmaco(self):
         self.driver.get("http://127.0.0.1:5000/")
         self.driver.set_window_size(1936, 1056)
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT,"Farmaci")))
         self.driver.find_element(By.LINK_TEXT, "Farmaci").click()
         self.driver.find_element(By.ID, "manufacturer").click()
         dropdown = self.driver.find_element(By.ID, "manufacturer")
@@ -48,30 +145,29 @@ class TestFarmaco():
         self.driver.find_element(By.ID, "prezzo").click()
         self.driver.find_element(By.CSS_SELECTOR, ".bg-blue-600").click()
 
-        assert self.driver.current_url=="http://127.0.0.1:5000/farmacia/filtroCatalogo"
+        assert self.driver.current_url == "http://127.0.0.1:5000/farmacia/filtroCatalogo"
 
     def test_farmacoNoFind(self):
         self.driver.get("http://127.0.0.1:5000/")
         self.driver.set_window_size(1920, 1032)
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "Farmaci")))
         self.driver.find_element(By.LINK_TEXT, "Farmaci").click()
         self.driver.find_element(By.ID, "search").click()
         self.driver.find_element(By.ID, "search").send_keys("benactiveGola")
         self.driver.find_element(By.ID, "search").send_keys(Keys.ENTER)
-        error=WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID,"noPresent")))
+        error = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "noPresent")))
         assert error
-        assert error.text=="Sembra non ci siano farmaci idonei"
+        assert error.text == "Ci dispiace ma questo farmaco non è presente nel nostro archivio di farmaci"
 
     def test_farmacoFind(self):
         self.driver.get("http://127.0.0.1:5000/")
         self.driver.set_window_size(1920, 1032)
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "Farmaci")))
         self.driver.find_element(By.LINK_TEXT, "Farmaci").click()
         self.driver.find_element(By.ID, "search").click()
         self.driver.find_element(By.ID, "search").send_keys("Augmentin")
         self.driver.find_element(By.ID, "search").send_keys(Keys.ENTER)
         self.driver.find_element(By.CSS_SELECTOR, ".h-48").click()
-        farmaco=WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID,"nomeFarmaco")))
-        assert self.driver.current_url=="http://127.0.0.1:5000/farmacia/dettagliFarmaco?id=10&categoria=Compresse"
+        farmaco = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "nomeFarmaco")))
+        assert self.driver.current_url == "http://127.0.0.1:5000/farmacia/dettagliFarmaco?id=10&categoria=Compresse"
         assert farmaco
-        assert farmaco.text=="Augmentin"
+        assert farmaco.text == "Augmentin"
+
