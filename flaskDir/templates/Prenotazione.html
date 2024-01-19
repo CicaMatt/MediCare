@@ -67,10 +67,11 @@
     contenitoreVaccinali.style.display = "none";
 
     // Aggiungi i listener per i click
-    specialistiche.addEventListener("click", function() {
-      contenitoreSpecialistiche.style.display = "block";
-      contenitoreDiagnostiche.style.display = "none";
-      contenitoreVaccinali.style.display = "none";
+    specialistiche.addEventListener("click", function(event) {
+        event.preventDefault();
+        contenitoreSpecialistiche.style.display = "block";
+        contenitoreDiagnostiche.style.display = "none";
+        contenitoreVaccinali.style.display = "none";
     });
 
     specialistiche1.addEventListener("click", function() {
@@ -79,10 +80,11 @@
       contenitoreVaccinali.style.display = "none";
     });
 
-    diagnostiche.addEventListener("click", function() {
-      contenitoreSpecialistiche.style.display = "none";
-      contenitoreDiagnostiche.style.display = "block";
-      contenitoreVaccinali.style.display = "none";
+    diagnostiche.addEventListener("click", function(event) {
+        event.preventDefault();
+        contenitoreSpecialistiche.style.display = "none";
+        contenitoreDiagnostiche.style.display = "block";
+        contenitoreVaccinali.style.display = "none";
     });
 
     diagnostiche1.addEventListener("click", function() {
@@ -91,10 +93,11 @@
       contenitoreVaccinali.style.display = "none";
     });
 
-    vaccinali.addEventListener("click", function() {
-      contenitoreSpecialistiche.style.display = "none";
-      contenitoreDiagnostiche.style.display = "none";
-      contenitoreVaccinali.style.display = "block";
+    vaccinali.addEventListener("click", function(event) {
+        event.preventDefault();
+        contenitoreSpecialistiche.style.display = "none";
+        contenitoreDiagnostiche.style.display = "none";
+        contenitoreVaccinali.style.display = "block";
     });
 
     vaccinali1.addEventListener("click", function() {
@@ -215,17 +218,17 @@
                       <ul class="flex justify-between mx-auto overflow-hidden text-sm text-center text-black border divide-x rounded-xl">
                         <li class="w-full">
                           <!-- event handler set state to 'tab1' and add conditional :class for active state -->
-                          <a href="#visite_diagnostiche" id="diagnostiche" @click.prevent="tab = 'tab1'" href="#" class="inline-block w-full px-6 py-2 font-medium border-b-2 border-transparent" :class="{ ' bg-white text-blue-500  border-blue-500' : tab === 'tab1' }">
+                          <a href="#visite_diagnostiche" id="diagnostiche" @click.prevent="tab = 'tab1'" href="#" class="inline-block w-full px-6 text-xl font-semibold py-2 font-medium border-b-2 border-transparent" :class="{ ' bg-white text-blue-500  border-blue-500' : tab === 'tab1' }">
                             Analisi
                           </a>
                         </li>
                         <li class="w-full">
-                          <a href="#visite_specialistiche" id="specialistiche" @click.prevent="tab = 'tab2'" href="#" class="inline-block w-full px-6 py-2 font-medium border-b-2 border-transparent" :class="{ ' bg-white text-blue-500  border-blue-500' : tab === 'tab2' }">
+                          <a href="#visite_specialistiche" id="specialistiche" @click.prevent="tab = 'tab2'" href="#" class="inline-block w-full  text-xl font-semibold px-6 py-2 font-medium border-b-2 border-transparent" :class="{ ' bg-white text-blue-500  border-blue-500' : tab === 'tab2' }">
                             Visite
                           </a>
                         </li>
                         <li class="w-full">
-                          <a href="{{url_for('prenotazioni.getListaVaccini')}}"  @click.prevent="tab = 'tab3'" href="#" class="inline-block w-full px-6 py-2 font-medium border-b-2 border-transparent bg-white text-blue-500 border-blue-500" :class="{ ' bg-white text-blue-500  border-blue-500' : tab === 'tab3' }">
+                          <a href="{{url_for('prenotazioni.getListaVaccini')}}"  @click.prevent="tab = 'tab3'" href="#" class="inline-block w-full text-xl font-semibold px-6 py-2 font-medium border-b-2 border-transparent bg-white text-blue-500 border-blue-500" :class="{ ' bg-white text-blue-500  border-blue-500' : tab === 'tab3' }">
                             Vaccini
                           </a>
                         </li>
