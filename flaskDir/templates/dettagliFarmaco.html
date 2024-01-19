@@ -5,6 +5,16 @@
     <title>Dettagli farmaco</title>
     <link rel="stylesheet" href="{{url_for('static',filename='grafica/main.css')}}">
 </head>
+<style>
+
+    footer {
+    /* Fissa il footer al fondo dello schermo */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+</style>
 <body>
 
 {% include 'Navbar.html' %}
@@ -20,7 +30,7 @@
 
         <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
           <h2 class="text-sm title-font text-gray-500 tracking-widest">{{ farmaco.categoria }}</h2>
-          <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">{{ farmaco.nome }}</h1>
+          <h1 id="nomeFarmaco" class="text-gray-900 text-3xl title-font font-medium mb-1">{{ farmaco.nome }}</h1>
 
           <p class="leading-relaxed">{{ farmaco.descrizione }}</p>
           <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
@@ -43,7 +53,7 @@
     <div class="mx-auto max-w-screen-xl px-4 md:px-8">
       {% if suggeriti %}
       <div class="relative mb-10 pt-8 md:mb-16">
-        <h2 class="mb-4 text-center font-serif text-3xl font-bold text-blue-900 md:mb-6 md:text-4xl">Ti potrebbero interessare</h2>
+        <h2 class="mb-4 text-center font-sans text-3xl font-bold text-blue-900 md:mb-6 md:text-4xl">Ti potrebbero interessare</h2>
       </div>
       <div class="relative grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {% for farmaci in suggeriti %}
@@ -69,6 +79,8 @@
   </section>
 
 
-{% include 'Footer2.0.html' %}
+<footer class="mt-auto">
+    {% include 'Footer2.0.html' %}
+</footer>
 </body>
 </html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Lista prenotazioni</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/grafica/main.css">
+</head>
+<body class="bg-navbarreg rounded-lg">
+
+{% include 'NavbarLateraleMedico.html' %}
+
+<div class="p-4 sm:ml-64">
+        <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg min-h-96">
+
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 text-center">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Tipo
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    CF Paziente
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Prezzo
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Data
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Ora
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+        {%if lista != None%}
+            {% for Prenotazione in lista %}
+            <tr class="text-center bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{ Prenotazione.tipoVisita }}
+                </th>
+                <td class="px-6 py-4">
+                    {{ Prenotazione.pazienteCF }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ Prenotazione.prezzo }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ Prenotazione.dataVisita }}
+                </td>
+                <td class="px-6 py-4">
+                    {{ Prenotazione.oraVisita }}
+                </td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+
+
+        </tbody>
+    </table>
+</div>
+        </div>
+</div>
+
+</body>
+</html>

@@ -5,6 +5,16 @@
     <title>Lista enti</title>
     <link rel="stylesheet" href="{{url_for('static',filename='grafica/main.css')}}">
 </head>
+<style>
+
+    footer {
+    /* Fissa il footer al fondo dello schermo */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+</style>
 <body>
 
 {% include 'Navbar.html' %}
@@ -18,27 +28,11 @@
 		<!--Titolo con nome della specializzazione-->
 			<div>
 				<h2 class="text-gray-900 font-semibold">Vaccini</h2>
-				<span class="text-s">Lista degli enti pubblici presso cui effettuare la vaccinazione</span>
+				<span class="text-s">Lista dei centri vaccianli presso cui effettuare la vaccinazione</span>
 			</div>
 		<!--Fine Titolo-->
 
-		<!--Barra di ricerca con il pulsante-->
-			<div class="flex items-center justify-between">
-				<div class="flex bg-gray-50 items-center p-2 rounded-md">
-					<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-400" viewBox="0 0 20 20"
-						fill="currentColor">
-						<path fill-rule="evenodd"
-							d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-							clip-rule="evenodd"/>
-					</svg>
 
-					<input class="bg-gray-50 outline-none ml-1 block " type="text" name="" id="" placeholder="nome medico...">
-				</div>
-					<div class="lg:ml-10 ml-10 space-x-8">
-						<button class="hover:bg-indigo-600 bg-blue-500 px-4 py-2 rounded-md text-white font-semibold tracking-wide cursor-pointer">Cerca</button>
-					</div>
-			</div>
-		<!--Fine barra di ricerca-->
 	</div>
 	<!--Fine Scritte sopra la tabella-->
 
@@ -66,6 +60,10 @@
 									class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
 									Struttura sanitaria
 								</th>
+                                <th
+									class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+									Prenota
+								</th>
 							</tr>
 						</thead>
 						<!--Fine prima riga della tabella con i titoli generici-->
@@ -75,17 +73,16 @@
 
 
 
-
-
 						{% if lista %}
-						    {% for ente_sanitario in lista %}
-								<form method="post" action="{{url_for('prenotazioni.getMedico')}}">
-									<input type="hidden" name="medico" value="{{ente_sanitario.email}}">
+						    {% for centro in lista %}
 
 
 
 							<!--Esempio dati medico privato-->
 							<tr>
+								<form action="{{url_for('prenotazioni.saveVaccino')}}" method="POST">
+									<input type="hidden" name="medico" value="{{centro.email}}">
+									<input type="hidden" name="richiamo" value="{{richiamo}}">
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 									<div class="flex items-center">
 										<div class="flex-shrink-0 w-10 h-10">
@@ -94,18 +91,18 @@
                                                 alt="" />
                                         </div>
 											<div class="ml-3">
-												<button type="submit" class="text-gray-900 hover:text-sky-400 whitespace-no-wrap">
-													{{ente_sanitario.nome}}
-												</button>
+												<div class="text-gray-900 whitespace-no-wrap">
+													{{centro.reparto}}
+                                                </div>
 											</div>
 										</div>
 								</td>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<p class="text-gray-900 whitespace-no-wrap">{{ente_sanitario.email}}</p>
+									<p class="text-gray-900 whitespace-no-wrap">{{centro.email}}</p>
 								</td>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
 									<p class="text-gray-900 whitespace-no-wrap">
-										{{ente_sanitario.città}}
+										{{centro.città}}
 									</p>
 								</td>
 								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -113,12 +110,20 @@
                                         class="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">
                                         <span aria-hidden
                                             class="absolute inset-0 bg-orange-200 opacity-50 rounded-full"></span>
-									<span class="relative">{{ente_sanitario.nome}}</span>
+									<span class="relative">{{centro.ente_sanitario}}</span>
 									</span>
 								</td>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+									<p class="text-gray-900 whitespace-no-wrap">
+                                        <button type="submit" id="open-modal" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onclick="openModal()">Prenota</button>
+									</p>
+                                </td>
+								</form>
 							</tr>
+
+
 							<!--Fine esempio dati medico privato-->
-							</form>
+
 
 							    {% endfor %}
 						    {% endif %}
@@ -136,6 +141,70 @@
 </div>
 
 
-{% include 'Footer2.0.html' %}
+
+    <div id="modal"  class="relative z-10 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
+        <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <div class="relative p-4 w-full max-w-md max-h-full">
+                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+
+                        <div class="p-4 md:p-5 text-center">
+                            <svg class="mx-auto mb-4 text-gray-400 w-12 h-12 dark:text-gray-200" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
+                            </svg>
+
+                            <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Hai prenotato il {{richiamo}}</h3>
+
+                            <button id="close-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600" onclick="closeModal()">ok</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<!-- Script per il primo modal -->
+<script>
+    var modalId = "";  // Define a global variable to store the current modal ID
+
+    function getId(event) {
+        id = event.target.id;
+        setModal(id);
+    }
+
+    function setModal(idModal) {
+        modalId = idModal;  // Set the global variable to the current modal ID
+        const openModalBtn = document.getElementById(idModal);
+        const closeModalBtn = document.getElementById("close-modal");
+        const modal = document.getElementById("modal");
+
+        openModalBtn.addEventListener("click", openModal);
+        closeModalBtn.addEventListener("click", closeModal);
+    }
+
+    function openModal() {
+        console.log("apro modal");
+        modal.classList.remove("hidden");
+
+        // Set the value of the hidden input field in the form
+        document.getElementById("modalId").value = modalId;
+    }
+
+    function closeModal() {
+        console.log("chiudo modal");
+        modal.classList.add("hidden");
+    }
+
+
+</script>
+
+
+<footer class="mt-auto">
+    {% include 'Footer2.0.html' %}
+</footer>
 </body>
 </html>

@@ -1,33 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Loopple/loopple-public-assets@main/motion-tailwind/motion-tailwind.css" rel="stylesheet">
-    <link rel="stylesheet" href="../static/grafica/convertimi.css">
+    <meta charset="UTF-8">
+    <title>Come Accedere</title>
+     <link rel="stylesheet" href="../static/grafica/main.css">
 </head>
-<body>
 {% include 'Navbar.html' %}
 
-<div class="contenitore-funzionalitaofferte">
-    <div class="testo-funzionalitaofferte">
-        <h1 class="Elika-Gorika-80-bold">Funzionalità Offerte</h1>
+<style>
 
-        <div class="testo-medicare-funzionalitaofferte">
-            <p>Registratevi con noi per accedere a una serie di servizi sanitari convenienti e intuitivi. Ecco alcune delle funzionalità che mettiamo a vostra disposizione:</p>
+    footer {
+    /* Fissa il footer al fondo dello schermo */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
 
-            <ul>
-                <li>Prenotazione di analisi e visite mediche.</li>
-                <li>Esenzioni per visite mediche e analisi.</li>
-                <li>Consultazione farmaci.</li>
-                <li>Visualizzazione delle prenotazioni effettuate.</li>
-                <li>Richiami vaccinali automatici.</li>
-                <!-- Aggiungi altre funzionalità secondo necessità -->
-            </ul>
+</style>
+<body>
 
-            <p>Il nostro obiettivo è semplificare il vostro percorso sanitario, offrendo un'esperienza completa e accessibile.</p>
+
+
+ <section class="pb-11 bg-white">
+        <div class="object-cover w-full bg-center bg-cover h-[35rem] "
+            style="background-image: url(https://i.postimg.cc/P5gCz1Wc/pexels-marc-mueller-380769.jpg);">
+            <div class="flex items-center justify-center w-full h-full bg-blue-800 bg-opacity-50 ">
+                <div class="text-center">
+                    <h1 class="text-2xl font-semibold text-white uppercase lg:text-3xl">Funzionalità Offerte</h1>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+        <div class="max-w-6xl mx-auto">
+            <div>
+                <div>
+                    <div class="p-4">
 
-{% include 'Footer2.0.html' %}
+                        <div class="font-poppins dark:text-gray-400">
+                            <p class="pb-4 text-black"> Registratevi con noi per accedere a una serie di servizi sanitari convenienti e intuitivi.
+                                Ecco alcune delle funzionalità che mettiamo a vostra disposizione:
+                            </p>
+
+                            <ul class="max-w-md space-y-1 text-black list-disc list-inside">
+                                <li>
+                                    Prenotazione di analisi e visite mediche.
+                                </li>
+                                <li>
+                                    Esenzioni per visite mediche e analisi.
+                                </li>
+                                <li>
+                                    Consultazione farmaci.
+                                </li>
+                                <li>
+                                    Visualizzazione delle prenotazioni effettuate.
+                                </li>
+                                <li>
+                                    Richiami vaccinali automatici.
+                                </li>
+                            </ul>
+
+                            <p class="pb-4 pt-4 text-black">
+                                Il nostro obiettivo è semplificare il vostro percorso sanitario, offrendo un'esperienza completa e accessibile.
+                            </p>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+<footer class="mt-auto">
+    {% include 'Footer2.0.html' %}
+</footer>
+
 </body>
 </html>

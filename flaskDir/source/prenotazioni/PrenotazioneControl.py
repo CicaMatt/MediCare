@@ -1,11 +1,13 @@
 
 from flask import render_template, session, request, Blueprint
-from flask_login import current_user
+from flask_login import current_user, login_required
 
-from flaskDir import app
-from flaskDir.MediCare.model.entity import Medici
-from flaskDir.source.prenotazioni.services import PrenotazioneService, MedicoService
+from flaskDir.MediCare.model.entity.Paziente import Paziente
+
 from datetime import datetime
+
+from flaskDir.source.Medico.MedicoService import MedicoService
+from flaskDir.source.prenotazioni.PrenotazioneService import PrenotazioneService
 
 # Dovrebbe essere un singleton?!
 
@@ -15,6 +17,12 @@ prenotazione_blueprint = Blueprint('prenotazioni', __name__)
 
 @prenotazione_blueprint.route('/listamedici')
 def getListaMedici():
+    """
+    Restituisce la lista dei medici disponibili.
+
+    Returns:
+        render_template: Template HTML con la lista dei medici.
+    """
     specializzazione = request.args.get('specializzazione')
     citta = request.args.get('citta')
     # Se usiamo la get request.args.get['']
@@ -23,70 +31,101 @@ def getListaMedici():
 
 @prenotazione_blueprint.route('/listaenti')
 def getListaEnti():
-    return render_template("ListaEnti.html", lista=MedicoService.getListaEnti())
+    """
+    Restituisce la lista degli enti disponibili.
+
+    Returns:
+        render_template: Template HTML con la lista degli enti.
+    """
+    richiamo=request.args.get('richiamo')
+    return render_template("ListaEnti.html", lista=MedicoService.getListaCentri(), richiamo=richiamo)
 
 
 @prenotazione_blueprint.route('/listamedici/paginamedico', methods=['GET','POST'])
-def getMedico():
+@login_required
+def getMedico(prenotazione=None):
+    """
+    Restituisce le informazioni relative a un medico selezionato.
+
+    Args:
+        prenotazione: Oggetto prenotazione.
+
+    Returns:
+        render_template: Template HTML con le informazioni del medico.
+    """
     idMedico = request.form.get('medico')
+    user = session['_user_id']
+    paziente=Paziente.query.filter(Paziente.CF==user).first()
     if idMedico == None:
         return render_template("ListaMedici.html", lista=PrenotazioneService.getListaMedici())
 
     current_date=datetime.now().strftime("%B %Y")
-    data = request.form.get('data')
+    current_day=datetime.now().day+1
+    day_of_week=datetime.now().weekday()+1
+    giorni_rim, giorni_succ=PrenotazioneService.getGiorniCorrenti()
+    data = request.form.get('giorno')
     ora = request.form.get('ora')
+    carta=request.form.get('carta')
     medico = MedicoService.getMedico(idMedico)
+    prezzo=float(medico.tariffa)
+    prenotazioniMedico = PrenotazioneService.getListaPrenotazioniMedico(idMedico)
+    orariOccupati = list((prenotazione.oraVisita,prenotazione.dataVisita) for prenotazione in prenotazioniMedico)
 
     #Dopo che ha scelto la data e l'ora
     if data and ora and current_user.is_authenticated:
-        user = session['user']
-        if PrenotazioneService.confirmIsFree(data, ora):
-            PrenotazioneService.savePrenotazione(data, ora, medico, user)
+
+
+        if PrenotazioneService.confirmIsFree(idMedico,data, ora):
+
+            if paziente.ISEE_ordinario is not None and paziente.ISEE_ordinario <=10000:
+                prezzo=prezzo-(prezzo*33)/100
+            elif paziente.ISEE_ordinario is not None and paziente.ISEE_ordinario <=20000:
+                prezzo=prezzo-(prezzo*10)/100
+
+            PrenotazioneService.savePrenotazione(idMedico,data, ora,medico.specializzazione, user,prezzo,carta)
             #Pagina Prenotazione??
-            return render_template("ProfiloMedico.html", medico=medico)
+            return render_template("HomePage.html", medico=medico)
         else:
-            return render_template("ProfiloMedico.html", medico=medico, alert="error", message="Impossibile salvare la prenotazione: data occupata")
+            return render_template("ProfiloMedico.html", medico=medico, alert="error", message="Impossibile salvare la prenotazione: data occupata", data=current_date, giorni=(giorni_rim,giorni_succ), carte=paziente.carte, prezzo=prezzo,
+                                   day=current_day, week_day=day_of_week)
 
     # Era meglio usare l'id come identificativo, adesso invece ogni utente può vedere la mail ei medici
     else:
-        return render_template("ProfiloMedico.html", medico=medico, data=current_date)
+        return render_template("ProfiloMedico.html", medico=medico, data=current_date, giorni=(giorni_rim,giorni_succ), carte=paziente.carte, prezzo=prezzo, day=current_day,
+                               week_day=day_of_week, orariOccupati = orariOccupati)
 
 
-@app.route('/prenotazione/listavaccini')
+@prenotazione_blueprint.route('/prenotazione/listavaccini')
 def getListaVaccini():
-    if 'user' in session:
-        user = session['user']
+    """
+    Restituisce la lista dei vaccini disponibili.
+
+    Returns:
+        render_template: Template HTML con la lista dei vaccini.
+    """
+    if '_user_id' in session:
+        user = Paziente.query.filter(Paziente.CF==session.get('_user_id')).first()
         return render_template("Vaccini.html", lista=PrenotazioneService.getListaVaccini(user))
     return render_template("Prenotazione.html")
 
+@prenotazione_blueprint.route('/saveVaccino', methods=['POST'])
+def saveVaccino():
+    """
+    Salva un vaccino per un paziente.
 
-"""
-from flask import render_template, request
-from flaskDir import app
-from flaskDir.MediCare.model.entity import Medici
-from flaskDir.source.prenotazioni import MedicoControl
-from flaskDir.source.prenotazioni.services import PrenotazioneService
+    Returns:
+        render_template: Template HTML per la homepage.
+    """
+    if '_user_id' in session and request.method == 'POST':
+        user = session['_user_id']
+        medico=request.form['medico']
+        richiamo=request.form['richiamo']
+        if PrenotazioneService.confirmVaccino(medico,richiamo,11):
+            PrenotazioneService.saveVaccino(medico,richiamo,11,"Vaccino",user)
+            return render_template("HomePage.html")
+        else: return render_template("ListaEnti.html", lista=MedicoService.getListaCentri(), richiamo=richiamo)
 
-class PrenotazioneControl:
-    _prService = PrenotazioneService()
 
-    @staticmethod
-    @app.route('/prenotazione/listamedici', methods=['GET'])
-    def getListaMedici(cls):
-        specializzazione = request.args.get('specializzazione')
-        citta = request.args.get('citta')
-        return render_template("ListaMedici.html", lista=PrenotazioneControl._prService.getListaMedici())
 
-    @staticmethod
-    @app.route('/prenotazione/listamedici/<medico>', methods=['GET'])
-    def getMedico(cls, medico=None):
-        mailMedico = request.args.get('medico')
-        return render_template("PaginaMedico.html", medico=mailMedico)
 
-    @staticmethod
-    @app.route('/prenotazione/listavaccini', methods=['GET'])
-    def getListaVaccini(cls):
-        user = request.args.get('user')  # Assicurati di passare 'user' come parametro o dal client
-        return render_template("Vaccini.html", lista=PrenotazioneControl._prService.getListaVaccini(user))
 
-"""

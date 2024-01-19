@@ -29,23 +29,23 @@
       <a href="{{url_for('home')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Home</a>
       <a href="{{url_for('prenotazione')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Prenotazioni</a>
       <a href="{{url_for('farmacia.farmaci')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Farmaci</a>
-        <a href="{{url_for('feature.moduloai')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Feature</a>
-
       <a href="{{url_for('chisiamo')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Chi siamo</a>
-
     </div>
     <div class="hidden lg:flex lg:flex-1 lg:justify-end">
       {% if not current_user.is_authenticated %}
-      <a href="{{url_for('auth.login_page')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Log in <span aria-hidden="true">&rarr;</span></a>
+      <a href="{{url_for('auth.login_page')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200" id="login">Log in <span aria-hidden="true">&rarr;</span></a>
       {% else %}
-      <a href="{{url_for('AreaUtente')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200"><div class="ring-2 ring-blue-200  dark:ring-blue-950 relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gradient-to-bl from-blue-400 to-purple-300 dark:bg-[conic-gradient(at_right,_var(--tw-gradient-stops))] dark:from-gray-400 dark:via-gray-600 dark:to-blue-800 rounded-full ">
-    <span class="font-medium dark:text-gray-300">{{ current_user.nome[0] }}{{ current_user.cognome[0] }}</span>
-</div> </a>
-
+        {% if session.get('user_role')=='paziente' %}
+      <a href="{{url_for('informazionipersonali.getMetodi')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200" id="paziente">Ciao, {{current_user.nome}} </a>
+        {% elif session.get('user_role')=='ente' %}
+      <a href="{{url_for('AreaEnte')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Ciao, {{current_user.nome}} </a>
+        {% elif session.get('user_role')=='medico' %}
+      <a href="{{url_for('areaMedico')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Salve dottore </a>
+        {% endif %}
       {% endif %}
     </div>
   </nav>
-  <!-- Mobile menu,  show/hide based on menu open state. -->
+  <!-- Mobile menu, show/hide based on menu open state. -->
   <div class="lg:hidden" role="dialog" aria-modal="true">
     <!-- Background backdrop, show/hide based on slide-over state. -->
     <div class="fixed inset-0 z-10"></div>

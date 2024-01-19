@@ -13,6 +13,17 @@
     }
 
 
+
+    footer {
+    /* Fissa il footer al fondo dello schermo */
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+
+
+
     /* Modifica per posizionare i suggerimenti sotto la barra di ricerca */
 #suggest {
   position: absolute;
@@ -77,7 +88,7 @@
             <circle cx="11" cy="11" r="8" class=""></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65" class=""></line>
           </svg>
-          <input type="search" id="search" name="search" onkeyup="navBar(this.value)" class="h-12 w-full cursor-text rounded-md border border-gray-100 bg-gray-100 py-4 pr-40 pl-12 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50" placeholder="Nome farmaco" />
+          <input type="search" id="search" name="search" onkeyup="navBar(this.value)" class="h-12 w-full cursor-text rounded-md border border-gray-100 bg-gray-100 py-4 pr-40 pl-12 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50" placeholder="Nome farmaco"/>
             <ul id="suggest" class="block">
             </ul>
         </div>
@@ -123,15 +134,20 @@
 
 
 
-<div class="relative px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+<div class="relative px-4 py-16 mx-auto mt-8 mb-8 sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
   <div class="absolute inset-x-0 top-0 items-center justify-center hidden overflow-hidden md:flex md:inset-y-0">
 
   </div>
+
+<div class="flex justify-center">
+    <h2 id="noPresent" class="mb-4 text-center font-serif text-3xl font-bold text-blue-900 md:mb-6 md:text-4xl hidden">Sembra non ci siano farmaci idonei</h2>
+</div>
+
   <div class="relative grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
 
+      {% if lista %}
+          {% for farmaco in lista %}
 
-{% if lista %}
-    {% for farmaco in lista %}
       <a href="{{url_for('farmacia.dettagliFarmaco', id=farmaco.ID, categoria=farmaco.categoria)}}">
         <div class="flex flex-col justify-between overflow-hidden transition-shadow duration-200 bg-white rounded-lg border border-gray-300 shadow-xl group hover:shadow-2xl" style="max-height: 500px;"> <!-- Aggiunto border e personalizzato lo stile -->
           <div class="p-5 pb-4 flex flex-col items-center justify-center">
@@ -143,7 +159,19 @@
       </a>
     {% endfor %}
 {% else %}
-     <p>Query non funzionante</p>
+<script>
+    // Attendi che l'intero documento sia caricato
+    document.addEventListener('DOMContentLoaded', function () {
+    // Trova l'elemento con l'id "noPresent"
+    var elemento = document.getElementById("noPresent");
+
+    // Rimuovi l'attributo hidden se l'elemento è presente
+    if (elemento) {
+        elemento.classList.remove("hidden");
+        }
+    });
+</script>
+
 {% endif %}
 
 
@@ -151,6 +179,8 @@
   </div>
 </div>
 
-{% include 'Footer2.0.html' %}
+<footer class="mt-auto">
+    {% include 'Footer2.0.html' %}
+</footer>
 </body>
 </html>
