@@ -62,7 +62,7 @@ def getMedico(prenotazione=None):
     current_date=datetime.now().strftime("%B %Y")
     current_day=datetime.now().day+1
     day_of_week=datetime.now().weekday()+1
-    giorni_rim, giorni_succ=PrenotazioneService.getGiorniCorrenti()
+    giorni_rim, giorni_succ, partenza=PrenotazioneService.getGiorniCorrenti()
     data = request.form.get('giorno')
     ora = request.form.get('ora')
     carta=request.form.get('carta')
@@ -86,12 +86,12 @@ def getMedico(prenotazione=None):
             #Pagina Prenotazione??
             return render_template("HomePage.html", medico=medico)
         else:
-            return render_template("ProfiloMedico.html", medico=medico, alert="error", message="Impossibile salvare la prenotazione: data occupata", data=current_date, giorni=(giorni_rim,giorni_succ), carte=paziente.carte, prezzo=prezzo,
+            return render_template("ProfiloMedico.html", medico=medico, alert="error", message="Impossibile salvare la prenotazione: data occupata", data=current_date, giorni=(giorni_rim,giorni_succ, partenza), carte=paziente.carte, prezzo=prezzo,
                                    day=current_day, week_day=day_of_week)
 
     # Era meglio usare l'id come identificativo, adesso invece ogni utente può vedere la mail ei medici
     else:
-        return render_template("ProfiloMedico.html", medico=medico, data=current_date, giorni=(giorni_rim,giorni_succ), carte=paziente.carte, prezzo=prezzo, day=current_day,
+        return render_template("ProfiloMedico.html", medico=medico, data=current_date, giorni=(giorni_rim,giorni_succ, partenza), carte=paziente.carte, prezzo=prezzo, day=current_day,
                                week_day=day_of_week, orariOccupati = orariOccupati)
 
 

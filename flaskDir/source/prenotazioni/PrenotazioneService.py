@@ -250,8 +250,12 @@ class PrenotazioneService:
 
         # Calcolare il numero di giorni nel mese successivo
         giorni_mese_successivo = giorni_passati
+        today=oggi.day
+        while today<=ultimo_giorno_mese_corrente.day:
+            today+=7
+        partenza=today-ultimo_giorno_mese_corrente.day
 
-        return numero_giorni_mese_corrente, giorni_mese_successivo
+        return numero_giorni_mese_corrente, giorni_mese_successivo,partenza
 
     @classmethod
     def confirmVaccino(cls, idmedico, data, ora):
