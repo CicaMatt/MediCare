@@ -38,7 +38,7 @@
                             {% if current_user.ISEE_ordinario == None%}
                                 <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-1">Non hai ancora inserito il tuo ISEE, fallo premendo il pulsante 'Modifica'</dd>
                             {% else %}
-                                <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-1">€{{current_user.ISEE_ordinario}}</dd>
+                                <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-1" id="ISEE">€{{current_user.ISEE_ordinario}}</dd>
                             {% endif %}
                             <a href="{{url_for('isee')}}"  class="text-sm font-medium text-indigo-600 hover:text-indigo-500 sm:col-span-1 ml-auto mr-4">Modifica</a>
                         </div>

@@ -33,7 +33,7 @@ class EnteService:
             password (str): La password del medico responsabile del reparto.
             specializzazione (str): La specializzazione del medico responsabile del reparto.
             citta (str): La città in cui si trova il reparto medico.
-            ente (EnteSanitario): L'oggetto EnteSanitario associato al reparto.
+            ente (str): L'email dell'Ente sanitario associato al reparto.
 
         Returns:
             bool: True se la creazione del reparto ha avuto successo, False altrimenti.

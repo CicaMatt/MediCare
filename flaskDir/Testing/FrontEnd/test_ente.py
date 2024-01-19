@@ -1,12 +1,13 @@
-from telnetlib import EC
 
 import bcrypt
+from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support.wait import WebDriverWait
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service as ChromeService
 from flaskDir import app, db
 from selenium import webdriver
+
 from selenium.webdriver.common.by import By
 from sqlalchemy_utils import  database_exists
 from flaskDir.MediCare.model.entity import  EnteSanitario
@@ -45,8 +46,10 @@ class TestAddMedico():
 
     def test_addMedico(self):
         self.driver.get("http://127.0.0.1:5000/")
-        self.driver.set_window_size(1046, 766)
+        self.driver.set_window_size(1920, 1080)
+        WebDriverWait(self.driver,10).until(EC.element_to_be_clickable((By.ID,"login")))
         self.driver.find_element(By.ID, "login").click()
+        WebDriverWait(self.driver,10).until(EC.element_to_be_clickable((By.LINK_TEXT,"Accedi come Ente")))
         self.driver.find_element(By.LINK_TEXT, "Accedi come Ente").click()
         self.driver.find_element(By.ID, "email").click()
         self.driver.find_element(By.ID, "email").send_keys("domenico@gmail.com")

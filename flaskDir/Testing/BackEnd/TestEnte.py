@@ -13,7 +13,7 @@ class TestEnte():
     def setUp(self, request):
         from urllib.parse import quote
 
-        app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{quote('Cancello1@')}@localhost:3306/testmedicare"
+        app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:{quote('Gio210302DVK')}@localhost:3306/testmedicare"
         app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
         app.config["TESTING"] = True
         db.init_app(app)
@@ -64,9 +64,19 @@ class TestEnte():
             ente.città = "Bergamo"
             db.session.add(ente)
             db.session.commit()
+            medico=Medico()
+            medico.reparto = "CardioTwin"
+            medico.email = "repartoCardioTwin@gmail.com"
+            medico.password_hash="123password"
+            medico.specializzazione="Cardiologia"
+            medico.ente_sanitario=ente.email
+            medico.tariffa=20
+            medico.città=ente.città
+            db.session.add(medico)
+            db.session.commit()
 
-            result = EnteService.creaReparto("RepartoCardiologia", "ospedaleBergamo23Cardiologia@gmail.com",
-                                                     "Papa230129", "Cardiologia", "Bergamo", "ospedaleBergamo23")
+            result = EnteService.creaReparto("RepartoCardiologia", medico.email,
+                                                     "Papa230129", "Cardiologia", "Bergamo", ente.email)
             oracle = False
             assert oracle == result
             reparto = Medico.query.filter_by(email="ospedaleBergamo23Cardiologia@gmail.com").first()

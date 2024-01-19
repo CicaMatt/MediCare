@@ -1,4 +1,5 @@
 import bcrypt
+from selenium.webdriver import Keys
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service as ChromeService
 from flaskDir import app,db
@@ -47,6 +48,7 @@ class TestFascicolo():
         self.driver.find_element(By.ID, "password").send_keys("123password")
         self.driver.find_element(By.ID, "invio").click()
 
+
     def teardown_method(self):
         self.driver.quit()
         if database_exists(app.config['SQLALCHEMY_DATABASE_URI']):
@@ -54,37 +56,30 @@ class TestFascicolo():
                 db.session.delete(Paziente.Paziente.query.filter_by(CF="CSBGNN2103456VBM").first())
                 db.session.commit()
 
-    def test_fascicoloPieno(self):
-        with app.app_context():
-            documento1 = DocumentoSanitario.DocumentoSanitario(NumeroDocumento="AB230", tipo="Visita",
-                                                           descrizione="Visita oculistica, diagnosticata Miopia",
-                                                           titolare="CSBGNN2103456VBM", dataEmissione="2023/12/12")
-            documento2 = DocumentoSanitario.DocumentoSanitario(NumeroDocumento="AB233", tipo="Analisi",
-                                                           descrizione="Analisi delle urine",
-                                                           titolare="CSBGNN2103456VBM", dataEmissione="2024/01/10")
-            db.session.add_all([documento1,documento2])
-            db.session.commit()
 
+
+    def test_ISEEneg(self):
         self.driver.get("http://127.0.0.1:5000/")
-        self.driver.set_window_size(1934, 1046)
-        element = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.ID,"paziente")))
-        element.click()
-        element = WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable((By.ID, "Fascicolo")))
-        element.click()
-        assert self.driver.current_url == "http://127.0.0.1:5000/areautente/fascicolo?paziente=CSBGNN2103456VBM"
-        with app.app_context():
-            db.session.delete(documento1)
-            db.session.delete(documento2)
-            db.session.commit()
+        self.driver.set_window_size(1934, 1080)
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID,"paziente")))
+        self.driver.find_element(By.ID, "paziente").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".px-4:nth-child(3)").click()
+        self.driver.find_element(By.LINK_TEXT, "Modifica").click()
+        self.driver.find_element(By.ID, "isee").click()
+        self.driver.find_element(By.ID, "isee").send_keys("-20000")
+        self.driver.find_element(By.ID, "isee").send_keys(Keys.ENTER)
+        element=WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID,"ISEE")))
+        assert element.text == "€10000.00"
 
-
-    def test_fascicoloVuoto(self):
+    def test_ISEEValid(self):
         self.driver.get("http://127.0.0.1:5000/")
-        self.driver.set_window_size(1934, 1046)
-        element = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, "paziente")))
-        element.click()
-        element = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, "Fascicolo")))
-        element.click()
-        assert self.driver.current_url == "http://127.0.0.1:5000/areautente/fascicolo?paziente=CSBGNN2103456VBM"
-        element=self.driver.find_element(By.ID,"vuoto").text
-        assert element == "Sembra che il tuo fascicolo sanitario sia attualmente vuoto"
+        self.driver.set_window_size(1934, 1080)
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, "paziente")))
+        self.driver.find_element(By.ID, "paziente").click()
+        self.driver.find_element(By.CSS_SELECTOR, ".px-4:nth-child(3)").click()
+        self.driver.find_element(By.LINK_TEXT, "Modifica").click()
+        self.driver.find_element(By.ID, "isee").click()
+        self.driver.find_element(By.ID, "isee").send_keys("20000")
+        self.driver.find_element(By.ID, "isee").send_keys(Keys.ENTER)
+        element = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "ISEE")))
+        assert element.text == "€20000.00"
