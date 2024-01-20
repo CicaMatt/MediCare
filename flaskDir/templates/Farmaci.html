@@ -48,6 +48,7 @@
 
 <script>
   function seeLive(){
+    let prezzo;
     prezzo=document.getElementById("prezzo").value;
     document.getElementById("live").innerHTML=prezzo;
     document.getElementById("live").style.display="inline";
@@ -88,6 +89,7 @@
             <circle cx="11" cy="11" r="8" class=""></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65" class=""></line>
           </svg>
+          <label for="search"></label>
           <input type="search" id="search" name="search" onkeyup="navBar(this.value)" class="h-12 w-full cursor-text rounded-md border border-gray-100 bg-gray-100 py-4 pr-40 pl-12 shadow-sm outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50" placeholder="Nome farmaco"/>
             <ul id="suggest" class="block">
             </ul>
@@ -163,7 +165,7 @@
     // Attendi che l'intero documento sia caricato
     document.addEventListener('DOMContentLoaded', function () {
     // Trova l'elemento con l'id "noPresent"
-    var elemento = document.getElementById("noPresent");
+    let elemento = document.getElementById("noPresent");
 
     // Rimuovi l'attributo hidden se l'elemento è presente
     if (elemento) {
