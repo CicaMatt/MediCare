@@ -47,7 +47,7 @@ class PagamentoService:
         Aggiunge un nuovo metodo di pagamento (carta di credito) associato a un paziente.
 
         Args:
-            cvv (str): Codice di sicurezza della carta.
+            cvv (int): Codice di sicurezza della carta.
             pan (str): Numero di carta.
             titolare (str): Nome del titolare della carta.
             scadenza (str): Data di scadenza della carta nel formato 'MM/YYYY'.
@@ -76,7 +76,7 @@ class PagamentoService:
                     metodo.CVV = cvv
                     metodo.PAN = pan
                     metodo.nome_titolare = titolare
-                    metodo.dataScadenza = scadenza_date
+                    metodo.dataScadenza = scadenza_date.strftime('%m/%Y')
                     metodo.beneficiario = cf
                     metodo.paziente = paziente
                     db.session.add(metodo)

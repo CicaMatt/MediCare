@@ -15,7 +15,7 @@ from flaskDir.source.Pagamento.PagamentoService import PagamentoService
 @pytest.fixture(autouse=True, scope='session')
 def setUp(request):
     # Configura il database di test
-    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:lollipop@localhost:3306/testmedicare"
+    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root@localhost:3306/testmedicare"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     app.config["TESTING"] = True
     db.init_app(app)
@@ -245,7 +245,7 @@ def test_addCartaSuccess():
         beneficiario = "PROVAS029DGH6712"
         scadenza = meseStr + "/" + annoStr
 
-        PagamentoService.addCarta(cvv, pan, titolare, scadenza, beneficiario)
+        print(PagamentoService.addCarta(cvv, pan, titolare, scadenza, beneficiario))
 
         # Verifica che la carta sia stata inserita nel database di testmedicare
         carta_inserita = MetodoPagamento.query.filter_by(PAN=pan, beneficiario=beneficiario).first()
