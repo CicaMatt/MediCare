@@ -1,4 +1,4 @@
-from functools import wraps
+import functools
 
 import bcrypt
 from flask import session, redirect, url_for
@@ -19,9 +19,9 @@ def paziente_required(func):
 
     """
 
-    @wraps
+    @functools.wraps(func)
     def wrapper(*args, **kwargs):
-        if session.get('user_role') == 'medico':
+        if session.get('user_role') == 'paziente':
             return func(*args, **kwargs)
         return redirect(url_for('home'))
 

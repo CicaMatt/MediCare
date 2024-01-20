@@ -139,7 +139,8 @@
       {% include 'Navbar.html' %}
 
 <section>
-                <div class="items-center px-8 mx-auto max-w-7xl lg:px-16 md:px-12">
+
+                <div class="items-center px-8 mx-auto bg max-w-7xl lg:px-16 md:px-12">
                   <div class="justify-center w-full lg:p-10 max-auto">
                     <div x-data="{ tab: 'tab1' }">
                       <ul class="flex justify-between mx-auto overflow-hidden text-sm text-center text-black border divide-x rounded-xl">
@@ -210,7 +211,7 @@
                                 <!--Visite specialistiche-->
                                 <div class="contenitore-specialistiche" id="visite_specialistiche">
                                   <div class="grid justify-center items-center">
-                                    <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg md:w-[85rem]">
+                                    <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg md:w-[72rem]">
                                       <h1 class="text-xl font-bold text-gray-800 mt-4">Visite Specialistiche</h1>
                                       <div class="flex flex-wrap grid grid-cols-3 gap-4 justify-between text-center mt-6">
 
@@ -254,33 +255,50 @@
                                 <!--Visite diagnostiche-->
                                 <div class="contenitore-diagnostiche" id="visite_diagnostiche">
                                     <div class="grid justify-center items-center">
-                                        <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg md:w-[85rem]">
-                                            <h1 class="text-xl font-bold text-gray-800 mt-4">Visite Diagnostiche</h1>
+                                        <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg md:w-[72rem]">
                                             <div class="flex flex-wrap grid grid-cols-3 gap-4 justify-between text-center mt-6">
 
-                                                <div class="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-indigo-700 via-indigo-500 to-indigo-300 hover:scale-105 hover:bg-blue-500 rounded-xl p-10" style="height: 90px;">
-                                                  <div class="flex items-center justify-center h-full">
-                                                    <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Urologia')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Analisi delle urine</a>
-                                                  </div>
-                                                </div>
 
-                                                <div class="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-indigo-700 via-indigo-500 to-indigo-300 hover:scale-105 hover:bg-blue-500 rounded-xl p-10" style="height: 90px;">
-                                                  <div class="flex items-center justify-center h-full">
-                                                    <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Ematologia')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Analisi del sangue</a>
-                                                  </div>
-                                                </div>
+                                                <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Urologia')}}" class="block">
+                                                    <div class="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-indigo-700 via-indigo-500 to-indigo-300 hover:scale-105 hover:bg-blue-500 rounded-xl p-10 relative ring-1" style="height: 100px;">
+                                                         <div class="flex items-center justify-center h-full">
+                                                             <span class="text-white font-bold hover:rounded-br-3xl transition duration-100 hover:text-black cursor-pointer">Analisi delle urine</span>
+                                                         </div>
+                                                         <!-- Hidden image initially -->
+                                                        <img src="{{ url_for('static', filename='images/esameurine.jpeg') }}" alt="Image" class="absolute top-0 left-0 w-full h-full opacity-0 rounded-xl transition duration-300 hover:opacity-85 object-cover">
+                                                     </div>
+                                                </a>
 
-                                                <div class="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-indigo-700 via-indigo-500 to-indigo-300 hover:scale-105 hover:bg-blue-500 rounded-xl p-10" style="height: 90px;">
-                                                 <div class="flex items-center justify-center h-full">
-                                                  <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Gastroenterologia')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Analisi delle feci</a>
-                                                 </div>
-                                                </div>
+                                                <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Ematologia')}}" class="block">
+                                                    <div class="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-indigo-700 via-indigo-500 to-indigo-300 hover:scale-105 hover:bg-blue-500 rounded-xl p-10 relative ring-1" style="height: 100px;">
+                                                         <div class="flex items-center justify-center h-full">
+                                                             <span class="text-white font-bold hover:rounded-br-3xl transition duration-100 hover:text-black cursor-pointer">Analisi del sangue</span>
+                                                         </div>
+                                                         <!-- Hidden image initially -->
+                                                        <img src="{{ url_for('static', filename='images/esamesangue.png') }}" alt="Image" class="absolute top-0 left-0 w-full h-full opacity-0 rounded-xl transition duration-300 hover:opacity-85 object-cover">
+                                                     </div>
+                                                </a>
 
-                                                <div class="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-indigo-700 via-indigo-500 to-indigo-300 hover:scale-105 hover:bg-blue-500 rounded-xl p-10" style="height: 90px;">
-                                                 <div class="flex items-center justify-center h-full">
-                                                  <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Genetica')}}" class="text-white font-bold hover:rounded-br-3xl transition duration-100 cursor-pointer">Analisi genetiche</a>
-                                                 </div>
-                                               </div>
+
+                                                <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Gastroenterologia')}}" class="block">
+                                                    <div class="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-indigo-700 via-indigo-500 to-indigo-300 hover:scale-105 hover:bg-blue-500 rounded-xl p-10 relative ring-1" style="height: 100px;">
+                                                         <div class="flex items-center justify-center h-full">
+                                                             <span class="text-white font-bold hover:rounded-br-3xl transition duration-100 hover:text-black cursor-pointer">Analisi delle feci</span>
+                                                         </div>
+                                                         <!-- Hidden image initially -->
+                                                        <img src="{{ url_for('static', filename='images/esamifecali.webp') }}" alt="Image" class="absolute top-0 left-0 w-full h-full opacity-0 rounded-xl transition duration-300 hover:opacity-80 object-cover">
+                                                     </div>
+                                                </a>
+
+                                                <a href="{{url_for('prenotazioni.getListaMedici', specializzazione='Genetica')}}" class="block">
+                                                    <div class="bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-indigo-700 via-indigo-500 to-indigo-300 hover:scale-105 hover:bg-blue-500 rounded-xl p-10 relative" style="height: 100px;">
+                                                         <div class="flex items-center justify-center h-full">
+                                                             <span class="text-white font-bold hover:rounded-br-3xl transition duration-100 hover:text-black cursor-pointer">Analisi genetiche</span>
+                                                         </div>
+                                                         <!-- Hidden image initially -->
+                                                        <img src="{{ url_for('static', filename='images/esamigenetici.jpeg') }}" alt="Image" class="absolute top-0 left-0 w-full h-full opacity-0 rounded-xl transition duration-300 hover:opacity-80 object-cover">
+                                                     </div>
+                                                </a>
 
                                             </div>
                                         </div>

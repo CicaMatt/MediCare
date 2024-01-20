@@ -1,7 +1,7 @@
 from flask import render_template, session, request, Blueprint
 from flask_login import current_user, login_required
 
-from flaskDir.MediCare.model.entity.Paziente import Paziente
+from flaskDir.MediCare.model.entity.Paziente import Paziente, paziente_required
 
 from datetime import datetime
 
@@ -42,6 +42,7 @@ def getListaEnti():
 
 @prenotazione_blueprint.route('/listamedici/paginamedico', methods=['GET', 'POST'])
 @login_required
+@paziente_required
 def getMedico():
     """
     Restituisce le informazioni relative a un medico selezionato.
@@ -95,6 +96,7 @@ def getMedico():
 
 
 @prenotazione_blueprint.route('/prenotazione/listavaccini')
+@paziente_required
 def getListaVaccini():
     """
     Restituisce la lista dei vaccini disponibili.
