@@ -1,6 +1,4 @@
 import pytest
-from flask import session
-from flask_login import current_user
 from flaskDir import app, db
 from flaskDir.MediCare.model.entity.Medici import Medico
 from flaskDir.MediCare.model.entity.Paziente import Paziente
@@ -10,9 +8,9 @@ from sqlalchemy_utils import create_database, database_exists
 from flaskDir.source.prenotazioni.PrenotazioneService import PrenotazioneService
 
 
-class TestPrenotazione():
+class TestPrenotazione:
     @pytest.fixture(autouse=True, scope='session')
-    def setUp(self, request):
+    def setup(self, request):
         # Configura il database di test
         app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:lollipop@localhost:3306/testmedicare"
         app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -21,7 +19,6 @@ class TestPrenotazione():
         # Crea le tabelle del database di test
         with app.test_client():
             with app.app_context():
-                # db.drop_all()
 
                 if not database_exists(app.config["SQLALCHEMY_DATABASE_URI"]):
                     create_database(app.config["SQLALCHEMY_DATABASE_URI"])
@@ -37,8 +34,7 @@ class TestPrenotazione():
             # Aggiungi la funzione di tearDown alla richiesta
             request.addfinalizer(teardown)
 
-
-    def test_DateInvalidprenotazione(self):
+    def test_dateinvalidprenotazione(self):
         with app.test_client():
             with app.app_context():
                 mario = Paziente()
@@ -55,37 +51,35 @@ class TestPrenotazione():
                 mario.domicilio = "Salerno"
                 mario.sesso = "Maschio"
 
-                medico = Medico(
-                    email='test@example1.com',
-                    nome='John',
-                    cognome='Doe',
-                    iscrizione_albo=123242,
-                    specializzazione="chirurgia",
-                    città="Napoli",
-                    tariffa=50
-                )
+                medico = Medico()
+                medico.email = "test@example1.com"
+                medico.nome = "John"
+                medico.cognome = "Doe"
+                medico.iscrizione_albo = 123242
+                medico.specializzazione = "chirurigia"
+                medico.tariffa = 50
+                medico.città = "Napoli"
                 medico.set_password("123password")
                 db.session.add(mario)
                 db.session.add(medico)
                 db.session.commit()
 
+                oravisita = "11"
+                datavisita = "44"
+                tipovisita = "chirurgia"
+                prezzo = 50
+                pazientecf = mario.CF
+                idmedico = medico.email
 
-                oravisita="11"
-                dataVisita="44"
-                tipoVisita="chirurgia"
-                prezzo=50
-                pazienteCF=mario.CF
-                idmedico=medico.email
-
-                result=PrenotazioneService.savePrenotazione(idmedico,dataVisita,oravisita,tipoVisita,pazienteCF,prezzo,"Select")
-                oracle=False
-                assert oracle==result
+                result = PrenotazioneService.savePrenotazione(idmedico, datavisita, oravisita, tipovisita, pazientecf,
+                                                              prezzo, "Select")
+                oracle = False
+                assert oracle == result
                 db.session.delete(mario)
                 db.session.delete(medico)
                 db.session.commit()
 
-
-    def test_OraInvalidprenotazione(self):
+    def test_orainvalidprenotazione(self):
         with app.test_client():
             with app.app_context():
                 mario = Paziente()
@@ -102,28 +96,27 @@ class TestPrenotazione():
                 mario.domicilio = "Salerno"
                 mario.sesso = "Maschio"
 
-                medico = Medico(
-                    email='test@example1.com',
-                    nome='John',
-                    cognome='Doe',
-                    iscrizione_albo=123242,
-                    specializzazione="chirurgia",
-                    città="Napoli",
-                    tariffa=50
-                )
+                medico = Medico()
+                medico.email = "test@example1.com"
+                medico.nome = "John"
+                medico.cognome = "Doe"
+                medico.iscrizione_albo = 123242
+                medico.specializzazione = "chirurigia"
+                medico.tariffa = 50
+                medico.città = "Napoli"
                 medico.set_password("123password")
                 db.session.add(medico)
                 db.session.add(mario)
                 db.session.commit()
 
                 oravisita = "100"
-                dataVisita = "10"
-                tipoVisita = "Oculistica"
+                datavisita = "10"
+                tipovisita = "Oculistica"
                 prezzo = 50
-                pazienteCF = mario.CF
+                pazientecf = mario.CF
                 idmedico = medico.email
 
-                result = PrenotazioneService.savePrenotazione(idmedico, dataVisita, oravisita, tipoVisita, pazienteCF,
+                result = PrenotazioneService.savePrenotazione(idmedico, datavisita, oravisita, tipovisita, pazientecf,
                                                               prezzo, "Select")
                 oracle = False
                 assert oracle == result
@@ -131,8 +124,7 @@ class TestPrenotazione():
                 db.session.delete(medico)
                 db.session.commit()
 
-
-    def test_prezzoNeg(self):
+    def test_prezzoneg(self):
         with app.test_client():
             with app.app_context():
                 mario = Paziente()
@@ -149,28 +141,27 @@ class TestPrenotazione():
                 mario.domicilio = "Salerno"
                 mario.sesso = "Maschio"
 
-                medico = Medico(
-                    email='test@example1.com',
-                    nome='John',
-                    cognome='Doe',
-                    iscrizione_albo=123242,
-                    specializzazione="chirurgia",
-                    città="Napoli",
-                    tariffa=50
-                )
+                medico = Medico()
+                medico.email = "test@example1.com"
+                medico.nome = "John"
+                medico.cognome = "Doe"
+                medico.iscrizione_albo = 123242
+                medico.specializzazione = "chirurigia"
+                medico.tariffa = 50
+                medico.città = "Napoli"
                 medico.set_password("123password")
                 db.session.add(medico)
                 db.session.add(mario)
                 db.session.commit()
 
                 oravisita = "10"
-                dataVisita = "10"
-                tipoVisita = "Oculistica"
+                datavisita = "10"
+                tipovisita = "Oculistica"
                 prezzo = -200
-                pazienteCF = mario.CF
+                pazientecf = mario.CF
                 idmedico = medico.email
 
-                result = PrenotazioneService.savePrenotazione(idmedico, dataVisita, oravisita, tipoVisita, pazienteCF,
+                result = PrenotazioneService.savePrenotazione(idmedico, datavisita, oravisita, tipovisita, pazientecf,
                                                               prezzo, "Select")
                 oracle = False
                 assert oracle == result
@@ -178,7 +169,7 @@ class TestPrenotazione():
                 db.session.delete(medico)
                 db.session.commit()
 
-    def test_cartaInvalid(self):
+    def test_cartainvalid(self):
         with app.test_client():
             with app.app_context():
                 mario = Paziente()
@@ -195,32 +186,31 @@ class TestPrenotazione():
                 mario.domicilio = "Salerno"
                 mario.sesso = "Maschio"
 
-                medico = Medico(
-                    email='test@example1.com',
-                    nome='John',
-                    cognome='Doe',
-                    iscrizione_albo=123242,
-                    specializzazione="chirurgia",
-                    città="Napoli",
-                    tariffa=50
-                )
+                medico = Medico()
+                medico.email = "test@example1.com"
+                medico.nome = "John"
+                medico.cognome = "Doe"
+                medico.iscrizione_albo = 123242
+                medico.specializzazione = "chirurigia"
+                medico.tariffa = 50
+                medico.città = "Napoli"
                 medico.set_password("123password")
                 db.session.add(medico)
                 db.session.add(mario)
                 db.session.commit()
 
                 oravisita = "10"
-                dataVisita = "10"
-                tipoVisita = "Oculistica"
+                datavisita = "10"
+                tipovisita = "Oculistica"
                 prezzo = 200
-                pazienteCF = mario.CF
+                pazientecf = mario.CF
                 idmedico = medico.email
 
-                result = PrenotazioneService.savePrenotazione(idmedico, dataVisita, oravisita, tipoVisita, pazienteCF,
+                result = PrenotazioneService.savePrenotazione(idmedico, datavisita, oravisita, tipovisita, pazientecf,
                                                               prezzo, "AB523")
                 oracle = None
                 assert oracle == result
-                prenotazione = Prenotazione.query.filter_by(pazienteCF=pazienteCF, medico=idmedico).first()
+                prenotazione = Prenotazione.query.filter_by(pazienteCF=pazientecf, medico=idmedico).first()
                 assert prenotazione
                 assert not prenotazione.pagata
                 db.session.delete(prenotazione)
@@ -230,7 +220,7 @@ class TestPrenotazione():
                 db.session.delete(medico)
                 db.session.commit()
 
-    def test_PrenotazioneSaved(self):
+    def test_prenotazionesaved(self):
         with app.test_client():
             with app.app_context():
                 mario = Paziente()
@@ -247,32 +237,31 @@ class TestPrenotazione():
                 mario.domicilio = "Salerno"
                 mario.sesso = "Maschio"
 
-                medico = Medico(
-                    email='test@example1.com',
-                    nome='John',
-                    cognome='Doe',
-                    iscrizione_albo=123242,
-                    specializzazione="chirurgia",
-                    città="Napoli",
-                    tariffa=50
-                )
+                medico = Medico()
+                medico.email = "test@example1.com"
+                medico.nome = "John"
+                medico.cognome = "Doe"
+                medico.iscrizione_albo = 123242
+                medico.specializzazione = "chirurigia"
+                medico.tariffa = 50
+                medico.città = "Napoli"
                 medico.set_password("123password")
                 db.session.add(medico)
                 db.session.add(mario)
                 db.session.commit()
 
                 oravisita = "10"
-                dataVisita = "10"
-                tipoVisita = "Oculistica"
+                datavisita = "10"
+                tipovisita = "Oculistica"
                 prezzo = 50
-                pazienteCF = mario.CF
+                pazientecf = mario.CF
                 idmedico = medico.email
 
-                result = PrenotazioneService.savePrenotazione(idmedico, dataVisita, oravisita, tipoVisita, pazienteCF,
+                result = PrenotazioneService.savePrenotazione(idmedico, datavisita, oravisita, tipovisita, pazientecf,
                                                               prezzo, "Select")
                 oracle = None
                 assert oracle == result
-                prenotazione = Prenotazione.query.filter_by(pazienteCF=pazienteCF, medico=idmedico).first()
+                prenotazione = Prenotazione.query.filter_by(pazienteCF=pazientecf, medico=idmedico).first()
                 assert prenotazione is not None
 
                 db.session.delete(prenotazione)
@@ -280,8 +269,3 @@ class TestPrenotazione():
                 db.session.delete(medico)
                 db.session.delete(mario)
                 db.session.commit()
-
-
-
-
-

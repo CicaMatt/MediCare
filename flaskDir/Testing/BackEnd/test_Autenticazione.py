@@ -39,41 +39,39 @@ def setup_teardown():
         # Aggiungi la funzione di tearDown alla richiesta
 
 
-def test_Validlogin_Medico():
+def test_validlogin_medico():
     mail = "test@example1.com"
     password = "123password"
-    new_user = Medico(
-        email='test@example1.com',
-        nome='John',
-        cognome='Doe',
-        iscrizione_albo=123242,
-        specializzazione="chirurgia",
-        città="Napoli",
-        tariffa=50
-    )
+    new_user = Medico()
+    new_user.email = 'test@example1.com'
+    new_user.nome = 'John'
+    new_user.cognome = 'Doe'
+    new_user.iscrizione_albo = 123242
+    new_user.specializzazione = "chrurgia"
+    new_user.tariffa = 50
+    new_user.città = "Napoli"
     new_user.set_password(password)
     with app.app_context():
         db.session.add(new_user)
         db.session.commit()
 
-    credenzialiTest = {"email": mail, "password": password, "tipo": "medico"}
+    credenzialitest = {"email": mail, "password": password, "tipo": "medico"}
     with app.test_client() as client:
-        response = client.post('/auth/login', data=credenzialiTest)
+        response = client.post('/auth/login', data=credenzialitest)
         assert response.status_code == 302
         assert current_user.is_authenticated is True
         assert session.get('user_role') == "medico"
 
 
-def testfail_login_MedicoService():
-    new_user = Medico(
-        email='test@example.com',
-        nome='John',
-        cognome='Doe',
-        iscrizione_albo=123242,
-        specializzazione="chirurgia",
-        città="Napoli",
-        tariffa=50
-    )
+def testfail_login_medicoservice():
+    new_user = Medico()
+    new_user.email = 'test@example1.com'
+    new_user.nome = 'John'
+    new_user.cognome = 'Doe'
+    new_user.iscrizione_albo = 123242
+    new_user.specializzazione = "chrurgia"
+    new_user.tariffa = 50
+    new_user.città = "Napoli"
     new_user.set_password('123password')
     with app.app_context():
         user_in_db = AutenticazioneService.login_page(new_user.email, "123password", "medico")
@@ -81,66 +79,63 @@ def testfail_login_MedicoService():
         assert user_in_db == oracolo
 
 
-def test_EmailInvalidFormat_login():
+def test_emailinvalidformat_login():
     mail = "test@exam"
     password = "123password"
-    new_user = Medico(
-        email=mail,
-        nome='John',
-        cognome='Doe',
-        iscrizione_albo=123242,
-        specializzazione="chirurgia",
-        città="Napoli",
-        tariffa=50
-    )
+    new_user = Medico()
+    new_user.email = 'test@example1.com'
+    new_user.nome = 'John'
+    new_user.cognome = 'Doe'
+    new_user.iscrizione_albo = 123242
+    new_user.specializzazione = "chrurgia"
+    new_user.tariffa = 50
+    new_user.città = "Napoli"
     new_user.set_password(password)
     with app.app_context():
         db.session.add(new_user)
         db.session.commit()
 
-    credenzialiTest = {"email": mail, "password": password, "tipo": "medico"}
+    credenzialitest = {"email": mail, "password": password, "tipo": "medico"}
     with app.test_client() as client:
-        response = client.post('/auth/login', data=credenzialiTest)
+        response = client.post('/auth/login', data=credenzialitest)
         assert not response.status_code == 302
         assert not current_user.is_authenticated is True
         assert not session.get('user_role') == "medico"
 
 
-def test_PasswordInvalidFormat_login():
+def test_passwordinvalidformat_login():
     mail = "test@example.com"
     password = "123"
-    new_user = Medico(
-        email=mail,
-        nome='John',
-        cognome='Doe',
-        iscrizione_albo=123242,
-        specializzazione="chirurgia",
-        città="Napoli",
-        tariffa=50
-    )
+    new_user = Medico()
+    new_user.email = 'test@example1.com'
+    new_user.nome = 'John'
+    new_user.cognome = 'Doe'
+    new_user.iscrizione_albo = 123242
+    new_user.specializzazione = "chrurgia"
+    new_user.tariffa = 50
+    new_user.città = "Napoli"
     new_user.set_password(password)
     with app.app_context():
         db.session.add(new_user)
         db.session.commit()
 
-    credenzialiTest = {"email": mail, "password": password, "tipo": "medico"}
+    credenzialitest = {"email": mail, "password": password, "tipo": "medico"}
     with app.test_client() as client:
-        response = client.post('/auth/login', data=credenzialiTest)
+        response = client.post('/auth/login', data=credenzialitest)
         assert not response.status_code == 302
         assert not current_user.is_authenticated is True
         assert not session.get('user_role') == "medico"
 
 
-def test_emailInvalid_login():
-    new_user = Medico(
-        email='test@example.com',
-        nome='John',
-        cognome='Doe',
-        iscrizione_albo=123242,
-        specializzazione="chirurgia",
-        città="Napoli",
-        tariffa=50
-    )
+def test_emailinvalid_login():
+    new_user = Medico()
+    new_user.email = 'test@example1.com'
+    new_user.nome = 'John'
+    new_user.cognome = 'Doe'
+    new_user.iscrizione_albo = 123242
+    new_user.specializzazione = "chrurgia"
+    new_user.tariffa = 50
+    new_user.città = "Napoli"
     new_user.set_password('123password')
     with app.app_context():
         db.session.add(new_user)
@@ -151,16 +146,15 @@ def test_emailInvalid_login():
         assert user_in_db == oracolo
 
 
-def test_passwordInvalid_login():
-    new_user = Medico(
-        email='test@example.com',
-        nome='John',
-        cognome='Doe',
-        iscrizione_albo=123242,
-        specializzazione="chirurgia",
-        città="Napoli",
-        tariffa=50
-    )
+def test_passwordinvalid_login():
+    new_user = Medico()
+    new_user.email = 'test@example1.com'
+    new_user.nome = 'John'
+    new_user.cognome = 'Doe'
+    new_user.iscrizione_albo = 123242
+    new_user.specializzazione = "chrurgia"
+    new_user.tariffa = 50
+    new_user.città = "Napoli"
     new_user.set_password('123password')
     with app.app_context():
         db.session.add(new_user)

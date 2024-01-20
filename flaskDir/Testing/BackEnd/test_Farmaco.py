@@ -1,18 +1,12 @@
 import pytest
 from sqlalchemy_utils import database_exists, create_database
-from urllib.parse import quote
 from flaskDir import app, db
 from flaskDir.MediCare.model.entity.Farmaco import Farmaco
 from flaskDir.source.Farmaci.FarmaciService import FarmaciService
 
 
-
-
-
-#pip install mysqlclient
-
 @pytest.fixture(autouse=True, scope='session')
-def setUp(request):
+def setup(request):
     # Configura il database di test
     app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:lollipop@localhost:3306/testmedicare"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
@@ -21,8 +15,6 @@ def setUp(request):
     # Crea le tabelle del database di test
     with app.test_client():
         with app.app_context():
-            #db.drop_all()
-
             if not database_exists(app.config["SQLALCHEMY_DATABASE_URI"]):
                 create_database(app.config["SQLALCHEMY_DATABASE_URI"])
 
@@ -38,7 +30,6 @@ def setUp(request):
         request.addfinalizer(teardown)
 
 
-
 @pytest.fixture
 def client():
     app.config.update({"TESTING": True})
@@ -46,11 +37,10 @@ def client():
         yield client
 
 
-
-
-#test con inserimento di categoria e prezzo
-def test_filtroCatalogoFarmaciNoPrezzo(client):
-    sciroppo=Farmaco(prezzo=2.50, nome="Tachipirina",descrizione="Sciroppo", immagine="sciroppo.jpg",categoria="Sciroppo")
+# test con inserimento di categoria e prezzo
+def test_filtrocatalogofarmacinoprezzo(client):
+    sciroppo = Farmaco(prezzo=2.50, nome="Tachipirina", descrizione="Sciroppo", immagine="sciroppo.jpg",
+                       categoria="Sciroppo")
     with app.app_context():
         db.session.add(sciroppo)
         db.session.commit()
@@ -64,28 +54,30 @@ def test_filtroCatalogoFarmaciNoPrezzo(client):
 
         # Controllo che i farmaci risultanti siano uguali all'oracolo
         oracolo = Farmaco.query.filter_by(categoria=categoria).all()
-        attributi_oracolo = {(farmaco.nome) for farmaco in oracolo}
-        attributi_attuali = {(farmaco.nome) for farmaco in listafarmaci}
+        attributi_oracolo = {farmaco.nome for farmaco in oracolo}
+        attributi_attuali = {farmaco.nome for farmaco in listafarmaci}
 
         assert attributi_oracolo == attributi_attuali
 
         db.session.delete(sciroppo)
         db.session.commit()
 
-def test_filtroCatalogoNoCat(client):
-    compresse=Farmaco(prezzo=3, nome="MomentAct",descrizione="Compresse", immagine="Moment.jpg",categoria="Compresse")
+
+def test_filtrocatalogonocat(client):
+    compresse = Farmaco(prezzo=3, nome="MomentAct", descrizione="Compresse", immagine="Moment.jpg",
+                        categoria="Compresse")
     with app.test_request_context():
         with app.app_context():
             db.session.add(compresse)
             db.session.commit()
-            prezzo=20
+            prezzo = 20
 
-            listaFarmaci=list(FarmaciService.filtraCatalogo(None,prezzo))
+            listafarmaci = list(FarmaciService.filtraCatalogo("-", prezzo))
 
-            assert all(farmaco.prezzo<=prezzo for farmaco in listaFarmaci)
-            oracolo = Farmaco.query.filter(Farmaco.prezzo<=prezzo).all()
+            assert all(farmaco.prezzo <= prezzo for farmaco in listafarmaci)
+            oracolo = Farmaco.query.filter(Farmaco.prezzo <= prezzo).all()
             attributi_oracolo = {farmaco.nome for farmaco in oracolo}
-            attributi_attuali = {farmaco.nome for farmaco in listaFarmaci}
+            attributi_attuali = {farmaco.nome for farmaco in listafarmaci}
 
             assert attributi_oracolo == attributi_attuali
 
@@ -93,43 +85,37 @@ def test_filtroCatalogoNoCat(client):
             db.session.commit()
 
 
-def test_FiltroCatalogoAll(client):
-    oki=Farmaco(prezzo=5, nome="OkiTask",descrizione="OkiTask",immagine="Oki.jpg", categoria="Orosolubile")
+def test_filtrocatalogoall(client):
+    oki = Farmaco(prezzo=5, nome="OkiTask", descrizione="OkiTask", immagine="Oki.jpg", categoria="Orosolubile")
     with app.test_request_context():
         with app.app_context():
             db.session.add(oki)
             db.session.commit()
-            categoria="Orosolubile"
-            prezzo=30
+            categoria = "Orosolubile"
+            prezzo = 30
 
-            listaFarmaci=list(FarmaciService.filtraCatalogo(categoria,prezzo))
-            assert all(farmaco.prezzo<=prezzo and farmaco.categoria==categoria for farmaco in listaFarmaci)
-            oracolo = Farmaco.query.filter(Farmaco.prezzo<=prezzo, Farmaco.categoria==categoria).all()
-            attributi_oracolo={farmaco.nome for farmaco in oracolo}
-            attributi_attuali={farmaco.nome for farmaco in listaFarmaci}
+            listafarmaci = list(FarmaciService.filtraCatalogo(categoria, prezzo))
+            assert all(farmaco.prezzo <= prezzo and farmaco.categoria == categoria for farmaco in listafarmaci)
+            oracolo = Farmaco.query.filter(Farmaco.prezzo <= prezzo, Farmaco.categoria == categoria).all()
+            attributi_oracolo = {farmaco.nome for farmaco in oracolo}
+            attributi_attuali = {farmaco.nome for farmaco in listafarmaci}
             assert attributi_oracolo == attributi_attuali
 
             db.session.delete(oki)
             db.session.commit()
 
 
-def test_FiltroCatalogoAllNonFunziona(client):
-    oki=Farmaco(prezzo=5, nome="OkiTask",descrizione="OkiTask",immagine="Oki.jpg", categoria="Orosolubile")
+def test_filtrocatalogoallnonfunziona(client):
+    oki = Farmaco(prezzo=5, nome="OkiTask", descrizione="OkiTask", immagine="Oki.jpg", categoria="Orosolubile")
     with app.test_request_context():
         with app.app_context():
             db.session.add(oki)
             db.session.commit()
-            categoria="Orosolubile"
-            prezzo=30
+            categoria = "Orosolubile"
+            prezzo = 30
 
-            listaFarmaci=list(FarmaciService.filtraCatalogo(categoria,prezzo))
-            assert not any(farmaco.prezzo == prezzo and farmaco.categoria == categoria for farmaco in listaFarmaci)
+            listafarmaci = list(FarmaciService.filtraCatalogo(categoria, prezzo))
+            assert not any(farmaco.prezzo == prezzo and farmaco.categoria == categoria for farmaco in listafarmaci)
 
             db.session.delete(oki)
             db.session.commit()
-
-
-
-
-
-
