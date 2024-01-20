@@ -32,7 +32,8 @@
   }
 
   .active a {
-    color: #0b0b9a; /* Imposta il colore desiderato per il testo */
+    color: white; /* Imposta il colore desiderato per il testo */
+    background-color: rgb(59 130 246);
   }
 
 
@@ -108,26 +109,32 @@
   });
 
 
-/*
-  document.addEventListener("DOMContentLoaded", function() {
-    const links = document.querySelectorAll("ul li");
 
-    links.forEach(link => {
-      link.addEventListener("click", function() {
-        // Rimuove la classe 'active' da tutti gli elementi
-        links.forEach(item => {
-          item.classList.remove("active");
-        });
+document.addEventListener("DOMContentLoaded", function () {
+  // Seleziona tutti gli elementi della lista
+  const links = document.querySelectorAll("ul li");
 
-        // Aggiunge la classe 'active' all'elemento cliccato
-        this.classList.add("active");
+
+
+
+
+  // Aggiungi gli eventi di click per gestire il cambio di classe
+  links.forEach((link) => {
+    link.addEventListener("click", function () {
+      // Rimuove la classe 'active' da tutti gli elementi
+      links.forEach((item) => {
+        item.classList.remove("active");
       });
+
+      // Aggiunge la classe 'active' all'elemento cliccato
+      this.classList.add("active");
     });
-
-
   });
+});
 
-*/
+
+
+
 
 </script>
 
@@ -151,7 +158,7 @@
                             Analisi
                         </a>
                       </li>
-                      <li class="w-full flex justify-center items-center">
+                      <li class="active w-full flex justify-center items-center">
                         <a href="#visite_specialistiche" id="specialistiche"  class="inline-block w-full px-6 text-xl font-semibold py-2 font-medium border-b-2 border-transparent transition duration-300 hover:bg-blue-500 hover:text-white hover:border-blue-500 flex items-center justify-center">
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="30" height="30"><circle cx="213.333" cy="64" r="42.667" style="fill:#435e88"/><path d="M277.333 490.667C195 490.667 128 423.677 128 341.333v-64a21.333 21.333 0 0 1 42.667 0v64a106.667 106.667 0 1 0 213.333 0v-256a21.333 21.333 0 0 1 42.667 0v256c0 82.344-67 149.334-149.334 149.334z" style="fill:#ccd4ff"/><path d="M149.333 341.333A21.328 21.328 0 0 1 128 320v-42.667a21.333 21.333 0 0 1 42.667 0V320a21.328 21.328 0 0 1-21.334 21.333zM405.333 170.667A21.328 21.328 0 0 1 384 149.333v-42.666a21.333 21.333 0 1 1 42.667 0v42.666a21.328 21.328 0 0 1-21.334 21.334z" style="fill:#a4b1ff"/><circle cx="85.333" cy="64" r="42.667" style="fill:#435e88"/><circle cx="74.667" cy="74.667" r="32" style="fill:#163969"/><circle cx="224" cy="74.667" r="32" style="fill:#163969"/><circle cx="405.333" cy="85.333" r="64" style="fill:#d6deff"/><circle cx="405.333" cy="85.333" r="42.667" style="fill:#163969"/><ellipse cx="394.667" cy="74.667" rx="37.65" ry="25.1" transform="rotate(-45 394.667 74.667)" style="fill:#435e88"/><path d="M149.333 298.667a89.858 89.858 0 0 1-80.833-49.97l-38-75.968A86.998 86.998 0 0 1 46.792 72.365l2.166-2.157a21.331 21.331 0 1 1 30.084 30.25l-2.125 2.115a44.308 44.308 0 0 0-8.23 51.104l37.98 75.948a47.703 47.703 0 0 0 85.333.01l38-75.99a44.324 44.324 0 0 0-8.292-51.114l-2.083-2.073a21.331 21.331 0 1 1 30.083-30.25l2.125 2.115a87.014 87.014 0 0 1 16.354 100.375l-38.02 76.01a89.867 89.867 0 0 1-80.834 49.959z" style="fill:#bcc5ff"/><path d="M170.667 298.667H128A21.333 21.333 0 0 1 128 256h42.667a21.333 21.333 0 0 1 0 42.667z" style="fill:#a4b1ff"/><path d="M149.333 320a27.323 27.323 0 0 1-26.507-20.696l-7.672-30.687a27.323 27.323 0 0 1 26.508-33.95h15.343a27.323 27.323 0 0 1 26.508 33.95l-7.672 30.687A27.323 27.323 0 0 1 149.333 320z" style="fill:#0784ff"/><ellipse cx="32" cy="138.667" rx="10.667" ry="32" style="fill:#d6deff"/><ellipse cx="266.667" cy="138.667" rx="10.667" ry="32" style="fill:#d6deff"/><circle cx="149.333" cy="256" r="21.333" style="fill:#5cbeff"/></svg>
 
