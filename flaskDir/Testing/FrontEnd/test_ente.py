@@ -9,13 +9,13 @@ from flaskDir import app, db
 from selenium import webdriver
 
 from selenium.webdriver.common.by import By
-from sqlalchemy_utils import  database_exists
-from flaskDir.MediCare.model.entity import  EnteSanitario
+from sqlalchemy_utils import database_exists
+from flaskDir.MediCare.model.entity import EnteSanitario
 from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
 from flaskDir.MediCare.model.entity.Medici import Medico
 
 
-class TestAddMedico():
+class TestAddMedico:
     def setup_method(self):
         self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
         self.vars = {}
@@ -44,12 +44,12 @@ class TestAddMedico():
                 db.session.delete(EnteSanitario.query.filter_by(email="domenico@gmail.com").first())
                 db.session.commit()
 
-    def test_addMedico(self):
+    def test_addmedico(self):
         self.driver.get("http://127.0.0.1:5000/")
         self.driver.set_window_size(1920, 1080)
-        WebDriverWait(self.driver,10).until(EC.element_to_be_clickable((By.ID,"login")))
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, "login")))
         self.driver.find_element(By.ID, "login").click()
-        WebDriverWait(self.driver,10).until(EC.element_to_be_clickable((By.LINK_TEXT,"Accedi come Ente")))
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.LINK_TEXT, "Accedi come Ente")))
         self.driver.find_element(By.LINK_TEXT, "Accedi come Ente").click()
         self.driver.find_element(By.ID, "email").click()
         self.driver.find_element(By.ID, "email").send_keys("domenico@gmail.com")
