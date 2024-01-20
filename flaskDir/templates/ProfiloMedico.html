@@ -15,6 +15,28 @@
     width: 100%;
 }
 
+    .overflow-y-auto::-webkit-scrollbar{
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.overflow-y-auto, body {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+
+html, body {
+  margin: 0;
+  background-color: #15202b;
+}
+
+svg.paint-icon {
+  fill: currentcolor;
+}
+
 </style>
 
 <body class="bg-navbarreg rounded-lg">
@@ -182,7 +204,7 @@
                       <label for="category" class="block mb-2 text-sm font-medium text-gray-900">Seleziona l'orario tra quelli disponibili</label>
                       <select id="category" name="ora" class="bg-navbarreg border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
 
-                          <option selected="9" value="9">9:00</option>
+                          <option selected="selected" value="9">9:00</option>
                           <option value="10">10:00</option>
                           <option value="11">11:00</option>
                           <option value="12">12:00</option>
@@ -245,40 +267,13 @@
 
 
 
-    <style>
-    .overflow-y-auto::-webkit-scrollbar, .overflow-y-scroll::-webkit-scrollbar, .overflow-x-auto::-webkit-scrollbar, .overflow-x::-webkit-scrollbar, .overflow-x-scroll::-webkit-scrollbar, .overflow-y::-webkit-scrollbar, body::-webkit-scrollbar {
-  display: none;
-}
 
-/* Hide scrollbar for IE, Edge and Firefox */
-.overflow-y-auto, .overflow-y-scroll, .overflow-x-auto, .overflow-x, .overflow-x-scroll, .overflow-y, body {
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
-}
-
-.bg-dim-700 {
-  --bg-opacity: 1;
-  background-color: #192734;
-}
-
-html, body {
-  margin: 0;
-  background-color: #15202b;
-}
-
-svg.paint-icon {
-  fill: currentcolor;
-}
-
-</style>
 
 <script>
-    var modalId = "";  // Define a global variable to store the current modal ID
+    let modalId = "";  // Define a global variable to store the current modal ID
 
     function getId(event) {
-        id = event.target.id;
+        let id = event.target.id;
         setModal(id);
     }
 
@@ -286,7 +281,6 @@ svg.paint-icon {
         modalId = idModal;  // Set the global variable to the current modal ID
         const openModalBtn = document.getElementById(idModal);
         const closeModalBtn = document.getElementById("close-modal");
-        const modal = document.getElementById("modal");
         document.getElementById("myForm")["giorno"].value=openModalBtn.children[0].innerHTML
 
         openModalBtn.addEventListener("click", openModal);

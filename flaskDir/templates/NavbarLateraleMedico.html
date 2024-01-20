@@ -79,7 +79,6 @@
                <span class="flex-1 ms-3 whitespace-nowrap">Diagnosi CardIAca</span>
             </a>
          </li>
-          <li>
             <li>
             <button id="open-modal-1" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group" onclick="openModal()">
                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="2 2 20 20">
@@ -88,8 +87,7 @@
                </svg>
                <span class="flex-1 ms-3 whitespace-nowrap">Elimina Account</span>
             </button>
-        </li>
-        </li>
+            </li>
          <li>
             <a href="{{url_for('auth.logout')}}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
@@ -153,11 +151,11 @@
 <script>
         function confermaEliminazione() {
                 // Utilizza AJAX per chiamare il tuo endpoint di eliminazione
-                var xhr = new XMLHttpRequest();
+                let xhr = new XMLHttpRequest();
                 xhr.open("POST", "/medico/eliminamedico", true);
                 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
                 xhr.onreadystatechange = function() {
-                    if (xhr.readyState == 4 && xhr.status == 200) {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
 
                         console.log(xhr.responseText);
                         window.location.href = "/";
