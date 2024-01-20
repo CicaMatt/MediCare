@@ -143,7 +143,7 @@
                 <div class="items-center px-8 mx-auto bg max-w-7xl lg:px-16 md:px-12">
                   <div class="justify-center w-full lg:p-10 max-auto">
                     <div x-data="{ tab: 'tab1' }">
-                      <ul class="flex justify-between mx-auto overflow-hidden text-sm text-center text-black border divide-x rounded-xl">
+                      <ul class="flex justify-between mx-auto overflow-hidden shadow-[2px_20px_21px_15px_rgba(88,_121,_207,_0.14)] text-sm text-center text-black border divide-x rounded-xl">
                       <li class="w-full flex justify-center items-center">
                         <a href="#visite_diagnostiche" id="diagnostiche" @click.prevent="tab = 'tab1'" href="#" class="inline-block w-full px-6 text-xl font-semibold py-2 font-medium border-b-2 border-transparent transition duration-300 hover:bg-blue-500 hover:text-white hover:border-blue-500 flex items-center" :class="{ ' bg-white text-blue-500 border-blue-500' : tab === 'tab1' }">
                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="30" height="30" style="enable-background:new 0 0 512 512" xml:space="preserve"><path style="fill:#e0e0e3" d="M327.726 40.611H184.274c-8.803 0-15.939-7.137-15.939-15.939v-.897c0-8.803 7.137-15.939 15.939-15.939h143.452c8.803 0 15.939 7.137 15.939 15.939v.897c0 8.803-7.136 15.939-15.939 15.939z"/><path style="fill:#e0e0e3" d="M329.319 40.606v390.237c0 40.501-32.819 73.319-73.319 73.319s-73.32-32.818-73.32-73.319V40.606h146.639z"/><path style="fill:#d2d1d3" d="M182.68 40.606h146.641v31.347H182.68z"/><path style="fill:#7884ea" d="M221.332 265.618v158.979c0 19.366 15.7 35.066 35.066 35.066 19.366 0 35.066-15.7 35.066-35.066V265.618h-70.132z"/><path style="fill:#6878d8" d="M291.465 386.342v38.254c0 19.366-15.7 35.066-35.066 35.066s-35.066-15.7-35.066-35.066v-38.254c0 19.366 15.7 35.066 35.066 35.066 19.365-.001 35.066-15.7 35.066-35.066z"/><path d="M327.727 0H184.273c-13.11 0-23.776 10.666-23.776 23.776v.895c0 9.76 5.914 18.163 14.345 21.821v384.35C174.843 475.594 211.25 512 256 512s81.157-36.406 81.157-81.156V46.493c8.431-3.658 14.345-12.06 14.345-21.821v-.895C351.502 10.666 340.836 0 327.727 0zM256 496.327c-36.109 0-65.484-29.375-65.484-65.483V48.448h17.919c4.329 0 7.837-3.509 7.837-7.837s-3.508-7.837-7.837-7.837h-24.162c-4.467 0-8.102-3.635-8.102-8.102v-.895c0-4.468 3.635-8.102 8.102-8.102h143.453c4.467 0 8.102 3.635 8.102 8.102v.895c0 4.468-3.635 8.102-8.102 8.102h-88.685c-4.329 0-7.837 3.509-7.837 7.837s3.508 7.837 7.837 7.837h82.441v382.395c.002 36.108-29.373 65.484-65.482 65.484z"/><path d="M291.464 257.782h-70.131a7.837 7.837 0 0 0-7.837 7.837v158.979c0 23.656 19.246 42.904 42.903 42.904 23.656 0 42.902-19.246 42.902-42.904v-68.093a7.837 7.837 0 0 0-7.837-7.837 7.837 7.837 0 0 0-7.837 7.837v68.093c0 15.014-12.214 27.23-27.229 27.23-15.015 0-27.23-12.215-27.23-27.23V273.455h54.458v51.617c0 4.328 3.508 7.837 7.837 7.837s7.837-3.509 7.837-7.837v-59.454a7.834 7.834 0 0 0-7.836-7.836zM221.332 227.232h24.706a7.837 7.837 0 0 0 7.837-7.837 7.837 7.837 0 0 0-7.837-7.837h-24.706a7.837 7.837 0 1 0 0 15.674zM221.332 188.181h24.706a7.837 7.837 0 0 0 7.837-7.837 7.837 7.837 0 0 0-7.837-7.837h-24.706a7.837 7.837 0 1 0 0 15.674zM221.332 149.13h24.706a7.837 7.837 0 0 0 7.837-7.837 7.837 7.837 0 0 0-7.837-7.837h-24.706a7.837 7.837 0 1 0 0 15.674zM221.332 110.079h24.706c4.329 0 7.837-3.509 7.837-7.837s-3.508-7.837-7.837-7.837h-24.706a7.837 7.837 0 1 0 0 15.674z"/></svg>
@@ -167,7 +167,7 @@
                       </li>
                     </ul>
 
-                      <div class="py-4 pt-4 text-left bg-white content">
+                      <div class="py-4 pt-4 text-left content">
                         <!-- show tab1 only -->
                         <div x-show="tab==='tab1'" class="text-gray-500" style="display: none;">
                           <main>
@@ -211,7 +211,7 @@
                                 <!--Visite specialistiche-->
                                 <div class="contenitore-specialistiche" id="visite_specialistiche">
                                   <div class="grid justify-center items-center">
-                                    <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg md:w-[72rem]">
+                                    <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-[2px_20px_21px_15px_rgba(88,_121,_207,_0.14)] md:w-[72rem]">
                                       <h1 class="text-xl font-bold text-gray-800 mt-4">Visite Specialistiche</h1>
                                       <div class="flex flex-wrap grid grid-cols-3 gap-4 justify-between text-center mt-6">
 
@@ -255,7 +255,9 @@
                                 <!--Visite diagnostiche-->
                                 <div class="contenitore-diagnostiche" id="visite_diagnostiche">
                                     <div class="grid justify-center items-center">
-                                        <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-lg md:w-[72rem]">
+                                        <div class="justify-between rounded-xl mt-4 p-4 bg-white shadow-[2px_20px_21px_15px_rgba(88,_121,_207,_0.14)] md:w-[72rem]">
+                                            <h1 class="text-xl font-bold text-gray-800 mt-4">Analisi diagnostiche</h1>
+
                                             <div class="flex flex-wrap grid grid-cols-3 gap-4 justify-between text-center mt-6">
 
 
