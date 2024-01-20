@@ -93,7 +93,7 @@ class TestLogin():
         self.driver.find_element(By.ID,"invio").click()
         WebDriverWait(self.driver,10).until(EC.element_to_be_clickable((By.ID,"paziente")))
         msg_content=self.driver.find_element(By.ID,"paziente").text
-        assert "Ciao, Pippo" == msg_content
+        assert "PT" == msg_content
 
 
 

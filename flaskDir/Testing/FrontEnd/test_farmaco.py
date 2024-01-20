@@ -33,6 +33,7 @@ class TestFarmaco():
     def test_perCategoria(self):
         self.driver.get("http://127.0.0.1:5000/")
         self.driver.set_window_size(1172, 1032)
+        WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.LINK_TEXT,"Farmaci")))
         self.driver.find_element(By.LINK_TEXT, "Farmaci").click()
         self.driver.find_element(By.ID, "manufacturer").click()
         dropdown = self.driver.find_element(By.ID, "manufacturer")
@@ -43,6 +44,7 @@ class TestFarmaco():
     def test_perPrezzo(self):
         self.driver.get("http://127.0.0.1:5000/")
         self.driver.set_window_size(1172, 1032)
+        WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.LINK_TEXT,"Farmaci")))
         self.driver.find_element(By.LINK_TEXT, "Farmaci").click()
         element = self.driver.find_element(By.ID, "prezzo")
         actions = ActionChains(self.driver)
@@ -61,6 +63,7 @@ class TestFarmaco():
     def test_perCategoriaePrezzo(self):
         self.driver.get("http://127.0.0.1:5000/")
         self.driver.set_window_size(1172, 1032)
+        WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.LINK_TEXT,"Farmaci")))
         self.driver.find_element(By.LINK_TEXT, "Farmaci").click()
         self.driver.find_element(By.ID, "manufacturer").click()
         dropdown = self.driver.find_element(By.ID, "manufacturer")
@@ -82,6 +85,7 @@ class TestFarmaco():
     def test_farmacoNoFindCategoria(self):
         self.driver.get("http://127.0.0.1:5000/")
         self.driver.set_window_size(1172, 1032)
+        WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.LINK_TEXT,"Farmaci")))
         self.driver.find_element(By.LINK_TEXT, "Farmaci").click()
         self.driver.find_element(By.ID, "manufacturer").click()
         dropdown = self.driver.find_element(By.ID, "manufacturer")
@@ -96,6 +100,7 @@ class TestFarmaco():
     def test_farmacoNoFind(self):
         self.driver.get("http://127.0.0.1:5000/")
         self.driver.set_window_size(1920, 1032)
+        WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.LINK_TEXT,"Farmaci")))
         self.driver.find_element(By.LINK_TEXT, "Farmaci").click()
         self.driver.find_element(By.ID, "search").click()
         self.driver.find_element(By.ID, "search").send_keys("benactiveGola")
@@ -107,6 +112,7 @@ class TestFarmaco():
     def test_farmacoFind(self):
         self.driver.get("http://127.0.0.1:5000/")
         self.driver.set_window_size(1920, 1032)
+        WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.LINK_TEXT,"Farmaci")))
         self.driver.find_element(By.LINK_TEXT, "Farmaci").click()
         self.driver.find_element(By.ID, "search").click()
         self.driver.find_element(By.ID, "search").send_keys("Augmentin")
