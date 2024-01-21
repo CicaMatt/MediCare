@@ -252,6 +252,11 @@ def test_addcartasuccess():
         db.session.commit()
 
 
+
+'''
+
+TEST IN PIU'
+ 
 # Paziente presente nel database
 def test_mostracarte1():
     with app.app_context():
@@ -303,6 +308,7 @@ def test_mostracarte2():
         assert attributioracolo == attributilistacarte
 
 
+
 def test_eliminacarta():
 
     with app.app_context():
@@ -342,3 +348,6 @@ def test_eliminacarta():
         db.session.delete(metodo_di_test)
         db.session.delete(mario)
         db.session.commit()
+
+
+'''

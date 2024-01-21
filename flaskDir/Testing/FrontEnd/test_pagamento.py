@@ -11,7 +11,7 @@ from flaskDir.MediCare.model.entity import Paziente
 from flaskDir.MediCare.model.entity.MetodoPagamento import MetodoPagamento
 
 
-class TestLogin:
+class TestPagamento:
     def setup_method(self):
         self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
         self.vars = {}
