@@ -163,6 +163,13 @@ def privacydeidati():
 def accessibilita():
     return render_template("Accessibilita.html")
 
+@app.route('/visiteStatic')
+def visiteStatic():
+    return render_template("VisitaStatica.html")
+
+@app.route('/analisiStatic')
+def analisiStatic():
+    return render_template("AnalisiStatiche.html")
 
 @app.route('/terminiecondizioni')
 def terminiecondizioni():
