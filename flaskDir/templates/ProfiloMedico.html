@@ -237,6 +237,11 @@ svg.paint-icon {
                {% if current_user.ISEE_ordinario <= 20000 %}
                      <p class="mt-4 mb-4 text-sm font-bold text-black text-center">Sconto ISEE applicato.</p>
                {% endif %}
+               {% if not carte %}
+                    <div class="mt-6 flex items-center justify-center gap-x-6">
+                            <a href="{{url_for('informazionipersonali.getMetodi')}}"  type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Aggiungi carta</a>
+                    </div>
+               {% endif %}
               </div>
           </div>
         </div>
@@ -305,13 +310,6 @@ svg.paint-icon {
         document.getElementById("myForm").submit();
     }
 </script>
-
-
-
-
-
-
-
 
 
 
