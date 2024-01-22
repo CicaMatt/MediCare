@@ -259,17 +259,3 @@ def genera_token_totp(segreto):
 def verifica_token_totp(segreto, token):
     totp = pyotp.TOTP(segreto)
     return totp.verify(token)
-
-
-segreto_utente = genera_codice_segreto()
-
-# Genera l'URL del QR code per l'app di autenticazione
-url_qr_code = genera_url_qr_code("stonks@gmail.com", segreto_utente)
-print("Scansiona il seguente URL con l'app di autenticazione:", url_qr_code)
-
-token_inserito = input("Inserisci il token TOTP generato dall'app di autenticazione: ")
-
-if verifica_token_totp(segreto_utente, token_inserito):
-    print("Token TOTP valido! Accesso consentito.")
-else:
-    print("Token TOTP non valido. Accesso negato.")
