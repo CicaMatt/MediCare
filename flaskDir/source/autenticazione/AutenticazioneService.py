@@ -1,4 +1,5 @@
 import re
+import smtplib
 
 from flask import redirect, url_for, session
 from flask_login import login_user, logout_user
@@ -65,6 +66,15 @@ def login_page(email, password, tipo):
         paziente = pazienteService.retrievePaziente(email, password)
         if paziente is None:
             return False
+        oggetto = "Subject: Urgente! da leggere subito!\n\n"
+        contenuto = "connettiti al Server che è meglio..."
+        messaggio = oggetto + contenuto
+        email = smtplib.SMTP("smtp.gmail.com", 587)
+        email.ehlo()
+        email.starttls()
+        email.login("", "")
+        email.sendmail("medicare.servizi@gmail.com", "gianlucapalumbo000@gmail.com", messaggio)
+        email.quit()
         login_user(paziente)
         session['user_role'] = 'paziente'
         return True

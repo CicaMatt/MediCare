@@ -167,6 +167,3 @@ def test_filtrocatalogoprezzoecategoria(client):
 
             db.session.delete(oki)
             db.session.commit()
-
-
-
