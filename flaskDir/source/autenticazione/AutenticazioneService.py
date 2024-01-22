@@ -3,7 +3,6 @@ import smtplib
 from datetime import datetime
 
 import pyotp
-import time
 
 from flask import redirect, url_for, session
 from flask_login import login_user, logout_user
@@ -82,23 +81,22 @@ def login_page(email, password, tipo):
         email.sendmail("giovannicasaburi02@gmail.com", "gianlucapalumbo000@gmail.com", messaggio)
         email.quit()
         session['2FA'] = codice
-        session['notActive'] = paziente
+        session['user_role'] = "paziente"
+        session['notActive'] = paziente.CF
         return True
 
 
 def auth_2fa(codice_user):
     if session['2FA'] == codice_user:
-        login_user(session.get('notActive'))
+        login_user(load_user(session.get('notActive')))
         session['2FA'] = None
         session['notActive'] = None
-        session['user_role'] = 'paziente'
         return True
     else:
         session['2FA'] = None
         session['notActive'] = None
+        session['user_role'] = None
         return False
-
-
 
 
 def loginEnte_page(email, password):
@@ -250,9 +248,7 @@ def logout():
     return redirect(url_for('home'))
 
 
-
-
-#GENERAZIONE QR E 2FA
+# GENERAZIONE QR E 2FA
 def genera_codice_segreto():
     segreto = pyotp.random_base32()
     return segreto
@@ -262,6 +258,7 @@ def genera_token_totp(segreto):
     totp = pyotp.TOTP(segreto)
     token = totp.now()
     return token
+
 
 def verifica_token_totp(segreto, token):
     totp = pyotp.TOTP(segreto)
