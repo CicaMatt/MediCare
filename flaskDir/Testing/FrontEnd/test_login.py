@@ -7,7 +7,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from sqlalchemy_utils import database_exists
-from flaskDir.MediCare.model.entity import Paziente
+from flaskDir.MediCare.model.entity import Medici
 
 
 class TestLogin:
@@ -20,28 +20,24 @@ class TestLogin:
             salt = bcrypt.gensalt()
             hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
             password = hashed
-            paziente = Paziente.Paziente()
-            paziente.CF = "CSBGNN2103456VBM"
-            paziente.nome = "Pippo"
-            paziente.cognome = "Tavolino"
-            paziente.email = "pippo@gmail.com"
-            paziente.password_hash = password
-            paziente.chiaveSPID = 123
-            paziente.cellulare = "3312258345"
-            paziente.domicilio = "Piccola Svizzera"
-            paziente.dataNascita = "2002/12/12"
-            paziente.luogoNascita = "Salerno"
-            paziente.sesso = "Maschio"
-            paziente.ISEE_ordinario = 10000
+            medico = Medici.Medico()
+            medico.nome = "Pippo"
+            medico.cognome = "Tavolino"
+            medico.email = "pippo@gmail.com"
+            medico.password_hash = password
+            medico.città = "Piccola Svizzera"
+            medico.specializzazione = "Chirurigia"
+            medico.tariffa = 50
+            medico.iscrizione_albo = 12345
 
-            db.session.add(paziente)
+            db.session.add(medico)
             db.session.commit()
 
     def teardown_method(self):
         self.driver.quit()
         if database_exists(app.config['SQLALCHEMY_DATABASE_URI']):
             with app.app_context():
-                db.session.delete(Paziente.Paziente.query.filter_by(CF="CSBGNN2103456VBM").first())
+                db.session.delete(Medici.Medico.query.filter_by(email="pippo@gmail.com").first())
                 db.session.commit()
 
     def test_loginusernotregistered(self):
@@ -49,6 +45,7 @@ class TestLogin:
         self.driver.set_window_size(1920, 1080)
         WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, "login")))
         self.driver.find_element(By.ID, "login").click()
+        self.driver.find_element(By.ID, "doc").click()
         self.driver.find_element(By.ID, "email").click()
         self.driver.find_element(By.ID, "email").send_keys("paperino@gmail.com")
         self.driver.find_element(By.ID, "password").click()
@@ -60,7 +57,7 @@ class TestLogin:
         self.driver.set_window_size(1920, 1080)
         WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, "login")))
         self.driver.find_element(By.ID, "login").click()
-        self.driver.find_element(By.ID, "user").click()
+        self.driver.find_element(By.ID, "doc").click()
         self.driver.find_element(By.ID, "email").send_keys("pippi@gmail.com")
         self.driver.find_element(By.ID, "password").send_keys("123password")
         self.driver.find_element(By.ID, "invio").click()
@@ -73,7 +70,7 @@ class TestLogin:
         self.driver.set_window_size(1920, 1080)
         WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, "login")))
         self.driver.find_element(By.ID, "login").click()
-        self.driver.find_element(By.ID, "user").click()
+        self.driver.find_element(By.ID, "doc").click()
         self.driver.find_element(By.ID, "email").send_keys("pippo@gmail.com")
         self.driver.find_element(By.ID, "password").send_keys("password")
         self.driver.find_element(By.ID, "invio").click()
@@ -86,10 +83,10 @@ class TestLogin:
         self.driver.set_window_size(1920, 1080)
         WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, "login")))
         self.driver.find_element(By.ID, "login").click()
-        self.driver.find_element(By.ID, "user").click()
+        self.driver.find_element(By.ID, "doc").click()
         self.driver.find_element(By.ID, "email").send_keys("pippo@gmail.com")
         self.driver.find_element(By.ID, "password").send_keys("123password")
         self.driver.find_element(By.ID, "invio").click()
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, "paziente")))
-        msg_content = self.driver.find_element(By.ID, "paziente").text
-        assert "PT" == msg_content
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, "medico")))
+        msg_content = self.driver.find_element(By.ID, "medico").text
+        assert "Salve dottore" == msg_content
