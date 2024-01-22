@@ -1,5 +1,6 @@
 from flask import render_template
 
+from flaskDir.MediCare.model.entity.Paziente import paziente_required
 from flaskDir.source.Farmaci.FarmaciControl import farmacia_blueprint
 from flaskDir.source.ModuloIA.AIControl import feature_blueprint
 from flaskDir.source.Pagamento.PagamentoControl import informazionipersonali_blueprint
@@ -47,6 +48,7 @@ def fascicolosanitariomedico():
 
 
 @app.route('/prenotazione')
+@paziente_required
 # @login required and user is paziente
 def prenotazione():
     return render_template("Prenotazione.html")

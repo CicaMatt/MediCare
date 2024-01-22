@@ -75,12 +75,12 @@ def login_page(email, password, tipo):
             "%d/%m/%Y %H:%M\n") + codice +("\n Se non sei stato tu prova a contattare l'assistenza di Medicare"
                                            "all'e-mail medicare.servizi@gmail.com")
         messaggio = oggetto + contenuto
-        email = smtplib.SMTP("smtp-mail.outlook.com", 587)
-        email.ehlo()
-        email.starttls()
-        email.login("giovannicasaburi02@gmail.com", "giovanni21")
-        email.sendmail("giovannicasaburi02@gmail.com", "giovannicasaburi02@gmail.com", messaggio)
-        email.quit()
+        sessione = smtplib.SMTP("smtp-mail.outlook.com", 587)
+        sessione.ehlo()
+        sessione.starttls()
+        sessione.login("giovannicasaburi02@gmail.com", "giovanni21")
+        sessione.sendmail("giovannicasaburi02@gmail.com", email, messaggio)
+        sessione.quit()
         session['2FA'] = codice
         session['user_role'] = "paziente"
         session['notActive'] = paziente.CF

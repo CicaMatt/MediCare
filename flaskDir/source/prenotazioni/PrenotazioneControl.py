@@ -15,6 +15,7 @@ prenotazione_blueprint = Blueprint('prenotazioni', __name__)
 
 
 @prenotazione_blueprint.route('/listamedici')
+@paziente_required
 def getListaMedici():
     """
     Restituisce la lista dei medici disponibili.
