@@ -78,8 +78,8 @@ def login_page(email, password, tipo):
         email = smtplib.SMTP("smtp-mail.outlook.com", 587)
         email.ehlo()
         email.starttls()
-        email.login("giovannicasaburi02@gmail.com", "giovanni21")
-        email.sendmail("giovannicasaburi02@gmail.com", "giovannicasaburi02@gmail.com", messaggio)
+        email.login("medicarec14.servizi@gmail.com", "Medicarec14?")
+        email.sendmail("medicarec14.servizi@gmail.com", "giovannicasaburi02@gmail.com", messaggio)
         email.quit()
         session['2FA'] = codice
         session['user_role'] = "paziente"
