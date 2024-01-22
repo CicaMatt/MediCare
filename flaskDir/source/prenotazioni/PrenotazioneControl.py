@@ -73,11 +73,11 @@ def getMedico():
     if data and ora and current_user.is_authenticated:
 
         if PrenotazioneService.confirmIsFree(idMedico, data, ora):
-
-            if paziente.ISEE_ordinario is not None and paziente.ISEE_ordinario <= 10000:
-                prezzo = prezzo - (prezzo * 33) / 100
-            elif paziente.ISEE_ordinario is not None and paziente.ISEE_ordinario <= 20000:
-                prezzo = prezzo - (prezzo * 10) / 100
+            if paziente.ISEE_ordinario is not None:
+                if paziente.ISEE_ordinario is not None and paziente.ISEE_ordinario <= 10000:
+                    prezzo = prezzo - (prezzo * 33) / 100
+                elif paziente.ISEE_ordinario is not None and paziente.ISEE_ordinario <= 20000:
+                    prezzo = prezzo - (prezzo * 10) / 100
 
             PrenotazioneService.savePrenotazione(idMedico, data, ora, medico.specializzazione, user, prezzo, carta)
             # Pagina Prenotazione??
