@@ -32,7 +32,7 @@
       <a href="{{url_for('prenotazione')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Prenotazioni</a>
         {% endif %}
       <a href="{{url_for('farmacia.farmaci')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Farmaci</a>
-        {% if not user_role == 'ente'%}
+        {% if not user_role == 'ente' and not user_role == 'medico'%}
       <a href="{{url_for('feature.moduloai')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Feature</a>
         {% endif %}
       <a href="{{url_for('chisiamo')}}" class="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200">Chi siamo</a>
