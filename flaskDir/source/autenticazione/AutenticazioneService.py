@@ -1,8 +1,9 @@
 import re
 import smtplib
+from datetime import datetime
+
 import pyotp
 import time
-import qrcode
 
 from flask import redirect, url_for, session
 from flask_login import login_user, logout_user
@@ -70,17 +71,34 @@ def login_page(email, password, tipo):
         if paziente is None:
             return False
         oggetto = "Subject: Urgente! da leggere subito!\n\n"
-        contenuto = "connettiti al Server che è meglio..."
+        codice = genera_token_totp(genera_codice_segreto())
+        contenuto = "Hai provato ad accedere a MediCare il giorno " + datetime.now().strftime(
+            "%d/%m/%Y %H:%M:%S") + codice
         messaggio = oggetto + contenuto
-        email = smtplib.SMTP("smtp.gmail.com", 587)
+        email = smtplib.SMTP("smtp-mail.outlook.com", 587)
         email.ehlo()
         email.starttls()
-        email.login("", "")
-        email.sendmail("medicare.servizi@gmail.com", "gianlucapalumbo000@gmail.com", messaggio)
+        email.login("giovannicasaburi02@gmail.com", "giovanni21")
+        email.sendmail("giovannicasaburi02@gmail.com", "gianlucapalumbo000@gmail.com", messaggio)
         email.quit()
-        login_user(paziente)
+        session['2FA'] = codice
+        session['notActive'] = paziente
+        return True
+
+
+def auth_2fa(codice_user):
+    if session['2FA'] == codice_user:
+        login_user(session.get('notActive'))
+        session['2FA'] = None
+        session['notActive'] = None
         session['user_role'] = 'paziente'
         return True
+    else:
+        session['2FA'] = None
+        session['notActive'] = None
+        return False
+
+
 
 
 def loginEnte_page(email, password):
@@ -239,17 +257,6 @@ def genera_codice_segreto():
     segreto = pyotp.random_base32()
     return segreto
 
-
-def genera_url_qr_code(nome_utente, segreto):
-    uri = pyotp.totp.TOTP(segreto).provisioning_uri(name=nome_utente, issuer_name="MediCare")
-
-    qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=10, border=4)
-    qr.add_data(uri)
-    qr.make(fit=True)
-
-    qr_code = qr.make_image(fill_color="black", back_color="white")
-    qr_code.show()
-    return uri
 
 def genera_token_totp(segreto):
     totp = pyotp.TOTP(segreto)

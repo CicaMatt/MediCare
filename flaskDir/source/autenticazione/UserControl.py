@@ -22,7 +22,25 @@ def login_page():
         email = request.form.get('email')
         password = request.form.get('password')
         tipo = request.form.get('tipo')
+        next_page = request.args.get('next')
         if AutenticazioneService.login_page(email, password, tipo):
+            if tipo != "paziente":
+                if not next_page or urlsplit(next_page).netloc != '':
+                    next_page = url_for('home')
+                return redirect(next_page)
+            else:
+                return redirect(url_for('auth.verification2fa', next=next_page))
+        else:
+            return render_template('Login.html', error=False)
+    else:
+        return render_template('Login.html')
+
+
+@auth_blueprint.route('/verification2fa', methods=['GET', 'POST'])
+def verification2fa():
+    if request.method == 'POST':
+        codice = request.form.get('codice')
+        if AutenticazioneService.auth_2fa(codice):
             next_page = request.args.get('next')
             if not next_page or urlsplit(next_page).netloc != '':
                 next_page = url_for('home')
@@ -30,7 +48,7 @@ def login_page():
         else:
             return render_template('Login.html', error=False)
     else:
-        return render_template('Login.html')
+        return render_template('CodicePaziente.html')
 
 
 @auth_blueprint.route('/loginente', methods=['GET', 'POST'])
