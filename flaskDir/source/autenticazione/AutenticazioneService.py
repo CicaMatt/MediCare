@@ -69,16 +69,17 @@ def login_page(email, password, tipo):
         paziente = pazienteService.retrievePaziente(email, password)
         if paziente is None:
             return False
-        oggetto = "Subject: Urgente! da leggere subito!\n\n"
+        oggetto = "Subject: Codice di autenticazione di MediCare\n\n"
         codice = genera_token_totp(genera_codice_segreto())
         contenuto = "Hai provato ad accedere a MediCare il giorno " + datetime.now().strftime(
-            "%d/%m/%Y %H:%M\n") + codice
+            "%d/%m/%Y %H:%M\n") + codice +("\n Se non sei stato tu prova a contattare l'assistenza di Medicare"
+                                           "all'e-mail medicare.servizi@gmail.com")
         messaggio = oggetto + contenuto
         email = smtplib.SMTP("smtp-mail.outlook.com", 587)
         email.ehlo()
         email.starttls()
         email.login("giovannicasaburi02@gmail.com", "giovanni21")
-        email.sendmail("giovannicasaburi02@gmail.com", "gianlucapalumbo000@gmail.com", messaggio)
+        email.sendmail("giovannicasaburi02@gmail.com", "giovannicasaburi02@gmail.com", messaggio)
         email.quit()
         session['2FA'] = codice
         session['user_role'] = "paziente"
