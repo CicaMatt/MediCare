@@ -190,6 +190,10 @@ def areaMedico():
 def storicoMedico():
     return render_template("StoricoPrenotazioniMedico.html")
 
+@app.route('/codicepaziente')
+def codicepaziente():
+    return render_template("CodicePaziente.html")
+
 
 @app.errorhandler(404)
 def page_not_found(e):
