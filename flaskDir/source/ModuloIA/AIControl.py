@@ -1,7 +1,7 @@
 from flask import render_template, Blueprint, request, session, url_for, redirect
 from flask_login import login_required, current_user
 
-from flaskDir.source.Fascicolo.FascicoloService import FascicoloService
+from flaskDir.source.Utente.FascicoloService import FascicoloService
 from flaskDir.source.ModuloIA.AIService import ModuloIAService
 from flaskDir.source.Utente.PazienteService import PazienteService
 

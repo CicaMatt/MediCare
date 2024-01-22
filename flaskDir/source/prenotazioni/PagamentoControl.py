@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import current_user, login_required
 
-from flaskDir.source.Pagamento.PagamentoService import PagamentoService
+from flaskDir.source.prenotazioni.PagamentoService import PagamentoService
 
 informazionipersonali_blueprint = Blueprint('informazionipersonali', __name__)
 

@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, jsonify
 from flask_login import current_user, login_required
 import datetime
-from flaskDir.source.Fascicolo.FascicoloService import FascicoloService
+from flaskDir.source.Utente.FascicoloService import FascicoloService
 from flaskDir.source.Utente.PazienteService import PazienteService
 from flaskDir.source.prenotazioni.PrenotazioneService import PrenotazioneService
 

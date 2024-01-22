@@ -3,7 +3,7 @@ from flask import render_template
 from flaskDir.MediCare.model.entity.Paziente import paziente_required
 from flaskDir.source.Farmaci.FarmaciControl import farmacia_blueprint
 from flaskDir.source.ModuloIA.AIControl import feature_blueprint
-from flaskDir.source.Pagamento.PagamentoControl import informazionipersonali_blueprint
+from flaskDir.source.prenotazioni.PagamentoControl import informazionipersonali_blueprint
 from flaskDir.source.Utente.AreaUtenteControl import areautente_blueprint
 from flaskDir.source.Utente.ISEEControl import isee_blueprint
 from flaskDir.source.Medico.MedicoControl import medico_blueprint
