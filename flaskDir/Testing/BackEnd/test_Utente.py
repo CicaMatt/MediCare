@@ -6,7 +6,7 @@ from sqlalchemy_utils import database_exists, create_database
 from flaskDir import app, db
 from flaskDir.MediCare.model.entity.DocumentoSanitario import DocumentoSanitario
 from flaskDir.MediCare.model.entity.Paziente import Paziente
-from flaskDir.source.Fascicolo.FascicoloService import FascicoloService
+from flaskDir.source.Utente.FascicoloService import FascicoloService
 from flaskDir.source.Utente.ISEEService import ISEEService
 
 

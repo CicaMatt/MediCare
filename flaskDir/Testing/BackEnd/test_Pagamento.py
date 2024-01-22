@@ -3,7 +3,7 @@ from sqlalchemy_utils import database_exists, create_database
 from flaskDir import app, db
 from flaskDir.MediCare.model.entity.MetodoPagamento import MetodoPagamento
 from flaskDir.MediCare.model.entity.Paziente import Paziente
-from flaskDir.source.Pagamento.PagamentoService import PagamentoService
+from flaskDir.source.prenotazioni.PagamentoService import PagamentoService
 
 
 @pytest.fixture(autouse=True, scope='session')
