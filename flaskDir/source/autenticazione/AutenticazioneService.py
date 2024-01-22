@@ -72,7 +72,7 @@ def login_page(email, password, tipo):
         oggetto = "Subject: Urgente! da leggere subito!\n\n"
         codice = genera_token_totp(genera_codice_segreto())
         contenuto = "Hai provato ad accedere a MediCare il giorno " + datetime.now().strftime(
-            "%d/%m/%Y %H:%M:%S") + codice
+            "%d/%m/%Y %H:%M\n") + codice
         messaggio = oggetto + contenuto
         email = smtplib.SMTP("smtp-mail.outlook.com", 587)
         email.ehlo()

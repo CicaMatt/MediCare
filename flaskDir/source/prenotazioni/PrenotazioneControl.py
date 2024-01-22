@@ -96,6 +96,7 @@ def getMedico():
 
 
 @prenotazione_blueprint.route('/prenotazione/listavaccini')
+@login_required
 @paziente_required
 def getListaVaccini():
     """

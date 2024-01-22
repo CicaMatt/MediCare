@@ -34,7 +34,7 @@
            <div class="flex justify-center w-full h-full my-auto xl:gap-14 lg:justify-normal md:gap-5 draggable">
       <div class="flex items-center justify-center w-full lg:p-12">
         <div class="flex items-center bg-white p-10" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-          <form method="post" class="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl" action="{{url_for('auth.login_page')}}">
+          <form method="post" class="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl" action="{{url_for('auth.verification2fa')}}">
             <h3 class="mb-3 text-4xl font-extrabold text-dark-grey-900">Codice</h3>
 
 
@@ -53,8 +53,8 @@
               {% if error==False %}
             <p id="errore" class="text-xl text-orange-900 leading-normal">Credenziali fornite errate</p>
               {% endif %}
-            <label for="code" class="mb-2 text-sm text-start text-grey-900">Codice</label>
-            <input name ="code" id="code" type="code" placeholder="12345678" class="border border-grey-900 flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+            <label for="codice" class="mb-2 text-sm text-start text-grey-900">Codice</label>
+            <input name ="codice" id="codice" type="text" placeholder="12345678" class="border border-grey-900 flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
 
             <button type="submit" id="invio" class="bg-navbarreg w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">Accedi</button>
           </form>
