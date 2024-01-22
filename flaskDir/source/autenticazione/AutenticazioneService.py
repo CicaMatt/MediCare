@@ -1,5 +1,8 @@
 import re
 import smtplib
+import pyotp
+import time
+import qrcode
 
 from flask import redirect, url_for, session
 from flask_login import login_user, logout_user
@@ -227,3 +230,46 @@ def logout():
     """
     logout_user()
     return redirect(url_for('home'))
+
+
+
+
+#GENERAZIONE QR E 2FA
+def genera_codice_segreto():
+    segreto = pyotp.random_base32()
+    return segreto
+
+
+def genera_url_qr_code(nome_utente, segreto):
+    uri = pyotp.totp.TOTP(segreto).provisioning_uri(name=nome_utente, issuer_name="MediCare")
+
+    qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_L, box_size=10, border=4)
+    qr.add_data(uri)
+    qr.make(fit=True)
+
+    qr_code = qr.make_image(fill_color="black", back_color="white")
+    qr_code.show()
+    return uri
+
+def genera_token_totp(segreto):
+    totp = pyotp.TOTP(segreto)
+    token = totp.now()
+    return token
+
+def verifica_token_totp(segreto, token):
+    totp = pyotp.TOTP(segreto)
+    return totp.verify(token)
+
+
+segreto_utente = genera_codice_segreto()
+
+# Genera l'URL del QR code per l'app di autenticazione
+url_qr_code = genera_url_qr_code("stonks@gmail.com", segreto_utente)
+print("Scansiona il seguente URL con l'app di autenticazione:", url_qr_code)
+
+token_inserito = input("Inserisci il token TOTP generato dall'app di autenticazione: ")
+
+if verifica_token_totp(segreto_utente, token_inserito):
+    print("Token TOTP valido! Accesso consentito.")
+else:
+    print("Token TOTP non valido. Accesso negato.")
