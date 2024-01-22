@@ -16,7 +16,9 @@
 
 # Introduction
 
-MediCare has the purpose of helping patients handling their reservations, manage their medical records, explore a drug database, everything in an interconnected manner with doctors. 
+The goal of MediCare is to provide a digital platform that facilitates the management and provision of healthcare services, improving the efficiency, quality and accessibility of healthcare. 
+Medicare will reduce the waiting time for medical examinations, as well as simplify the administrative and bureaucratic processes of which we hear a lot, especially in the context of Italian health.  
+MediCare offers many features to help patients handle their reservations, manage their medical records, explore a drug database, everything in an interconnected manner with doctors. 
 
 ## Authors
 
