@@ -1,0 +1,532 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Package MediCare.model.entity &#8212; Medicare 1.00.00 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Package ModuloIA" href="AIPackage.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="package-medicare-model-entity">
+<h1>Package MediCare.model.entity<a class="headerlink" href="#package-medicare-model-entity" title="Permalink to this heading">¶</a></h1>
+</section>
+<section id="module-flaskDir.MediCare.model.entity.AutorizzazioniFSE">
+<span id="autorizzazionifse"></span><h1>AutorizzazioniFSE<a class="headerlink" href="#module-flaskDir.MediCare.model.entity.AutorizzazioniFSE" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.AutorizzazioniFSE.ConsultaFascicolo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">flaskDir.MediCare.model.entity.AutorizzazioniFSE.</span></span><span class="sig-name descname"><span class="pre">ConsultaFascicolo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.MediCare.model.entity.AutorizzazioniFSE.ConsultaFascicolo" title="Permalink to this definition">¶</a></dt>
+<dd><p>La classe ConsultaFascicolo rappresenta il modello di dati per la tabella “consulta_fascicolo” nel database.</p>
+<p>Attributi: - Medico (str): Campo che rappresenta l’email del medico che ha consultato un documento nel fascicolo.
+È una chiave esterna che fa riferimento alla colonna ‘email’ nella tabella ‘medico’. - Documento (str): Campo che
+rappresenta il numero del documento sanitario consultato. È una chiave esterna che fa riferimento alla colonna
+‘NumeroDocumento’ nella tabella ‘documento_sanitario’.</p>
+<p>Entrambi questi campi vengono utilizzati come chiavi primarie composite, il che significa che la combinazione
+unica di <cite>Medico</cite> e <cite>Documento</cite> identifica in modo univoco una riga nella tabella <cite>ConsultaFascicolo</cite>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.AutorizzazioniFSE.ConsultaFascicolo.query">
+<span class="sig-name descname"><span class="pre">query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">t.ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Query</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#flaskDir.MediCare.model.entity.AutorizzazioniFSE.ConsultaFascicolo.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>A SQLAlchemy query for a model. Equivalent to <code class="docutils literal notranslate"><span class="pre">db.session.query(Model)</span></code>. Can be
+customized per-model by overriding <code class="xref py py-attr docutils literal notranslate"><span class="pre">query_class</span></code>.</p>
+
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-flaskDir.MediCare.model.entity.ConsultaFarmaco">
+<span id="consultafarmaco"></span><h1>ConsultaFarmaco<a class="headerlink" href="#module-flaskDir.MediCare.model.entity.ConsultaFarmaco" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.ConsultaFarmaco.ConsultaFarmaco">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">flaskDir.MediCare.model.entity.ConsultaFarmaco.</span></span><span class="sig-name descname"><span class="pre">ConsultaFarmaco</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.MediCare.model.entity.ConsultaFarmaco.ConsultaFarmaco" title="Permalink to this definition">¶</a></dt>
+<dd><p>La classe ConsultaFarmaco rappresenta il modello di dati per la tabella “consulta_farmaco” nel database.</p>
+<p>Attributi: - Farmaco (int): Campo che rappresenta l’ID del farmaco consultato. È una chiave esterna che fa
+riferimento alla colonna ‘ID’ nella tabella ‘farmaco’. - Medico (str): Campo che rappresenta l’email del medico
+che ha consultato un farmaco. È una chiave esterna che fa riferimento alla colonna ‘email’ nella tabella ‘medico’.</p>
+<p>Entrambi questi campi vengono utilizzati come chiavi primarie composite, il che significa che la combinazione
+unica di <cite>Farmaco</cite> e <cite>Medico</cite> identifica in modo univoco una riga nella tabella <cite>ConsultaFarmaco</cite>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.ConsultaFarmaco.ConsultaFarmaco.query">
+<span class="sig-name descname"><span class="pre">query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">t.ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Query</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#flaskDir.MediCare.model.entity.ConsultaFarmaco.ConsultaFarmaco.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>A SQLAlchemy query for a model. Equivalent to <code class="docutils literal notranslate"><span class="pre">db.session.query(Model)</span></code>. Can be
+customized per-model by overriding <code class="xref py py-attr docutils literal notranslate"><span class="pre">query_class</span></code>.</p>
+
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-flaskDir.MediCare.model.entity.DocumentoSanitario">
+<span id="documentosanitario"></span><h1>DocumentoSanitario<a class="headerlink" href="#module-flaskDir.MediCare.model.entity.DocumentoSanitario" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.DocumentoSanitario.DocumentoSanitario">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">flaskDir.MediCare.model.entity.DocumentoSanitario.</span></span><span class="sig-name descname"><span class="pre">DocumentoSanitario</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.MediCare.model.entity.DocumentoSanitario.DocumentoSanitario" title="Permalink to this definition">¶</a></dt>
+<dd><p>La classe DocumentoSanitario rappresenta il modello di dati per la tabella “documento_sanitario” nel database.</p>
+<p>Attributi: - NumeroDocumento (str): Campo che rappresenta il numero del documento sanitario. È una chiave
+primaria. - tipo (str): Campo che rappresenta il tipo di documento sanitario. - dataEmissione (Date): Campo che
+rappresenta la data di emissione del documento sanitario. - descrizione (str): Campo che rappresenta la
+descrizione del documento sanitario. - richiamo (Date, opzionale): Campo che rappresenta la data di richiamo
+associata al documento sanitario (opzionale). - titolare (str): Campo che rappresenta il codice fiscale del
+paziente a cui il documento sanitario è associato. È una chiave esterna che fa riferimento alla colonna ‘CF’
+nella tabella ‘paziente’. È anche parte delle chiavi primarie composite insieme a ‘NumeroDocumento’.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.DocumentoSanitario.DocumentoSanitario.query">
+<span class="sig-name descname"><span class="pre">query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">t.ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Query</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#flaskDir.MediCare.model.entity.DocumentoSanitario.DocumentoSanitario.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>A SQLAlchemy query for a model. Equivalent to <code class="docutils literal notranslate"><span class="pre">db.session.query(Model)</span></code>. Can be
+customized per-model by overriding <code class="xref py py-attr docutils literal notranslate"><span class="pre">query_class</span></code>.</p>
+
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-flaskDir.MediCare.model.entity.EnteSanitario">
+<span id="entesanitario"></span><h1>EnteSanitario<a class="headerlink" href="#module-flaskDir.MediCare.model.entity.EnteSanitario" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.EnteSanitario.EnteSanitario">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">flaskDir.MediCare.model.entity.EnteSanitario.</span></span><span class="sig-name descname"><span class="pre">EnteSanitario</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.MediCare.model.entity.EnteSanitario.EnteSanitario" title="Permalink to this definition">¶</a></dt>
+<dd><p>La classe EnteSanitario rappresenta il modello di dati per la tabella “ente_sanitario” nel database.</p>
+<p>Attributi:
+- nome (str): Nome dell’ente sanitario.
+- email (str): Indirizzo email dell’ente sanitario, che funge anche da chiave primaria.
+- password_hash (str): Hash della password dell’ente sanitario.
+- città (str): Città in cui si trova l’ente sanitario.
+- reparti (relationship): Relazione con la tabella “medico” tramite la colonna “reparti”.</p>
+<p>Metodi:
+- get_id(): Restituisce l’ID dell’ente sanitario, che corrisponde all’indirizzo email.
+- set_password(password): Setta la password dell’ente sanitario.
+- check_password(password): Verifica se una password fornita è corretta.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.EnteSanitario.EnteSanitario.check_password">
+<span class="sig-name descname"><span class="pre">check_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.MediCare.model.entity.EnteSanitario.EnteSanitario.check_password" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verifica se una password fornita è corretta.</p>
+<p>Args:
+- password (str): Password da verificare.</p>
+<p>Returns:
+- bool: True se la password è corretta, False altrimenti.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.EnteSanitario.EnteSanitario.get_id">
+<span class="sig-name descname"><span class="pre">get_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.MediCare.model.entity.EnteSanitario.EnteSanitario.get_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce l’ID dell’ente sanitario, che corrisponde all’indirizzo email.</p>
+<p>Returns:
+- str: Indirizzo email dell’ente sanitario.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.EnteSanitario.EnteSanitario.query">
+<span class="sig-name descname"><span class="pre">query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">t.ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Query</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#flaskDir.MediCare.model.entity.EnteSanitario.EnteSanitario.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>A SQLAlchemy query for a model. Equivalent to <code class="docutils literal notranslate"><span class="pre">db.session.query(Model)</span></code>. Can be
+customized per-model by overriding <code class="xref py py-attr docutils literal notranslate"><span class="pre">query_class</span></code>.</p>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.EnteSanitario.EnteSanitario.set_password">
+<span class="sig-name descname"><span class="pre">set_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.MediCare.model.entity.EnteSanitario.EnteSanitario.set_password" title="Permalink to this definition">¶</a></dt>
+<dd><p>Imposta la password dell’ente sanitario.</p>
+<p>Args:
+- password (str): Nuova password.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.EnteSanitario.ente_required">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.MediCare.model.entity.EnteSanitario.</span></span><span class="sig-name descname"><span class="pre">ente_required</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.MediCare.model.entity.EnteSanitario.ente_required" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decoratore per richiedere l’autenticazione come ente sanitario.</p>
+<p>Args:
+- func (callable): Funzione da decorare.</p>
+<p>Returns:
+- callable: Funzione decorata.</p>
+</dd></dl>
+
+</section>
+<section id="module-flaskDir.MediCare.model.entity.Farmaco">
+<span id="farmaco"></span><h1>Farmaco<a class="headerlink" href="#module-flaskDir.MediCare.model.entity.Farmaco" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.Farmaco.Farmaco">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">flaskDir.MediCare.model.entity.Farmaco.</span></span><span class="sig-name descname"><span class="pre">Farmaco</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.MediCare.model.entity.Farmaco.Farmaco" title="Permalink to this definition">¶</a></dt>
+<dd><p>La classe Farmaco rappresenta il modello di dati per la tabella “farmaco” nel database.</p>
+<p>Attributi:
+- ID (int): Identificatore univoco del farmaco, chiave primaria (autoincrement).
+- prezzo (float): Prezzo del farmaco.
+- nome (str): Nome del farmaco.
+- categoria (str): Categoria a cui appartiene il farmaco.
+- descrizione (str): Descrizione del farmaco.
+- immagine (str): Percorso dell’immagine del farmaco.</p>
+<p>Vincoli:
+- UniqueConstraint(‘nome’, ‘categoria’): Vincolo univoco su combinazione di nome e categoria.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.Farmaco.Farmaco.query">
+<span class="sig-name descname"><span class="pre">query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">t.ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Query</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#flaskDir.MediCare.model.entity.Farmaco.Farmaco.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>A SQLAlchemy query for a model. Equivalent to <code class="docutils literal notranslate"><span class="pre">db.session.query(Model)</span></code>. Can be
+customized per-model by overriding <code class="xref py py-attr docutils literal notranslate"><span class="pre">query_class</span></code>.</p>
+
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-flaskDir.MediCare.model.entity.FascicoloSanitarioElettronico">
+<span id="fascicolosanitarioelettronico"></span><h1>FascicoloSanitarioElettronico<a class="headerlink" href="#module-flaskDir.MediCare.model.entity.FascicoloSanitarioElettronico" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.FascicoloSanitarioElettronico.FascicoloSanitario">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">flaskDir.MediCare.model.entity.FascicoloSanitarioElettronico.</span></span><span class="sig-name descname"><span class="pre">FascicoloSanitario</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">paziente</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">documenti</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.MediCare.model.entity.FascicoloSanitarioElettronico.FascicoloSanitario" title="Permalink to this definition">¶</a></dt>
+<dd><p>La classe FascicoloSanitario rappresenta un fascicolo sanitario associato a un paziente.</p>
+<p>Attributi:
+- id (int): Identificatore univoco del fascicolo sanitario.
+- paziente: Paziente associato al fascicolo sanitario.
+- documents (list): Lista dei documenti sanitari presenti nel fascicolo.</p>
+<p>Metodi:
+- __init__(self, paziente, documenti): Costruttore della classe. Inizializza un nuovo oggetto FascicoloSanitario.</p>
+<p>Attributi di Classe:
+- id (int): Contatore per generare identificatori univoci per i fascicoli sanitari.</p>
+</dd></dl>
+
+</section>
+<section id="module-flaskDir.MediCare.model.entity.Medici">
+<span id="medici"></span><h1>Medici<a class="headerlink" href="#module-flaskDir.MediCare.model.entity.Medici" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.Medici.Medico">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">flaskDir.MediCare.model.entity.Medici.</span></span><span class="sig-name descname"><span class="pre">Medico</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.MediCare.model.entity.Medici.Medico" title="Permalink to this definition">¶</a></dt>
+<dd><p>Classe che rappresenta un medico nell’applicazione.</p>
+<p>Attributi:
+- email (str): Indirizzo email del medico (chiave primaria).
+- password_hash (str): Hash della password del medico.
+- nome (str): Nome del medico.
+- cognome (str): Cognome del medico.
+- reparto (str): Reparto in cui opera il medico.
+- ente_sanitario (str): Ente sanitario di appartenenza del medico (chiave esterna).
+- iscrizione_albo (int): Numero di iscrizione all’albo del medico.
+- specializzazione (str): Specializzazione del medico.
+- città (str): Città in cui opera il medico.
+- tariffa (Numeric): Tariffa del medico.
+- prenotazioni (relazione): Relazione con le prenotazioni associate al medico.</p>
+<p>Metodi:
+- set_password(password): Imposta la password del medico.
+- check_password(password): Verifica se la password fornita è corretta.
+- get_id(): Restituisce l’identificatore univoco del medico.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.Medici.Medico.check_password">
+<span class="sig-name descname"><span class="pre">check_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.MediCare.model.entity.Medici.Medico.check_password" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verifica se la password fornita è corretta.</p>
+<p>Parametri:
+- password (str): Password da verificare.</p>
+<p>Ritorno:
+- bool: True se la password è corretta, False altrimenti.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.Medici.Medico.get_id">
+<span class="sig-name descname"><span class="pre">get_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.MediCare.model.entity.Medici.Medico.get_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce l’identificativo unico del medico.</p>
+<p>Ritorno:
+- str: Identificativo unico del medico (indirizzo email).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.Medici.Medico.query">
+<span class="sig-name descname"><span class="pre">query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">t.ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Query</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#flaskDir.MediCare.model.entity.Medici.Medico.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>A SQLAlchemy query for a model. Equivalent to <code class="docutils literal notranslate"><span class="pre">db.session.query(Model)</span></code>. Can be
+customized per-model by overriding <code class="xref py py-attr docutils literal notranslate"><span class="pre">query_class</span></code>.</p>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.Medici.Medico.set_password">
+<span class="sig-name descname"><span class="pre">set_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.MediCare.model.entity.Medici.Medico.set_password" title="Permalink to this definition">¶</a></dt>
+<dd><p>Imposta la password del medico.</p>
+<p>Parametri:
+- password (str): Nuova password del medico.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.Medici.medico_required">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.MediCare.model.entity.Medici.</span></span><span class="sig-name descname"><span class="pre">medico_required</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.MediCare.model.entity.Medici.medico_required" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decoratore per richiedere che l’utente abbia il ruolo di medico per accedere a determinate funzioni.</p>
+<p>Parametri:
+- func: Funzione da decorare.</p>
+<p>Returns:
+- Ritorna la funzione originale se l’utente ha il ruolo di medico, altrimenti reindirizza alla home.</p>
+</dd></dl>
+
+</section>
+<section id="module-flaskDir.MediCare.model.entity.MetodoPagamento">
+<span id="metodopagamento"></span><h1>MetodoPagamento<a class="headerlink" href="#module-flaskDir.MediCare.model.entity.MetodoPagamento" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.MetodoPagamento.MetodoPagamento">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">flaskDir.MediCare.model.entity.MetodoPagamento.</span></span><span class="sig-name descname"><span class="pre">MetodoPagamento</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.MediCare.model.entity.MetodoPagamento.MetodoPagamento" title="Permalink to this definition">¶</a></dt>
+<dd><p>Classe che rappresenta un metodo di pagamento.</p>
+<p>Attributi:
+- CVV (int): Valore di verifica della carta.
+- PAN (str): Numero primario del conto (numero della carta di credito, chiave primaria).
+- nome_titolare (str): Nome del titolare della carta.
+- dataScadenza (str): Data di scadenza della carta (formato: MM/YY).
+- beneficiario (str): CF (Codice Fiscale) del beneficiario (chiave esterna).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.MetodoPagamento.MetodoPagamento.query">
+<span class="sig-name descname"><span class="pre">query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">t.ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Query</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#flaskDir.MediCare.model.entity.MetodoPagamento.MetodoPagamento.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>A SQLAlchemy query for a model. Equivalent to <code class="docutils literal notranslate"><span class="pre">db.session.query(Model)</span></code>. Can be
+customized per-model by overriding <code class="xref py py-attr docutils literal notranslate"><span class="pre">query_class</span></code>.</p>
+
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-flaskDir.MediCare.model.entity.Paziente">
+<span id="paziente"></span><h1>Paziente<a class="headerlink" href="#module-flaskDir.MediCare.model.entity.Paziente" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.Paziente.Paziente">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">flaskDir.MediCare.model.entity.Paziente.</span></span><span class="sig-name descname"><span class="pre">Paziente</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.MediCare.model.entity.Paziente.Paziente" title="Permalink to this definition">¶</a></dt>
+<dd><p>Classe che rappresenta un paziente.</p>
+<p>Attributi:
+- CF (str): Codice Fiscale del paziente (chiave primaria).
+- chiaveSPID (int): Chiave SPID associata al paziente.
+- nome (str): Nome del paziente.
+- cognome (str): Cognome del paziente.
+- email (str): Indirizzo email del paziente.
+- password_hash (str): Hash della password del paziente.
+- cellulare (str): Numero di cellulare del paziente.
+- domicilio (str): Indirizzo di domicilio del paziente.
+- dataNascita (Date): Data di nascita del paziente.
+- luogoNascita (str): Luogo di nascita del paziente.
+- sesso (str): Genere del paziente.
+- ISEE_ordinario (Numeric): Valore dell’ISEE ordinario del paziente.
+- carte (list): Lista di carte di pagamento associate al paziente.</p>
+<p>Metodi:
+- set_password(password): Imposta la password del paziente.
+- check_password(password): Verifica se la password fornita è corretta.
+- get_id(): Restituisce il Codice Fiscale del paziente come identificatore unico.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.Paziente.Paziente.check_password">
+<span class="sig-name descname"><span class="pre">check_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.MediCare.model.entity.Paziente.Paziente.check_password" title="Permalink to this definition">¶</a></dt>
+<dd><p>Verifica se la password fornita è corretta.</p>
+<p>Args:
+- password (str): La password da verificare.</p>
+<p>Returns:
+- bool: True se la password è corretta, False altrimenti.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.Paziente.Paziente.get_id">
+<span class="sig-name descname"><span class="pre">get_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.MediCare.model.entity.Paziente.Paziente.get_id" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce il Codice Fiscale del paziente come identificatore unico.</p>
+<p>Args:
+- None</p>
+<p>Returns:
+- str: Il Codice Fiscale del paziente.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.Paziente.Paziente.query">
+<span class="sig-name descname"><span class="pre">query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">t.ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Query</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#flaskDir.MediCare.model.entity.Paziente.Paziente.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>A SQLAlchemy query for a model. Equivalent to <code class="docutils literal notranslate"><span class="pre">db.session.query(Model)</span></code>. Can be
+customized per-model by overriding <code class="xref py py-attr docutils literal notranslate"><span class="pre">query_class</span></code>.</p>
+
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.Paziente.Paziente.set_password">
+<span class="sig-name descname"><span class="pre">set_password</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.MediCare.model.entity.Paziente.Paziente.set_password" title="Permalink to this definition">¶</a></dt>
+<dd><p>Imposta la password del paziente.</p>
+<p>Args:
+- password (str): La password da impostare.</p>
+<p>Returns:
+- None</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.Paziente.paziente_required">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.MediCare.model.entity.Paziente.</span></span><span class="sig-name descname"><span class="pre">paziente_required</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.MediCare.model.entity.Paziente.paziente_required" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decoratore per verificare se l’utente in sessione è un paziente.</p>
+<p>Args:
+- func (function): La funzione da decorare.</p>
+<p>Returns:
+- function: La funzione decorata.</p>
+</dd></dl>
+
+</section>
+<section id="module-flaskDir.MediCare.model.entity.Prenotazione">
+<span id="prenotazione"></span><h1>Prenotazione<a class="headerlink" href="#module-flaskDir.MediCare.model.entity.Prenotazione" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.Prenotazione.Prenotazione">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">flaskDir.MediCare.model.entity.Prenotazione.</span></span><span class="sig-name descname"><span class="pre">Prenotazione</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.MediCare.model.entity.Prenotazione.Prenotazione" title="Permalink to this definition">¶</a></dt>
+<dd><p>Classe che rappresenta una prenotazione.</p>
+<p>Attributi:
+- ID (int): Identificatore unico della prenotazione (chiave primaria).
+- oraVisita (int): Ora della visita.
+- dataVisita (Date): Data della visita.
+- tipoVisita (str): Tipo di visita.
+- prezzo (Numeric): Prezzo della prenotazione.
+- pazienteCF (str): Codice Fiscale del paziente associato alla prenotazione (chiave primaria).
+- medico (str): Email del medico associato alla prenotazione (chiave primaria).
+- pagata (bool): Flag che indica se la prenotazione è stata pagata.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.Prenotazione.Prenotazione.query">
+<span class="sig-name descname"><span class="pre">query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">t.ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Query</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#flaskDir.MediCare.model.entity.Prenotazione.Prenotazione.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>A SQLAlchemy query for a model. Equivalent to <code class="docutils literal notranslate"><span class="pre">db.session.query(Model)</span></code>. Can be
+customized per-model by overriding <code class="xref py py-attr docutils literal notranslate"><span class="pre">query_class</span></code>.</p>
+
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-flaskDir.MediCare.model.entity.VisualizzaFarmaco">
+<span id="visualizzafarmaco"></span><h1>VisualizzaFarmaco<a class="headerlink" href="#module-flaskDir.MediCare.model.entity.VisualizzaFarmaco" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.VisualizzaFarmaco.VisualizzaFarmaco">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">flaskDir.MediCare.model.entity.VisualizzaFarmaco.</span></span><span class="sig-name descname"><span class="pre">VisualizzaFarmaco</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.MediCare.model.entity.VisualizzaFarmaco.VisualizzaFarmaco" title="Permalink to this definition">¶</a></dt>
+<dd><p>Classe che rappresenta l’associazione tra un farmaco e un paziente per la visualizzazione.</p>
+<p>Attributi:
+- Farmaco (int): Identificatore unico del farmaco (chiave primaria, chiave esterna verso Farmaco).
+- Paziente (str): Codice Fiscale del paziente (chiave primaria, chiave esterna verso Paziente).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="flaskDir.MediCare.model.entity.VisualizzaFarmaco.VisualizzaFarmaco.query">
+<span class="sig-name descname"><span class="pre">query</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">t.ClassVar</span><span class="p"><span class="pre">[</span></span><span class="pre">Query</span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#flaskDir.MediCare.model.entity.VisualizzaFarmaco.VisualizzaFarmaco.query" title="Permalink to this definition">¶</a></dt>
+<dd><p>A SQLAlchemy query for a model. Equivalent to <code class="docutils literal notranslate"><span class="pre">db.session.query(Model)</span></code>. Can be
+customized per-model by overriding <code class="xref py py-attr docutils literal notranslate"><span class="pre">query_class</span></code>.</p>
+
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Medicare</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="autenticazione.html">Package Autenticazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autenticazione.html#module-flaskDir.source.autenticazione.UserControl">UserControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autenticazione.html#module-flaskDir.source.autenticazione.AutenticazioneService">AutenticazioneService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prenotazione.html">Package Prenotazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prenotazione.html#module-flaskDir.source.prenotazioni.PrenotazioneControl">PrenotazioneControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prenotazione.html#module-flaskDir.source.prenotazioni.PagamentoControl">PagamentoControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prenotazione.html#module-flaskDir.source.prenotazioni.PrenotazioneService">PrenotazioneService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ente.html">Package EnteFunction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ente.html#module-flaskDir.source.EnteFunction.EnteControl">EnteControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ente.html#module-flaskDir.source.EnteFunction.EnteService">EnteService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="farmaci.html">Package Farmaci</a></li>
+<li class="toctree-l1"><a class="reference internal" href="farmaci.html#module-flaskDir.source.Farmaci.FarmaciControl">FarmaciControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="farmaci.html#module-flaskDir.source.Farmaci.FarmaciService">FarmaciService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="medico.html">Package Medico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="medico.html#module-flaskDir.source.Medico.MedicoControl">MedicoControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="medico.html#module-flaskDir.source.Medico.MedicoService">MedicoService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utente.html">Package Utente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utente.html#module-flaskDir.source.Utente.AreaUtenteControl">UtenteControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utente.html#module-flaskDir.source.Utente.ISEEControl">ISEEControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utente.html#module-flaskDir.source.Utente.PazienteService">Paziente Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utente.html#module-flaskDir.source.Utente.ISEEService">ISEEService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utente.html#module-flaskDir.source.Utente.FascicoloService">FascicoloService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AIPackage.html">Package ModuloIA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AIPackage.html#module-flaskDir.source.ModuloIA.AIControl">AIControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AIPackage.html#module-flaskDir.source.ModuloIA.AIService">AIService</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Package MediCare.model.entity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-flaskDir.MediCare.model.entity.AutorizzazioniFSE">AutorizzazioniFSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-flaskDir.MediCare.model.entity.ConsultaFarmaco">ConsultaFarmaco</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-flaskDir.MediCare.model.entity.DocumentoSanitario">DocumentoSanitario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-flaskDir.MediCare.model.entity.EnteSanitario">EnteSanitario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-flaskDir.MediCare.model.entity.Farmaco">Farmaco</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-flaskDir.MediCare.model.entity.FascicoloSanitarioElettronico">FascicoloSanitarioElettronico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-flaskDir.MediCare.model.entity.Medici">Medici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-flaskDir.MediCare.model.entity.MetodoPagamento">MetodoPagamento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-flaskDir.MediCare.model.entity.Paziente">Paziente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-flaskDir.MediCare.model.entity.Prenotazione">Prenotazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-flaskDir.MediCare.model.entity.VisualizzaFarmaco">VisualizzaFarmaco</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="AIPackage.html" title="previous chapter">Package ModuloIA</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2024, Giovanni Casaburi.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/Model.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

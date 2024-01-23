@@ -1,0 +1,226 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Package ModuloIA &#8212; Medicare 1.00.00 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Package MediCare.model.entity" href="Model.html" />
+    <link rel="prev" title="Package Utente" href="Utente.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="package-moduloia">
+<h1>Package ModuloIA<a class="headerlink" href="#package-moduloia" title="Permalink to this heading">¶</a></h1>
+</section>
+<section id="module-flaskDir.source.ModuloIA.AIControl">
+<span id="aicontrol"></span><h1>AIControl<a class="headerlink" href="#module-flaskDir.source.ModuloIA.AIControl" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.ModuloIA.AIControl.moduloai">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.ModuloIA.AIControl.</span></span><span class="sig-name descname"><span class="pre">moduloai</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.ModuloIA.AIControl.moduloai" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gestisce la visualizzazione della pagina ‘ModuloAI.html’.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>render_template: La pagina ‘ModuloAI.html’.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.ModuloIA.AIControl.results">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.ModuloIA.AIControl.</span></span><span class="sig-name descname"><span class="pre">results</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.ModuloIA.AIControl.results" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gestisce la visualizzazione dei risultati del modulo AI, ricevendo i dati dal form e aggiungendo i risultati al
+fascicolo del paziente. La diagnosi effettuata cambiaerà in base ai dati passato dall’utente.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>redirect: Reindirizza l’utente alla stessa pagina dopo aver inviato il form.
+render_template: Mostra la pagina ‘FormAI.html’ o ‘RisultatiAI2.html’ a seconda dei risultati disponibili.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-flaskDir.source.ModuloIA.AIService">
+<span id="aiservice"></span><h1>AIService<a class="headerlink" href="#module-flaskDir.source.ModuloIA.AIService" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="flaskDir.source.ModuloIA.AIService.ModuloIAService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">flaskDir.source.ModuloIA.AIService.</span></span><span class="sig-name descname"><span class="pre">ModuloIAService</span></span><a class="headerlink" href="#flaskDir.source.ModuloIA.AIService.ModuloIAService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Classe che fornisce i metodi per effettuare una diagnosi cardiaca, utilizza un modello di Intelligenza artificiale
+basato su Machine Learning.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.ModuloIA.AIService.ModuloIAService.diagnosi_accurata">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">diagnosi_accurata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">age</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trtbps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fbs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">restecg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thalach</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exng</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oldpeak</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">caa</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thall</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.ModuloIA.AIService.ModuloIAService.diagnosi_accurata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Effettua una diagnosi accurata sulla presenza di malattia cardiaca utilizzando il modello accurato.</p>
+<dl>
+<dt>Args:</dt><dd><p>age (int): Età del paziente.</p>
+<p>sex (int): Sesso del paziente (0 per femmina, 1 per maschio).</p>
+<p>cp (int): Tipo di dolore al petto.</p>
+<p>trtbps (int): Pressione sanguigna a riposo.</p>
+<p>chol (int): Livello di colesterolo.</p>
+<p>fbs (int): Livello di zucchero nel sangue a digiuno.</p>
+<p>restecg (int): Risultato dell’elettrocardiogramma a riposo.</p>
+<p>thalach (int): Frequenza cardiaca massima raggiunta.</p>
+<p>exng (int): Angina indotta da sforzo.</p>
+<p>oldpeak (int): Depressione del segmento ST indotta dall’esercizio.</p>
+<p>slp (int): Pendenza del segmento ST durante l’esercizio.</p>
+<p>caa (int): Numero di vasi principali colorati al fluorosio.</p>
+<p>thall (int): Tipo di talessemia.</p>
+</dd>
+<dt>Returns:</dt><dd><p>result: Risultato della diagnosi (0 se non c’è sospetto di malattia cardiaca, 1 altrimenti).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.ModuloIA.AIService.ModuloIAService.diagnosi_simple">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">diagnosi_simple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">age</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trtbps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fbs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">restecg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thalach</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exng</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">oldpeak</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.ModuloIA.AIService.ModuloIAService.diagnosi_simple" title="Permalink to this definition">¶</a></dt>
+<dd><p>Effettua una diagnosi semplice sulla presenza di malattia cardiaca utilizzando il modello semplice.</p>
+<dl>
+<dt>Args:</dt><dd><p>age (int): Età del paziente.</p>
+<p>sex (int): Sesso del paziente (0 per femmina, 1 per maschio).</p>
+<p>cp (int): Tipo di dolore al petto.</p>
+<p>trtbps (int): Pressione sanguigna a riposo.</p>
+<p>chol (int): Livello di colesterolo.</p>
+<p>fbs (int): Livello di zucchero nel sangue a digiuno.</p>
+<p>restecg (int): Risultato dell’elettrocardiogramma a riposo.</p>
+<p>thalach (int): Frequenza cardiaca massima raggiunta.</p>
+<p>exng (int): Angina indotta da sforzo.</p>
+<p>oldpeak (int): Depressione del segmento ST indotta dall’esercizio.</p>
+</dd>
+<dt>Returns:</dt><dd><p>result: Risultato della diagnosi (0 se non c’è sospetto di malattia cardiaca, 1 altrimenti).</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Medicare</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="autenticazione.html">Package Autenticazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autenticazione.html#module-flaskDir.source.autenticazione.UserControl">UserControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autenticazione.html#module-flaskDir.source.autenticazione.AutenticazioneService">AutenticazioneService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prenotazione.html">Package Prenotazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prenotazione.html#module-flaskDir.source.prenotazioni.PrenotazioneControl">PrenotazioneControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prenotazione.html#module-flaskDir.source.prenotazioni.PagamentoControl">PagamentoControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prenotazione.html#module-flaskDir.source.prenotazioni.PrenotazioneService">PrenotazioneService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ente.html">Package EnteFunction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ente.html#module-flaskDir.source.EnteFunction.EnteControl">EnteControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ente.html#module-flaskDir.source.EnteFunction.EnteService">EnteService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="farmaci.html">Package Farmaci</a></li>
+<li class="toctree-l1"><a class="reference internal" href="farmaci.html#module-flaskDir.source.Farmaci.FarmaciControl">FarmaciControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="farmaci.html#module-flaskDir.source.Farmaci.FarmaciService">FarmaciService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="medico.html">Package Medico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="medico.html#module-flaskDir.source.Medico.MedicoControl">MedicoControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="medico.html#module-flaskDir.source.Medico.MedicoService">MedicoService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utente.html">Package Utente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utente.html#module-flaskDir.source.Utente.AreaUtenteControl">UtenteControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utente.html#module-flaskDir.source.Utente.ISEEControl">ISEEControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utente.html#module-flaskDir.source.Utente.PazienteService">Paziente Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utente.html#module-flaskDir.source.Utente.ISEEService">ISEEService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utente.html#module-flaskDir.source.Utente.FascicoloService">FascicoloService</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Package ModuloIA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-flaskDir.source.ModuloIA.AIControl">AIControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-flaskDir.source.ModuloIA.AIService">AIService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html">Package MediCare.model.entity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.AutorizzazioniFSE">AutorizzazioniFSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.ConsultaFarmaco">ConsultaFarmaco</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.DocumentoSanitario">DocumentoSanitario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.EnteSanitario">EnteSanitario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.Farmaco">Farmaco</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.FascicoloSanitarioElettronico">FascicoloSanitarioElettronico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.Medici">Medici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.MetodoPagamento">MetodoPagamento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.Paziente">Paziente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.Prenotazione">Prenotazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.VisualizzaFarmaco">VisualizzaFarmaco</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="Utente.html" title="previous chapter">Package Utente</a></li>
+      <li>Next: <a href="Model.html" title="next chapter">Package MediCare.model.entity</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2024, Giovanni Casaburi.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/AIPackage.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

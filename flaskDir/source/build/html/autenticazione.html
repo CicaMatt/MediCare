@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Package Autenticazione &#8212; Medicare 1.00.00 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Package Prenotazione" href="prenotazione.html" />
+    <link rel="prev" title="Welcome to Medicare’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="package-autenticazione">
+<h1>Package Autenticazione<a class="headerlink" href="#package-autenticazione" title="Permalink to this heading">¶</a></h1>
+</section>
+<section id="module-flaskDir.source.autenticazione.UserControl">
+<span id="usercontrol"></span><h1>UserControl<a class="headerlink" href="#module-flaskDir.source.autenticazione.UserControl" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.autenticazione.UserControl.loginEnte_page">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.autenticazione.UserControl.</span></span><span class="sig-name descname"><span class="pre">loginEnte_page</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.autenticazione.UserControl.loginEnte_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gestisce la pagina di login per gli enti sanitari.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>render_template: La pagina di login per gli enti o la home se l’utente è già autenticato.
+render_template: La home se il login dell’ente sanitario ha successo.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.autenticazione.UserControl.login_page">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.autenticazione.UserControl.</span></span><span class="sig-name descname"><span class="pre">login_page</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.autenticazione.UserControl.login_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gestisce la pagina di login.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>render_template: La pagina di login o la home se l’utente è già autenticato.
+redirect: Reindirizza l’utente alla home dopo il login con successo.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.autenticazione.UserControl.logout">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.autenticazione.UserControl.</span></span><span class="sig-name descname"><span class="pre">logout</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.autenticazione.UserControl.logout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Esegue il logout dell’utente corrente.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>redirect: Reindirizza l’utente alla home dopo il logout.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.autenticazione.UserControl.registrazioneEnte">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.autenticazione.UserControl.</span></span><span class="sig-name descname"><span class="pre">registrazioneEnte</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.autenticazione.UserControl.registrazioneEnte" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gestisce la registrazione di un nuovo ente sanitario.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>render_template: La pagina di registrazione dell’ente o la home se l’utente è già autenticato.
+render_template: La home se la registrazione dell’ente sanitario ha successo.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.autenticazione.UserControl.registrazioneMedico">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.autenticazione.UserControl.</span></span><span class="sig-name descname"><span class="pre">registrazioneMedico</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.autenticazione.UserControl.registrazioneMedico" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gestisce la registrazione di un nuovo medico.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>render_template: La pagina di registrazione del medico o la home se l’utente è già autenticato.
+render_template: La pagina di login se la registrazione del medico ha successo.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.autenticazione.UserControl.registrazionePaziente">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.autenticazione.UserControl.</span></span><span class="sig-name descname"><span class="pre">registrazionePaziente</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.autenticazione.UserControl.registrazionePaziente" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gestisce la registrazione di un nuovo paziente.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>render_template: La pagina di registrazione del paziente o la home se l’utente è già autenticato.
+render_template: La home se la registrazione del paziente ha successo.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-flaskDir.source.autenticazione.AutenticazioneService">
+<span id="autenticazioneservice"></span><h1>AutenticazioneService<a class="headerlink" href="#module-flaskDir.source.autenticazione.AutenticazioneService" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.autenticazione.AutenticazioneService.genera_codice_segreto">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.autenticazione.AutenticazioneService.</span></span><span class="sig-name descname"><span class="pre">genera_codice_segreto</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.autenticazione.AutenticazioneService.genera_codice_segreto" title="Permalink to this definition">¶</a></dt>
+<dd><p>Metodo che genera il token per il codice dell’Autenticazione a due fattori</p>
+<p>Args:None</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>str: una string a 32 bit rappresentante il codice della 2FA</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.autenticazione.AutenticazioneService.genera_token_totp">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.autenticazione.AutenticazioneService.</span></span><span class="sig-name descname"><span class="pre">genera_token_totp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">segreto</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.autenticazione.AutenticazioneService.genera_token_totp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Questo metodo genera il codice effettivo che verrà mandato al paziente per il login</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>str: segreto che rappresenta una stringa a 32 bit del token che genera il codice</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: una stringa rappresentante il codice della 2FA</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.autenticazione.AutenticazioneService.load_user">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.autenticazione.AutenticazioneService.</span></span><span class="sig-name descname"><span class="pre">load_user</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.autenticazione.AutenticazioneService.load_user" title="Permalink to this definition">¶</a></dt>
+<dd><p>Carica un utente dal database in base al suo ID.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>cf (str): L’ID dell’utente nel sistema.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Utente: L’oggetto utente corrispondente all’ID fornito.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.autenticazione.AutenticazioneService.loginEnte_page">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.autenticazione.AutenticazioneService.</span></span><span class="sig-name descname"><span class="pre">loginEnte_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.autenticazione.AutenticazioneService.loginEnte_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gestisce il processo di login per gli enti sanitari.</p>
+<dl>
+<dt>Args:</dt><dd><p>email (str): L’indirizzo email dell’ente.</p>
+<p>password (str): La password dell’ente.</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: True se il login ha avuto successo, False altrimenti.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.autenticazione.AutenticazioneService.login_page">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.autenticazione.AutenticazioneService.</span></span><span class="sig-name descname"><span class="pre">login_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tipo</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.autenticazione.AutenticazioneService.login_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gestisce il processo di login per medici e pazienti.</p>
+<dl>
+<dt>Args:</dt><dd><p>email (str): L’indirizzo email dell’utente.</p>
+<p>password (str): La password dell’utente.</p>
+<p>tipo (str): Il tipo di utente (‘medico’ o ‘paziente’).</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: True se il login ha avuto successo, False altrimenti.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.autenticazione.AutenticazioneService.logout">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.autenticazione.AutenticazioneService.</span></span><span class="sig-name descname"><span class="pre">logout</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.autenticazione.AutenticazioneService.logout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Esegue il logout dell’utente corrente.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>redirect: Reindirizza l’utente alla pagina home dopo il logout.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.autenticazione.AutenticazioneService.registrazioneEnte">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.autenticazione.AutenticazioneService.</span></span><span class="sig-name descname"><span class="pre">registrazioneEnte</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nome</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">citta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.autenticazione.AutenticazioneService.registrazioneEnte" title="Permalink to this definition">¶</a></dt>
+<dd><p>Registra un nuovo ente sanitario nel sistema.</p>
+<dl>
+<dt>Args:</dt><dd><p>email (str): L’indirizzo email dell’ente.</p>
+<p>password (str): La password dell’ente.</p>
+<p>nome (str): Il nome dell’ente.</p>
+<p>citta (str): La città di ubicazione dell’ente.</p>
+<p>Returns:
+bool: True se la registrazione ha avuto successo, False altrimenti.
+:param email:
+:param nome:
+:param password:
+:param citta:</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.autenticazione.AutenticazioneService.registrazionePaziente">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.autenticazione.AutenticazioneService.</span></span><span class="sig-name descname"><span class="pre">registrazionePaziente</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nome</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cognome</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">CF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cellulare</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">luogoNascita</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">domicilio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataNascita</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sesso</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.autenticazione.AutenticazioneService.registrazionePaziente" title="Permalink to this definition">¶</a></dt>
+<dd><p>Registra un nuovo paziente nel sistema.</p>
+<dl>
+<dt>Args:</dt><dd><p>email (str): L’indirizzo email del paziente.</p>
+<p>password (str): La password del paziente.</p>
+<p>nome (str): Il nome del paziente.</p>
+<p>cognome (str): Il cognome del paziente.</p>
+<p>CF (str): Il codice fiscale del paziente.</p>
+<p>cellulare (str): Il numero di cellulare del paziente.</p>
+<p>luogoNascita (str): Il luogo di nascita del paziente.</p>
+<p>domicilio (str): Il domicilio del paziente.</p>
+<p>dataNascita (str): La data di nascita del paziente (formato YYYY-MM-DD).</p>
+<p>sesso (str): Il genere del paziente (‘M’ o ‘F’).</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: True se la registrazione ha avuto successo, False altrimenti.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.autenticazione.AutenticazioneService.registrazione_pageMedico">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.autenticazione.AutenticazioneService.</span></span><span class="sig-name descname"><span class="pre">registrazione_pageMedico</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nome</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cognome</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iscrizione</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">specializzazione</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">citta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.autenticazione.AutenticazioneService.registrazione_pageMedico" title="Permalink to this definition">¶</a></dt>
+<dd><p>Registra un nuovo medico nel sistema.</p>
+<dl>
+<dt>Args:</dt><dd><p>email (str): L’indirizzo email del medico.</p>
+<p>password (str): La password del medico.</p>
+<p>nome (str): Il nome del medico.</p>
+<p>cognome (str): Il cognome del medico.</p>
+<p>iscrizione (str): Il numero di iscrizione dell’albo medico.</p>
+<p>specializzazione (str): La specializzazione del medico.</p>
+<p>citta (str): La città di residenza del medico.</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: True se la registrazione ha avuto successo, False altrimenti.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.autenticazione.AutenticazioneService.verifica_token_totp">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.autenticazione.AutenticazioneService.</span></span><span class="sig-name descname"><span class="pre">verifica_token_totp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">segreto</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.autenticazione.AutenticazioneService.verifica_token_totp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Questo metodo verifica che il codice fornito dall’utente corrisponde a quello originale</p>
+<p>Args:
+str: segreto rappresenta la stringa del codice originale
+str: token fornito dall’utente</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Bool: True se il codice fornito corrisponde, False altrimenti</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Medicare</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Package Autenticazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-flaskDir.source.autenticazione.UserControl">UserControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-flaskDir.source.autenticazione.AutenticazioneService">AutenticazioneService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prenotazione.html">Package Prenotazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prenotazione.html#module-flaskDir.source.prenotazioni.PrenotazioneControl">PrenotazioneControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prenotazione.html#module-flaskDir.source.prenotazioni.PagamentoControl">PagamentoControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prenotazione.html#module-flaskDir.source.prenotazioni.PrenotazioneService">PrenotazioneService</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to Medicare’s documentation!</a></li>
+      <li>Next: <a href="prenotazione.html" title="next chapter">Package Prenotazione</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2024, Giovanni Casaburi.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/autenticazione.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

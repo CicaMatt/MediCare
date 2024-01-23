@@ -1,0 +1,69 @@
+
+Package MediCare.model.entity
+===============================
+
+AutorizzazioniFSE
+===================
+
+.. automodule:: flaskDir.MediCare.model.entity.AutorizzazioniFSE
+   :members:
+
+ConsultaFarmaco
+================
+
+.. automodule:: flaskDir.MediCare.model.entity.ConsultaFarmaco
+   :members:
+
+DocumentoSanitario
+===================
+
+.. automodule:: flaskDir.MediCare.model.entity.DocumentoSanitario
+   :members:
+
+EnteSanitario
+===============
+
+.. automodule:: flaskDir.MediCare.model.entity.EnteSanitario
+   :members:
+
+Farmaco
+==============
+
+.. automodule:: flaskDir.MediCare.model.entity.Farmaco
+   :members:
+
+FascicoloSanitarioElettronico
+===============================
+
+.. automodule:: flaskDir.MediCare.model.entity.FascicoloSanitarioElettronico
+   :members:
+
+Medici
+========
+
+.. automodule:: flaskDir.MediCare.model.entity.Medici
+   :members:
+
+MetodoPagamento
+=================
+
+.. automodule:: flaskDir.MediCare.model.entity.MetodoPagamento
+   :members:
+
+Paziente
+=========
+
+.. automodule:: flaskDir.MediCare.model.entity.Paziente
+   :members:
+
+Prenotazione
+====================
+
+.. automodule:: flaskDir.MediCare.model.entity.Prenotazione
+   :members:
+
+VisualizzaFarmaco
+=======================
+
+.. automodule:: flaskDir.MediCare.model.entity.VisualizzaFarmaco
+   :members:
