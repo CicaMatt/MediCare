@@ -48,7 +48,6 @@ def fascicolosanitariomedico():
 
 
 @app.route('/prenotazione')
-@paziente_required
 # @login required and user is paziente
 def prenotazione():
     return render_template("Prenotazione.html")
