@@ -73,7 +73,7 @@ def login_page(email, password, tipo):
         codice = genera_token_totp(genera_codice_segreto())
         contenuto = "Hai provato ad accedere a MediCare il giorno " + datetime.now().strftime(
             "%d/%m/%Y %H:%M\n") + codice +("\nSe non sei stato tu prova a contattare l'assistenza di Medicare"
-                                           "all' e-mail medicare.servizi@gmail.com")
+                                           "all' e-mail medicarec14.servizi@gmail.com")
         messaggio = oggetto + contenuto
         sessione = smtplib.SMTP("smtp.gmail.com", 587)
         sessione.ehlo()
