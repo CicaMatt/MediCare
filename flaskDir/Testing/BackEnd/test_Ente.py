@@ -12,7 +12,7 @@ class TestEnte:
         app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:root@localhost:3306/testmedicare"
         app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
         app.config["TESTING"] = True
-        db.init_app(app)
+        #db.init_app(app)
 
         with app.test_client():
             with app.app_context():
