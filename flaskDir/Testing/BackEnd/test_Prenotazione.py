@@ -12,7 +12,7 @@ class TestPrenotazione:
     @pytest.fixture(autouse=True, scope='session')
     def setup(self, request):
         # Configura il database di test
-        app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:lollipop@localhost:3306/testmedicare"
+        app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://root:root@localhost:3306/testmedicare"
         app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
         app.config["TESTING"] = True
         db.init_app(app)
