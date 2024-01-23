@@ -8,7 +8,10 @@ from flaskDir.MediCare.model.entity.Paziente import Paziente
 
 
 class PagamentoService:
-
+    """
+    Classe che fornisce tutti metodi relativi alle funzionalità
+    dei metodi di pagamento dell'utente
+    """
     @classmethod
     def getMetodi(cls, cf):
         """

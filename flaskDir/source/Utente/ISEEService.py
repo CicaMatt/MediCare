@@ -3,7 +3,9 @@ from flaskDir.MediCare.model.entity.Paziente import Paziente
 
 
 class ISEEService:
-
+    """
+    Classe che fornisce tutti i metodi per gestire l'ISEE di un paziente
+    """
     @classmethod
     def changeISEE(cls, cf, newIsee):
         """
@@ -14,7 +16,7 @@ class ISEEService:
         newIsee (float): Nuovo valore dell'ISEE.
 
         Returns:
-        None
+        bool: None se l'inserimento viene fatto correttamente, False se l'ISEE è negativo
         """
         paziente = Paziente.query.filter_by(CF=cf).first()
 

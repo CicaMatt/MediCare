@@ -7,7 +7,10 @@ from flaskDir.MediCare.model.entity.DocumentoSanitario import DocumentoSanitario
 
 
 class FascicoloService:
-
+    """
+    Classe che fornisce tutti i metodi relativi alla visualizzazione e modifica del
+    fascicolo sanitario elettronico.
+    """
     @classmethod
     def getDocumentiSanitari(cls, cf):
         """
@@ -27,19 +30,19 @@ class FascicoloService:
         Aggiunge un nuovo documento sanitario al fascicolo di un paziente.
 
         Args:
-            tipo (str): Tipo del documento sanitario.
-            descrizione (str): Descrizione del documento.
-            richiamo (str): Informazioni sul richiamo associato al documento.
-            codicefiscale (str): Codice fiscale del paziente.
+            tipo (str): Tipo del documento sanitario.\n
+            descrizione (str): Descrizione del documento.\n
+            richiamo (str): Informazioni sul richiamo associato al documento.\n
+            codicefiscale (str): Codice fiscale del paziente.\n
 
         Returns:
             None
         """
         with app.app_context():
             documento = DocumentoSanitario()
-            quantiDocumenti = len(list(db.session.scalars(
+            quantidocumenti = len(list(db.session.scalars(
                 sqlalchemy.select(DocumentoSanitario).where(DocumentoSanitario.titolare == codicefiscale))))
-            documento.NumeroDocumento = "FSE" + str(quantiDocumenti) + tipo[0]
+            documento.NumeroDocumento = "FSE" + str(quantidocumenti) + tipo[0]
             documento.tipo = tipo
             documento.dataEmissione = datetime.date.today()
             documento.descrizione = descrizione

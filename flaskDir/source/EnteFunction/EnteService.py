@@ -6,8 +6,11 @@ from flaskDir.MediCare.model.entity.EnteSanitario import EnteSanitario
 from flaskDir import db, app
 from flaskDir.MediCare.model.entity.Medici import Medico
 
-
 class EnteService:
+    """
+    Classe che fornisce tutti le funzionalità
+    relative all'Ente Sanitario
+    """
     @staticmethod
     def retrieveEnte(email, password):
         """

@@ -9,6 +9,10 @@ from flaskDir.source.Utente.PazienteService import PazienteService
 
 
 class PrenotazioneService:
+    """
+    Classe relativa alle funzionalità prenotazione che richiama i metodi
+    di altre classi per svolgere ulteriori funzionalità
+    """
 
     @classmethod
     def getListaMedici(cls, specializzazione=None, citta=None):
@@ -16,8 +20,8 @@ class PrenotazioneService:
             Restituisce la lista dei medici disponibili.
 
             Args:
-                specializzazione (str): La specializzazione del medico.
-                citta (str): La città in cui cercare i medici.
+                specializzazione (str): La specializzazione del medico.\n
+                citta (str): La città in cui cercare i medici.\n
 
             Returns:
                 list: Lista dei medici filtrati per specializzazione e città.
@@ -74,9 +78,9 @@ class PrenotazioneService:
          Conferma se è possibile prenotare una visita per una certa data e ora.
 
          Args:
-             idmedico (str): L'ID del medico.
-             data (str): La data della prenotazione.
-             ora (str): L'ora della prenotazione.
+             idmedico (str): L'ID del medico.\n
+             data (str): La data della prenotazione.\n
+             ora (str): L'ora della prenotazione.\n
 
          Returns:
              bool: True se è possibile prenotare, False altrimenti.
@@ -98,13 +102,13 @@ class PrenotazioneService:
         Salva una prenotazione nel database.
 
         Args:
-            idmedico (str): L'ID del medico.
-            data (str): La data della prenotazione.
-            ora (str): L'ora della prenotazione.
-            tipo (str): Il tipo di visita (es. Vaccino).
-            CF (str): Il codice fiscale del paziente.
-            prezzo (float): Il prezzo della visita.
-            carta (str): Il numero della carta (default: "SSS").
+            idmedico (str): L'ID del medico.\n
+            data (str): La data della prenotazione.\n
+            ora (str): L'ora della prenotazione.\n
+            tipo (str): Il tipo di visita (es. Vaccino).\n
+            CF (str): Il codice fiscale del paziente.\n
+            prezzo (float): Il prezzo della visita.\n
+            carta (str): Il numero della carta (default: "SSS").\n
 
         Returns:
             bool: True se la prenotazione è stata salvata con successo, False altrimenti.
@@ -151,12 +155,12 @@ class PrenotazioneService:
         Salva una prenotazione di vaccino nel database.
 
         Args:
-            idmedico (str): L'ID del medico.
-            data (str): La data della prenotazione.
-            ora (str): L'ora della prenotazione.
-            tipo (str): Il tipo di visita (es. Vaccino).
-            CF (str): Il codice fiscale del paziente.
-            prezzo (float): Il prezzo della visita (default: 0).
+            idmedico (str): L'ID del medico.\n
+            data (str): La data della prenotazione.\n
+            ora (str): L'ora della prenotazione.\n
+            tipo (str): Il tipo di visita (es. Vaccino).\n
+            CF (str): Il codice fiscale del paziente.\n
+            prezzo (float): Il prezzo della visita (default: 0).\n
 
         Returns:
             bool: True se la prenotazione è stata salvata con successo, False altrimenti.
@@ -189,9 +193,9 @@ class PrenotazioneService:
         Modifica una prenotazione esistente.
 
         Args:
-            id (int): L'ID della prenotazione da modificare.
-            data (str): La nuova data della prenotazione.
-            ora (str): La nuova ora della prenotazione.
+            id (int): L'ID della prenotazione da modificare.\n
+            data (str): La nuova data della prenotazione.\n
+            ora (str): La nuova ora della prenotazione.\n
 
         Returns:
             bool: True se la prenotazione è stata modificata con successo, False altrimenti.
@@ -264,9 +268,9 @@ class PrenotazioneService:
         Conferma la disponibilità di un medico per la prenotazione di un vaccino.
 
         Args:
-        - idmedico (str): Identificativo unico del medico.
-        - data (str): Data della prenotazione nel formato "YYYY-MM-DD".
-        - ora (str): Ora della prenotazione nel formato 24 ore.
+        - idmedico (str): Identificativo unico del medico.\n
+        - data (str): Data della prenotazione nel formato "YYYY-MM-DD".\n
+        - ora (str): Ora della prenotazione nel formato 24 ore.\n
 
         Returns:
         bool: True se il medico è disponibile per la prenotazione, False altrimenti.

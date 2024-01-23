@@ -44,9 +44,9 @@ def login_page(email, password, tipo):
         Gestisce il processo di login per medici e pazienti.
 
         Args:
-            email (str): L'indirizzo email dell'utente.
-            password (str): La password dell'utente.
-            tipo (str): Il tipo di utente ('medico' o 'paziente').
+            email (str): L'indirizzo email dell'utente.\n
+            password (str): La password dell'utente.\n
+            tipo (str): Il tipo di utente ('medico' o 'paziente').\n
 
         Returns:
             bool: True se il login ha avuto successo, False altrimenti.
@@ -105,8 +105,8 @@ def loginEnte_page(email, password):
     Gestisce il processo di login per gli enti sanitari.
 
     Args:
-        email (str): L'indirizzo email dell'ente.
-        password (str): La password dell'ente.
+        email (str): L'indirizzo email dell'ente.\n
+        password (str): La password dell'ente.\n
 
     Returns:
         bool: True se il login ha avuto successo, False altrimenti.
@@ -132,13 +132,13 @@ def registrazione_pageMedico(email, password, nome, cognome, iscrizione, special
         Registra un nuovo medico nel sistema.
 
         Args:
-            email (str): L'indirizzo email del medico.
-            password (str): La password del medico.
-            nome (str): Il nome del medico.
-            cognome (str): Il cognome del medico.
-            iscrizione (str): Il numero di iscrizione dell'albo medico.
-            specializzazione (str): La specializzazione del medico.
-            citta (str): La città di residenza del medico.
+            email (str): L'indirizzo email del medico.\n
+            password (str): La password del medico.\n
+            nome (str): Il nome del medico.\n
+            cognome (str): Il cognome del medico.\n
+            iscrizione (str): Il numero di iscrizione dell'albo medico.\n
+            specializzazione (str): La specializzazione del medico.\n
+            citta (str): La città di residenza del medico.\n
 
         Returns:
             bool: True se la registrazione ha avuto successo, False altrimenti.
@@ -170,16 +170,16 @@ def registrazionePaziente(email, password, nome, cognome, CF, cellulare, luogoNa
        Registra un nuovo paziente nel sistema.
 
        Args:
-           email (str): L'indirizzo email del paziente.
-           password (str): La password del paziente.
-           nome (str): Il nome del paziente.
-           cognome (str): Il cognome del paziente.
-           CF (str): Il codice fiscale del paziente.
-           cellulare (str): Il numero di cellulare del paziente.
-           luogoNascita (str): Il luogo di nascita del paziente.
-           domicilio (str): Il domicilio del paziente.
-           dataNascita (str): La data di nascita del paziente (formato YYYY-MM-DD).
-           sesso (str): Il genere del paziente ('M' o 'F').
+           email (str): L'indirizzo email del paziente.\n
+           password (str): La password del paziente.\n
+           nome (str): Il nome del paziente.\n
+           cognome (str): Il cognome del paziente.\n
+           CF (str): Il codice fiscale del paziente.\n
+           cellulare (str): Il numero di cellulare del paziente.\n
+           luogoNascita (str): Il luogo di nascita del paziente.\n
+           domicilio (str): Il domicilio del paziente.\n
+           dataNascita (str): La data di nascita del paziente (formato YYYY-MM-DD).\n
+           sesso (str): Il genere del paziente ('M' o 'F').\n
 
        Returns:
            bool: True se la registrazione ha avuto successo, False altrimenti.
@@ -211,10 +211,10 @@ def registrazioneEnte(email, password, nome, citta):
     Registra un nuovo ente sanitario nel sistema.
 
     Args:
-        email (str): L'indirizzo email dell'ente.
-        password (str): La password dell'ente.
-        nome (str): Il nome dell'ente.
-        citta (str): La città di ubicazione dell'ente.
+        email (str): L'indirizzo email dell'ente.\n
+        password (str): La password dell'ente.\n
+        nome (str): Il nome dell'ente.\n
+        citta (str): La città di ubicazione dell'ente.\n
 
         Returns:
         bool: True se la registrazione ha avuto successo, False altrimenti.
@@ -251,16 +251,43 @@ def logout():
 
 # GENERAZIONE QR E 2FA
 def genera_codice_segreto():
+    """
+    Metodo che genera il token per il codice dell'Autenticazione a due fattori
+
+    Args:None
+
+    Returns:
+        str: una string a 32 bit rappresentante il codice della 2FA
+    """
     segreto = pyotp.random_base32()
     return segreto
 
 
 def genera_token_totp(segreto):
+    """
+    Questo metodo genera il codice effettivo che verrà mandato al paziente per il login
+
+    Args:
+        str: segreto che rappresenta una stringa a 32 bit del token che genera il codice
+
+    Returns:
+        str: una stringa rappresentante il codice della 2FA
+    """
     totp = pyotp.TOTP(segreto)
     token = totp.now()
     return token
 
 
 def verifica_token_totp(segreto, token):
+    """
+    Questo metodo verifica che il codice fornito dall'utente corrisponde a quello originale
+
+    Args:
+    str: segreto rappresenta la stringa del codice originale
+    str: token fornito dall'utente
+
+    Returns:
+        Bool: True se il codice fornito corrisponde, False altrimenti
+    """
     totp = pyotp.TOTP(segreto)
     return totp.verify(token)

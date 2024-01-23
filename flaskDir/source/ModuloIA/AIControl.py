@@ -10,12 +10,26 @@ feature_blueprint = Blueprint('feature', __name__)
 
 @feature_blueprint.route('/moduloai', )
 def moduloai():
+    """
+        Gestisce la visualizzazione della pagina 'ModuloAI.html'.
+
+        Returns:
+            render_template: La pagina 'ModuloAI.html'.
+        """
     return render_template("ModuloAI.html")
 
 
 @feature_blueprint.route('/moduloai/risultati', methods=['GET', 'POST'])
 @login_required
 def results():
+    """
+        Gestisce la visualizzazione dei risultati del modulo AI, ricevendo i dati dal form e aggiungendo i risultati al
+        fascicolo del paziente. La diagnosi effettuata cambiaerà in base ai dati passato dall'utente.
+
+        Returns:
+            redirect: Reindirizza l'utente alla stessa pagina dopo aver inviato il form.
+            render_template: Mostra la pagina 'FormAI.html' o 'RisultatiAI2.html' a seconda dei risultati disponibili.
+        """
     if request.method == "POST" and session.get('user_role') == "paziente":
         age = int(request.form.get("age"))
         sex = int(request.form.get("sex"))

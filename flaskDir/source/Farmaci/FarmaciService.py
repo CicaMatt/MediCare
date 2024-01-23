@@ -5,7 +5,10 @@ from flaskDir.MediCare.model.entity.Farmaco import Farmaco
 
 
 class FarmaciService:
-
+    """
+    Classe che fornisce tutti i metodi per gestire i farmaci della
+    piattaforma
+    """
     @classmethod
     def getFarmaci(cls):
         """
@@ -35,8 +38,8 @@ class FarmaciService:
         Restituisce una lista di farmaci suggeriti di un determinato tipo, escludendo il farmaco con l'ID specificato.
 
         Args:
-            tipo (str): Il tipo di farmaci da suggerire.
-            id (int): L'ID del farmaco da escludere dalla lista dei suggerimenti.
+            tipo (str): Il tipo di farmaci da suggerire.\n
+            id (int): L'ID del farmaco da escludere dalla lista dei suggerimenti.\n
 
         Returns:
             list: Una lista di farmaci suggeriti.
@@ -50,8 +53,8 @@ class FarmaciService:
         Filtra il catalogo dei farmaci in base alla categoria e/o al prezzo.
 
         Args:
-            categoria (str): La categoria di farmaci da mostrare. Se None, mostra tutti i farmaci.
-            prezzo (float): Il massimo prezzo del farmaco da mostrare. Se 0, non filtra per prezzo.
+            categoria (str): La categoria di farmaci da mostrare. Se None, mostra tutti i farmaci.\n
+            prezzo (float): Il massimo prezzo del farmaco da mostrare. Se 0, non filtra per prezzo.\n
 
         Returns:
             list: Una lista di farmaci filtrati in base alla categoria e/o al prezzo.
