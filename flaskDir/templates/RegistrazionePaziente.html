@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Loopple/loopple-public-assets@main/motion-tailwind/motion-tailwind.css" rel="stylesheet">
+        <title>Registrazione Paziente</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Loopple/loopple-public-assets@main/motion-tailwind/motion-tailwind.css">
               <link rel="stylesheet" href="../static/grafica/main.css">
 
     </head>
@@ -115,8 +116,8 @@
 
     <script>
         function validatePassword() {
-            var passwordInput = document.getElementById("password");
-            var errorMessage = document.getElementById("passwordErrorMessage");
+            let passwordInput = document.getElementById("password");
+            let errorMessage = document.getElementById("passwordErrorMessage");
 
             if (passwordInput.value.length < 8) {
                 errorMessage.style.display = "block";

@@ -1,11 +1,12 @@
 from flask import Blueprint, render_template, request, redirect, url_for, jsonify
 from flask_login import current_user, login_required
 import datetime
-from flaskDir.source.Fascicolo.FascicoloService import FascicoloService
+from flaskDir.source.Utente.FascicoloService import FascicoloService
 from flaskDir.source.Utente.PazienteService import PazienteService
 from flaskDir.source.prenotazioni.PrenotazioneService import PrenotazioneService
 
 areautente_blueprint = Blueprint('areautente', __name__)
+
 
 @areautente_blueprint.route('/storico')
 @login_required
@@ -16,9 +17,11 @@ def storico():
     Returns:
     str: Pagina HTML dello storico delle prenotazioni.
     """
-    return render_template("Storico.html", lista=PrenotazioneService.getListaPrenotazioni(current_user), oggi=datetime.date.today())
+    return render_template("Storico.html", lista=PrenotazioneService.getListaPrenotazioni(current_user),
+                           oggi=datetime.date.today())
 
-@areautente_blueprint.route('/storicoMedico',methods=['GET','POST'])
+
+@areautente_blueprint.route('/storicoMedico', methods=['GET', 'POST'])
 @login_required
 def getstoricoMedico():
     """
@@ -28,11 +31,11 @@ def getstoricoMedico():
     str: Pagina HTML dello storico delle prenotazioni del medico.
     """
     medico = request.args.get('medico')
-    return render_template("StoricoPrenotazioniMedico.html", lista=PrenotazioneService.getListaPrenotazioniMedico(medico))
+    return render_template("StoricoPrenotazioniMedico.html",
+                           lista=PrenotazioneService.getListaPrenotazioniMedico(medico))
 
 
-
-@areautente_blueprint.route('/fascicolo',methods=['GET','POST'])
+@areautente_blueprint.route('/fascicolo', methods=['GET', 'POST'])
 @login_required
 def getFascicolobyUtente(paziente=None):
     """
@@ -46,10 +49,11 @@ def getFascicolobyUtente(paziente=None):
     """
     if paziente is None:
         paziente = request.args.get('paziente')
-    return render_template("FascicoloElettronico.html",listaDOC= FascicoloService.getDocumentiSanitari(paziente).all(),cfPaziente=paziente)
+    return render_template("FascicoloElettronico.html", listaDOC=FascicoloService.getDocumentiSanitari(paziente).all(),
+                           cfPaziente=paziente)
 
 
-@areautente_blueprint.route('/eliminapaziente',methods=['GET','POST'])
+@areautente_blueprint.route('/eliminapaziente', methods=['GET', 'POST'])
 @login_required
 def eliminaPaziente():
     """
@@ -69,7 +73,8 @@ def eliminaPaziente():
     else:
         return jsonify({"error": "Errore durante l'eliminazione del paziente"}), 500
 
-@areautente_blueprint.route('/addDocumento',methods=['GET','POST'])
+
+@areautente_blueprint.route('/addDocumento', methods=['GET', 'POST'])
 @login_required
 def addDocumento():
     """
@@ -79,18 +84,17 @@ def addDocumento():
     str: Redirect alla pagina del fascicolo elettronico.
     """
     if request.method == 'POST':
-        tipo=request.form.get('tipo')
-        richiamo=None
+        tipo = request.form.get('tipo')
+        richiamo = None
         descrizione = request.form.get('descrizione')
         paziente = request.form.get('cf')
         if tipo == "Vaccino":
-            richiamo=request.form.get('richiamo')
-        FascicoloService.addDocumento(tipo,descrizione,richiamo,paziente)
+            richiamo = request.form.get('richiamo')
+        FascicoloService.addDocumento(tipo, descrizione, richiamo, paziente)
     return redirect(url_for('areautente.getFascicolobyUtente', paziente=paziente))
 
 
-
-@areautente_blueprint.route('/modificaPrenotazione', methods=['GET','POST'])
+@areautente_blueprint.route('/modificaPrenotazione', methods=['GET', 'POST'])
 def modificaPrenotazione():
     """
     Modifica una prenotazione.
@@ -99,10 +103,12 @@ def modificaPrenotazione():
     str: Pagina HTML dello storico delle prenotazioni con il risultato dell'operazione.
     """
     if request.method == 'POST':
-        data=request.form.get('data')
-        ora=request.form.get('ora')
-        id=request.form.get('id')
+        data = request.form.get('data')
+        ora = request.form.get('ora')
+        id = request.form.get('id')
         if PrenotazioneService.modificaPrenotazione(id, data, ora):
-            return render_template("Storico.html", lista=PazienteService.getListaPrenotazioni(current_user), messaggio=None, oggi=datetime.date.today())
+            return render_template("Storico.html", lista=PazienteService.getListaPrenotazioni(current_user),
+                                   messaggio=None, oggi=datetime.date.today())
         else:
-            return render_template("Storico.html", lista=PazienteService.getListaPrenotazioni(current_user), messaggio="messaggio", oggi=datetime.date.today())
+            return render_template("Storico.html", lista=PazienteService.getListaPrenotazioni(current_user),
+                                   messaggio="messaggio", oggi=datetime.date.today())

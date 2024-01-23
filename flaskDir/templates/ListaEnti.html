@@ -79,47 +79,48 @@
 
 
 							<!--Esempio dati medico privato-->
-							<tr>
-								<form action="{{url_for('prenotazioni.saveVaccino')}}" method="POST">
-									<input type="hidden" name="medico" value="{{centro.email}}">
-									<input type="hidden" name="richiamo" value="{{richiamo}}">
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<div class="flex items-center">
-										<div class="flex-shrink-0 w-10 h-10">
-											<img class="w-full h-full rounded-full"
-                                                src="{{ url_for('static', filename='images/hospital-building.png') }}"
-                                                alt="" />
-                                        </div>
+                                <tbody>
+							        <tr>
+								        <form action="{{url_for('prenotazioni.saveVaccino')}}" method="POST">
+									        <input type="hidden" name="medico" value="{{centro.email}}">
+									        <input type="hidden" name="richiamo" value="{{richiamo}}">
+								    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+									    <div class="flex items-center">
+										    <div class="flex-shrink-0 w-10 h-10">
+											    <img class="w-full h-full rounded-full"
+                                                    src="{{ url_for('static', filename='images/hospital-building.png') }}"
+                                                    alt="" />
+                                            </div>
 											<div class="ml-3">
 												<div class="text-gray-900 whitespace-no-wrap">
 													{{centro.reparto}}
                                                 </div>
 											</div>
 										</div>
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<p class="text-gray-900 whitespace-no-wrap">{{centro.email}}</p>
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<p class="text-gray-900 whitespace-no-wrap">
-										{{centro.città}}
-									</p>
-								</td>
-								<td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<span
-                                        class="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">
+								    </td>
+								    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+									    <p class="text-gray-900 whitespace-no-wrap">{{centro.email}}</p>
+								    </td>
+								    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+									    <p class="text-gray-900 whitespace-no-wrap">
+										    {{centro.città}}
+									    </p>
+								    </td>
+								    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+									    <span
+                                            class="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">
                                         <span aria-hidden
                                             class="absolute inset-0 bg-orange-200 opacity-50 rounded-full"></span>
-									<span class="relative">{{centro.ente_sanitario}}</span>
+									    <span class="relative">{{centro.ente_sanitario}}</span>
 									</span>
-								</td>
-                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-									<p class="text-gray-900 whitespace-no-wrap">
-                                        <button type="submit" id="open-modal" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onclick="openModal()">Prenota</button>
-									</p>
-                                </td>
-								</form>
-							</tr>
+								    </td>
+                                    <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+									    <p class="text-gray-900 whitespace-no-wrap">
+                                            <button type="submit" id="open-modal" class="font-medium text-blue-600 dark:text-blue-500 hover:underline" onclick="openModal()">Prenota</button>
+									    </p>
+                                    </td>
+                                        </form>
+							        </tr>
 
 
 							<!--Fine esempio dati medico privato-->
@@ -133,10 +134,7 @@
 
 						</tbody>
 					</table>
-
-
 				</div>
-			</div>
 		</div>
 </div>
 
@@ -163,13 +161,13 @@
             </div>
         </div>
     </div>
-
+</div>
 
 
 
 <!-- Script per il primo modal -->
 <script>
-    var modalId = "";  // Define a global variable to store the current modal ID
+    let modalId = "";  // Define a global variable to store the current modal ID
 
     function getId(event) {
         id = event.target.id;
@@ -180,7 +178,6 @@
         modalId = idModal;  // Set the global variable to the current modal ID
         const openModalBtn = document.getElementById(idModal);
         const closeModalBtn = document.getElementById("close-modal");
-        const modal = document.getElementById("modal");
 
         openModalBtn.addEventListener("click", openModal);
         closeModalBtn.addEventListener("click", closeModal);

@@ -2,10 +2,10 @@ from functools import wraps
 
 import bcrypt
 from flask import session, redirect, url_for
+from flask_login import UserMixin
 
 from flaskDir import db
-from flaskDir import login
-from flask_login import UserMixin
+
 
 def medico_required(func):
     """
@@ -18,12 +18,15 @@ def medico_required(func):
     - Ritorna la funzione originale se l'utente ha il ruolo di medico, altrimenti reindirizza alla home.
 
     """
+
     @wraps
     def wrapper(*args, **kwargs):
         if session.get('user_role') == 'medico':
             return func(*args, **kwargs)
         return redirect(url_for('home'))
+
     return wrapper
+
 
 class Medico(db.Model, UserMixin):
     """
@@ -56,9 +59,10 @@ class Medico(db.Model, UserMixin):
     ente_sanitario = db.Column(db.String(255), db.ForeignKey('ente_sanitario.email'), nullable=True)
     iscrizione_albo = db.Column(db.Integer)
     specializzazione = db.Column(db.String(255), nullable=False)
+    # noinspection NonAsciiCharacters
     città = db.Column(db.String(255), nullable=False)
-    tariffa=db.Column(db.Numeric(precision=6, scale=2), nullable=False)
-    prenotazioni=db.relationship('Prenotazione',backref="prenMed",lazy=True)
+    tariffa = db.Column(db.Numeric(precision=6, scale=2), nullable=False)
+    prenotazioni = db.relationship('Prenotazione', backref="prenMed", lazy=True)
 
     def set_password(self, password):
         """
@@ -71,6 +75,7 @@ class Medico(db.Model, UserMixin):
         salt = bcrypt.gensalt()
         hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
         self.password_hash = hashed
+
     def check_password(self, password):
         """
         Verifica se la password fornita è corretta.
@@ -82,7 +87,7 @@ class Medico(db.Model, UserMixin):
         - bool: True se la password è corretta, False altrimenti.
 
         """
-        return bcrypt.checkpw(password.encode('utf-8'),self.password_hash.encode('utf-8'))
+        return bcrypt.checkpw(password.encode('utf-8'), self.password_hash.encode('utf-8'))
 
     def get_id(self):
         """

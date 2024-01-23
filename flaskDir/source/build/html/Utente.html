@@ -1,0 +1,329 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Package Utente &#8212; Medicare 1.00.00 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Package ModuloIA" href="AIPackage.html" />
+    <link rel="prev" title="Package Medico" href="medico.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="package-utente">
+<h1>Package Utente<a class="headerlink" href="#package-utente" title="Permalink to this heading">¶</a></h1>
+</section>
+<section id="module-flaskDir.source.Utente.AreaUtenteControl">
+<span id="utentecontrol"></span><h1>UtenteControl<a class="headerlink" href="#module-flaskDir.source.Utente.AreaUtenteControl" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.Utente.AreaUtenteControl.addDocumento">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.Utente.AreaUtenteControl.</span></span><span class="sig-name descname"><span class="pre">addDocumento</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Utente.AreaUtenteControl.addDocumento" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aggiunge un documento al fascicolo elettronico.</p>
+<p>Returns:
+str: Redirect alla pagina del fascicolo elettronico.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.Utente.AreaUtenteControl.eliminaPaziente">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.Utente.AreaUtenteControl.</span></span><span class="sig-name descname"><span class="pre">eliminaPaziente</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Utente.AreaUtenteControl.eliminaPaziente" title="Permalink to this definition">¶</a></dt>
+<dd><p>Elimina il paziente corrente.</p>
+<p>Returns:
+JSON: Risposta JSON che indica l’esito dell’operazione.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.Utente.AreaUtenteControl.getFascicolobyUtente">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.Utente.AreaUtenteControl.</span></span><span class="sig-name descname"><span class="pre">getFascicolobyUtente</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">paziente</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Utente.AreaUtenteControl.getFascicolobyUtente" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce la pagina del fascicolo elettronico per l’utente corrente.</p>
+<p>Args:
+- paziente (str, optional): Il codice fiscale del paziente. Se non specificato, viene letto dalla richiesta.</p>
+<p>Returns:
+str: Pagina HTML del fascicolo elettronico.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.Utente.AreaUtenteControl.getstoricoMedico">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.Utente.AreaUtenteControl.</span></span><span class="sig-name descname"><span class="pre">getstoricoMedico</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Utente.AreaUtenteControl.getstoricoMedico" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce la pagina dello storico delle prenotazioni per un medico.</p>
+<p>Returns:
+str: Pagina HTML dello storico delle prenotazioni del medico.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.Utente.AreaUtenteControl.modificaPrenotazione">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.Utente.AreaUtenteControl.</span></span><span class="sig-name descname"><span class="pre">modificaPrenotazione</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Utente.AreaUtenteControl.modificaPrenotazione" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modifica una prenotazione.</p>
+<p>Returns:
+str: Pagina HTML dello storico delle prenotazioni con il risultato dell’operazione.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.Utente.AreaUtenteControl.storico">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.Utente.AreaUtenteControl.</span></span><span class="sig-name descname"><span class="pre">storico</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Utente.AreaUtenteControl.storico" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce la pagina dello storico delle prenotazioni per l’utente corrente.</p>
+<p>Returns:
+str: Pagina HTML dello storico delle prenotazioni.</p>
+</dd></dl>
+
+</section>
+<section id="module-flaskDir.source.Utente.ISEEControl">
+<span id="iseecontrol"></span><h1>ISEEControl<a class="headerlink" href="#module-flaskDir.source.Utente.ISEEControl" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.Utente.ISEEControl.modificaISEE">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.Utente.ISEEControl.</span></span><span class="sig-name descname"><span class="pre">modificaISEE</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Utente.ISEEControl.modificaISEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modifica l’ISEE di un paziente.</p>
+<p>Returns:
+str: Pagina HTML delle informazioni personali.</p>
+</dd></dl>
+
+</section>
+<section id="module-flaskDir.source.Utente.PazienteService">
+<span id="paziente-service"></span><h1>Paziente Service<a class="headerlink" href="#module-flaskDir.source.Utente.PazienteService" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="flaskDir.source.Utente.PazienteService.PazienteService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">flaskDir.source.Utente.PazienteService.</span></span><span class="sig-name descname"><span class="pre">PazienteService</span></span><a class="headerlink" href="#flaskDir.source.Utente.PazienteService.PazienteService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Questa classe fornisce tutti i metodi per le funzionalità
+relative al paziente, essi vengono usati anche da altre classi</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.Utente.PazienteService.PazienteService.eliminaPaziente">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">eliminaPaziente</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Utente.PazienteService.PazienteService.eliminaPaziente" title="Permalink to this definition">¶</a></dt>
+<dd><p>Elimina un paziente dal database e tutti i suoi dati correlati.</p>
+<p>Args:
+cf (str): Codice fiscale del paziente.</p>
+<p>Returns:
+bool: True se l’eliminazione ha avuto successo, False altrimenti.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.Utente.PazienteService.PazienteService.getListaPrenotazioni">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getListaPrenotazioni</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Utente.PazienteService.PazienteService.getListaPrenotazioni" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ottiene la lista delle prenotazioni di un paziente.</p>
+<p>Args:
+user (Paziente): Oggetto Paziente.</p>
+<p>Returns:
+list: Lista delle prenotazioni del paziente.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.Utente.PazienteService.PazienteService.getListaVaccini">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getListaVaccini</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Utente.PazienteService.PazienteService.getListaVaccini" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ottiene la lista dei documenti sanitari di tipo “Vaccino” di un paziente.</p>
+<p>Args:
+user (Paziente): Oggetto Paziente.</p>
+<p>Returns:
+list: Lista dei documenti sanitari di tipo “Vaccino” del paziente.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.Utente.PazienteService.PazienteService.getmoduloAIresult">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getmoduloAIresult</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Utente.PazienteService.PazienteService.getmoduloAIresult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prende il documento Sanitario relativo al risultato della diagnosi cardiaca effettuata dal
+modulo di IA.</p>
+<p>Args:
+user(Paziente): il paziente di cui si vuole trovare il documento Sanitario</p>
+<p>Returns:
+DocumentoSanitario: il documento Sanitario relativo alla diagnosi,None se non è presente</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.Utente.PazienteService.PazienteService.retrievePaziente">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">retrievePaziente</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Utente.PazienteService.PazienteService.retrievePaziente" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recupera un paziente dal database basandosi su email e password.</p>
+<p>Args:
+email (str): Indirizzo email del paziente.</p>
+<p>password (str): Password del paziente.</p>
+<p>Returns:
+Paziente or None: Oggetto Paziente se trovato, altrimenti None.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-flaskDir.source.Utente.ISEEService">
+<span id="iseeservice"></span><h1>ISEEService<a class="headerlink" href="#module-flaskDir.source.Utente.ISEEService" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="flaskDir.source.Utente.ISEEService.ISEEService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">flaskDir.source.Utente.ISEEService.</span></span><span class="sig-name descname"><span class="pre">ISEEService</span></span><a class="headerlink" href="#flaskDir.source.Utente.ISEEService.ISEEService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Classe che fornisce tutti i metodi per gestire l’ISEE di un paziente</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.Utente.ISEEService.ISEEService.changeISEE">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">changeISEE</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">newIsee</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Utente.ISEEService.ISEEService.changeISEE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modifica l’ISEE di un paziente.</p>
+<p>Args:
+cf (str): Codice fiscale del paziente.
+newIsee (float): Nuovo valore dell’ISEE.</p>
+<p>Returns:
+bool: None se l’inserimento viene fatto correttamente, False se l’ISEE è negativo</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-flaskDir.source.Utente.FascicoloService">
+<span id="fascicoloservice"></span><h1>FascicoloService<a class="headerlink" href="#module-flaskDir.source.Utente.FascicoloService" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="flaskDir.source.Utente.FascicoloService.FascicoloService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">flaskDir.source.Utente.FascicoloService.</span></span><span class="sig-name descname"><span class="pre">FascicoloService</span></span><a class="headerlink" href="#flaskDir.source.Utente.FascicoloService.FascicoloService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Classe che fornisce tutti i metodi relativi alla visualizzazione e modifica del
+fascicolo sanitario elettronico.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.Utente.FascicoloService.FascicoloService.addDocumento">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">addDocumento</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tipo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">descrizione</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">richiamo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">codicefiscale</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Utente.FascicoloService.FascicoloService.addDocumento" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aggiunge un nuovo documento sanitario al fascicolo di un paziente.</p>
+<dl>
+<dt>Args:</dt><dd><p>tipo (str): Tipo del documento sanitario.</p>
+<p>descrizione (str): Descrizione del documento.</p>
+<p>richiamo (str): Informazioni sul richiamo associato al documento.</p>
+<p>codicefiscale (str): Codice fiscale del paziente.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.Utente.FascicoloService.FascicoloService.getDocumentiSanitari">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getDocumentiSanitari</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cf</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Utente.FascicoloService.FascicoloService.getDocumentiSanitari" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce tutti i documenti sanitari associati a un paziente.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>cf (str): Codice fiscale del paziente.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list: Lista dei documenti sanitari associati al paziente.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Medicare</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="autenticazione.html">Package Autenticazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autenticazione.html#module-flaskDir.source.autenticazione.UserControl">UserControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autenticazione.html#module-flaskDir.source.autenticazione.AutenticazioneService">AutenticazioneService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prenotazione.html">Package Prenotazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prenotazione.html#module-flaskDir.source.prenotazioni.PrenotazioneControl">PrenotazioneControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prenotazione.html#module-flaskDir.source.prenotazioni.PagamentoControl">PagamentoControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prenotazione.html#module-flaskDir.source.prenotazioni.PrenotazioneService">PrenotazioneService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ente.html">Package EnteFunction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ente.html#module-flaskDir.source.EnteFunction.EnteControl">EnteControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ente.html#module-flaskDir.source.EnteFunction.EnteService">EnteService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="farmaci.html">Package Farmaci</a></li>
+<li class="toctree-l1"><a class="reference internal" href="farmaci.html#module-flaskDir.source.Farmaci.FarmaciControl">FarmaciControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="farmaci.html#module-flaskDir.source.Farmaci.FarmaciService">FarmaciService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="medico.html">Package Medico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="medico.html#module-flaskDir.source.Medico.MedicoControl">MedicoControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="medico.html#module-flaskDir.source.Medico.MedicoService">MedicoService</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Package Utente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-flaskDir.source.Utente.AreaUtenteControl">UtenteControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-flaskDir.source.Utente.ISEEControl">ISEEControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-flaskDir.source.Utente.PazienteService">Paziente Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-flaskDir.source.Utente.ISEEService">ISEEService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-flaskDir.source.Utente.FascicoloService">FascicoloService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AIPackage.html">Package ModuloIA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AIPackage.html#module-flaskDir.source.ModuloIA.AIControl">AIControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AIPackage.html#module-flaskDir.source.ModuloIA.AIService">AIService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html">Package MediCare.model.entity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.AutorizzazioniFSE">AutorizzazioniFSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.ConsultaFarmaco">ConsultaFarmaco</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.DocumentoSanitario">DocumentoSanitario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.EnteSanitario">EnteSanitario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.Farmaco">Farmaco</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.FascicoloSanitarioElettronico">FascicoloSanitarioElettronico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.Medici">Medici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.MetodoPagamento">MetodoPagamento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.Paziente">Paziente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.Prenotazione">Prenotazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.VisualizzaFarmaco">VisualizzaFarmaco</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="medico.html" title="previous chapter">Package Medico</a></li>
+      <li>Next: <a href="AIPackage.html" title="next chapter">Package ModuloIA</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2024, Giovanni Casaburi.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/Utente.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

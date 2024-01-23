@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Loopple/loopple-public-assets@main/motion-tailwind/motion-tailwind.css" rel="stylesheet">
+        <title>LoginEnte</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Loopple/loopple-public-assets@main/motion-tailwind/motion-tailwind.css">
               <link rel="stylesheet" href="../static/grafica/main.css">
 
     </head>
@@ -12,7 +13,7 @@
         <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
             <a href="{{url_for('home')}}" class="flex items-center">
                 <img src="{{ url_for('static', filename='images/Logo.png') }}" class="h-10" alt="MediCare Logo" />
-                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">MediCare</span>
+                <span class="self-center text-xl font-semibold whitespace-nowrap text-gray-50 dark:text-white">MediCare</span>
             </a>
 
         </div>
@@ -44,7 +45,7 @@
             <label for="password" class="mb-2 text-sm text-start text-grey-900">Password</label>
             <input name="password"  id="password" type="password" placeholder="Inserisci la password" class="border border-grey-900 flex items-center w-full px-5 py-4 mb-5 mr-2 text-sm font-medium outline-none focus:bg-grey-400 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
 
-            <button type="submit" class="bg-navbarreg w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">Accedi</button>
+            <button type="submit" class="bg-blue-500 w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-blue-700 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">Accedi</button>
             <p class="text-sm leading-relaxed text-grey-900">Non sei ancora registrato? <a href="{{url_for('registraente')}}" class="font-bold text-grey-700">Crea Account</a></p>
           </form>
         </div>

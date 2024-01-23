@@ -15,6 +15,28 @@
     width: 100%;
 }
 
+    .overflow-y-auto::-webkit-scrollbar{
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.overflow-y-auto, body {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+
+html, body {
+  margin: 0;
+  background-color: #15202b;
+}
+
+svg.paint-icon {
+  fill: currentcolor;
+}
+
 </style>
 
 <body class="bg-navbarreg rounded-lg">
@@ -109,28 +131,33 @@
     <div class="flex flex-wrap items-start justify-start">
         {% set current=giorni[0] %}
         {% set succ=giorni[1] %}
+        {% set partenza=giorni[2] %}
         {% for i in range(day,current,7) %}
         <div class="inline-flex items-center justify-start h-full w-full">
             {% for j in range(i,i+7) %}
-            {% if j <= current %}
+              {% if j <= current %}
             <div id="open-modal{{j}}" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">{{j}}</p>
             </div>
-            {% endif %}
+              {% else %}
+            <div id="open-modal{{j}}" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
+                <p class="text-sm font-medium text-gray-800">{{j-current}}</p>
+            </div>
+              {% endif %}
             {% endfor %}
         </div>
-            {% endfor %}
-        {% for i in range(1,succ,7) %}
+        {% endfor %}
+        {% for i in range(partenza+1,succ,7) %}
         <div class="inline-flex items-center justify-start h-full w-full">
             {% for j in range(i,i+7) %}
-            {% if j <= succ %}
+              {% if j <= succ %}
             <div id="open-modal{{j}}" class="flex items-start justify-start w-40 h-full pl-2 pr-32 pt-2.5 pb-24 border border-gray-200" onclick="getId(event)">
                 <p class="text-sm font-medium text-gray-800">{{j}}</p>
             </div>
-            {% endif %}
+              {% endif %}
             {% endfor %}
         </div>
-            {% endfor %}
+        {% endfor %}
 
     </div>
 </div>
@@ -177,7 +204,7 @@
                       <label for="category" class="block mb-2 text-sm font-medium text-gray-900">Seleziona l'orario tra quelli disponibili</label>
                       <select id="category" name="ora" class="bg-navbarreg border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5">
 
-                          <option selected="9" value="9">9:00</option>
+                          <option selected="selected" value="9">9:00</option>
                           <option value="10">10:00</option>
                           <option value="11">11:00</option>
                           <option value="12">12:00</option>
@@ -206,6 +233,16 @@
                           {% endif %}
                       </select>
                   </div>
+                  {% if current_user.ISEE_ordinario %}
+               {% if current_user.ISEE_ordinario <= 20000 %}
+                     <p class="mt-4 mb-4 text-sm font-bold text-black text-center">Sconto ISEE applicato.</p>
+               {% endif %}
+                  {% endif %}
+               {% if not carte %}
+                    <div class="mt-6 flex items-center justify-center gap-x-6">
+                            <a href="{{url_for('informazionipersonali.getMetodi')}}"  type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Aggiungi carta</a>
+                    </div>
+               {% endif %}
               </div>
           </div>
         </div>
@@ -236,40 +273,13 @@
 
 
 
-    <style>
-    .overflow-y-auto::-webkit-scrollbar, .overflow-y-scroll::-webkit-scrollbar, .overflow-x-auto::-webkit-scrollbar, .overflow-x::-webkit-scrollbar, .overflow-x-scroll::-webkit-scrollbar, .overflow-y::-webkit-scrollbar, body::-webkit-scrollbar {
-  display: none;
-}
 
-/* Hide scrollbar for IE, Edge and Firefox */
-.overflow-y-auto, .overflow-y-scroll, .overflow-x-auto, .overflow-x, .overflow-x-scroll, .overflow-y, body {
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
-}
-
-.bg-dim-700 {
-  --bg-opacity: 1;
-  background-color: #192734;
-}
-
-html, body {
-  margin: 0;
-  background-color: #15202b;
-}
-
-svg.paint-icon {
-  fill: currentcolor;
-}
-
-</style>
 
 <script>
-    var modalId = "";  // Define a global variable to store the current modal ID
+    let modalId = "";  // Define a global variable to store the current modal ID
 
     function getId(event) {
-        id = event.target.id;
+        let id = event.target.id;
         setModal(id);
     }
 
@@ -277,7 +287,6 @@ svg.paint-icon {
         modalId = idModal;  // Set the global variable to the current modal ID
         const openModalBtn = document.getElementById(idModal);
         const closeModalBtn = document.getElementById("close-modal");
-        const modal = document.getElementById("modal");
         document.getElementById("myForm")["giorno"].value=openModalBtn.children[0].innerHTML
 
         openModalBtn.addEventListener("click", openModal);
@@ -302,13 +311,6 @@ svg.paint-icon {
         document.getElementById("myForm").submit();
     }
 </script>
-
-
-
-
-
-
-
 
 
 

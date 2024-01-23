@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Package Medico &#8212; Medicare 1.00.00 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Package Utente" href="Utente.html" />
+    <link rel="prev" title="Package Farmaci" href="farmaci.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="package-medico">
+<h1>Package Medico<a class="headerlink" href="#package-medico" title="Permalink to this heading">¶</a></h1>
+</section>
+<section id="module-flaskDir.source.Medico.MedicoControl">
+<span id="medicocontrol"></span><h1>MedicoControl<a class="headerlink" href="#module-flaskDir.source.Medico.MedicoControl" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.Medico.MedicoControl.eliminaMedico">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.Medico.MedicoControl.</span></span><span class="sig-name descname"><span class="pre">eliminaMedico</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Medico.MedicoControl.eliminaMedico" title="Permalink to this definition">¶</a></dt>
+<dd><p>Elimina il medico corrente dalla base di dati.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>jsonify: Risposta JSON che indica il successo o l’errore dell’operazione.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.Medico.MedicoControl.getListaPazienti">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.Medico.MedicoControl.</span></span><span class="sig-name descname"><span class="pre">getListaPazienti</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Medico.MedicoControl.getListaPazienti" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce la pagina HTML con la lista dei pazienti associati a un medico.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>render_template: Template HTML con la lista dei pazienti.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-flaskDir.source.Medico.MedicoService">
+<span id="medicoservice"></span><h1>MedicoService<a class="headerlink" href="#module-flaskDir.source.Medico.MedicoService" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="flaskDir.source.Medico.MedicoService.MedicoService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">flaskDir.source.Medico.MedicoService.</span></span><span class="sig-name descname"><span class="pre">MedicoService</span></span><a class="headerlink" href="#flaskDir.source.Medico.MedicoService.MedicoService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Classe che fornisce dei servizi relativi al medico per implementare
+le sue funzionalità e ad altre classi che ne fanno l’uso</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.Medico.MedicoService.MedicoService.addMedicotoLista">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">addMedicotoLista</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">medico</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Medico.MedicoService.MedicoService.addMedicotoLista" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aggiunge un medico alla lista dei medici.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>medico (Medico): Oggetto Medico da aggiungere alla lista.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.Medico.MedicoService.MedicoService.filtraMedici">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">filtraMedici</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">specializzazione</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">citta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Medico.MedicoService.MedicoService.filtraMedici" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filtra i medici in base alla specializzazione e/o alla città.</p>
+<dl>
+<dt>Args:</dt><dd><p>specializzazione (str): Specializzazione del medico.</p>
+<p>citta (str): Città del medico.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list: Lista di oggetti Medico filtrati.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.Medico.MedicoService.MedicoService.filtraMediciv2">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">filtraMediciv2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">specializzazione</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">citta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Medico.MedicoService.MedicoService.filtraMediciv2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Versione avanzata del filtro dei medici in base alla specializzazione e/o alla città.</p>
+<dl>
+<dt>Args:</dt><dd><p>specializzazione (str): Specializzazione del medico.</p>
+<p>citta (str): Città del medico.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list: Lista di oggetti Medico filtrati.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.Medico.MedicoService.MedicoService.getListaCentri">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getListaCentri</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Medico.MedicoService.MedicoService.getListaCentri" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce la lista di tutti i centri specializzati in vaccini.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>list: Lista di oggetti Medico.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.Medico.MedicoService.MedicoService.getListaMedici">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getListaMedici</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Medico.MedicoService.MedicoService.getListaMedici" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce la lista di tutti i medici.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>list: Lista di oggetti Medico.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.Medico.MedicoService.MedicoService.getMedico">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getMedico</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idMedico</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Medico.MedicoService.MedicoService.getMedico" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce le informazioni di un medico specifico.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>idMedico (str): Email del medico.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Medico: Oggetto Medico corrispondente all’ID.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.Medico.MedicoService.MedicoService.getPazienti">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getPazienti</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dottore</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Medico.MedicoService.MedicoService.getPazienti" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce la lista dei pazienti associati a un medico specifico.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>dottore (str): Email del medico.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list: Lista dei pazienti associati al medico.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.Medico.MedicoService.MedicoService.retrieveMedico">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">retrieveMedico</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">password</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Medico.MedicoService.MedicoService.retrieveMedico" title="Permalink to this definition">¶</a></dt>
+<dd><p>Recupera un medico dal database in base all’email e verifica la password.</p>
+<dl>
+<dt>Args:</dt><dd><p>email (str): Email del medico.</p>
+<p>password (str): Password del medico.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Medico: Oggetto Medico se l’autenticazione è riuscita, altrimenti None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.Medico.MedicoService.MedicoService.rimuoviMedico">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rimuoviMedico</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Medico.MedicoService.MedicoService.rimuoviMedico" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rimuove un medico dal database.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>email (str): Email del medico da rimuovere.</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: True se la rimozione è avvenuta con successo, altrimenti False.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Medicare</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="autenticazione.html">Package Autenticazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autenticazione.html#module-flaskDir.source.autenticazione.UserControl">UserControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autenticazione.html#module-flaskDir.source.autenticazione.AutenticazioneService">AutenticazioneService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prenotazione.html">Package Prenotazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prenotazione.html#module-flaskDir.source.prenotazioni.PrenotazioneControl">PrenotazioneControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prenotazione.html#module-flaskDir.source.prenotazioni.PagamentoControl">PagamentoControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prenotazione.html#module-flaskDir.source.prenotazioni.PrenotazioneService">PrenotazioneService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ente.html">Package EnteFunction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ente.html#module-flaskDir.source.EnteFunction.EnteControl">EnteControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ente.html#module-flaskDir.source.EnteFunction.EnteService">EnteService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="farmaci.html">Package Farmaci</a></li>
+<li class="toctree-l1"><a class="reference internal" href="farmaci.html#module-flaskDir.source.Farmaci.FarmaciControl">FarmaciControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="farmaci.html#module-flaskDir.source.Farmaci.FarmaciService">FarmaciService</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Package Medico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-flaskDir.source.Medico.MedicoControl">MedicoControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-flaskDir.source.Medico.MedicoService">MedicoService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utente.html">Package Utente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utente.html#module-flaskDir.source.Utente.AreaUtenteControl">UtenteControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utente.html#module-flaskDir.source.Utente.ISEEControl">ISEEControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utente.html#module-flaskDir.source.Utente.PazienteService">Paziente Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utente.html#module-flaskDir.source.Utente.ISEEService">ISEEService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utente.html#module-flaskDir.source.Utente.FascicoloService">FascicoloService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AIPackage.html">Package ModuloIA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AIPackage.html#module-flaskDir.source.ModuloIA.AIControl">AIControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AIPackage.html#module-flaskDir.source.ModuloIA.AIService">AIService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html">Package MediCare.model.entity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.AutorizzazioniFSE">AutorizzazioniFSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.ConsultaFarmaco">ConsultaFarmaco</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.DocumentoSanitario">DocumentoSanitario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.EnteSanitario">EnteSanitario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.Farmaco">Farmaco</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.FascicoloSanitarioElettronico">FascicoloSanitarioElettronico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.Medici">Medici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.MetodoPagamento">MetodoPagamento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.Paziente">Paziente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.Prenotazione">Prenotazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.VisualizzaFarmaco">VisualizzaFarmaco</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="farmaci.html" title="previous chapter">Package Farmaci</a></li>
+      <li>Next: <a href="Utente.html" title="next chapter">Package Utente</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2024, Giovanni Casaburi.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/medico.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

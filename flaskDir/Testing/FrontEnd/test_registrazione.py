@@ -1,18 +1,19 @@
-import bcrypt
-from selenium.webdriver import ActionChains
+
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service as ChromeService
-from flaskDir import app,db
+from flaskDir import app, db
 from selenium.webdriver.support import expected_conditions as EC
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from sqlalchemy_utils import database_exists
 from flaskDir.MediCare.model.entity import Paziente
-class TestRegistrazione():
+
+
+class TestRegistrazione:
     def setup_method(self):
         self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-        self.vars={}
+        self.vars = {}
 
     def teardown_method(self):
         self.driver.quit()
@@ -23,11 +24,11 @@ class TestRegistrazione():
 
     def test_registrazione(self):
         self.driver.get("http://127.0.0.1:5000/")
-        self.driver.set_window_size(1920,1080)
-        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID,"login")))
+        self.driver.set_window_size(1920, 1080)
+        WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.ID, "login")))
         self.driver.find_element(By.ID, "login").click()
         self.driver.find_element(By.CSS_SELECTOR, ".pb-6").click()
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT,"Crea Account")))
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT, "Crea Account")))
         self.driver.find_element(By.LINK_TEXT, "Crea Account").click()
         self.driver.find_element(By.ID, "nome").click()
         self.driver.find_element(By.ID, "nome").send_keys("Gennaro")
@@ -57,5 +58,3 @@ class TestRegistrazione():
         self.driver.find_element(By.ID, "password").click()
         self.driver.find_element(By.ID, "password").send_keys("testexample")
         self.driver.find_element(By.ID, "invio").click()
-
-

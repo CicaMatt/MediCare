@@ -6,9 +6,8 @@ from flaskDir.source.Medico.MedicoService import MedicoService
 medico_blueprint = Blueprint('medico', __name__)
 
 
-
 @medico_blueprint.route('/medico')
-#@login_required
+# @login_required
 def getListaPazienti():
     """
     Restituisce la pagina HTML con la lista dei pazienti associati a un medico.
@@ -16,10 +15,11 @@ def getListaPazienti():
     Returns:
         render_template: Template HTML con la lista dei pazienti.
     """
-    dottore=request.args.get('dottore')
-    return render_template("ListaPazienti.html", lista= MedicoService.getPazienti(dottore))
+    dottore = request.args.get('dottore')
+    return render_template("ListaPazienti.html", lista=MedicoService.getPazienti(dottore))
 
-@medico_blueprint.route('/eliminamedico',methods=['GET','POST'])
+
+@medico_blueprint.route('/eliminamedico', methods=['GET', 'POST'])
 @login_required
 def eliminaMedico():
     """

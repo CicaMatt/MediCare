@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Package Prenotazione &#8212; Medicare 1.00.00 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="package-prenotazione">
+<h1>Package Prenotazione<a class="headerlink" href="#package-prenotazione" title="Permalink to this heading">¶</a></h1>
+</section>
+<section id="module-flaskDir.source.prenotazioni.PrenotazioneControl">
+<span id="prenotazionecontrol"></span><h1>PrenotazioneControl<a class="headerlink" href="#module-flaskDir.source.prenotazioni.PrenotazioneControl" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.prenotazioni.PrenotazioneControl.getListaEnti">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.prenotazioni.PrenotazioneControl.</span></span><span class="sig-name descname"><span class="pre">getListaEnti</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.prenotazioni.PrenotazioneControl.getListaEnti" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce la lista degli enti disponibili.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>render_template: Template HTML con la lista degli enti.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.prenotazioni.PrenotazioneControl.getListaMedici">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.prenotazioni.PrenotazioneControl.</span></span><span class="sig-name descname"><span class="pre">getListaMedici</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.prenotazioni.PrenotazioneControl.getListaMedici" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce la lista dei medici disponibili.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>render_template: Template HTML con la lista dei medici.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.prenotazioni.PrenotazioneControl.getListaVaccini">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.prenotazioni.PrenotazioneControl.</span></span><span class="sig-name descname"><span class="pre">getListaVaccini</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.prenotazioni.PrenotazioneControl.getListaVaccini" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce la lista dei vaccini disponibili.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>render_template: Template HTML con la lista dei vaccini.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.prenotazioni.PrenotazioneControl.getMedico">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.prenotazioni.PrenotazioneControl.</span></span><span class="sig-name descname"><span class="pre">getMedico</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.prenotazioni.PrenotazioneControl.getMedico" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce le informazioni relative a un medico selezionato.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>render_template: Template HTML con le informazioni del medico.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.prenotazioni.PrenotazioneControl.saveVaccino">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.prenotazioni.PrenotazioneControl.</span></span><span class="sig-name descname"><span class="pre">saveVaccino</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.prenotazioni.PrenotazioneControl.saveVaccino" title="Permalink to this definition">¶</a></dt>
+<dd><p>Salva un vaccino per un paziente.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>render_template: Template HTML per la homepage.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-flaskDir.source.prenotazioni.PagamentoControl">
+<span id="pagamentocontrol"></span><h1>PagamentoControl<a class="headerlink" href="#module-flaskDir.source.prenotazioni.PagamentoControl" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.prenotazioni.PagamentoControl.addCarta">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.prenotazioni.PagamentoControl.</span></span><span class="sig-name descname"><span class="pre">addCarta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.prenotazioni.PagamentoControl.addCarta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Aggiunge un nuovo metodo di pagamento (carta di credito) associato all’utente corrente.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>redirect: Reindirizza alla pagina dei metodi di pagamento dopo l’aggiunta.
+render_template: Template HTML di errore se si verifica un problema durante l’aggiunta.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.prenotazioni.PagamentoControl.getMetodi">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.prenotazioni.PagamentoControl.</span></span><span class="sig-name descname"><span class="pre">getMetodi</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.prenotazioni.PagamentoControl.getMetodi" title="Permalink to this definition">¶</a></dt>
+<dd><p>Visualizza la lista dei metodi di pagamento associati all’utente corrente.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>render_template: Template HTML con la lista dei metodi di pagamento.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-flaskDir.source.prenotazioni.PrenotazioneService">
+<span id="prenotazioneservice"></span><h1>PrenotazioneService<a class="headerlink" href="#module-flaskDir.source.prenotazioni.PrenotazioneService" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="flaskDir.source.prenotazioni.PrenotazioneService.PrenotazioneService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">flaskDir.source.prenotazioni.PrenotazioneService.</span></span><span class="sig-name descname"><span class="pre">PrenotazioneService</span></span><a class="headerlink" href="#flaskDir.source.prenotazioni.PrenotazioneService.PrenotazioneService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Classe relativa alle funzionalità prenotazione che richiama i metodi
+di altre classi per svolgere ulteriori funzionalità</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.prenotazioni.PrenotazioneService.PrenotazioneService.confirmIsFree">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">confirmIsFree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idmedico</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ora</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.prenotazioni.PrenotazioneService.PrenotazioneService.confirmIsFree" title="Permalink to this definition">¶</a></dt>
+<dd><p>Conferma se è possibile prenotare una visita per una certa data e ora.</p>
+<dl>
+<dt>Args:</dt><dd><p>idmedico (str): L’ID del medico.</p>
+<p>data (str): La data della prenotazione.</p>
+<p>ora (str): L’ora della prenotazione.</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: True se è possibile prenotare, False altrimenti.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.prenotazioni.PrenotazioneService.PrenotazioneService.confirmVaccino">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">confirmVaccino</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idmedico</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ora</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.prenotazioni.PrenotazioneService.PrenotazioneService.confirmVaccino" title="Permalink to this definition">¶</a></dt>
+<dd><p>Conferma la disponibilità di un medico per la prenotazione di un vaccino.</p>
+<p>Args:
+- idmedico (str): Identificativo unico del medico.</p>
+<ul class="simple">
+<li><p>data (str): Data della prenotazione nel formato “YYYY-MM-DD”.</p></li>
+<li><p>ora (str): Ora della prenotazione nel formato 24 ore.</p></li>
+</ul>
+<p>Returns:
+bool: True se il medico è disponibile per la prenotazione, False altrimenti.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.prenotazioni.PrenotazioneService.PrenotazioneService.getGiorniCorrenti">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getGiorniCorrenti</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.prenotazioni.PrenotazioneService.PrenotazioneService.getGiorniCorrenti" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce il numero di giorni nel mese corrente e i giorni passati.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>tuple: Numero di giorni nel mese corrente e giorni passati.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.prenotazioni.PrenotazioneService.PrenotazioneService.getListaMedici">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getListaMedici</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">specializzazione</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">citta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.prenotazioni.PrenotazioneService.PrenotazioneService.getListaMedici" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce la lista dei medici disponibili.</p>
+<dl>
+<dt>Args:</dt><dd><p>specializzazione (str): La specializzazione del medico.</p>
+<p>citta (str): La città in cui cercare i medici.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list: Lista dei medici filtrati per specializzazione e città.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.prenotazioni.PrenotazioneService.PrenotazioneService.getListaPrenotazioni">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getListaPrenotazioni</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.prenotazioni.PrenotazioneService.PrenotazioneService.getListaPrenotazioni" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce la lista delle prenotazioni effettuate da un paziente.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>user (str): Il codice fiscale del paziente.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list: Lista delle prenotazioni effettuate dal paziente.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.prenotazioni.PrenotazioneService.PrenotazioneService.getListaPrenotazioniMedico">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getListaPrenotazioniMedico</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">medico</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.prenotazioni.PrenotazioneService.PrenotazioneService.getListaPrenotazioniMedico" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce la lista delle prenotazioni effettuate da un medico.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>medico (str): L’email del medico.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list: Lista delle prenotazioni effettuate dal medico.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.prenotazioni.PrenotazioneService.PrenotazioneService.getListaVaccini">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getListaVaccini</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">user</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.prenotazioni.PrenotazioneService.PrenotazioneService.getListaVaccini" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce la lista dei vaccini disponibili per un paziente.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>user (str): Il codice fiscale del paziente.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list: Lista dei vaccini disponibili per il paziente.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.prenotazioni.PrenotazioneService.PrenotazioneService.modificaPrenotazione">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">modificaPrenotazione</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ora</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.prenotazioni.PrenotazioneService.PrenotazioneService.modificaPrenotazione" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modifica una prenotazione esistente.</p>
+<dl>
+<dt>Args:</dt><dd><p>id (int): L’ID della prenotazione da modificare.</p>
+<p>data (str): La nuova data della prenotazione.</p>
+<p>ora (str): La nuova ora della prenotazione.</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: True se la prenotazione è stata modificata con successo, False altrimenti.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.prenotazioni.PrenotazioneService.PrenotazioneService.savePrenotazione">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">savePrenotazione</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idmedico</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ora</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tipo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">CF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prezzo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">carta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'SSS'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.prenotazioni.PrenotazioneService.PrenotazioneService.savePrenotazione" title="Permalink to this definition">¶</a></dt>
+<dd><p>Salva una prenotazione nel database.</p>
+<dl>
+<dt>Args:</dt><dd><p>idmedico (str): L’ID del medico.</p>
+<p>data (str): La data della prenotazione.</p>
+<p>ora (str): L’ora della prenotazione.</p>
+<p>tipo (str): Il tipo di visita (es. Vaccino).</p>
+<p>CF (str): Il codice fiscale del paziente.</p>
+<p>prezzo (float): Il prezzo della visita.</p>
+<p>carta (str): Il numero della carta (default: “SSS”).</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: True se la prenotazione è stata salvata con successo, False altrimenti.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.prenotazioni.PrenotazioneService.PrenotazioneService.saveVaccino">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">saveVaccino</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idmedico</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ora</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tipo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">CF</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prezzo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.prenotazioni.PrenotazioneService.PrenotazioneService.saveVaccino" title="Permalink to this definition">¶</a></dt>
+<dd><p>Salva una prenotazione di vaccino nel database.</p>
+<dl>
+<dt>Args:</dt><dd><p>idmedico (str): L’ID del medico.</p>
+<p>data (str): La data della prenotazione.</p>
+<p>ora (str): L’ora della prenotazione.</p>
+<p>tipo (str): Il tipo di visita (es. Vaccino).</p>
+<p>CF (str): Il codice fiscale del paziente.</p>
+<p>prezzo (float): Il prezzo della visita (default: 0).</p>
+</dd>
+<dt>Returns:</dt><dd><p>bool: True se la prenotazione è stata salvata con successo, False altrimenti.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Medicare</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2024, Giovanni Casaburi.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/prenotazione.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

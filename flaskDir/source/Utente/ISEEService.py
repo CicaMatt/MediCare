@@ -1,13 +1,13 @@
-import sqlalchemy
-from sqlalchemy.exc import SQLAlchemyError
 from flaskDir import db
 from flaskDir.MediCare.model.entity.Paziente import Paziente
 
 
 class ISEEService:
-
+    """
+    Classe che fornisce tutti i metodi per gestire l'ISEE di un paziente
+    """
     @classmethod
-    def changeISEE(cls,cf,newIsee):
+    def changeISEE(cls, cf, newIsee):
         """
         Modifica l'ISEE di un paziente.
 
@@ -16,27 +16,15 @@ class ISEEService:
         newIsee (float): Nuovo valore dell'ISEE.
 
         Returns:
-        None
+        bool: None se l'inserimento viene fatto correttamente, False se l'ISEE è negativo
         """
         paziente = Paziente.query.filter_by(CF=cf).first()
 
-        newIsee_float=float(newIsee)
+        newIsee_float = float(newIsee)
 
         if newIsee_float < 0:
             return False
 
         if paziente:
-            paziente.ISEE_ordinario=newIsee
+            paziente.ISEE_ordinario = newIsee
             db.session.commit()
-
-
-
-
-
-
-
-
-
-
-
-

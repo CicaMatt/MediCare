@@ -1,10 +1,11 @@
-from functools import wraps
+import functools
 
 import bcrypt
 from flask import session, redirect, url_for
 
 from flaskDir import db
 from flask_login import UserMixin
+
 
 def paziente_required(func):
     """
@@ -17,12 +18,15 @@ def paziente_required(func):
     - function: La funzione decorata.
 
     """
-    @wraps
+
+    @functools.wraps(func)
     def wrapper(*args, **kwargs):
-        if session.get('user_role') == 'medico':
+        if session.get('user_role') == 'paziente':
             return func(*args, **kwargs)
         return redirect(url_for('home'))
+
     return wrapper
+
 
 class Paziente(db.Model, UserMixin):
     """
@@ -60,9 +64,9 @@ class Paziente(db.Model, UserMixin):
     dataNascita = db.Column(db.Date, nullable=False)
     luogoNascita = db.Column(db.String(255), nullable=False)
     sesso = db.Column(db.String(30), nullable=False)
-    ISEE_ordinario = db.Column(db.Numeric(precision=9,scale=2), nullable =True)#cambiare salvataggio di un paziente nei services
-    carte = db.relationship("MetodoPagamento", backref="paziente",lazy=True)
-
+    ISEE_ordinario = db.Column(db.Numeric(precision=9, scale=2),
+                               nullable=True)  # cambiare salvataggio di un paziente nei services
+    carte = db.relationship("MetodoPagamento", backref="paziente", lazy=True)
 
     def set_password(self, password):
         """
@@ -78,6 +82,7 @@ class Paziente(db.Model, UserMixin):
         salt = bcrypt.gensalt()
         hashed = bcrypt.hashpw(password.encode('utf-8'), salt)
         self.password_hash = hashed
+
     def check_password(self, password):
         """
         Verifica se la password fornita è corretta.
@@ -89,7 +94,7 @@ class Paziente(db.Model, UserMixin):
         - bool: True se la password è corretta, False altrimenti.
 
         """
-        return bcrypt.checkpw(password.encode('utf-8'),self.password_hash.encode('utf-8'))
+        return bcrypt.checkpw(password.encode('utf-8'), self.password_hash.encode('utf-8'))
 
     def get_id(self):
         """
@@ -103,5 +108,3 @@ class Paziente(db.Model, UserMixin):
 
         """
         return self.CF
-
-

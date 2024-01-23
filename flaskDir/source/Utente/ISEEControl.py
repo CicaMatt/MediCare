@@ -1,14 +1,12 @@
-from flask import Blueprint, render_template, session, request, jsonify
-from flask_login import current_user, login_required
-
+from flask import Blueprint, render_template, request
+from flask_login import login_required
 
 from flaskDir.source.Utente.ISEEService import ISEEService
 
 isee_blueprint = Blueprint('isee', __name__)
 
 
-
-@isee_blueprint.route('/isee', methods=['GET','POST'])
+@isee_blueprint.route('/isee', methods=['GET', 'POST'])
 @login_required
 def modificaISEE():
     """
@@ -21,5 +19,5 @@ def modificaISEE():
         paziente = request.form.get('cf')
         newISEE = request.form.get('isee')
         if paziente is not None and newISEE is not None:
-            ISEEService.changeISEE(paziente,newISEE)
+            ISEEService.changeISEE(paziente, newISEE)
         return render_template("InformazioniPersonali.html")
