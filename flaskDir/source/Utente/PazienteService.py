@@ -9,15 +9,18 @@ from flaskDir.MediCare.model.entity.Prenotazione import Prenotazione
 
 
 class PazienteService:
-
+    """
+    Questa classe fornisce tutti i metodi per le funzionalità
+    relative al paziente, essi vengono usati anche da altre classi
+    """
     @staticmethod
     def retrievePaziente(email, password):
         """
         Recupera un paziente dal database basandosi su email e password.
 
         Args:
-        email (str): Indirizzo email del paziente.
-        password (str): Password del paziente.
+        email (str): Indirizzo email del paziente.\n
+        password (str): Password del paziente.\n
 
         Returns:
         Paziente or None: Oggetto Paziente se trovato, altrimenti None.
@@ -26,6 +29,7 @@ class PazienteService:
         if paziente is None or not paziente.check_password(password):
             return None
         return paziente
+
     @classmethod
     def getListaVaccini(cls, user):
         """
@@ -51,7 +55,6 @@ class PazienteService:
         list: Lista delle prenotazioni del paziente.
         """
         return db.session.scalars(sqlalchemy.select(Prenotazione).where(Prenotazione.pazienteCF == user.CF))
-
 
     @classmethod
     def eliminaPaziente(cls, cf):
@@ -81,3 +84,19 @@ class PazienteService:
             # Rollback in caso di errore
             db.session.rollback()
             return False
+
+    @staticmethod
+    def getmoduloAIresult(user):
+        """
+        Prende il documento Sanitario relativo al risultato della diagnosi cardiaca effettuata dal
+        modulo di IA.
+
+        Args:
+        user(Paziente): il paziente di cui si vuole trovare il documento Sanitario
+
+        Returns:
+        DocumentoSanitario: il documento Sanitario relativo alla diagnosi,None se non è presente
+        """
+        return db.session.scalar(sqlalchemy.select(DocumentoSanitario)
+                                 .where((DocumentoSanitario.titolare == user.CF)
+                                        & (DocumentoSanitario.tipo == "Risultati AI: malattia cardiaca")))

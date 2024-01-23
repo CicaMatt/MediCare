@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Codice Paziente</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Loopple/loopple-public-assets@main/motion-tailwind/motion-tailwind.css">
+              <link rel="stylesheet" href="../static/grafica/main.css">
+
+    </head>
+    <body class="bg-navbarreg rounded-lg" >
+
+    <header>
+        <nav class="bg-blue-500  border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-800">
+
+        <div class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl">
+            <a href="{{url_for('home')}}" class="flex items-center">
+                <img src="{{ url_for('static', filename='images/Logo.png') }}" class="h-10" alt="MediCare Logo" />
+                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">MediCare</span>
+            </a>
+            <div class="flex items-center lg:order-2">
+                <button data-collapse-toggle="mobile-menu-2" type="button" class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="mobile-menu-2" aria-expanded="false">
+                    <span class="sr-only">Open main menu</span>
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+                    <svg class="hidden w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </button>
+            </div>
+
+        </div>
+    </nav>
+</header>
+
+
+
+        <div class="container flex flex-col mx-auto bg-navbarreg rounded-lg ">
+           <div class="flex justify-center w-full h-full my-auto xl:gap-14 lg:justify-normal md:gap-5 draggable">
+      <div class="flex items-center justify-center w-full lg:p-12">
+        <div class="flex items-center bg-white p-10" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+          <form method="post" class="flex flex-col w-full h-full pb-6 text-center bg-white rounded-3xl" action="{{url_for('auth.verification2fa')}}">
+            <h3 class="mb-3 text-4xl font-extrabold text-dark-grey-900">Codice</h3>
+
+
+
+              <div class="flex" >
+
+
+                  <a id="user" onclick="selectUtente(this)" class="flex items-center justify-center w-full py-4 mb-6 text-sm font-medium transition duration-300 rounded-2xl text-grey-900 bg-grey-300 hover:bg-grey-400 focus:ring-4 focus:ring-grey-300">
+                      <img src="{{ url_for('static', filename='images/iconapaziente.png') }}" class="d-block w-20" alt="...">
+                  </a>
+            </div>
+
+            <div class="items-center mb-3">
+                <p  id="Benvenuto" class="mx-4 text-grey-600">Inserisci il codice per la doppia autenticazione</p>
+            </div>
+              {% if error==False %}
+            <p id="errore" class="text-xl text-orange-900 leading-normal">Credenziali fornite errate</p>
+              {% endif %}
+            <label for="codice" class="mb-2 text-sm text-start text-grey-900">Codice</label>
+            <input name ="codice" id="codice" type="text" placeholder="12345678" class="border border-grey-900 flex items-center w-full px-5 py-4 mr-2 text-sm font-medium outline-none focus:bg-grey-400 mb-7 placeholder:text-grey-700 bg-formpers text-dark-grey-900 rounded-2xl" required/>
+
+            <button type="submit" id="invio" class="bg-navbarreg w-full px-6 py-5 mb-5 text-sm font-bold leading-none text-white transition duration-300 md:w-96 rounded-2xl hover:bg-purple-blue-600 focus:ring-4 focus:ring-purple-blue-100 bg-purple-blue-500">Accedi</button>
+          </form>
+        </div>
+      </div>
+    </div>
+        </div>
+
+    </body>
+</html>

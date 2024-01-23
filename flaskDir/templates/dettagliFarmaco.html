@@ -37,7 +37,8 @@
           </div>
 
           <div class="flex">
-            <span class="title-font font-medium text-2xl text-gray-900">€{{ farmaco.prezzo }}</span>
+            <span class="title-font font-medium text-2xl text-gray-900">€{{ '{:.2f}'.format(farmaco.prezzo) }}</span>
+
 
           </div>
         </div>

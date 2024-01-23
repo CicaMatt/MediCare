@@ -1,27 +1,36 @@
-import datetime
-
-import pandas as pd
 from flask import render_template, Blueprint, request, session, url_for, redirect
 from flask_login import login_required, current_user
 
-from flaskDir import app
+from flaskDir.source.Utente.FascicoloService import FascicoloService
 from flaskDir.source.ModuloIA.AIService import ModuloIAService
-from flaskDir.source.prenotazioni.services import PazienteService, FascicoloService
+from flaskDir.source.Utente.PazienteService import PazienteService
 
 feature_blueprint = Blueprint('feature', __name__)
 
 
-@feature_blueprint.route('/moduloai',)
+@feature_blueprint.route('/moduloai', )
 def moduloai():
+    """
+        Gestisce la visualizzazione della pagina 'ModuloAI.html'.
+
+        Returns:
+            render_template: La pagina 'ModuloAI.html'.
+        """
     return render_template("ModuloAI.html")
 
 
-
-
-@feature_blueprint.route('/moduloai/risultati', methods=['GET','POST'])
+@feature_blueprint.route('/moduloai/risultati', methods=['GET', 'POST'])
 @login_required
 def results():
-    if request.method =="POST" and session.get('user_role')=="paziente":
+    """
+        Gestisce la visualizzazione dei risultati del modulo AI, ricevendo i dati dal form e aggiungendo i risultati al
+        fascicolo del paziente. La diagnosi effettuata cambiaerà in base ai dati passato dall'utente.
+
+        Returns:
+            redirect: Reindirizza l'utente alla stessa pagina dopo aver inviato il form.
+            render_template: Mostra la pagina 'FormAI.html' o 'RisultatiAI2.html' a seconda dei risultati disponibili.
+        """
+    if request.method == "POST" and session.get('user_role') == "paziente":
         age = int(request.form.get("age"))
         sex = int(request.form.get("sex"))
         cp = int(request.form.get("cp"))
@@ -36,27 +45,26 @@ def results():
         caa = int(request.form.get("caa"))
         thall = int(request.form.get("thall"))
 
-        if slp == None or caa == None or thall == None:
+        if slp is None or caa is None or thall is None:
             result = ModuloIAService.diagnosi_simple(age, sex, cp, trtbps, chol, fbs, restecg, thalach, exng, oldpeak)
             if str(result) == "[0]":
                 result = "Sei fortunato! Non c'è il sospetto che tu abbia una malattia cardiaca"
             else:
                 result = "Abbiamo notato dai tuoi dati una predisposizione maggiore verso il rischio di infarto. Prenditi cura della tua salute. Chiedi al tuo medico di fiducia la terapia migliore per le tue esigenze."
         else:
-            result = ModuloIAService.diagnosi_accurata(age, sex, cp, trtbps, chol, fbs, restecg, thalach, exng, oldpeak, slp, caa, thall)
+            result = ModuloIAService.diagnosi_accurata(age, sex, cp, trtbps, chol, fbs, restecg, thalach, exng, oldpeak,
+                                                       slp, caa, thall)
             if str(result) == "[0]":
                 result = "Sei fortunato! Non c'è il sospetto che tu abbia una malattia cardiaca"
             else:
-                result ="Abbiamo notato dai tuoi dati una predisposizione maggiore verso il rischio di infarto. Prenditi cura della tua salute. Chiedi al tuo medico di fiducia la terapia migliore per le tue esigenze."
+                result = "Abbiamo notato dai tuoi dati una predisposizione maggiore verso il rischio di infarto. Prenditi cura della tua salute. Chiedi al tuo medico di fiducia la terapia migliore per le tue esigenze."
 
-        FascicoloService.addDocumento( "Risultati AI: malattia cardiaca", result, None, current_user.CF )
+        FascicoloService.addDocumento("Risultati AI: malattia cardiaca", result, None, current_user.CF)
         return redirect(url_for("feature.results"))
-        #return ...
-
+        # return ...
 
     documentoResult = PazienteService.getmoduloAIresult(current_user)
-    if documentoResult== None:
-        return  render_template('FormAI.html', paziente=request.args.get('paziente'))
+    if documentoResult is None:
+        return render_template('FormAI.html', paziente=request.args.get('paziente'))
     else:
         return render_template('RisultatiAI2.html', risultato=documentoResult)
-

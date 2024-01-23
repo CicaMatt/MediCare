@@ -1,0 +1,281 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Package Farmaci &#8212; Medicare 1.00.00 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Package Medico" href="medico.html" />
+    <link rel="prev" title="Package EnteFunction" href="ente.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="package-farmaci">
+<h1>Package Farmaci<a class="headerlink" href="#package-farmaci" title="Permalink to this heading">¶</a></h1>
+</section>
+<section id="module-flaskDir.source.Farmaci.FarmaciControl">
+<span id="farmacicontrol"></span><h1>FarmaciControl<a class="headerlink" href="#module-flaskDir.source.Farmaci.FarmaciControl" title="Permalink to this heading">¶</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.Farmaci.FarmaciControl.dettagliFarmaco">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.Farmaci.FarmaciControl.</span></span><span class="sig-name descname"><span class="pre">dettagliFarmaco</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Farmaci.FarmaciControl.dettagliFarmaco" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce la pagina con i dettagli di un farmaco.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>render_template: La pagina con i dettagli del farmaco e suggerimenti correlati.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.Farmaci.FarmaciControl.farmaci">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.Farmaci.FarmaciControl.</span></span><span class="sig-name descname"><span class="pre">farmaci</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Farmaci.FarmaciControl.farmaci" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce la pagina del catalogo farmaci.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>render_template: La pagina del catalogo farmaci con la lista dei farmaci.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.Farmaci.FarmaciControl.filtroFarmaci">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.Farmaci.FarmaciControl.</span></span><span class="sig-name descname"><span class="pre">filtroFarmaci</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Farmaci.FarmaciControl.filtroFarmaci" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filtra il catalogo dei farmaci in base alla categoria e al prezzo.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>render_template: La pagina del catalogo farmaci filtrata.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.Farmaci.FarmaciControl.ricerca">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.Farmaci.FarmaciControl.</span></span><span class="sig-name descname"><span class="pre">ricerca</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Farmaci.FarmaciControl.ricerca" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gestisce la ricerca dei farmaci in base a un suggerimento.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>jsonify: Un oggetto JSON contenente i risultati della ricerca.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="flaskDir.source.Farmaci.FarmaciControl.ricercaNome">
+<span class="sig-prename descclassname"><span class="pre">flaskDir.source.Farmaci.FarmaciControl.</span></span><span class="sig-name descname"><span class="pre">ricercaNome</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Farmaci.FarmaciControl.ricercaNome" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filtra il catalogo dei farmaci in base al nome.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>render_template: La pagina del catalogo farmaci filtrata per nome.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-flaskDir.source.Farmaci.FarmaciService">
+<span id="farmaciservice"></span><h1>FarmaciService<a class="headerlink" href="#module-flaskDir.source.Farmaci.FarmaciService" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="flaskDir.source.Farmaci.FarmaciService.FarmaciService">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">flaskDir.source.Farmaci.FarmaciService.</span></span><span class="sig-name descname"><span class="pre">FarmaciService</span></span><a class="headerlink" href="#flaskDir.source.Farmaci.FarmaciService.FarmaciService" title="Permalink to this definition">¶</a></dt>
+<dd><p>Classe che fornisce tutti i metodi per gestire i farmaci della
+piattaforma</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.Farmaci.FarmaciService.FarmaciService.filtraCatalogo">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">filtraCatalogo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">categoria</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prezzo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Farmaci.FarmaciService.FarmaciService.filtraCatalogo" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filtra il catalogo dei farmaci in base alla categoria e/o al prezzo.</p>
+<dl>
+<dt>Args:</dt><dd><p>categoria (str): La categoria di farmaci da mostrare. Se None, mostra tutti i farmaci.</p>
+<p>prezzo (float): Il massimo prezzo del farmaco da mostrare. Se 0, non filtra per prezzo.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list: Una lista di farmaci filtrati in base alla categoria e/o al prezzo.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.Farmaci.FarmaciService.FarmaciService.getDettagliFarmaco">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getDettagliFarmaco</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Farmaci.FarmaciService.FarmaciService.getDettagliFarmaco" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce i dettagli di un farmaco dato il suo ID.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>id (int): L’ID del farmaco.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Farmaco: L’oggetto Farmaco con i dettagli.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.Farmaci.FarmaciService.FarmaciService.getFarmaci">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getFarmaci</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Farmaci.FarmaciService.FarmaciService.getFarmaci" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce la lista di tutti i farmaci nel catalogo.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>list: Una lista contenente tutti i farmaci nel catalogo.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.Farmaci.FarmaciService.FarmaciService.getSuggeriti">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">getSuggeriti</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tipo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Farmaci.FarmaciService.FarmaciService.getSuggeriti" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce una lista di farmaci suggeriti di un determinato tipo, escludendo il farmaco con l’ID specificato.</p>
+<dl>
+<dt>Args:</dt><dd><p>tipo (str): Il tipo di farmaci da suggerire.</p>
+<p>id (int): L’ID del farmaco da escludere dalla lista dei suggerimenti.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list: Una lista di farmaci suggeriti.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.Farmaci.FarmaciService.FarmaciService.ricerca">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ricerca</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tip</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Farmaci.FarmaciService.FarmaciService.ricerca" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce una lista di suggerimenti di farmaci basati sulla ricerca per nome.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>tip (str): Il suggerimento di ricerca.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list: Una lista di suggerimenti di farmaci.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="flaskDir.source.Farmaci.FarmaciService.FarmaciService.ricercaNome">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ricercaNome</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nome</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#flaskDir.source.Farmaci.FarmaciService.FarmaciService.ricercaNome" title="Permalink to this definition">¶</a></dt>
+<dd><p>Restituisce una lista di farmaci filtrati per nome.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>nome (str): Il nome del farmaco da cercare.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list: Una lista di farmaci filtrati per nome.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Medicare</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="autenticazione.html">Package Autenticazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autenticazione.html#module-flaskDir.source.autenticazione.UserControl">UserControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="autenticazione.html#module-flaskDir.source.autenticazione.AutenticazioneService">AutenticazioneService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prenotazione.html">Package Prenotazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prenotazione.html#module-flaskDir.source.prenotazioni.PrenotazioneControl">PrenotazioneControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prenotazione.html#module-flaskDir.source.prenotazioni.PagamentoControl">PagamentoControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prenotazione.html#module-flaskDir.source.prenotazioni.PrenotazioneService">PrenotazioneService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ente.html">Package EnteFunction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ente.html#module-flaskDir.source.EnteFunction.EnteControl">EnteControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ente.html#module-flaskDir.source.EnteFunction.EnteService">EnteService</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Package Farmaci</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-flaskDir.source.Farmaci.FarmaciControl">FarmaciControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#module-flaskDir.source.Farmaci.FarmaciService">FarmaciService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="medico.html">Package Medico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="medico.html#module-flaskDir.source.Medico.MedicoControl">MedicoControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="medico.html#module-flaskDir.source.Medico.MedicoService">MedicoService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utente.html">Package Utente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utente.html#module-flaskDir.source.Utente.AreaUtenteControl">UtenteControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utente.html#module-flaskDir.source.Utente.ISEEControl">ISEEControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utente.html#module-flaskDir.source.Utente.PazienteService">Paziente Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utente.html#module-flaskDir.source.Utente.ISEEService">ISEEService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Utente.html#module-flaskDir.source.Utente.FascicoloService">FascicoloService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AIPackage.html">Package ModuloIA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AIPackage.html#module-flaskDir.source.ModuloIA.AIControl">AIControl</a></li>
+<li class="toctree-l1"><a class="reference internal" href="AIPackage.html#module-flaskDir.source.ModuloIA.AIService">AIService</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html">Package MediCare.model.entity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.AutorizzazioniFSE">AutorizzazioniFSE</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.ConsultaFarmaco">ConsultaFarmaco</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.DocumentoSanitario">DocumentoSanitario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.EnteSanitario">EnteSanitario</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.Farmaco">Farmaco</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.FascicoloSanitarioElettronico">FascicoloSanitarioElettronico</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.Medici">Medici</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.MetodoPagamento">MetodoPagamento</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.Paziente">Paziente</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.Prenotazione">Prenotazione</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Model.html#module-flaskDir.MediCare.model.entity.VisualizzaFarmaco">VisualizzaFarmaco</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="ente.html" title="previous chapter">Package EnteFunction</a></li>
+      <li>Next: <a href="medico.html" title="next chapter">Package Medico</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2024, Giovanni Casaburi.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/farmaci.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

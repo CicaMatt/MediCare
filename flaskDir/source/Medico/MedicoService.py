@@ -4,12 +4,17 @@ from flaskDir import db
 from flaskDir.MediCare.model.entity.Medici import Medico
 from flaskDir.MediCare.model.entity.Paziente import Paziente
 
+
 class MedicoService:
+    """
+    Classe che fornisce dei servizi relativi al medico per implementare
+    le sue funzionalità e ad altre classi che ne fanno l'uso
+    """
     _listaMedici = None
     _listaCentri = None
 
     @classmethod
-    def getPazienti(cls,dottore):
+    def getPazienti(cls, dottore):
         """
         Restituisce la lista dei pazienti associati a un medico specifico.
 
@@ -48,8 +53,8 @@ class MedicoService:
         Recupera un medico dal database in base all'email e verifica la password.
 
         Args:
-            email (str): Email del medico.
-            password (str): Password del medico.
+            email (str): Email del medico.\n
+            password (str): Password del medico.\n
 
         Returns:
             Medico: Oggetto Medico se l'autenticazione è riuscita, altrimenti None.
@@ -83,13 +88,14 @@ class MedicoService:
             cls._listaCentri = Medico.query.filter(Medico.specializzazione == "Vaccini").all()
         return cls._listaCentri
 
+    @classmethod
     def filtraMedici(cls, specializzazione=None, citta=None):
         """
         Filtra i medici in base alla specializzazione e/o alla città.
 
         Args:
-            specializzazione (str): Specializzazione del medico.
-            citta (str): Città del medico.
+            specializzazione (str): Specializzazione del medico.\n
+            citta (str): Città del medico.\n
 
         Returns:
             list: Lista di oggetti Medico filtrati.
@@ -112,13 +118,14 @@ class MedicoService:
 
         return newList
 
+    @classmethod
     def filtraMediciv2(cls, specializzazione=None, citta=None):
         """
         Versione avanzata del filtro dei medici in base alla specializzazione e/o alla città.
 
         Args:
-            specializzazione (str): Specializzazione del medico.
-            citta (str): Città del medico.
+            specializzazione (str): Specializzazione del medico.\n
+            citta (str): Città del medico.\n
 
         Returns:
             list: Lista di oggetti Medico filtrati.
@@ -179,9 +186,3 @@ class MedicoService:
             # Rollback in caso di errore
             db.session.rollback()
             return False
-
-
-
-
-
-

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>ModuloAI</title>
     <meta charset="UTF-8">
                   <link rel="stylesheet" href="../static/grafica/main.css">
 
 </head>
 <body class="bg-gradient-to-bl from-rose-100 to-teal-100">
   	{% include 'Navbar.html' %}
-
+    {% set user_role = session.get('user_role') %}
 		<header>
 		  <!-- Hero Container -->
 		  <div class="mx-auto w-full max-w-7xl px-5 py-16 ">
@@ -17,21 +18,31 @@
 		      <div class="flex flex-col">
 		        <!-- Hero Title -->
 		        <h1 class="mb-4 text-4xl font-bold md:text-6xl"> Il tuo cuore parla, noi <span class="bg-gradient-to-tl from-slate-800 via-violet-500 to-zinc-400 bg-clip-text text-transparent"> ascoltiamo</span> </h1>
-		        <p class="mb-6 max-w-lg text-base text-[#636262] md:mb-10 lg:mb-12"> Scopri come l'intelligenza artificiale può prevenire le malattie cardiache </p>
+
+                {% if not user_role == 'ente' and not user_role == 'medico'%}
+		         <p class="mb-6 max-w-lg text-base text-[#636262] md:mb-10 lg:mb-12"> Scopri come l'intelligenza artificiale può prevenire le malattie cardiache </p>
+                {% else %}
+                 <p class="mb-6 max-w-lg text-base text-[#636262] md:mb-10 lg:mb-12"> Per usufruire di questa funzionalità devi accedere come paziente</p>
+                {% endif %}
 		        <!-- Hero Button -->
-		        <div class="flex items-center">{% if current_user.is_authenticated %}
+		        <div class="flex items-center">
+                {% if not user_role == 'ente' and not user_role == 'medico'%}
+                  {% if current_user.is_authenticated %}
 		          <a href="{{url_for('feature.results')}}" class="mr-5 flex items-center bg-[#276ef1] px-8 py-4 font-semibold text-white transition [box-shadow:rgb(171,_196,245)-8px_8px] hover:[box-shadow:rgb(171,_196,_245)_0px_0px] md:mr-6 lg:mr-8">
 		            <p class="mr-6 font-bold">Scopri</p>
-                    {% else %}
+                  {% else %}
                     <a href="{{url_for('auth.login_page')}}" class="mr-5 flex items-center bg-[#276ef1] px-8 py-4 font-semibold text-white transition [box-shadow:rgb(171,_196,245)-8px_8px] hover:[box-shadow:rgb(171,_196,_245)_0px_0px] md:mr-6 lg:mr-8">
 		            <p class="mr-6 font-bold">Login</p>
-                      {% endif %}
+                  {% endif %}
+                {% endif %}
+                {% if not user_role == 'ente' and not user_role == 'medico'%}
 		            <svg fill="currentColor" viewBox="0 0 20 21" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 flex-none">
 		              <title>Arrow Right</title>
 		              <polygon points="16.172 9 10.101 2.929 11.515 1.515 20 10 19.293 10.707 11.515 18.485 10.101 17.071 16.172 11 0 11 0 9"></polygon>
 		            </svg>
+                {% endif %}
 		          </a>
-
+                  </a>
 		        </div>
 		      </div>
 		      <!-- Hero Image -->

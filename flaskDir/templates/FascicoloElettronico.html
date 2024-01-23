@@ -12,7 +12,7 @@
 </style>
 
 
-<body class="bg-navbarreg rounded-lg">
+<body class="bg-gradient-to-r from-teal-100 via-purple--100 to-blue-100 rounded-lg">
 
 {% if session.get("user_role") ==  "medico" %}
     {% include 'NavbarLateraleMedico.html' %}
@@ -23,7 +23,7 @@
 
 
 <div class="p-4 sm:ml-64">
-    <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 mt-14">
+    <div class="p-4 bg-gradient-to-r from-teal-200 via-purple--200 to-blue-200 rounded-lg mt-14">
 
 {% if session.get("user_role") ==  "medico" %}
 
@@ -138,7 +138,7 @@
                                         <form class="w-full max-w-lg" method="POST" action={{url_for('areautente.addDocumento')}}>
                                           <div class="flex flex-wrap -mx-3 mb-6">
                                             <div class="w-full px-3">
-                                              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-password">
+                                              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="descrizione">
                                                 Descrizione
                                               </label>
                                               <input name="descrizione" id="descrizione" class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="Inserisci la descrizione..." required>
@@ -148,14 +148,14 @@
 
 
 
-                                              <input type="hidden" name="cf" id="cf" value={{ cfPaziente }}>
+                                              <input type="hidden" name="cf" id="cf" value="{{ cfPaziente }}">
                                               <p class="text-gray-600 text-xs italic">Inserisci una breve descrizione</p>
                                             </div>
                                           </div>
 
                                           <div class="flex flex-wrap -mx-3 mb-6">
                                             <div class="w-full px-3">
-                                              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-state">
+                                              <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="tipo">
                                                 Tipo
                                               </label>
                                               <div class="relative">
@@ -174,7 +174,7 @@
 
 
                                               <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 mt-4">
-                                                  <label class="hidden uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-zip" id="labrichiamo">
+                                                  <label class="hidden uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="richiamo" id="labrichiamo">
                                                     Data Richiamo
                                                   </label>
                                                   <input name="richiamo" id="richiamo" class=" hidden appearance-none w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="2024-01-21">
@@ -232,7 +232,7 @@
 
 
 function setRichiamo(vaccino){
-    if (vaccino.value=="Vaccino") {
+    if (vaccino.value==="Vaccino") {
         document.getElementById("labrichiamo").style.display="block"
         document.getElementById("richiamo").style.display="block"
     }else{
