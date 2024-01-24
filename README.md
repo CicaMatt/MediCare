@@ -49,4 +49,4 @@ Follow these steps:
 * [Python](https://www.python.org/) - The programming language used for the back-end development.
 * [Flask](https://flask.palletsprojects.com/en/2.2.x/) - The framework used to build and develop the web application.
 * [HTML5](https://www.w3schools.com/html/default.asp) - For front-end development.
-* [Bootstrap](https://getboostrap.com/) - Front-end framework.
+* [Tailwindcss](https://tailwindcss.com/) - Front-end framework.
