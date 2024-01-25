@@ -9,6 +9,7 @@ from flaskDir import app, db
 from flaskDir.MediCare.model.entity.Medici import Medico
 from flaskDir.source.autenticazione import AutenticazioneService
 
+
 class TestAutenticazione:
     @pytest.fixture(autouse=True, scope='session')
     def testapp(self,request):
